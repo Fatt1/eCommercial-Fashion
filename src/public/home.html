@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../components/Header/header.css" />
+    <link rel="stylesheet" href="../components/Nav/nav.css" />
+    <link rel="stylesheet" href="../pages/Home/Home.css" />
+    <!-- fonts -->
+    <!-- Geologica -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Luxurious Roman -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&family=Luxurious+Roman&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&family=Luxurious+Roman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="height: 2000px">
+    <div id="root">
+      <!-- Header -->
+      <header>
+        <div class="container">
+          <div class="main-content">
+            <div class="header-top">
+              <nav class="navbar">
+                <ul class="navbar-list">
+                  <li class="nav-item active"><a href="#">TRANG CHỦ</a></li>
+                  <li class="nav-item"><a href="#">SẢN PHẨM</a></li>
+                  <li class="nav-item"><a href="#">GIỚI THIỆU</a></li>
+                  <li class="nav-item"><a href="#">LIÊN HỆ</a></li>
+                </ul>
+              </nav>
+              <img class="logo" src="../assets/logo.png" alt="logo" />
+              <div class="action">
+                <input type="text" class="search" placeholder="Tìm kiếm..." />
+                <img
+                  src="../assets/defaut-avatar.png"
+                  alt="avatar-user"
+                  class="avatar-user"
+                />
+                <a class="login-link">Đăng Nhập</a>
+                <span style="color: white">|</span>
+                <a class="register-link">Đăng Kí</a>
+                <div class="header-cart">
+                  <img
+                    src="../assets/shopping-cart.png"
+                    alt="cart-icon"
+                    class="cart-icon"
+                  />
+                  <span class="cart-quantity">0</span>
+                </div>
+              </div>
+            </div>
+            <div class="carousel">
+              <div class="carousel-wrapper">
+                <button class="carousel--btn__prev">
+                  <img src="../assets/Expo.png" />
+                </button>
+                <div class="carousel-container--list">
+                  <div dataset-index="0" class="carousel-item">
+                    <img src="../assets/carousel-3.jpg" />
+                  </div>
+                  <div dataset-index="1" class="carousel-item">
+                    <img src="../assets/carousel-2.jpg" />
+                  </div>
+                  <div dataset-index="2" class="carousel-item">
+                    <img src="../assets/carousel-1.jpg" />
+                  </div>
+                </div>
+                <button class="carousel--btn__next">
+                  <img src="../assets/Expo.png" alt="" />
+                </button>
+              </div>
+              <div class="carousel-dots-container">
+                <span class="carousel__dot active"></span>
+                <span class="carousel__dot"></span>
+                <span class="carousel__dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <h2 class="promotion-text">KHUYẾN MÃI HÔM NAY</h2>
+      <!-- Discount -->
+      <div class="promotion">
+        <div class="main-content">
+          <div class="promotion-list">
+            <img
+              class="promotion-image__large"
+              src="../assets/sale.webp"
+              alt=""
+            />
+            <div class="promotion-image__behind">
+              <div class="promotion-overlay"></div>
+              <img
+                class="promotion-small"
+                src="../assets/promo-img-1.jpeg"
+                alt=""
+              />
+              <img
+                class="promotion-small"
+                src="../assets/promo-img-2.jpg"
+                alt=""
+              />
+              <img
+                class="promotion-small"
+                src="../assets/promo-img-3.jpg"
+                alt=""
+              />
+              <img
+                class="promotion-small"
+                src="../assets/promo-img-4.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="timer-promotion">
+              <div class="timer">
+                <span id="day" class="promotion-timer__idicator">2</span> Ngày
+              </div>
+              <div class="timer">
+                <span id="hour" class="promotion-timer__idicator">23</span> Giờ
+              </div>
+              <div class="timer">
+                <span id="minute" class="promotion-timer__idicator">59</span>
+                Phút
+              </div>
+              <div class="timer">
+                <span id="second" class="promotion-timer__idicator">59</span>
+                Giây
+              </div>
+            </div>
+          </div>
+          <a class="btn promotion-btn"> XEM THÊM</a>
+        </div>
+      </div>
+    </div>
+    <script src="../pages/Home/Home.js"></script>
+  </body>
+</html>
