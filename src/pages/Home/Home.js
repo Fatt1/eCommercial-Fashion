@@ -16,6 +16,7 @@ function moveToSlide(index) {
 
 const carouselWrapper = document.querySelector(".carousel-wrapper");
 const carouselWrapperButtons = carouselWrapper.querySelectorAll("button");
+
 carouselWrapper.addEventListener("mouseover", () => {
   document;
   carouselWrapperButtons.forEach((btn) => {
@@ -30,10 +31,56 @@ carouselWrapper.addEventListener("mouseout", () => {
   });
 });
 
-setInterval(() => {
-  if (currentIndex >= 3) currentIndex = 0;
-  moveToSlide(currentIndex++);
-}, 5000);
+const carouselWrapperButtonsPrev = carouselWrapper.querySelector(
+  ".carousel--btn__prev"
+);
+const carouselWrapperButtonsNext = carouselWrapper.querySelector(
+  ".carousel--btn__next"
+);
+
+//   carouselWrapperButtons.forEach((btn) => {});
+// });
+
+// carouselWrapperButtons.forEach((btn) => {
+//   btn.addEventListener("click", () => {
+//     moveToSlide(currentIndex++);
+//   });
+// });
+
+// carouselWrapperButtonsNext.addEventListener("click", () => {
+//   moveToSlide(currentIndex++);
+// });
+
+carouselWrapperButtonsNext.addEventListener("click", () => {
+  // tránh vô index 3
+  currentIndex = (currentIndex + 1) % carouselItems.length;
+  moveToSlide(currentIndex);
+  startAutoSlide(); //bắt đầu chạy lại cái bộ đếm 5s sau khi bấm nút
+});
+
+carouselWrapperButtonsPrev.addEventListener("click", () => {
+  // hoặc sài if cũng dc :v
+  currentIndex =
+    (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+  moveToSlide(currentIndex);
+  startAutoSlide();
+});
+
+let autoSlide;
+
+function startAutoSlide() {
+  clearInterval(autoSlide); // xóa interval cũ để cờ lear reset lại cái bộ đếm 5s
+  autoSlide = setInterval(() => {
+    currentIndex = (currentIndex + 1) % carouselItems.length;
+    moveToSlide(currentIndex);
+  }, 5000);
+}
+
+startAutoSlide();
+// setInterval(() => {
+//   if (currentIndex >= 3) currentIndex = 0;
+//   moveToSlide(currentIndex++);
+// }, 5000);
 
 function formatTime(value) {
   return value.toString().padStart(2, "0");
