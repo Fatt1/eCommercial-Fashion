@@ -28,7 +28,7 @@ if (slides.length > 0) {
     carouselContainer.style.transition = "none";
     carouselContainer.style.transform = `translateX(-${100 * currentIndex}%)`;
 
-    carouselContainer.offsetHeight;
+    console.log(carouselContainer.offsetHeight);
     carouselContainer.style.transition = `transform ${
       transitionTime / 1000
     }s ease`;
@@ -82,6 +82,7 @@ if (slides.length > 0) {
 
     carouselContainer.addEventListener("transitionend", () => {
       //
+      console.log(currentIndex);
       if (slides[currentIndex].classList.contains("clone")) {
         // nếu đang ở clone thì tắt tran để tele về cái hình thật liền luôn nên k phân biệt dc
         carouselContainer.style.transition = "none";
@@ -96,7 +97,7 @@ if (slides.length > 0) {
           100 * currentIndex
         }%)`;
 
-        carouselContainer.offsetHeight;
+        console.log(carouselContainer.offsetHeight);
 
         // bật lại trans
         carouselContainer.style.transition = `transform ${
@@ -194,3 +195,16 @@ function timer() {
 }
 timer();
 setInterval(timer, 1000);
+
+document.querySelectorAll(".category-list-item").forEach((elm) => {
+  elm.addEventListener("mouseover", () => {
+    const overlayElem = elm.querySelector(".category-list-item__overlay");
+    overlayElem.style.opacity = 1;
+    elm.querySelector(".category-image").style.transform = "scale(1.2)";
+  });
+
+  elm.addEventListener("mouseout", () => {
+    elm.querySelector(".category-list-item__overlay").style.opacity = 0;
+    elm.querySelector(".category-image").style.transform = "scale(1)";
+  });
+});
