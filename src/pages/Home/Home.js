@@ -44,6 +44,8 @@ if (slides.length > 0) {
     }
 
     function moveToIndex(idx) {
+      if (idx < 0 || idx > slides.length - 1) idx = 0; //chặn out of range
+
       if (isAnimating) return; //phải chạy xong mới bấm đc
       isAnimating = true;
       carouselContainer.style.transition = `transform ${
