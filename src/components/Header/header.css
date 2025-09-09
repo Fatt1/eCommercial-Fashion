@@ -61,7 +61,7 @@ header {
 
 .carousel-wrapper {
   height: 571px;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 3px 10px 20px #3b1a07;
   overflow: hidden;
   position: relative;

@@ -1,0 +1,6 @@
+{
+  "id": 2,
+  "color_code": "#1234",
+  "name": "Black",
+  "category_ids": ["12", "23"]
+}

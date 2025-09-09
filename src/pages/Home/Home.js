@@ -5,10 +5,9 @@ const carouselItems = document.querySelectorAll(".carousel-item");
 //   carouselContainer.style.transform = `translateX(-${100 * index}%)`;
 // }
 
-let slides = Array.from(document.querySelectorAll(".carousel-item")); //lấy các item bỏ vô array
+let slides = document.querySelectorAll(".carousel-item"); //lấy các item bỏ vô array
 const carouselContainer = document.querySelector(".carousel-container--list");
 const dots = Array.from(document.querySelectorAll(".carousel__dot"));
-
 if (slides.length > 0) {
   if (slides.length > 0) {
     const firstClone = slides[0].cloneNode(true);
@@ -19,7 +18,7 @@ if (slides.length > 0) {
     carouselContainer.appendChild(firstClone);
     carouselContainer.insertBefore(lastClone, slides[0]);
 
-    slides = Array.from(document.querySelectorAll(".carousel-item")); //update lại slide
+    slides = document.querySelectorAll(".carousel-item"); //update lại slide
 
     let currentIndex = 1; // lúc này index 0 là cái last rồi
     let isAnimating = false; //tét
@@ -28,7 +27,7 @@ if (slides.length > 0) {
     carouselContainer.style.transition = "none";
     carouselContainer.style.transform = `translateX(-${100 * currentIndex}%)`;
 
-    console.log(carouselContainer.offsetHeight);
+    carouselContainer.offsetHeight;
     carouselContainer.style.transition = `transform ${
       transitionTime / 1000
     }s ease`;
@@ -99,7 +98,7 @@ if (slides.length > 0) {
           100 * currentIndex
         }%)`;
 
-        console.log(carouselContainer.offsetHeight);
+        carouselContainer.offsetHeight;
 
         // bật lại trans
         carouselContainer.style.transition = `transform ${
