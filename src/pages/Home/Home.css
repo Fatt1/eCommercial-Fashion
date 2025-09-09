@@ -172,6 +172,7 @@
 
 .product-card {
   position: relative;
+  width: 330px;
 }
 
 .product-card__img {
@@ -194,9 +195,11 @@
   text-decoration-line: none;
   color: black;
   padding: 15px 0;
-
-  display: inline-block;
+  white-space: nowrap; /* Ngăn văn bản xuống dòng */
+  display: block;
   overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 330px;
 }
 
 .product-card-price {
