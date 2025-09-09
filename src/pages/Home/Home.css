@@ -208,14 +208,14 @@
 }
 
 .product-card-price__origin {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: "Geologica", sans-serif;
   color: #7f756e;
   text-decoration: line-through;
 }
 
 .product-card-price__sale {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-family: "Geologica", sans-serif;
   font-weight: bold;
 }
@@ -235,7 +235,15 @@
   z-index: 1;
 }
 .product-card__hot {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
   position: absolute;
+  font-weight: 500;
   z-index: 1;
   right: 1px;
+  top: 1px;
+  background-color: white;
+  border-radius: 2px;
+  padding: 10px 22px;
+  color: rgb(11, 182, 45);
 }
