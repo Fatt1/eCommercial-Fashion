@@ -1,13 +1,15 @@
 header {
-  background-color: #7b3912;
+  background-color: #61604b;
   box-shadow: inset -30px -30px 34px rgba(210, 199, 199, 0.3);
-  padding-bottom: 30px;
+}
+header a:hover {
+  opacity: 0.7;
 }
 .header-top {
   display: flex;
   padding-top: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #b69b81;
+
   justify-content: space-between;
   align-items: center;
 }
@@ -53,81 +55,7 @@ header {
 }
 .header-top .logo {
   width: 140px;
-}
-/* Carousel */
-.carousel {
-  margin-top: 20px;
-}
-
-.carousel-wrapper {
-  height: 571px;
-  border-radius: 20px;
-  box-shadow: 3px 10px 20px #3b1a07;
-  overflow: hidden;
-  position: relative;
-}
-.carousel-container--list {
-  display: flex;
-  transition: transform 1s ease-in-out;
-}
-
-.carousel-container--list img {
-  width: 100%;
-  height: 571px;
+  height: 60px;
   object-fit: cover;
   object-position: top;
-}
-
-.carousel--btn__next,
-.carousel--btn__prev {
-  position: absolute;
-  top: 45%;
-  background-color: #69656590;
-  border-radius: 2px;
-  border-style: none;
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-  padding: 15px 4px;
-
-  cursor: pointer;
-  opacity: 0; /* Mặc định các nút sẽ trong suốt */
-  transition: all 0.3s ease-in-out;
-}
-
-.carousel-wrapper button img {
-  width: 20px;
-  height: 20px;
-}
-
-.carousel--btn__prev {
-  rotate: calc(180deg);
-  z-index: 1;
-  left: 5px;
-}
-.carousel--btn__next {
-  right: 5px;
-  z-index: 1;
-}
-
-.carousel-dots-container {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.carousel__dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-color: #d9d9d9;
-  border-radius: 50%;
-}
-.carousel__dot.active {
-  background-color: #ffea00;
-}
-.carousel-item {
-  min-width: 100%;
-  flex-shrink: 0;
 }

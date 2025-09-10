@@ -16,13 +16,16 @@ body {
 }
 
 :root {
-  --primary-color: #7b3912;
+  --primary-color: #61604b;
 }
 
 a:hover {
   cursor: pointer;
 }
 
+button:hover {
+  cursor: pointer;
+}
 .btn {
   display: inline-block;
   width: 217px;

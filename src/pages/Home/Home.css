@@ -1,5 +1,5 @@
 .promotion {
-  margin-top: 30px;
+  margin-top: 15px;
   background-color: var(--primary-color);
   padding-top: 110px;
   padding-bottom: 50px;
@@ -14,7 +14,7 @@
   border-top: 1px solid #7f756e;
   padding: 12px 0;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .promotion-list {
@@ -88,6 +88,24 @@
   overflow: hidden;
 }
 
+.category-home-dots {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  margin-top: 20px;
+}
+.category-home-dots__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 50%;
+}
+.category-home-dots__item.less-than {
+  transform: rotate(180deg);
+}
 .category-image {
   width: 100%;
   height: 100%;
@@ -166,7 +184,7 @@
 .product-list-best-seller {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 10px;
   margin-top: 50px;
 }
 
