@@ -10,7 +10,7 @@ import CategorySection, {
 
 import BestSeller from "./components/BestSeller.js";
 import Footer from "../../components/Footer/Footer.js";
-import ReviewSection from "../Product/components/ReviewSection.js";
+import ReviewSection from "../Home/components/ReviewSection.js";
 
 const products = [
   {
