@@ -10,6 +10,7 @@ import CategorySection, {
 
 import BestSeller from "./components/BestSeller.js";
 import Footer from "../../components/Footer/Footer.js";
+import ReviewSection from "../Product/components/ReviewSection.js";
 
 const products = [
   {
@@ -71,6 +72,7 @@ function render() {
    ${PromotionSection()}
    ${CategorySection()}
    ${BestSeller({ products })}
+   ${ReviewSection()}
    ${Footer()}
   `;
 }

@@ -1,0 +1,9 @@
+.bread-crumb {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+  color: #625757;
+  font-family: "Geologica", sans-serif;
+  font-size: 1.6rem;
+}
