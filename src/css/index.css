@@ -41,3 +41,27 @@ button:hover {
   font-family: "Roboto", sans-serif;
   font-weight: 600;
 }
+
+.scroll-to-top-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.scroll-to-top-container__triangle {
+  border: 60px solid #000000;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.scroll-to-top-container__content {
+  color: white;
+  position: absolute;
+  bottom: 25px;
+  right: 18px;
+  z-index: 2;
+}

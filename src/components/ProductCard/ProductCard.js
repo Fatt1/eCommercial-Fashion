@@ -7,14 +7,13 @@ export default function ProductCard({
 }) {
   return `
       <div class="product-card">
-             
               ${
                 sale
                   ? `<div class="product-card__percentage">-${sale}%</div>`
                   : ""
               }
               <a class="product-card__img">
-                <img src="../assets/${img}" alt=""
+                <img src="${img}" alt=""
               /></a>
               <div class="product-card-desc">
                 <a href="#" class="product-card__name"
