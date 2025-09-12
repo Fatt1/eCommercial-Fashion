@@ -213,7 +213,7 @@
   background-color: rgb(253, 245, 35);
   border-radius: 5px;
 }
-/* pagination */
+/* =================pagination==================== */
 .pagination {
   display: flex;
   justify-content: center;
@@ -253,4 +253,30 @@
 }
 .pagination-btn.active {
   background-color: rgb(235, 191, 17);
+}
+/* ==========================range-price-filter========================== */
+.price-range-filter__inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.price-range-filter__input {
+  width: 80px;
+  height: 30px;
+}
+.price-range-filter__range-line {
+  border-bottom: 1px solid black;
+  height: 1px;
+  width: 20px;
+}
+
+.price-range-filter__input::placeholder {
+  font-family: "Roboto", sans-serif;
+}
+.price-range-filter__input:focus {
+  outline: none;
+}
+.apply-btn {
+  width: 100%;
 }

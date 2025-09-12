@@ -30,16 +30,19 @@ button:hover {
   display: inline-block;
   width: 217px;
   height: 37px;
-  background-color: #c8c3c3;
+  background-color: #322e2e;
+  color: white;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50px;
+  border-radius: 5px;
   font-size: 2rem;
-  padding: 20px 0;
+  padding: 20px 5px;
   font-family: "Roboto", sans-serif;
   font-weight: 600;
+  outline: none;
+  border: none;
 }
 
 .scroll-to-top-container {

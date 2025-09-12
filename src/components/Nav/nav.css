@@ -7,10 +7,12 @@
   text-decoration: none;
   color: #ffffff;
   font-weight: 300;
+  outline: none;
 }
 .nav-item {
   font-size: 1.6rem;
   font-family: "Geologica", sans-serif;
+  outline: none;
 }
 
 .nav-item.active a {
