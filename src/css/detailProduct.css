@@ -1,0 +1,310 @@
+.product-page {
+  padding-top: 120px;
+}
+.detail-product {
+  padding-top: 40px;
+  display: flex;
+  gap: 10px;
+}
+.image-section__large-img {
+  width: 550px;
+  height: 680px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+.small-images-section {
+  display: flex;
+  gap: 22px;
+  padding-top: 20px;
+  overflow: hidden;
+}
+.image-section {
+  width: 500px;
+}
+.small-images-section__small {
+  width: 150px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 3px;
+}
+.detail-product-name {
+  font-family: "Geologica", sans-serif;
+  font-size: 2.6rem;
+}
+.rating {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.average-rating {
+  font-family: "Roboto", sans-serif;
+  margin-left: 15px;
+  border-bottom: 1px solid black;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.detail-product-price__origin {
+  font-size: 1.8rem;
+  font-family: "Geologica", sans-serif;
+  color: #7f756e;
+  text-decoration: line-through;
+}
+.detail-product-price__sale {
+  font-size: 3rem;
+  font-family: "Geologica", sans-serif;
+}
+.detail-product-price {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.content-section {
+  margin-left: 120px;
+  width: 670px;
+}
+.detail-product-percentage {
+  border-radius: 2px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 18px;
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  padding: 0 4px;
+  color: #ee4d2d;
+  background-color: #feeeea;
+  font-weight: 600;
+}
+
+.variation-value__img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+.variation-value {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  outline: none;
+  border: 1px solid #e3e3e3;
+  padding: 5px;
+  height: 40px;
+  font-family: "Geologica ", sans-serif;
+  font-size: 1.4rem;
+}
+.variation-values {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.variation-group,
+.quantity,
+.product-actions,
+.product-delivery,
+.return-policy,
+.share-section {
+  margin-top: 35px;
+  padding-left: 10px;
+}
+.name-variation,
+.quantity-name,
+.delivery-name,
+.return-policy__name,
+.share-section__name {
+  font-family: "Geologica ", sans-serif;
+  color: #b9aeae;
+  width: 100px;
+}
+.selected-color,
+.selected-size {
+  color: #1e1d1d;
+}
+
+.size-variation .variation-value {
+  padding: 8px;
+  height: 40px;
+  width: 80px;
+  justify-content: center;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+}
+
+.action-quantity {
+  margin-left: 16px;
+  display: flex;
+}
+.quantity-input {
+  width: 50px;
+  height: 32px;
+  text-align: center;
+  border: 1px solid #b9aeae;
+  border-radius: 3px;
+  border-left: transparent;
+  border-right: transparent;
+}
+.available-quantity {
+  margin-left: 10px;
+  color: #6f6666;
+  font-family: "Geologica ", sans-serif;
+  font-size: 1.4rem;
+}
+.action-quantity button {
+  height: 32px;
+  width: 32px;
+  border: 1px solid #b9aeae;
+  border-radius: 3px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-quantity .line {
+  display: inline-block;
+  width: 10px;
+  height: 1px;
+  border-bottom: 2px solid black;
+}
+.product-actions button {
+  display: flex;
+  align-items: center;
+  font-family: "Geologica ", sans-serif;
+  height: 50px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+
+  font-size: 1.6rem;
+}
+.product-actions button:hover {
+  opacity: 0.8;
+}
+.product-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.buy-now-btn {
+  padding: 5px 45px;
+  background-color: rgb(248, 186, 30);
+  color: black;
+}
+
+.add-to-cart-btn {
+  background: var(--primary-color);
+  padding: 5px 30px;
+  gap: 10px;
+  color: white;
+}
+.product-delivery,
+.return-policy {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.delivery-content,
+.return-policy__content {
+  display: flex;
+  gap: 10px;
+  font-size: 1.4rem;
+  line-height: 20px;
+  font-family: "Geologica ", sans-serif;
+  align-items: flex-start;
+}
+
+.shipping-icon,
+.return-package-icon {
+  width: 20px;
+}
+.delivery-content__desc p:last-child {
+  padding-top: 10px;
+}
+
+.share-section {
+  display: flex;
+}
+.share-icon {
+  background: none;
+  border: none;
+  margin-right: 5px;
+}
+
+/* bottom section */
+.bottom-section {
+  margin-top: 80px;
+}
+.extra-information__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  font-family: "Geologica ", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #6f6666;
+}
+.extra-information__tab {
+  position: relative;
+}
+.extra-information__tab::before {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  bottom: -10px;
+
+  z-index: 1;
+}
+
+.extra-information__tab.active {
+  color: #000;
+}
+.extra-information__desc,
+.extra-information__detail-content {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+  margin-top: 40px;
+  margin-left: 15px;
+}
+.extra-information__desc {
+  white-space: pre-line;
+  color: #453e3e;
+}
+.extra-information-attribute-container {
+  display: flex;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+}
+.extra-information-attribute-container__attribute-name {
+  width: 200px;
+  color: #6f6666;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+}
+.extra-information-attribute-container__attribute-value {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+}
+.related-products__header {
+  text-align: center;
+  font-family: "Geologica ", sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+.related-products-list {
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  padding-bottom: 50px;
+}

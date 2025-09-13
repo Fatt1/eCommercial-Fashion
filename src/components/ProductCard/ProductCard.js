@@ -1,4 +1,7 @@
+import ProductDetails from "../../pages/Product/ProductDetails.js";
+
 export default function ProductCard({
+  id = "1",
   img,
   name,
   sale,
@@ -16,7 +19,7 @@ export default function ProductCard({
                 <img src="${img}" alt=""
               /></a>
               <div class="product-card-desc">
-                <a href="#" class="product-card__name"
+                <a class="product-card__name"
                   >${name}</a
                 >
                 <div class="product-card-price">

@@ -2,6 +2,7 @@
   position: relative;
   width: 330px;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .product-card__img {
