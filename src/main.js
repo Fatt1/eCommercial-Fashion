@@ -1,6 +1,8 @@
+import { loadDataToLocalStorage } from "./helper/initialData.js";
+await loadDataToLocalStorage();
 window.addEventListener("scroll", (event) => {
   const pageY = 100;
-  console.log(document.querySelector(".scroll-to-top-container").hidden);
+
   const scrollToTop = document.querySelector(".scroll-to-top-container");
   if (pageYOffset < pageY) {
     scrollToTop.style.visibility = "hidden";

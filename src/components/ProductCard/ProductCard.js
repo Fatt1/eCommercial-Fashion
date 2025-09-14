@@ -2,11 +2,10 @@ import ProductDetails from "../../pages/Product/ProductDetails.js";
 
 export default function ProductCard({
   id = "1",
-  img,
+  thumbnail,
   name,
   sale,
-  salePrice,
-  originalPrice,
+  priceInfo,
 }) {
   return `
       <div class="product-card">
@@ -16,15 +15,19 @@ export default function ProductCard({
                   : ""
               }
               <a class="product-card__img">
-                <img src="${img}" alt=""
+                <img src="../assets/${thumbnail}" alt=""
               /></a>
               <div class="product-card-desc">
                 <a class="product-card__name"
                   >${name}</a
                 >
                 <div class="product-card-price">
-                  <span class="product-card-price__sale">${salePrice}đ</span>
-                  <span class="product-card-price__origin">${originalPrice}đ</span>
+                  <span class="product-card-price__sale">${
+                    priceInfo.currentlyPrice
+                  }đ</span>
+                  <span class="product-card-price__origin">${
+                    priceInfo.originalPrice
+                  }đ</span>
                 </div>
               </div>
             </div>
