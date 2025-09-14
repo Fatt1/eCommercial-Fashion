@@ -22,9 +22,8 @@ function render() {
 function setup() {
   console.log(
     getAllProductWithPagination({
-      searchKey: "Quần",
-      priceFrom: 250000,
-      priceTo: 500000,
+      colors: ["color-dark-blue"],
+      sizes: ["size-28"],
     })
   );
   setupCarousel();

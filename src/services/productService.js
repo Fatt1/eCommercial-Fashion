@@ -14,8 +14,12 @@ function getAllProductWithPagination({
   searchKey,
   priceFrom,
   priceTo,
+  colors,
+  sizes,
 }) {
   return getAllWithPagination({
+    colors,
+    sizes,
     pageSize,
     pageNumber,
     searchKey,
