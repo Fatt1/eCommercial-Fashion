@@ -1,6 +1,5 @@
 export default function Footer() {
-  return `
-    <footer>
+  return `  <footer>
       <div class="main-content">
         <div class="footer-top">
           <div class="footer-top-item">
@@ -50,6 +49,5 @@ export default function Footer() {
           
         </div>
       </div>
-    </footer>
-  `;
+    </footer> `;
 }

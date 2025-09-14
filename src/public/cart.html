@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../components/Header/header.css" />
+    <link rel="stylesheet" href="../components/Nav/nav.css" />
+    <link rel="stylesheet" href="../components/Footer/Footer.css" />
+    <style>
+      .cart {
+        padding-top: 100px;
+        font-weight: bold;
+        margin-left: 40px;
+        margin-right: 40px;
+      }
+      .cart-info,
+      .cart-item {
+        display: flex;
+        justify-content: space-evenly;
+        border-bottom: 1px solid rgb(199, 199, 199);
+        align-items: center;
+        font-size: medium;
+      }
+      .cart-item {
+        padding: 15px 0px;
+        font-size: 12px;
+      }
+      .cart-info {
+        margin-top: 50px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+      }
+      .product-size,
+      .product-main,
+      .product-color,
+      .product-price,
+      .product-quantity,
+      .product-total,
+      .product-action {
+        flex-basis: 200px;
+        text-align: center;
+      }
+
+      .product-main__img {
+        height: 80px;
+      }
+      .cart-item .product-main {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 15px;
+      }
+      .product-main__checkbox {
+        cursor: pointer;
+      }
+      .product-size__select,
+      .product-color__select {
+        width: 50px;
+        height: 30px;
+      }
+      .product-size__select option,
+      .product-color__select option {
+        background-color: rgb(255, 255, 255);
+        border: none;
+      }
+      .product-size__select option:hover,
+      .product-color__select option:hover {
+        background: rgb(125, 51, 51);
+      }
+
+      .product-price__old-price {
+        color: grey;
+        text-decoration: line-through;
+        font-size: 13px;
+      }
+      .product-price__current-price,
+      .product-total {
+        font-size: 15px;
+      }
+
+      .product-quantity {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      .product-quantity__input {
+        width: 25px;
+        height: 25px;
+      }
+      .product-quantity__button {
+        width: 25px;
+        height: 25px;
+        text-align: center;
+      }
+      .product-action__button {
+        border: none;
+        background-color: rgb(255, 255, 255);
+        padding: 10px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <div class="container">
+        <div class="main-content">
+          <div class="header-top">
+            <nav class="navbar">
+              <ul class="navbar-list">
+                <li class="nav-item active">
+                  <a href="./home.html">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item"><a href="./product.html">SẢN PHẨM</a></li>
+                <li class="nav-item"><a href="#">GIỚI THIỆU</a></li>
+                <li class="nav-item"><a href="#">LIÊN HỆ</a></li>
+              </ul>
+            </nav>
+            <img class="logo" src="../assets/logo.svg" alt="logo" />
+            <div class="action">
+              <input type="text" class="search" placeholder="Tìm kiếm..." />
+              <img
+                src="../assets/defaut-avatar.png"
+                alt="avatar-user"
+                class="avatar-user"
+              />
+              <a class="login-link">Đăng Nhập</a>
+              <span style="color: white">|</span>
+              <a class="register-link">Đăng Kí</a>
+              <div class="header-cart">
+                <img
+                  src="../assets/shopping-cart.png"
+                  alt="cart-icon"
+                  class="cart-icon"
+                />
+                <span class="cart-quantity">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- <div id="root"></div> -->
+
+    <div class="cart">
+      <div class="cart-info">
+        <div class="product-main">Tất Cả Sản Phẩm</div>
+        <div class="product-size">Kích Cỡ</div>
+        <div class="product-color">Màu Sắc</div>
+        <div class="product-price">Đơn Giá</div>
+        <div class="product-quantity">Số Lượng</div>
+        <div class="product-total">Số Tiền</div>
+        <div class="product-action">Thao Tác</div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <select class="product-size__select" name="" id="size">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+        <div class="product-color">
+          <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <select class="product-size__select" name="" id="size">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+        <div class="product-color">
+          <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">Thao Tác</div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <select class="product-size__select" name="" id="size">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+        <div class="product-color">
+          <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">Số Tiền</div>
+        <div class="product-action">Thao Tác</div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <div class="main-content">
+        <div class="footer-top">
+          <div class="footer-top-item">
+            <div class="footer-top-item__content">
+              <h4>VỀ CHÚNG TÔI</h4>
+              <p>Địa chỉ: CS Nguyễn Cư Trinh</p>
+              <p>Hotline: (+84) 09866125712</p>
+              <p>Email: tuannguyen@gmail.com</p>
+              <div class="footer-icon">
+                <img src="../assets/Facebook.png" alt="facebook" />
+                <img src="../assets/Pinterest.png" alt="" />
+                <img src="../assets/YouTube.png" alt="Youtube" />
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-top-item">
+            <div class="footer-top-item__content">
+              <h4>XU HƯỚNG</h4>
+              <p>Sản phẩm nổi bật</p>
+              <p>Sản phẩm khuyến mãi</p>
+              <p>Tất cả sản phẩm</p>
+            </div>
+          </div>
+
+          <div class="footer-top-item">
+            <div class="footer-top-item__content">
+              <h4>GIỜ MỞ CỬA</h4>
+              <p>Thứ 2 - Thứ 7</p>
+              <p>Sáng 10:00 - Chiều 5:00</p>
+              <img src="../assets/payment (1).png" alt="payment" />
+            </div>
+          </div>
+
+          <div class="footer-top-item">
+            <div class="footer-top-item__logo">
+              <div class="logo"><img src="../assets/logo.svg" /></div>
+              <div class="footer-logo__content">
+                <p>Fun-filled with your momentum</p>
+                <p>Innovate your style and increase attraction</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="" src="/src/pages/Cart/Cart.js"></script>
+    <script>
+      const minusButton = document.querySelector(".product-quantity__minus");
+      const plusButton = document.querySelector(".product-quantity__plus");
+      const inputQuantity = document.querySelector(".product-quantity__input");
+
+      minusButton.addEventListener("click", () => {
+        let value = parseInt(inputQuantity.value);
+        if (value > 1) inputQuantity.value = value - 1;
+      });
+      plusButton.addEventListener("click", () => {
+        let value = parseInt(inputQuantity.value);
+        inputQuantity.value = value + 1;
+      });
+    </script>
+  </body>
+</html>
