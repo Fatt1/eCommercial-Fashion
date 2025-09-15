@@ -1,8 +1,14 @@
+import {
+  getAllProducts,
+  getAllProductWithPagination,
+  getProductById,
+} from "../../services/productService.js";
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
 import Carousel, { setupCarousel } from "../../components/Carousel/Carousel.js";
 import ProductSection from "./components/ProductSection.js";
 import ProductDetails from "./ProductDetails.js";
+
 function render() {
   document.getElementById("root").innerHTML = `
   ${Header()}
@@ -14,8 +20,13 @@ function render() {
   `;
 }
 function setup() {
+  console.log(
+    getAllProductWithPagination({
+      colors: ["color-dark-blue"],
+      sizes: ["size-28"],
+    })
+  );
   setupCarousel();
-
   document.querySelector(".dropdown").addEventListener("mouseover", () => {
     document.querySelector(".dropdown-menu").classList.add("show");
   });
@@ -29,7 +40,7 @@ function setup() {
   );
   handleClick();
 }
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   render();
   setup();
 });

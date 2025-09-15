@@ -1,3 +1,234 @@
 {
-  "name": "123"
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Áo Thun Unisex Cao Cấp",
+      "desc": "Áo thun cotton cao cấp, mềm mại và thoáng mát, phù hợp cho cả nam và nữ.",
+      "brandId": "brand-a",
+      "thumbnail": "category-1.jpg",
+      "weight": 0.25,
+      "images": ["image-1a.jpg", "image-1b.jpg"],
+      "attributes": [
+        {
+          "attributeId": "attr-fabric",
+          "attributeValuesIds": ["val-cotton"]
+        },
+        {
+          "attributeId": "attr-style",
+          "attributeValuesIds": ["val-basic"]
+        }
+      ],
+      "priceInfo": {
+        "originalPrice": 250000.0,
+        "currentlyPrice": 250000.0
+      },
+      "variations": [
+        {
+          "name": "Màu sắc",
+          "variationOptions": [
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-black"
+            },
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-white"
+            }
+          ]
+        },
+        {
+          "name": "Kích thước",
+          "variationOptions": ["size-s", "size-m", "size-l"]
+        }
+      ],
+      "categoryId": "cat-apparel",
+      "status": "public",
+      "createdAt": "2025-09-14T08:22:00.000Z",
+      "updatedAt": "2025-09-14T08:22:00.000Z"
+    },
+    {
+      "id": "prod-002",
+      "name": "Quần Jeans Slim Fit",
+      "desc": "Quần jeans co giãn, ôm dáng vừa vặn, mang lại sự thoải mái và phong cách hiện đại.",
+      "brandId": "brand-b",
+      "thumbnail": "category-1.jpg",
+      "weight": 0.65,
+      "images": ["image-2a.jpg", "image-2b.jpg"],
+      "attributes": [
+        {
+          "attributeId": "attr-cut",
+          "attributeValuesIds": ["val-slim"]
+        }
+      ],
+      "priceInfo": {
+        "originalPrice": 599000.0,
+        "currentlyPrice": 499000.0
+      },
+      "variations": [
+        {
+          "name": "Màu sắc",
+          "variationOptions": [
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-blue"
+            },
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-dark-blue"
+            }
+          ]
+        },
+        {
+          "name": "Kích thước",
+          "variationOptions": ["size-28", "size-30", "size-32"]
+        }
+      ],
+      "categoryId": "cat-jeans",
+      "status": "public",
+      "createdAt": "2025-09-14T08:22:00.000Z",
+      "updatedAt": "2025-09-14T08:22:00.000Z"
+    },
+    {
+      "id": "prod-003",
+      "name": "Giày Sneakers Thể Thao",
+      "desc": "Giày thể thao nhẹ, êm ái, thích hợp cho các hoạt động hàng ngày và tập luyện.",
+      "brandId": "brand-c",
+      "thumbnail": "category-1.jpg",
+      "weight": 0.8,
+      "images": ["image-3a.jpg", "image-3b.jpg"],
+      "attributes": [
+        {
+          "attributeId": "attr-material",
+          "attributeValuesIds": ["val-leather", "val-rubber"]
+        }
+      ],
+      "priceInfo": {
+        "originalPrice": 1200000.0,
+        "currentlyPrice": 1200000.0
+      },
+      "variations": [
+        {
+          "name": "Màu sắc",
+          "variationOptions": [
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-white"
+            },
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-black"
+            }
+          ]
+        },
+        {
+          "name": "Kích thước",
+          "variationOptions": ["size-39", "size-40", "size-41"]
+        }
+      ],
+      "categoryId": "cat-shoes",
+      "status": "public",
+      "createdAt": "2025-09-14T08:22:00.000Z",
+      "updatedAt": "2025-09-14T08:22:00.000Z"
+    },
+    {
+      "id": "prod-004",
+      "name": "Máy ảnh Kỹ thuật số",
+      "desc": "Máy ảnh chuyên nghiệp với độ phân giải cao và khả năng quay video 4K sắc nét.",
+      "brandId": "brand-d",
+      "thumbnail": "category-1.jpg",
+      "weight": 1.5,
+      "images": ["image-4a.jpg", "image-4b.jpg"],
+      "attributes": [
+        {
+          "attributeId": "attr-sensor",
+          "attributeValuesIds": ["val-full-frame"]
+        }
+      ],
+      "priceInfo": {
+        "originalPrice": 25000000.0,
+        "currentlyPrice": 22500000.0
+      },
+      "variations": [],
+      "categoryId": "cat-electronics",
+      "status": "public",
+      "createdAt": "2025-09-14T08:22:00.000Z",
+      "updatedAt": "2025-09-14T08:22:00.000Z"
+    },
+    {
+      "id": "prod-005",
+      "name": "Tai nghe Bluetooth",
+      "desc": "Tai nghe không dây với chất lượng âm thanh tuyệt vời, pin lâu và thiết kế nhỏ gọn.",
+      "brandId": "brand-e",
+      "thumbnail": "category-1.jpg",
+      "weight": 0.1,
+      "images": ["image-5a.jpg", "image-5b.jpg"],
+      "attributes": [
+        {
+          "attributeId": "attr-connection",
+          "attributeValuesIds": ["val-bluetooth"]
+        }
+      ],
+      "priceInfo": {
+        "originalPrice": 850000.0,
+        "currentlyPrice": 850000.0
+      },
+      "variations": [
+        {
+          "name": "Màu sắc",
+          "variationOptions": [
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-red"
+            },
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-blue"
+            }
+          ]
+        }
+      ],
+      "categoryId": "cat-accessories",
+      "status": "public",
+      "createdAt": "2025-09-14T08:22:00.000Z",
+      "updatedAt": "2025-09-14T08:22:00.000Z"
+    },
+    {
+      "id": "prod-006",
+      "name": "Ghế Gaming",
+      "desc": "Ghế gaming cao cấp với đệm êm ái, thiết kế công thái học giúp bạn thoải mái khi chơi game.",
+      "brandId": "brand-f",
+      "thumbnail": "category-1.jpg",
+      "weight": 15.0,
+      "images": ["image-6a.jpg", "image-6b.jpg"],
+      "attributes": [
+        {
+          "attributeId": "attr-material",
+          "attributeValuesIds": ["val-pu-leather"]
+        }
+      ],
+      "priceInfo": {
+        "originalPrice": 3500000.0,
+        "currentlyPrice": 3000000.0
+      },
+      "variations": [
+        {
+          "name": "Màu sắc",
+          "variationOptions": [
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-red"
+            },
+            {
+              "image": "category-1.jpg",
+              "colorId": "color-black"
+            }
+          ]
+        }
+      ],
+      "categoryId": "cat-furniture",
+      "status": "draft",
+      "createdAt": "2025-09-14T08:22:00.000Z",
+      "updatedAt": "2025-09-14T08:22:00.000Z"
+    }
+  ]
 }
