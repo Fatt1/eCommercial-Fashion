@@ -9,8 +9,9 @@
 }
 /*======================== filter=========================== */
 .filter {
-  width: 40%;
+  width: 400px;
   padding: 0 30px;
+  padding-bottom: 50px;
 }
 .filter-header {
   display: flex;
@@ -36,7 +37,7 @@
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 30px;
 }
 .category-list__header {
   display: flex;
@@ -195,11 +196,12 @@
   transition: max-height 0.3s ease-out;
   overflow: hidden;
 }
-
+/* dropdown */
 .dropdown-item {
   padding: 14px;
   cursor: pointer;
 }
+
 .dropdown-item:hover {
   background-color: rgb(232, 234, 234);
 }
@@ -214,14 +216,20 @@
   background-color: rgb(253, 245, 35);
   border-radius: 5px;
 }
+.right-product-section {
+  width: 100%;
+}
 /* =================pagination==================== */
 .pagination {
   display: flex;
   justify-content: center;
   gap: 20px;
   padding-bottom: 70px;
+  margin-top: 40px;
 }
-
+.disable-pagination-link {
+  pointer-events: none;
+}
 .pagination-btn {
   border: none;
   padding: 10px;

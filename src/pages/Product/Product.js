@@ -1,6 +1,6 @@
 import {
+  filterProducts,
   getAllProducts,
-  getAllProductWithPagination,
   getProductById,
 } from "../../services/productService.js";
 import Header from "../../components/Header/Header.js";
@@ -8,6 +8,7 @@ import Footer from "../../components/Footer/Footer.js";
 import Carousel, { setupCarousel } from "../../components/Carousel/Carousel.js";
 import ProductSection from "./components/ProductSection.js";
 import ProductDetails from "./ProductDetails.js";
+import ProductListProductPage from "./components/ProductListProductPage.js";
 
 function render() {
   document.getElementById("root").innerHTML = `
@@ -21,7 +22,7 @@ function render() {
 }
 function setup() {
   console.log(
-    getAllProductWithPagination({
+    filterProducts({
       colors: ["color-dark-blue"],
       sizes: ["size-28"],
     })
@@ -39,12 +40,13 @@ function setup() {
     })
   );
   handleClick();
+  handleSortByPrice();
 }
 document.addEventListener("DOMContentLoaded", async () => {
   render();
   setup();
 });
-
+const filterParams = {};
 function handleClick() {
   document.addEventListener("click", (event) => {
     const clickedCard = event.target.closest(".product-card");
@@ -53,4 +55,32 @@ function handleClick() {
       window.scrollTo(0, 0);
     }
   });
+  document.addEventListener("click", (event) => {
+    const paginationBtnClicked = event.target.closest(".pagination-btn");
+
+    if (paginationBtnClicked) {
+      const pageNumber = Number(paginationBtnClicked.dataset.index);
+      console.log(pageNumber);
+      console.log(document.querySelector("#product-list-section"));
+      document.querySelector("#product-list-section").innerHTML =
+        ProductListProductPage({ pageNumber, ...filterParams });
+    }
+  });
+}
+
+function handleSortByPrice() {
+  document.querySelectorAll(".sort-by-price").forEach((elem) =>
+    elem.addEventListener("click", (event) => {
+      const li = event.target;
+      document.querySelector(".price-btn").textContent = li.textContent;
+      li.classList.add("active");
+      const order = li.dataset.order;
+      const sortBy = li.dataset.sortBy;
+      filterParams.order = order;
+      filterParams.sortBy = sortBy;
+
+      document.querySelector("#product-list-section").innerHTML =
+        ProductListProductPage({ ...filterParams });
+    })
+  );
 }

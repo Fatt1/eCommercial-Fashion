@@ -3,7 +3,8 @@ import Footer from "../../components/Footer/Footer.js";
 import Header from "../../components/Header/Header.js";
 import ProductList from "../../components/ProductList/ProductList.js";
 import { getAllProducts } from "../../services/productService.js";
-const relatedProducts = getAllProducts();
+//mai mốt sẽ viết thêm hàm lấy các sản phẩm liên quan
+const relatedProducts = getAllProducts({}).items;
 export default function ProductDetails(productId) {
   return `
   ${Header()}

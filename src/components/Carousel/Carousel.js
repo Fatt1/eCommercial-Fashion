@@ -112,7 +112,7 @@ export function setupCarousel() {
 
       carouselContainer.addEventListener("transitionend", () => {
         //
-        console.log(currentIndex);
+
         if (slides[currentIndex].classList.contains("clone")) {
           // nếu đang ở clone thì tắt tran để tele về cái hình thật liền luôn nên k phân biệt dc
           carouselContainer.style.transition = "none";

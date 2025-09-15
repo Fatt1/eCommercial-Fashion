@@ -194,10 +194,10 @@ export default function Filter() {
               </div>
         </fieldset>
 
-         <fieldset class="filter-group material-filter">
-          <legend class="filter-group__header">Chất liệu</legend>
+         <fieldset class="filter-group brand-filter">
+          <legend class="filter-group__header">Thương hiệu</legend>
           <div class="checkbox-filter">
-            <label class="checkbox" for="cotton">
+            <label class="checkbox" for="sneaker">
               <div class="stick-checkbox">
                 <svg
                   width="12"
@@ -214,13 +214,13 @@ export default function Filter() {
                   />
                 </svg>
               </div>
-              <input id="cotton" name="cotton" type="checkbox" />
-              <span class="checkbox-label">Cotton</span>
+              <input id="sneaker" name="sneaker" type="checkbox" />
+              <span class="checkbox-label">Sneaker</span>
             </label>
           </div>
 
           <div class="checkbox-filter">
-            <label class="checkbox" for="denim">
+            <label class="checkbox" for="louis-vuitton">
               <div class="stick-checkbox">
                 <svg
                   width="12"
@@ -237,8 +237,8 @@ export default function Filter() {
                   />
                 </svg>
               </div>
-              <input id="denim" name="denim" type="checkbox" hidden />
-              <span class="checkbox-label">Denim</span>
+              <input id="louis-vuitton" name="louis-vuitton" type="checkbox" hidden />
+              <span class="checkbox-label">Louis Vuitton</span>
             </label>
           </div>
           <button class="filter-group__toggle-btn">

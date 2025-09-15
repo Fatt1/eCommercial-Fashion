@@ -34,5 +34,6 @@ export function createPagination(data, pageSize, pageNumber) {
     items,
     isNext,
     isPrev,
+    pageNumber,
   };
 }
