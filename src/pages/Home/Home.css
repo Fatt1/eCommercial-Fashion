@@ -110,7 +110,7 @@
 /* Review section */
 .review-section {
   background: linear-gradient(rgba(0, 0, 0, 0.5)),
-    url(/eCommercial-Fashion/src/assets/background.jpg);
+    url(../../assets/background.jpg);
   background-size: cover;
 }
 .review-section {
