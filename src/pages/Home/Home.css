@@ -113,6 +113,9 @@
     url(/eCommercial-Fashion/src/assets/background.jpg);
   background-size: cover;
 }
+.review-section {
+  font-family: "Geologica", sans-serif;
+}
 .review {
   display: flex;
   align-items: space-evenly;
