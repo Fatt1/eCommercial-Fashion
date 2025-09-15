@@ -14,9 +14,8 @@ import ReviewSection from "../Home/components/ReviewSection.js";
 import { getAllProducts } from "../../services/productService.js";
 import { loadDataToLocalStorage } from "../../helper/initialData.js";
 
-const products = getAllProducts();
+const products = getAllProducts({}).items;
 function render() {
-  console.log(getAllProducts());
   const root = document.getElementById("root");
   root.innerHTML = `
   ${Header()}
