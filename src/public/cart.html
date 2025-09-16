@@ -9,12 +9,39 @@
     <link rel="stylesheet" href="../components/Header/header.css" />
     <link rel="stylesheet" href="../components/Nav/nav.css" />
     <link rel="stylesheet" href="../components/Footer/Footer.css" />
+    <!-- fonts -->
+    <!-- Geologica -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Luxurious Roman -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&family=Luxurious+Roman&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&family=Luxurious+Roman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      /* cart-items */
       .cart {
         padding-top: 100px;
         font-weight: bold;
         margin-left: 40px;
         margin-right: 40px;
+        /* font-family: Geolo; */
+        font-family: "Geologica", sans-serif;
       }
       .cart-info,
       .cart-item {
@@ -23,6 +50,12 @@
         border-bottom: 1px solid rgb(199, 199, 199);
         align-items: center;
         font-size: medium;
+      }
+
+      .cart-info .product-main {
+        display: flex;
+        justify-content: start;
+        gap: 10px;
       }
       .cart-item {
         padding: 15px 0px;
@@ -95,12 +128,143 @@
         width: 25px;
         height: 25px;
         text-align: center;
+        background-color: transparent;
+        border: 1px solid;
       }
       .product-action__button {
         border: none;
         background-color: rgb(255, 255, 255);
         padding: 10px;
         font-weight: bold;
+      }
+
+      /* dropdown */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-menu {
+        position: absolute;
+        top: 40px;
+        background-color: #d9d9d9;
+        z-index: 2;
+        font-family: "Roboto", sans-serif;
+        font-size: 1.6rem;
+        width: 100px;
+        box-shadow: 3px 3px 10px rgba(41, 41, 41, 0.202);
+        border-radius: 3px;
+        max-height: 0;
+        transition: max-height 0.3s ease-out;
+        overflow: hidden;
+
+        width: 230px;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .dropdown-button {
+        background-color: transparent;
+        border: 1px solid;
+        height: 30px;
+      }
+
+      .dropdown-item {
+        padding: 5 px;
+        width: 50px;
+        cursor: pointer;
+        border: 1px solid;
+        background-color: #e3e3e3;
+      }
+
+      .dropdown-item:hover {
+        background-color: rgb(0, 0, 0);
+        color: white;
+      }
+      .dropdown-menu.show {
+        max-height: 300px;
+      }
+      /* voucher section  */
+      .voucher-section {
+        border: none;
+        box-shadow: 0px 1px 2px;
+        background-color: rgb(195, 195, 195);
+        margin: 40px 20px 30px 20px;
+      }
+      .voucher-container {
+        display: flex;
+      }
+      .voucher-container-message {
+        width: 50%;
+        border: none;
+        background-color: #e7e7e7;
+        padding: 80px;
+      }
+
+      .voucher-container-vouchershipping {
+        width: 50%;
+      }
+
+      .voucher-container-message {
+        border-right: 1px solid rgb(200, 200, 200);
+      }
+
+      .voucher-container-message {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        /* align-items: baseline; */
+        gap: 10px;
+        font-weight: bold;
+      }
+
+      .voucher-container-message__input {
+        width: 300px;
+        background-color: #d6cdc5;
+      }
+      .vouchershipping__voucher {
+        border-bottom: 1px solid rgb(200, 200, 200);
+        background-color: #e7e7e7;
+        padding: 10px 50px;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      .vouchershipping__voucher button {
+        background-color: #e7e7e7;
+        border: none;
+        margin-left: auto;
+        font-weight: bold;
+        color: blue;
+      }
+      .total-voucher-container {
+        background-color: #e7e7e7;
+        border-top: 1px solid rgb(200, 200, 200);
+        padding: 30px;
+      }
+      .total-voucher-container {
+        display: flex;
+        justify-content: end;
+        gap: 95px;
+        font-weight: bold;
+      }
+      .total-voucher-container__total {
+        padding-right: 50px;
+      }
+
+      .vouchershipping__shipping-choice {
+        background-color: #e7e7e7;
+        height: 79%;
+        display: flex;
+        border-bottom: 1px solid rgb(200, 200, 200);
+      }
+      .vouchershipping__voucher {
+      }
+
+      .product-quantity__input {
+        text-align: center;
       }
     </style>
   </head>
@@ -146,9 +310,13 @@
     </header>
     <!-- <div id="root"></div> -->
 
-    <div class="cart">
+    <!-- cart  -->
+    <section class="cart">
       <div class="cart-info">
-        <div class="product-main">Tất Cả Sản Phẩm</div>
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          Tất Cả Sản Phẩm
+        </div>
         <div class="product-size">Kích Cỡ</div>
         <div class="product-color">Màu Sắc</div>
         <div class="product-price">Đơn Giá</div>
@@ -167,20 +335,37 @@
           <span>ÁO SƠ MI Z02313</span>
         </div>
         <div class="product-size">
-          <select class="product-size__select" name="" id="size">
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
         </div>
         <div class="product-color">
-          <select class="product-color__select" name="" id="color">
+          <!-- <select class="product-color__select" name="" id="color">
             <option value="S">Đỏ</option>
             <option value="M">Nâu</option>
             <option value="L">Đen</option>
             <option value="XL">Hồng</option>
-          </select>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
         </div>
         <div class="product-price">
           <span class="product-price__old-price">557.000đ</span>
@@ -211,20 +396,37 @@
           <span>ÁO SƠ MI Z02313</span>
         </div>
         <div class="product-size">
-          <select class="product-size__select" name="" id="size">
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
         </div>
         <div class="product-color">
-          <select class="product-color__select" name="" id="color">
+          <!-- <select class="product-color__select" name="" id="color">
             <option value="S">Đỏ</option>
             <option value="M">Nâu</option>
             <option value="L">Đen</option>
             <option value="XL">Hồng</option>
-          </select>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
         </div>
         <div class="product-price">
           <span class="product-price__old-price">557.000đ</span>
@@ -240,51 +442,42 @@
           </button>
         </div>
         <div class="product-total">447.000đ</div>
-        <div class="product-action">Thao Tác</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
       </div>
-      <div class="cart-item">
-        <div class="product-main">
-          <input type="checkbox" class="product-main__checkbox" name="" id="" />
-          <img
-            class="product-main__img"
-            src="../assets/large-img-detail.png"
-            alt=""
+    </section>
+
+    <!--   -->
+
+    <!-- voucher shipping section -->
+    <!-- <section class="voucher-section">
+      <div class="voucher-container">
+        <div class="voucher-container-message">
+          <span class="voucher-container-message__span">Lời nhắn:</span>
+          <input
+            type="text"
+            class="voucher-container-message__input"
+            placeholder="  Lưu ý cho người bán..."
+            style="border: 1px solid"
           />
-          <span>ÁO SƠ MI Z02313</span>
         </div>
-        <div class="product-size">
-          <select class="product-size__select" name="" id="size">
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
+        <div class="voucher-container-vouchershipping">
+          <div class="vouchershipping__voucher">
+            <span><img src="../assets/Voucher.svg" alt="" /> </span>
+            <span>VOUCHER</span>
+            <button>Chọn Voucher khác</button>
+          </div>
+          <div class="vouchershipping__shipping-choice">jabdsak</div>
         </div>
-        <div class="product-color">
-          <select class="product-color__select" name="" id="color">
-            <option value="S">Đỏ</option>
-            <option value="M">Nâu</option>
-            <option value="L">Đen</option>
-            <option value="XL">Hồng</option>
-          </select>
-        </div>
-        <div class="product-price">
-          <span class="product-price__old-price">557.000đ</span>
-          <span class="product-price__current-price">447.000đ</span>
-        </div>
-        <div class="product-quantity">
-          <button class="product-quantity__button product-quantity__minus">
-            -
-          </button>
-          <input class="product-quantity__input" value="1" min="1" />
-          <button class="product-quantity__button product-quantity__plus">
-            +
-          </button>
-        </div>
-        <div class="product-total">Số Tiền</div>
-        <div class="product-action">Thao Tác</div>
       </div>
-    </div>
+      <div class="total-voucher-container">
+        <div class="total-voucher-container__quantity">
+          Tổng số tiền (0 sản phẩm):
+        </div>
+        <div class="total-voucher-container__total">0đ</div>
+      </div>
+    </section> -->
 
     <!-- footer -->
     <footer>
@@ -335,8 +528,8 @@
       </div>
     </footer>
 
-    <script type="" src="/src/pages/Cart/Cart.js"></script>
-    <script>
+    <script type="module" src="../pages/Cart/Cart.js"></script>
+    <!-- <script>
       const minusButton = document.querySelector(".product-quantity__minus");
       const plusButton = document.querySelector(".product-quantity__plus");
       const inputQuantity = document.querySelector(".product-quantity__input");
@@ -349,6 +542,13 @@
         let value = parseInt(inputQuantity.value);
         inputQuantity.value = value + 1;
       });
-    </script>
+
+      const btn = document.querySelector(".price-btn");
+      const menu = document.querySelector(".dropdown-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("show");
+      });
+    </script> -->
   </body>
 </html>
