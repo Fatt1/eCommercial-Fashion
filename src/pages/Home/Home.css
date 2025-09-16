@@ -117,7 +117,10 @@
   font-family: "Geologica", sans-serif;
 }
 .review {
+  padding-top: 50px;
   display: flex;
+  justify-content: space-between;
+  padding-bottom: 120px;
 }
 .review-text {
   text-align: center;
@@ -125,7 +128,7 @@
 }
 .rt1 {
   margin: 0px;
-  padding-top: 70px;
+  padding-top: 30px;
   font-size: 35px;
 }
 .rt2 {
@@ -134,16 +137,15 @@
   font-size: 26px;
 }
 .review-box {
-  margin-top: 50px;
-  margin-left: 60px;
-  margin-right: 40px;
-  margin-bottom: 170px;
-  font-size: 32px;
+  font-size: 2.2rem;
   color: #fffbfb;
   background-color: #272727e5;
   position: relative;
-
-  padding: 10px;
+  padding-top: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 335px;
+  line-height: 35px;
 }
 .review-icon {
   margin: 5%;

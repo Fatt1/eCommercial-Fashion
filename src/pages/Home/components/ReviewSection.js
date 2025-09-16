@@ -10,36 +10,39 @@ export default function ReviewSection() {
           </h3>
           <div class="review">
             <div class="review-box rvbox1">
-            </br>
-            </br>
-              Sau hơn 4 năm sử dụng Diorn-shop với website này, tôi thấy
-              Diorn-shop đáp ứng được rất tốt khả năng chăm sóc khách hàng
-              online. Hy vọng Diorn sẽ bước tiếp và có những sự đổi mới bất ngờ
-              nữa.
+           
+             <p>
+                Sau hơn 4 năm sử dụng Diorn-shop với website này, tôi thấy
+                Diorn-shop đáp ứng được rất tốt khả năng chăm sóc khách hàng
+                online. Hy vọng Diorn sẽ bước tiếp và có những sự đổi mới bất ngờ
+                nữa.
+             </p>
               <img
                 src="../assets/review-icon1.png"
                 class="review-icon"
               />
             </div>
             <div class="review-box rvbox2">
-            </br>
-            </br>
-              Sau hơn 4 năm sử dụng Diorn-shop với website này, tôi thấy
-              Diorn-shop đáp ứng được rất tốt khả năng chăm sóc khách hàng
-              online. Hy vọng Diorn sẽ bước tiếp và có những sự đổi mới bất ngờ
-              nữa.
+           
+             <p>
+                Sau hơn 4 năm sử dụng Diorn-shop với website này, tôi thấy
+                Diorn-shop đáp ứng được rất tốt khả năng chăm sóc khách hàng
+                online. Hy vọng Diorn sẽ bước tiếp và có những sự đổi mới bất ngờ
+                nữa.
+             </p>
               <img
                 src="../assets/review-icon2.png"
                 class="review-icon"
               />
             </div>
             <div class="review-box rvbox3">
-            </br>
-            </br>
-              Sau hơn 4 năm sử dụng Diorn-shop với website này, tôi thấy
-              Diorn-shop đáp ứng được rất tốt khả năng chăm sóc khách hàng
-              online. Hy vọng Diorn sẽ bước tiếp và có những sự đổi mới bất ngờ
-              nữa.
+           
+             <p>
+                Sau hơn 4 năm sử dụng Diorn-shop với website này, tôi thấy
+                Diorn-shop đáp ứng được rất tốt khả năng chăm sóc khách hàng
+                online. Hy vọng Diorn sẽ bước tiếp và có những sự đổi mới bất ngờ
+                nữa.
+             </p>
               <img
                 src="../assets/review-icon3.jpg"
                 class="review-icon"
