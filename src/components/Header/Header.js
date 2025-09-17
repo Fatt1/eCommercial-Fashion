@@ -2,7 +2,6 @@ export default function Header() {
   return `  <header>
       <div class="container">
         <div class="main-content">
-        
           <div class="header-top">
             <nav class="navbar">
               <ul class="navbar-list">
