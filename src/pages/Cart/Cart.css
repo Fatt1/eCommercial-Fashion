@@ -108,6 +108,12 @@ body {
   padding: 10px;
   font-weight: bold;
 }
+.product-action__button:hover {
+  background-color: rgb(220, 92, 92);
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+}
 
 /* dropdown */
 .dropdown {
