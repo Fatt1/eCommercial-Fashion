@@ -37,14 +37,22 @@ function setupHome() {
 }
 function handleClickHome() {
   document.addEventListener("click", (event) => {
+    const categoryMenuItem = event.target.closest(".category-submenu-item");
+    if (categoryMenuItem) {
+      const categoryId = categoryMenuItem.dataset.categoryId;
+      loadProductPage(categoryId);
+      return;
+    }
+
     const liHeader = event.target.closest(".nav-item");
 
-    if (liHeader) {
+    if (liHeader && !event.target.closest(".category-box")) {
       const tabSelected = liHeader.dataset.tab;
 
       if (tabSelected === "san-pham") {
         filterParams.categoryId = "cate-001";
         loadProductPage("cate-001");
+        return;
       }
     }
     const clickedCard = event.target.closest(".product-card");

@@ -1,23 +1,15 @@
-import {
-  filterProducts,
-  getAllProducts,
-  getProductById,
-} from "../../services/productService.js";
+import { filterProducts } from "../../services/productService.js";
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
-import Carousel, { setupCarousel } from "../../components/Carousel/Carousel.js";
+import { autoSlideId } from "../../components/Carousel/Carousel.js";
 import ProductSection from "./components/ProductSection.js";
-import ProductDetails from "./ProductDetails.js";
 import ProductListProductPage from "./components/ProductListProductPage.js";
 import PromotionSection, {
-  setupPromotion,
+  timerIntervalId,
 } from "../../components/PromotionSection/Promotion.js";
 function render(categoryId) {
   document.getElementById("root").innerHTML = `
   ${Header()}
-  ${Carousel()}
-  <h2 class="header-text main-content">KHUYẾN MÃI HÔM NAY</h2>
-     ${PromotionSection()}
      ${ProductSection(categoryId)}
      ${Footer()}
   `;
@@ -29,8 +21,6 @@ function setup() {
       sizes: ["size-28"],
     })
   );
-  setupPromotion();
-  setupCarousel();
 
   document.querySelector(".dropdown").addEventListener("mouseover", () => {
     document.querySelector(".dropdown-menu").classList.add("show");
@@ -43,13 +33,12 @@ function setup() {
 }
 export const filterParams = {};
 export function loadProductPage(categoryId) {
+  clearInterval(timerIntervalId);
+  clearInterval(autoSlideId);
+  window.scrollTo(0, 0);
   render(categoryId);
   setup();
 }
-document.addEventListener("DOMContentLoaded", async () => {
-  render();
-  setup();
-});
 
 function handleSortByPrice() {
   document.querySelectorAll(".sort-by-price").forEach((elem) =>

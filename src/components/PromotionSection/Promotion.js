@@ -54,10 +54,10 @@ export default function PromotionSection() {
       </div>
   `;
 }
-
+export let timerIntervalId = null;
 export function setupPromotion() {
   timer();
-  setInterval(timer, 1000);
+  timerIntervalId = setInterval(timer, 1000);
 }
 function formatTime(value) {
   return value.toString().padStart(2, "0");

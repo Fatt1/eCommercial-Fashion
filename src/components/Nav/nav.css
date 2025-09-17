@@ -13,6 +13,7 @@
   font-size: 1.6rem;
   font-family: "Geologica", sans-serif;
   outline: none;
+  padding: 10px;
 }
 
 .nav-item.active a {

@@ -10,6 +10,7 @@ function addCategory(category) {
 function getAllCategory() {
   return dbContext.categories;
 }
+
 function deleteCategoryById(categoryId) {
   const category = dbContext.categories.find((c) => c.id === categoryId);
   if (!category) return false;
