@@ -2,7 +2,14 @@ export default function Header() {
   return `  <header>
       <div class="container">
         <div class="main-content">
-        <div class="category-box">
+        
+          <div class="header-top">
+            <nav class="navbar">
+              <ul class="navbar-list">
+                <li class="nav-item active">
+                  <a href="./home.html">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item"><a href="./product.html">SẢN PHẨM</a><div class="category-box">
       <div class="category-box__column1">
         <h3 class="category-headings">NAM</h3>
         <ul class="">
@@ -55,14 +62,7 @@ export default function Header() {
           <li>Áo khoác nam</li>
         </ul>
       </div>
-    </div>
-          <div class="header-top">
-            <nav class="navbar">
-              <ul class="navbar-list">
-                <li class="nav-item active">
-                  <a href="./home.html">TRANG CHỦ</a>
-                </li>
-                <li class="nav-item"><a href="./product.html">SẢN PHẨM</a></li>
+    </div></li>
                 <li class="nav-item"><a href="#">GIỚI THIỆU</a></li>
                 <li class="nav-item"><a href="#">LIÊN HỆ</a></li>
               </ul>
