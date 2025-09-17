@@ -203,7 +203,7 @@ export default function ProductDetails(productId) {
                        Đánh giá
                       </li>
                     </ul>
-                  <p id="desc-content" class="extra-information__desc" >
+                  <p id="desc-content" class="extra-information__desc" hidden >
                     ÁO THUN POLO
 
 Áo thun Cotton 100% co dãn 4 chiều
@@ -258,7 +258,7 @@ CAM KẾT - ĐẢM BẢO:
 
 #aothun #aopolonam #polo #polonam #aocotron #aothunnam #aothuncotron #aocotton #aothundep #aophong #aophongnam #aophongcotron #aophongtayngan #aothuntayngan #aothunbody 
                   </p>
-                  <div id="details-content" class="extra-information__detail-content" hidden>
+                  <div id="details-content" class="extra-information__detail-content">
                    <div class="extra-information-attribute-container">
                       <h3 class="extra-information-attribute-container__attribute-name">Phong cách</h3>
                       <div class="extra-information-attribute-container__attribute-value">Cơ bản, Thể thao, Hàn Quốc</div>

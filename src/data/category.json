@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "id": "cate-001",
+      "name": "Thời trang nam",
+      "parentId": null,
+      "createdAt": "2025-09-16T15:13:23.000Z",
+      "colorIds": ["color-001", "color-002", "color-003"],
+      "sizeIds": ["size-001", "size-002", "size-003"]
+    },
+    {
+      "id": "cate-002",
+      "name": "Thời trang nữ",
+      "parentId": null,
+      "createdAt": "2025-09-16T15:13:23.000Z",
+      "colorIds": ["color-001", "color-004", "color-005"],
+      "sizeIds": ["size-001", "size-002", "size-003", "size-004"]
+    },
+    {
+      "id": "cate-003",
+      "name": "Phụ kiện",
+      "parentId": "cate-001",
+      "createdAt": "2025-09-16T15:13:23.000Z",
+      "colorIds": [],
+      "sizeIds": []
+    },
+    {
+      "id": "cate-004",
+      "name": "Đồng hồ nam",
+      "parentId": "cate-001",
+      "createdAt": "2025-09-16T15:13:23.000Z",
+      "colorIds": ["color-001", "color-002"],
+      "sizeIds": []
+    },
+    {
+      "id": "cate-005",
+      "name": "Túi xách nữ",
+      "parentId": "cate-002",
+      "createdAt": "2025-09-16T15:13:23.000Z",
+      "colorIds": ["color-004", "color-005"],
+      "sizeIds": []
+    },
+    {
+      "id": "cate-005",
+      "name": "Nước hoa nữ",
+      "parentId": "cate-002",
+      "createdAt": "2025-09-16T15:13:23.000Z",
+      "colorIds": ["color-004", "color-005"],
+      "sizeIds": []
+    }
+  ]
+}

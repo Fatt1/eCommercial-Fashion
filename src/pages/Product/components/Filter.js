@@ -1,27 +1,18 @@
-export default function Filter() {
+import {
+  getAllCategory,
+  getSubCategory,
+} from "../../../services/categoryService.js";
+
+export default function Filter({ categoryId }) {
   return `
    <div class="filter">
-        <div class="category-list">
+        <div class="category-list-product-page">
           <div class="category-list__header">
             <img src="../assets/category-3-soc.svg" />
             <h3 class="category-header-filter">DANH MỤC</h3>
           </div>
           <ul class="category-list-body">
-            <li>
-              <span class="caret active">Thời trang nam</span>
-              <ul class="nested">
-                <li>Áo</li>
-                <li>Quàn</li>
-              </ul>
-            </li>
-
-            <li>
-              <span class="caret">Thời trang nữ</span>
-              <ul class="nested">
-                <li>Áo crop top</li>
-                <li>Quần dài</li>
-              </ul>
-            </li>
+           ${generateCategoryFilterHtml(categoryId)}
            
           </ul>
         </div>
@@ -248,4 +239,32 @@ export default function Filter() {
         </fieldset>
       </div>
   `;
+}
+function generateCategoryFilterHtml(categoryId) {
+  const categories = getAllCategory();
+
+  let categoryListHtml = "";
+  categories.forEach((cate) => {
+    // nếu mà cateParentId ko có tìm mới tìm các con của nó
+    if (!cate.parentId) {
+      const childrenCategory = getSubCategory(cate.id);
+      let contentChildCategory = "";
+      if (childrenCategory) {
+        contentChildCategory += `<ul class='nested'>${childrenCategory
+          .map((child) => `<li>${child.name}</li>`)
+          .join(" ")}</ul>`;
+      }
+      categoryListHtml += ` <li>
+           <div class="container-caret">
+                <span class="caret ${categoryId === cate.id ? "active" : ""}" >
+                ${cate.name}
+         </span>
+          <span class="caret-toggle"></span>
+           </div>
+       ${contentChildCategory}
+      
+            </li>`;
+    }
+  });
+  return categoryListHtml;
 }

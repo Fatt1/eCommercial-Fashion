@@ -5,7 +5,13 @@ async function setDataFromJsonIntoDbContext() {
   if (!dbContext) {
     const products = await loadDataFromJson("product.json", "products");
     const skus = await loadDataFromJson("sku.json", "skus");
-    dbContext = { products, skus };
+    const categories = await loadDataFromJson("category.json", "categories");
+    dbContext = {
+      products,
+      skus,
+      categories,
+      saveChanges: saveDbContextToLocalStorage,
+    };
   }
 }
 async function loadDataToLocalStorage() {
@@ -24,8 +30,4 @@ function getDbContextFromLocalStorage() {
 function saveDbContextToLocalStorage(dbContext) {
   localStorage.setItem(DB_KEY, JSON.stringify(dbContext));
 }
-export {
-  loadDataToLocalStorage,
-  getDbContextFromLocalStorage,
-  saveDbContextToLocalStorage,
-};
+export { loadDataToLocalStorage, getDbContextFromLocalStorage };

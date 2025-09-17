@@ -88,33 +88,55 @@ header a:hover {
 .search-icon img {
   width: 20px;
 }
+.san-pham-tab {
+  position: relative;
+}
 /* Categories box */
 .category-box {
+  min-width: 500px;
   display: flex;
   background-color: rgb(32, 28, 28);
-  justify-content: space-around;
-  width: 45%;
+  padding: 30px;
+
+  font-size: 1.4rem;
+  border: 2px;
+  gap: 30px;
 }
 .category-box__column1 {
   text-align: center;
   color: #ffffff;
   font-family: "Geologica", sans-serif;
-  padding-bottom: 20px;
 }
 .category-box__column1 ul {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
 }
 .category-headings {
-  margin: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
 }
 
 .nav-item .category-box {
   position: absolute;
-  display: none;
-  bottom: -295px;
-  left: 40px;
+
+  visibility: hidden;
+  opacity: 0;
+  top: 100%;
+  left: -10px;
+}
+.category-box li,
+.category-box .category-headings {
+  cursor: pointer;
+}
+.category-box li:hover,
+.category-box .category-headings:hover {
+  opacity: 0.7;
+}
+.nav-item:hover .category-box {
+  visibility: visible;
+  opacity: 1;
 }
 .nav-item:hover .category-box {
   display: flex;

@@ -1,71 +1,26 @@
+import {
+  getAllCategory,
+  getSubCategory,
+} from "../../services/categoryService.js";
+
 export default function Header() {
-  return `  <header>
-      <div class="container">
-        <div class="main-content">
-          <div class="header-top">
-            <nav class="navbar">
-              <ul class="navbar-list">
-                <li class="nav-item active">
-                  <a href="./home.html">TRANG CHỦ</a>
-                </li>
-                <li class="nav-item"><a href="./product.html">SẢN PHẨM</a><div class="category-box">
-      <div class="category-box__column1">
-        <h3 class="category-headings">NAM</h3>
-        <ul class="">
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-        </ul>
-      </div>
-      <div class="category-box__column1">
-        <h3 class="category-headings">NỮ</h3>
-        <ul>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-        </ul>
-      </div>
-      <div class="category-box__column1">
-        <h3 class="category-headings">TRẺ EM</h3>
-        <ul>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-        </ul>
-      </div>
-      <div class="category-box__column1">
-        <h3 class="category-headings">PHỤ KIỆN</h3>
-        <ul>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-          <li>Áo khoác nam</li>
-        </ul>
-      </div>
-    </div></li>
-                <li class="nav-item"><a href="#">GIỚI THIỆU</a></li>
-                <li class="nav-item"><a href="#">LIÊN HỆ</a></li>
-              </ul>
-            </nav>
+  return ` <header>
+        <div class="container">
+          <div class="main-content">
+            <div class="header-top">
+              <nav class="navbar">
+                <ul class="navbar-list">
+                  <li class="nav-item active"><a href="./home.html">TRANG CHỦ</a></li>
+                  <li class="nav-item san-pham-tab" data-tab="san-pham"><a href="#">SẢN PHẨM</a>
+                    <div class="category-box">
+                      ${generateCategorySubMenu()}
+                    </div>
+              </li>
+                  <li class="nav-item"><a href="#">GIỚI THIỆU</a></li>
+                  <li class="nav-item"><a href="#">LIÊN HỆ</a></li>
+                </ul>
+              </nav>
+           
             <img class="logo" src="../assets/logo.svg" alt="logo" />
             <div class="action">
               <div class="search-bar">
@@ -91,8 +46,39 @@ export default function Header() {
                 <span class="cart-quantity">0</span>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </header>`;
+}
+function generateCategorySubMenu() {
+  const allCategories = getAllCategory();
+  let content = "";
+
+  for (let cate of allCategories) {
+    if (cate.parentId === null) {
+      let categoryHeaderContent = ` <h3 data-category-id='${
+        cate.id
+      }' class="category-headings category-submenu-item">${cate.name.toUpperCase()}</h3>`;
+      const subCategory = getSubCategory(cate.id);
+      console.log(subCategory);
+      let ulElem = ``;
+      if (subCategory) {
+        ulElem += `<ul>${subCategory
+          .map(
+            (cate) =>
+              `<li class="category-submenu-item" data-category-id='${cate.id}'>${cate.name}</li>`
+          )
+          .join(" ")}</ul>`;
+      }
+      const categoryBox = `
+      <div class="category-box__column1">
+          ${categoryHeaderContent}
+          ${ulElem}
+        </div>
+      `;
+
+      content += categoryBox;
+    }
+  }
+  return content;
 }

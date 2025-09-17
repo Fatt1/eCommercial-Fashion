@@ -1,11 +1,22 @@
 import { getDbContextFromLocalStorage } from "../helper/initialData.js";
-import { createPagination } from "../helper/helper.js";
+import { createPagination, generateUniqueId } from "../helper/helper.js";
 import { ORDER_BY } from "../constant/Constant.js";
+import { getSubCategoryIds } from "./categoryService.js";
 const dbContext = getDbContextFromLocalStorage();
+
+function addProduct(product) {
+  const id = generateUniqueId();
+  product.id = id;
+  dbContext.products.push(product);
+  dbContext.saveChanges();
+  return product;
+}
+
 function getAllProducts({ pageSize = 5, pageNumber = 1 }) {
   return createPagination(dbContext.products, pageSize, pageNumber);
 }
 function filterProducts({
+  categoryId,
   pageSize = 5,
   pageNumber = 1,
   searchKey,
@@ -18,7 +29,17 @@ function filterProducts({
 }) {
   let filterProducts = [...dbContext.products];
   // Filter by searchKey
+  const subCategoryIds = getSubCategoryIds(categoryId);
+  const allRelatedCategoryIds = [categoryId, ...subCategoryIds];
+  console.log(allRelatedCategoryIds);
   filterProducts = filterProducts.filter((p) => {
+    let isMatchingCategoryId;
+    if (!categoryId) isMatchingCategoryId = true;
+    else {
+      isMatchingCategoryId = allRelatedCategoryIds.includes(p.categoryId);
+    }
+
+    // Lọc theo searchKey
     const isMatchingSearchKey =
       !searchKey ||
       p.name.toLowerCase().includes(searchKey.toLowerCase()) ||
@@ -54,7 +75,8 @@ function filterProducts({
       isMatchingColor &&
       isMatchingPrice &&
       isMatchingSize &&
-      isMatchingSearchKey
+      isMatchingSearchKey &&
+      isMatchingCategoryId
     );
   });
 
@@ -85,13 +107,15 @@ function deleteProductById(id) {
   if (!product) return false;
   // xóa sản phẩm thành công
   const updatedProducts = products.filter((p) => p.id !== idToRemove);
-  db.products = updatedProducts;
+  dbContext.products = updatedProducts;
+  dbContext.saveChanges();
   return true;
 }
 function updateProductById(id, updateProduct) {
   const product = dbContext.products.find((p) => p.id === id);
   if (!product) return false;
   product = updateProduct;
+  dbContext.saveChanges();
   return true;
 }
 function getSkusByProductId(productId) {
@@ -100,4 +124,12 @@ function getSkusByProductId(productId) {
   );
   return skusVariation;
 }
-export { getAllProducts, getProductById, filterProducts };
+
+export {
+  getAllProducts,
+  getProductById,
+  filterProducts,
+  deleteProductById,
+  updateProductById,
+  addProduct,
+};

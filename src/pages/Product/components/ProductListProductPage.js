@@ -9,6 +9,7 @@ export default function ProductListProductPage({
   ...filterParams
 }) {
   const response = filterProducts({ pageNumber, ...filterParams });
+
   const products = response.items;
   return `
                        ${ProductList({

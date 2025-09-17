@@ -30,7 +30,7 @@ export default function Carousel() {
       </div>
   `;
 }
-
+export let autoSlideId = null;
 export function setupCarousel() {
   let slides = document.querySelectorAll(".carousel-item"); //lấy các item bỏ vô array
   const carouselContainer = document.querySelector(".carousel-container--list");
@@ -156,25 +156,24 @@ export function setupCarousel() {
         restartAutoSlide(); // resume khi out
       });
 
-      let autoSlideId = null;
-      function startAutoSlide() {
-        stopAutoSlide();
-        autoSlideId = setInterval(() => {
-          moveToIndex(currentIndex + 1);
-        }, 5000);
-      }
-      function stopAutoSlide() {
-        if (autoSlideId) {
-          clearInterval(autoSlideId);
-          autoSlideId = null;
-        }
-      }
-      function restartAutoSlide() {
-        stopAutoSlide();
-        startAutoSlide();
-      }
-
       startAutoSlide();
     }
+  }
+}
+
+function startAutoSlide() {
+  stopAutoSlide();
+  autoSlideId = setInterval(() => {
+    moveToIndex(currentIndex + 1);
+  }, 5000);
+}
+function restartAutoSlide() {
+  stopAutoSlide();
+  startAutoSlide();
+}
+function stopAutoSlide() {
+  if (autoSlideId) {
+    clearInterval(autoSlideId);
+    autoSlideId = null;
   }
 }
