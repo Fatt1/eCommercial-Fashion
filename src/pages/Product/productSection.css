@@ -39,6 +39,9 @@
   flex-wrap: wrap;
   gap: 30px;
 }
+.category-filter-value {
+  cursor: pointer;
+}
 .category-list__header {
   display: flex;
   gap: 10px;

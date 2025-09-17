@@ -120,7 +120,6 @@ header a:hover {
 
 .nav-item .category-box {
   position: absolute;
-
   visibility: hidden;
   opacity: 0;
   top: 100%;
