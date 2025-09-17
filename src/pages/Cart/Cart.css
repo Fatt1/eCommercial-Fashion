@@ -45,6 +45,14 @@ body {
   text-align: center;
 }
 
+.product-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+}
+
 .product-main__img {
   height: 80px;
 }
