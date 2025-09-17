@@ -4,13 +4,13 @@ import Filter from "./Filter.js";
 
 import ProductListProductPage from "./ProductListProductPage.js";
 
-export default function ProductSection() {
+export default function ProductSection(categoryId) {
   return `
     <div class="product-section">
         <div class="main-content">
           ${BreadCrumb()}
           <div class="product-section-main-content">
-            ${Filter()}
+            ${Filter({ categoryId })}
             <div class="right-product-section">
               <div class="sort-bar">
                 <div class="left-sort-bar">
@@ -33,7 +33,7 @@ export default function ProductSection() {
                     </div>
                 </div>
                 <div id="product-list-section">
-                   ${ProductListProductPage({ pageNumber: 1 })}
+                   ${ProductListProductPage({ pageNumber: 1, categoryId })}
                 </div>
              
             </div>

@@ -9,14 +9,16 @@ import Carousel, { setupCarousel } from "../../components/Carousel/Carousel.js";
 import ProductSection from "./components/ProductSection.js";
 import ProductDetails from "./ProductDetails.js";
 import ProductListProductPage from "./components/ProductListProductPage.js";
-
-function render() {
+import PromotionSection, {
+  setupPromotion,
+} from "../../components/PromotionSection/Promotion.js";
+function render(categoryId) {
   document.getElementById("root").innerHTML = `
   ${Header()}
   ${Carousel()}
   <h2 class="header-text main-content">KHUYẾN MÃI HÔM NAY</h2>
-     
-     ${ProductSection()}
+     ${PromotionSection()}
+     ${ProductSection(categoryId)}
      ${Footer()}
   `;
 }
@@ -27,46 +29,27 @@ function setup() {
       sizes: ["size-28"],
     })
   );
+  setupPromotion();
   setupCarousel();
+
   document.querySelector(".dropdown").addEventListener("mouseover", () => {
     document.querySelector(".dropdown-menu").classList.add("show");
   });
   document.querySelector(".dropdown").addEventListener("mouseout", () => {
     document.querySelector(".dropdown-menu").classList.remove("show");
   });
-  document.querySelectorAll(".caret").forEach((caret) =>
-    caret.addEventListener("click", () => {
-      caret.classList.toggle("active");
-    })
-  );
-  handleClick();
+
   handleSortByPrice();
+}
+export const filterParams = {};
+export function loadProductPage(categoryId) {
+  render(categoryId);
+  setup();
 }
 document.addEventListener("DOMContentLoaded", async () => {
   render();
   setup();
 });
-const filterParams = {};
-function handleClick() {
-  document.addEventListener("click", (event) => {
-    const clickedCard = event.target.closest(".product-card");
-    if (clickedCard) {
-      document.getElementById("root").innerHTML = ProductDetails(1);
-      window.scrollTo(0, 0);
-    }
-  });
-  document.addEventListener("click", (event) => {
-    const paginationBtnClicked = event.target.closest(".pagination-btn");
-
-    if (paginationBtnClicked) {
-      const pageNumber = Number(paginationBtnClicked.dataset.index);
-      console.log(pageNumber);
-      console.log(document.querySelector("#product-list-section"));
-      document.querySelector("#product-list-section").innerHTML =
-        ProductListProductPage({ pageNumber, ...filterParams });
-    }
-  });
-}
 
 function handleSortByPrice() {
   document.querySelectorAll(".sort-by-price").forEach((elem) =>

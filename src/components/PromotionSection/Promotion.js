@@ -56,22 +56,22 @@ export default function PromotionSection() {
 }
 
 export function setupPromotion() {
-  function formatTime(value) {
-    return value.toString().padStart(2, "0");
-  }
-  function timer() {
-    const now = new Date();
-    const day = document.querySelector("#day");
-    const hour = now.getHours();
-    const minute = now.getMinutes();
-    const second = now.getSeconds();
-
-    document.querySelector("#hour").innerHTML = formatTime(hour);
-
-    document.querySelector("#minute").innerHTML = formatTime(minute);
-
-    document.querySelector("#second").innerHTML = formatTime(second);
-  }
   timer();
   setInterval(timer, 1000);
+}
+function formatTime(value) {
+  return value.toString().padStart(2, "0");
+}
+function timer() {
+  const now = new Date();
+  const day = document.querySelector("#day");
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const second = now.getSeconds();
+
+  document.querySelector("#hour").innerHTML = formatTime(hour);
+
+  document.querySelector("#minute").innerHTML = formatTime(minute);
+
+  document.querySelector("#second").innerHTML = formatTime(second);
 }

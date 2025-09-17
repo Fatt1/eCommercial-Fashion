@@ -6,7 +6,7 @@ export default function Header() {
               <nav class="navbar">
                 <ul class="navbar-list">
                   <li class="nav-item active"><a href="./home.html">TRANG CHỦ</a></li>
-                  <li class="nav-item"><a href="./product.html">SẢN PHẨM</a></li>
+                  <li class="nav-item" data-tab="san-pham"><a href="#">SẢN PHẨM</a></li>
                   <li class="nav-item"><a href="#">GIỚI THIỆU</a></li>
                   <li class="nav-item"><a href="#">LIÊN HỆ</a></li>
                 </ul>

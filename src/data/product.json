@@ -41,7 +41,7 @@
           "variationOptions": ["size-s", "size-m", "size-l"]
         }
       ],
-      "categoryId": "cat-apparel",
+      "categoryId": "cate-001",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z"
@@ -83,7 +83,7 @@
           "variationOptions": ["size-28", "size-30", "size-32"]
         }
       ],
-      "categoryId": "cat-jeans",
+      "categoryId": "cate-001",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z"
@@ -125,7 +125,7 @@
           "variationOptions": ["size-39", "size-40", "size-41"]
         }
       ],
-      "categoryId": "cat-shoes",
+      "categoryId": "cate-001",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z"
@@ -149,7 +149,7 @@
         "currentlyPrice": 22500000.0
       },
       "variations": [],
-      "categoryId": "cat-electronics",
+      "categoryId": "cate-002",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z"
@@ -187,7 +187,7 @@
           ]
         }
       ],
-      "categoryId": "cat-accessories",
+      "categoryId": "cate-002",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z"
@@ -225,7 +225,7 @@
           ]
         }
       ],
-      "categoryId": "cat-furniture",
+      "categoryId": "cate-004",
       "status": "draft",
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z"

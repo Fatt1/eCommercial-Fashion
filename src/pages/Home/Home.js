@@ -13,6 +13,7 @@ import Footer from "../../components/Footer/Footer.js";
 import ReviewSection from "../Home/components/ReviewSection.js";
 import { getAllProducts } from "../../services/productService.js";
 import { loadDataToLocalStorage } from "../../helper/initialData.js";
+import { filterParams, loadProductPage } from "../Product/Product.js";
 
 const products = getAllProducts({}).items;
 function render() {
@@ -32,6 +33,44 @@ function setupHome() {
   setupCarousel();
   setupPromotion();
   setupCategorySection();
+  handleClickHome();
+}
+function handleClickHome() {
+  document.addEventListener("click", (event) => {
+    const liHeader = event.target.closest(".nav-item");
+
+    if (liHeader) {
+      const tabSelected = liHeader.dataset.tab;
+
+      if (tabSelected === "san-pham") {
+        filterParams.categoryId = "cate-001";
+        loadProductPage("cate-001");
+      }
+    }
+    const clickedCard = event.target.closest(".product-card");
+    if (clickedCard) {
+      document.getElementById("root").innerHTML = ProductDetails(1);
+      window.scrollTo(0, 0);
+      return; // Dừng hàm nếu đã xử lý
+    }
+
+    // Xử lý sự kiện cho pagination-btn
+    const paginationBtnClicked = event.target.closest(".pagination-btn");
+    if (paginationBtnClicked) {
+      const pageNumber = Number(paginationBtnClicked.dataset.index);
+      document.querySelector("#product-list-section").innerHTML =
+        ProductListProductPage({ pageNumber, ...filterParams });
+      return; // Dừng hàm nếu đã xử lý
+    }
+
+    // Xử lý sự kiện cho caret-toggle
+    const caretToggle = event.target.closest(".caret-toggle");
+    if (caretToggle) {
+      caretToggle.parentElement.nextElementSibling.classList.toggle("show");
+
+      return; // Dừng hàm nếu đã xử lý
+    }
+  });
 }
 document.addEventListener("DOMContentLoaded", async () => {
   await loadDataToLocalStorage();
