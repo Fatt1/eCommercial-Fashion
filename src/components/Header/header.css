@@ -112,7 +112,10 @@ header a:hover {
 
 .nav-item .category-box {
   position: absolute;
-  /* display: ; */
+  display: none;
   bottom: -295px;
   left: 40px;
+}
+.nav-item:hover .category-box {
+  display: flex;
 }
