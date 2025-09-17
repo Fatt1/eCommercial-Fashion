@@ -242,6 +242,12 @@ export default function Filter({ categoryId }) {
 }
 function generateCategoryFilterHtml(categoryId) {
   const categories = getAllCategory();
+  let parentIdToShow = null;
+  categories.forEach((cate) => {
+    if (cate.id === categoryId && cate.parentId) {
+      parentIdToShow = cate.parentId;
+    }
+  });
 
   let categoryListHtml = "";
   categories.forEach((cate) => {
@@ -250,16 +256,23 @@ function generateCategoryFilterHtml(categoryId) {
       const childrenCategory = getSubCategory(cate.id);
       let contentChildCategory = "";
       if (childrenCategory) {
-        contentChildCategory += `<ul class='nested'>${childrenCategory
-          .map((child) => `<li>${child.name}</li>`)
+        const showCaret = cate.id === parentIdToShow ? "show" : "";
+        contentChildCategory += `<ul class='nested ${showCaret}'>${childrenCategory
+          .map((child) => {
+            return `<li class="category-filter-value" data-category-id='${child.id}'>${child.name}</li>`;
+          })
           .join(" ")}</ul>`;
       }
       categoryListHtml += ` <li>
            <div class="container-caret">
-                <span class="caret ${categoryId === cate.id ? "active" : ""}" >
+                <span data-category-id="${
+                  cate.id
+                }" class="caret category-filter-value ${
+        categoryId === cate.id ? "active" : ""
+      }" >
                 ${cate.name}
          </span>
-          <span class="caret-toggle"></span>
+          <span class="caret-toggle "></span>
            </div>
        ${contentChildCategory}
       
