@@ -33,7 +33,11 @@
       href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&family=Luxurious+Roman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <style>
+    <!-- <style>
+      body {
+        font-family: "Geologica", sans-serif;
+        background-color: #e3e3e3;
+      }
       /* cart-items */
       .cart {
         padding-top: 100px;
@@ -123,6 +127,8 @@
       .product-quantity__input {
         width: 25px;
         height: 25px;
+        background-color: transparent;
+        border-color: #d9d9d9;
       }
       .product-quantity__button {
         width: 25px;
@@ -133,7 +139,7 @@
       }
       .product-action__button {
         border: none;
-        background-color: rgb(255, 255, 255);
+        background-color: transparent;
         padding: 10px;
         font-weight: bold;
       }
@@ -154,10 +160,10 @@
         box-shadow: 3px 3px 10px rgba(41, 41, 41, 0.202);
         border-radius: 3px;
         max-height: 0;
-        transition: max-height 0.3s ease-out;
+        transition: max-height 0s ease-out;
         overflow: hidden;
 
-        width: 230px;
+        width: 250px;
 
         display: flex;
         flex-direction: row;
@@ -184,6 +190,7 @@
       }
       .dropdown-menu.show {
         max-height: 300px;
+        padding: 10px;
       }
       /* voucher section  */
       .voucher-section {
@@ -266,8 +273,139 @@
       .product-quantity__input {
         text-align: center;
       }
+
+      /* total money cal */
+      .total-money-cal {
+        background-color: #d9d9d9;
+        margin: 0px 50px;
+        margin-top: 10px;
+        margin-bottom: 30px;
+      }
+      .total__top--voucher {
+        width: 40%;
+        background-color: transparent;
+      }
+      .total__top {
+        display: flex;
+        justify-content: end;
+        padding: 15px;
+        border-bottom: #7d7d7d 1px solid;
+      }
+      .total__top--voucher-left {
+        display: flex;
+        align-items: center;
+      }
+      .total__top--voucher button {
+        background-color: transparent;
+        border: none;
+        color: #7d7d7d;
+        padding-right: 20px;
+      }
+      .total__top--voucher {
+        display: flex;
+        justify-content: space-between;
+      }
+      /* total bot money */
+      .total__bot--money {
+        width: 40%;
+        height: 50%;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .total__bot {
+        display: flex;
+        justify-content: end;
+        padding: 15px;
+        align-items: end;
+        padding-top: 35px;
+      }
+      .total__bot--money-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .total__bot--money button {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 15px 60px;
+        font-weight: bold;
+      }
+      .total-money-cal {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        width: 95%;
+        background-color: #d9d9d9;
+        z-index: 10;
+      }
+
+      /* fixed sticky  */
+      /* .page-container {
+        display: flex;
+        flex-direction: column;
+      } */
+
+      /* Nội dung chính chiếm hết chỗ còn lại */
+      /* .content {
+        flex: 1;
+      } */
+
+      /* Thanh checkout */
+      /* .total-money-cal {
+        position: fixed;
+        bottom: 0;
+        background-color: #d9d9d9;
+
+        z-index: 10;
+      } */
+
+      .cart-page {
+        position: relative;
+      }
+
+      .sticky-wrapper {
+        position: relative;
+        height: 60px; /* chiều cao khối sticky */
+      }
+
+      .total-money-cal {
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        background: #d9d9d9;
+        padding: 10px;
+        text-align: center;
+        z-index: 10;
+      }
+    </style> -->
+    <link rel="stylesheet" href="../pages/Cart/Cart.css" />
+    <style>
+            /* body {
+              margin: 0;
+              font-family: sans-serif;
+            }
+
+            footer {
+              background: #333;
+              color: #fff;
+              padding: 50px;
+              text-align: center;
+            }
+      /*
+            .total-money-cal {
+              position: sticky;
+              bottom: 0;
+              background: #d9d9d9;
+              padding: 20px;
+
+              z-index: 10;
+            } */ */
     </style>
   </head>
+
   <body>
     <!-- header -->
     <header>
@@ -311,6 +449,7 @@
     <!-- <div id="root"></div> -->
 
     <!-- cart  -->
+
     <section class="cart">
       <div class="cart-info">
         <div class="product-main">
@@ -323,6 +462,677 @@
         <div class="product-quantity">Số Lượng</div>
         <div class="product-total">Số Tiền</div>
         <div class="product-action">Thao Tác</div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">Xanh Lam</li>
+              <li class="dropdown-item">Xanh Duong</li>
+              <li class="dropdown-item">vang</li>
+              <li class="dropdown-item">Do</li>
+              <li class="dropdown-item">Xam Khoi</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-main">
+          <input type="checkbox" class="product-main__checkbox" name="" id="" />
+          <img
+            class="product-main__img"
+            src="../assets/large-img-detail.png"
+            alt=""
+          />
+          <span>ÁO SƠ MI Z02313</span>
+        </div>
+        <div class="product-size">
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__size">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__size">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-color">
+          <!-- <select class="product-color__select" name="" id="color">
+            <option value="S">Đỏ</option>
+            <option value="M">Nâu</option>
+            <option value="L">Đen</option>
+            <option value="XL">Hồng</option>
+          </select> -->
+          <div class="dropdown">
+            <button class="dropdown-button dropdown-button__color">
+              S <img src="../assets/dropdown-icon.svg" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu__color">
+              <li class="dropdown-item">S</li>
+              <li class="dropdown-item">M</li>
+              <li class="dropdown-item">L</li>
+              <li class="dropdown-item">XL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-price">
+          <span class="product-price__old-price">557.000đ</span>
+          <span class="product-price__current-price">447.000đ</span>
+        </div>
+        <div class="product-quantity">
+          <button class="product-quantity__button product-quantity__minus">
+            -
+          </button>
+          <input class="product-quantity__input" value="1" min="1" />
+          <button class="product-quantity__button product-quantity__plus">
+            +
+          </button>
+        </div>
+        <div class="product-total">447.000đ</div>
+        <div class="product-action">
+          <button class="product-action__button">XÓA</button>
+        </div>
       </div>
       <div class="cart-item">
         <div class="product-main">
@@ -448,36 +1258,32 @@
       </div>
     </section>
 
-    <!--   -->
+    <main class="content">
+      <!-- nội dung dài ở đây -->
+    </main>
 
-    <!-- voucher shipping section -->
-    <!-- <section class="voucher-section">
-      <div class="voucher-container">
-        <div class="voucher-container-message">
-          <span class="voucher-container-message__span">Lời nhắn:</span>
-          <input
-            type="text"
-            class="voucher-container-message__input"
-            placeholder="  Lưu ý cho người bán..."
-            style="border: 1px solid"
-          />
-        </div>
-        <div class="voucher-container-vouchershipping">
-          <div class="vouchershipping__voucher">
+    <!-- total money cal  -->
+
+    <section class="total-money-cal">
+      <div class="total__top">
+        <div class="total__top--voucher">
+          <div class="total__top--voucher-left">
             <span><img src="../assets/Voucher.svg" alt="" /> </span>
-            <span>VOUCHER</span>
-            <button>Chọn Voucher khác</button>
+            <span>Voucher</span>
           </div>
-          <div class="vouchershipping__shipping-choice">jabdsak</div>
+          <button>Chọn hoặc nhập mã</button>
         </div>
       </div>
-      <div class="total-voucher-container">
-        <div class="total-voucher-container__quantity">
-          Tổng số tiền (0 sản phẩm):
+      <div class="total__bot">
+        <div class="total__bot--money">
+          <span>Tổng cộng (0 Sản phẩm):</span>
+          <div class="total__bot--money-right">
+            <span>0đ</span>
+            <button>MUA NGAY</button>
+          </div>
         </div>
-        <div class="total-voucher-container__total">0đ</div>
       </div>
-    </section> -->
+    </section>
 
     <!-- footer -->
     <footer>
@@ -527,6 +1333,35 @@
         </div>
       </div>
     </footer>
+
+    <!-- voucher shipping section -->
+    <!-- <section class="voucher-section">
+      <div class="voucher-container">
+        <div class="voucher-container-message">
+          <span class="voucher-container-message__span">Lời nhắn:</span>
+          <input
+            type="text"
+            class="voucher-container-message__input"
+            placeholder="  Lưu ý cho người bán..."
+            style="border: 1px solid"
+          />
+        </div>
+        <div class="voucher-container-vouchershipping">
+          <div class="vouchershipping__voucher">
+            <span><img src="../assets/Voucher.svg" alt="" /> </span>
+            <span>VOUCHER</span>
+            <button>Chọn Voucher khác</button>
+          </div>
+          <div class="vouchershipping__shipping-choice">jabdsak</div>
+        </div>
+      </div>
+      <div class="total-voucher-container">
+        <div class="total-voucher-container__quantity">
+          Tổng số tiền (0 sản phẩm):
+        </div>
+        <div class="total-voucher-container__total">0đ</div>
+      </div>
+    </section> -->
 
     <script type="module" src="../pages/Cart/Cart.js"></script>
     <!-- <script>
