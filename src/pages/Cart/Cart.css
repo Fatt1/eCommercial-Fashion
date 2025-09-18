@@ -454,7 +454,7 @@ footer {
 
 .checkout-box-top {
   display: flex;
-  border: 1px solid black;
+  border-bottom: 1px solid rgb(191, 191, 191);
 }
 
 .checkout-top_left {
@@ -464,7 +464,7 @@ footer {
   align-items: center;
   padding: 50px;
   gap: 10px;
-  border-right: 1px solid;
+  border-right: 1px solid rgb(191, 191, 191);
 }
 .checkout-top_right {
   width: 50%;
@@ -479,7 +479,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #7d7d7d;
+  border-bottom: 1px solid rgb(191, 191, 191);
 }
 
 .blue-button {
@@ -518,7 +518,6 @@ footer {
   display: flex;
   justify-content: flex-end;
   gap: 70px;
-  border: 1px solid black;
   border-top: none;
   padding: 5px;
 }
@@ -527,6 +526,16 @@ footer {
 }
 .checkout-box {
   background-color: #d9d9d9;
+}
+.checkout-box1 {
+  /* border: 1px solid black; */
+  margin: 30px 50px 20px 60px;
+  box-shadow: 0px 1px 5px grey;
+}
+.checkout-box2 {
+  /* border: 1px solid black; */
+  margin: 30px 50px 20px 60px;
+  box-shadow: 0px 1px 5px grey;
 }
 .row-1 {
   display: flex;
@@ -546,13 +555,14 @@ footer {
 .payments {
   display: flex;
   justify-content: space-between;
-  gap: 300px;
+  gap: 220px;
   padding: 5px;
 }
 .row-2 {
   display: flex;
   justify-content: flex-end;
-  border: 1px solid black;
+  border-top: 1px solid rgb(191, 191, 191);
+  border-bottom: 1px solid rgb(191, 191, 191);
 }
 .payments div {
   padding-right: 10px;
@@ -560,14 +570,21 @@ footer {
 .row-3 {
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  margin: 5px 0px;
 }
 .order-terms {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 60%;
 }
 .order-button {
+  width: 150px;
   background-color: black;
   color: yellow;
+  padding: 10px;
+  font-size: medium;
+  border: none;
+  outline: none;
+  margin: 10px;
 }
