@@ -275,6 +275,7 @@ body {
   margin: 0px 50px;
   margin-top: 10px;
   margin-bottom: 30px;
+  padding-top: 5px;
 }
 .total__top--voucher {
   width: 40%;
@@ -312,7 +313,6 @@ body {
 .total__bot {
   display: flex;
   justify-content: end;
-
   align-items: end;
   padding-top: 15px;
 }
@@ -328,6 +328,34 @@ body {
   padding: 15px 60px;
   font-weight: bold;
 }
+
+.total__bot--money-left-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total__bot--money-left {
+  width: 80%;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.total__bot--money-left-total-number {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.total__bot--money-left-total-line {
+  font-size: 2rem;
+  /* margin-left: 50px; */
+}
+.total__bot--money-left-save {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
 /* .total-money-cal {
   position: sticky;
   bottom: 0;
@@ -397,6 +425,6 @@ footer {
   bottom: 0;
   background: #d9d9d9;
   padding: 20px;
-
+  padding-top: 5px;
   z-index: 10;
 }
