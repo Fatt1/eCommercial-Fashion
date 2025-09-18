@@ -155,25 +155,24 @@ export function setupCarousel() {
         });
         restartAutoSlide(); // resume khi out
       });
+      function startAutoSlide() {
+        stopAutoSlide();
+        autoSlideId = setInterval(() => {
+          moveToIndex(currentIndex + 1);
+        }, 5000);
+      }
+      function restartAutoSlide() {
+        stopAutoSlide();
+        startAutoSlide();
+      }
+      function stopAutoSlide() {
+        if (autoSlideId) {
+          clearInterval(autoSlideId);
+          autoSlideId = null;
+        }
+      }
 
       startAutoSlide();
     }
-  }
-}
-
-function startAutoSlide() {
-  stopAutoSlide();
-  autoSlideId = setInterval(() => {
-    moveToIndex(currentIndex + 1);
-  }, 5000);
-}
-function restartAutoSlide() {
-  stopAutoSlide();
-  startAutoSlide();
-}
-function stopAutoSlide() {
-  if (autoSlideId) {
-    clearInterval(autoSlideId);
-    autoSlideId = null;
   }
 }

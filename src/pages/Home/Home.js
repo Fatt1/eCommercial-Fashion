@@ -17,7 +17,7 @@ import { filterParams, loadProductPage } from "../Product/Product.js";
 import ProductListProductPage from "../Product/components/ProductListProductPage.js";
 
 const products = getAllProducts({}).items;
-function render() {
+function renderHome() {
   const root = document.getElementById("root");
   root.innerHTML = `
   ${Header()}
@@ -28,6 +28,7 @@ function render() {
    ${BestSeller({ products })}
    ${ReviewSection()}
    ${Footer()}
+   
   `;
 }
 function setupHome() {
@@ -93,6 +94,6 @@ function handleClickHome() {
 }
 document.addEventListener("DOMContentLoaded", async () => {
   await loadDataToLocalStorage();
-  render();
+  renderHome();
   setupHome();
 });
