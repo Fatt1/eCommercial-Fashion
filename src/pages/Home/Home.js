@@ -27,6 +27,7 @@ function render() {
    ${BestSeller({ products })}
    ${ReviewSection()}
    ${Footer()}
+   
   `;
 }
 function setupHome() {

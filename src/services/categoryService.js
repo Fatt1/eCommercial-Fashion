@@ -37,10 +37,12 @@ function getCategoryById(categoryId) {
     childrenCategory,
   };
 }
+// chỉ lấy category con mức 1 thôi
 function getSubCategory(categoryId) {
   const result = dbContext.categories.filter((c) => c.parentId === categoryId);
   return result;
 }
+// lấy categoryIds con ở tất cả các mức
 function getSubCategoryIds(categoryId) {
   const subCategories = [];
   function findChildren(currentId) {
