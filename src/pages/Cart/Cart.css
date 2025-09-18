@@ -45,6 +45,14 @@ body {
   text-align: center;
 }
 
+.product-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+}
+
 .product-main__img {
   height: 80px;
 }
@@ -93,6 +101,7 @@ body {
   height: 25px;
   background-color: transparent;
   border-color: #d9d9d9;
+  border: 1px solid;
 }
 .product-quantity__button {
   width: 25px;
@@ -105,6 +114,12 @@ body {
   border: none;
   background-color: transparent;
   padding: 10px;
+  font-weight: bold;
+}
+.product-action__button:hover {
+  background-color: rgb(220, 92, 92);
+  padding: 10px;
+  color: white;
   font-weight: bold;
 }
 
@@ -134,6 +149,16 @@ body {
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.dropdown-menu__color {
+  font-size: 1.5rem;
+}
+.dropdown-menu__color .dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .dropdown-button {
   background-color: transparent;
   border: 1px solid;
@@ -258,7 +283,7 @@ body {
 .total__top {
   display: flex;
   justify-content: end;
-  padding: 15px;
+  /* padding: 15px; */
   border-bottom: #7d7d7d 1px solid;
 }
 .total__top--voucher-left {
@@ -278,7 +303,7 @@ body {
 /* total bot money */
 .total__bot--money {
   width: 40%;
-  height: 50%;
+  height: 30%;
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -287,9 +312,9 @@ body {
 .total__bot {
   display: flex;
   justify-content: end;
-  padding: 15px;
+
   align-items: end;
-  padding-top: 35px;
+  padding-top: 15px;
 }
 .total__bot--money-right {
   display: flex;

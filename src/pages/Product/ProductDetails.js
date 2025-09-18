@@ -176,7 +176,7 @@ export default function ProductDetails(productId) {
               <span class="available-quantity">499 sản phẩm có sẵn</span>
               </div>
               <div class="product-actions">
-               <button class="add-to-cart-btn"> <img class="cart" src="../assets/shopping-cart.png"> Thêm vào giỏ hàng</button>
+               <button data-product-id="${productId}" class="add-to-cart-btn"> <img class="cart" src="../assets/shopping-cart.png"> Thêm vào giỏ hàng</button>
                 <button class="buy-now-btn">Mua ngay</button>
               </div>
             </div>

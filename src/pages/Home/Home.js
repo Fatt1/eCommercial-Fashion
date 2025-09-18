@@ -7,13 +7,14 @@ import PromotionSection, {
 import CategorySection, {
   setupCategorySection,
 } from "./components/CategorySection.js";
-
+import ProductDetails from "../Product/ProductDetails.js";
 import BestSeller from "./components/BestSeller.js";
 import Footer from "../../components/Footer/Footer.js";
 import ReviewSection from "../Home/components/ReviewSection.js";
 import { getAllProducts } from "../../services/productService.js";
 import { loadDataToLocalStorage } from "../../helper/initialData.js";
 import { filterParams, loadProductPage } from "../Product/Product.js";
+import ProductListProductPage from "../Product/components/ProductListProductPage.js";
 
 const products = getAllProducts({}).items;
 function render() {
@@ -41,10 +42,20 @@ function handleClickHome() {
     const categoryMenuItem = event.target.closest(".category-submenu-item");
     if (categoryMenuItem) {
       const categoryId = categoryMenuItem.dataset.categoryId;
+
       loadProductPage(categoryId);
       return;
     }
+    const categoryFilterElem = event.target.closest(".category-filter-value");
+    if (categoryFilterElem) {
+      console.log(categoryFilterElem);
 
+      const categoryId = categoryFilterElem.dataset.categoryId;
+      filterParams.categoryId = categoryId;
+      document.getElementById("product-list-section").innerHTML =
+        ProductListProductPage({ pageNumber: 1, ...filterParams });
+      return;
+    }
     const liHeader = event.target.closest(".nav-item");
 
     if (liHeader && !event.target.closest(".category-box")) {
