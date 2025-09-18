@@ -60,7 +60,7 @@ function generateCategorySubMenu() {
         cate.id
       }' class="category-headings category-submenu-item">${cate.name.toUpperCase()}</h3>`;
       const subCategory = getSubCategory(cate.id);
-      console.log(subCategory);
+
       let ulElem = ``;
       if (subCategory) {
         ulElem += `<ul>${subCategory

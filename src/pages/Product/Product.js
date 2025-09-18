@@ -7,14 +7,14 @@ import ProductListProductPage from "./components/ProductListProductPage.js";
 import PromotionSection, {
   timerIntervalId,
 } from "../../components/PromotionSection/Promotion.js";
-function render(categoryId) {
+function renderProduct(categoryId) {
   document.getElementById("root").innerHTML = `
   ${Header()}
      ${ProductSection(categoryId)}
      ${Footer()}
   `;
 }
-function setup() {
+function setupProduct() {
   console.log(
     filterProducts({
       colors: ["color-dark-blue"],
@@ -36,8 +36,9 @@ export function loadProductPage(categoryId) {
   clearInterval(timerIntervalId);
   clearInterval(autoSlideId);
   window.scrollTo(0, 0);
-  render(categoryId);
-  setup();
+  renderProduct(categoryId);
+
+  setupProduct();
 }
 
 function handleSortByPrice() {
