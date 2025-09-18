@@ -491,6 +491,7 @@ footer {
 .notes-for-seller {
   border: 1px solid;
   background-color: #cdc1b8;
+  width: 250px;
 }
 .checkout-top-right__shipping {
   display: flex;
