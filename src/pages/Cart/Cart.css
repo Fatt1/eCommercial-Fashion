@@ -473,13 +473,14 @@ footer {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-left: 20px;
+  margin-left: 50px;
 }
 .checkout-top-right__voucher {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(191, 191, 191);
+  padding: 5px;
 }
 
 .blue-button {
@@ -491,7 +492,7 @@ footer {
 .notes-for-seller {
   border: 1px solid;
   background-color: #cdc1b8;
-  width: 250px;
+  width: 300px;
 }
 .checkout-top-right__shipping {
   display: flex;
@@ -510,6 +511,12 @@ footer {
   white-space: nowrap;
   margin-left: 5px;
 }
+.shipping-col-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 5px 0px;
+}
 .shipping-col-3 {
   white-space: nowrap;
   padding: 0px;
@@ -520,7 +527,7 @@ footer {
   justify-content: flex-end;
   gap: 70px;
   border-top: none;
-  padding: 5px;
+  padding: 15px;
 }
 .checkout-box-bot div {
   margin-right: 70px;
@@ -542,9 +549,10 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3px;
+  padding: 10px;
 }
 .row-1-col-1 {
+  margin-left: 20px;
   width: 60%;
 }
 .row-1-col-2 {
@@ -557,7 +565,7 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: 220px;
-  padding: 5px;
+  padding: 7px;
 }
 .row-2 {
   display: flex;
@@ -572,7 +580,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 5px 0px;
+  /* margin: 5px 0px; */
 }
 .order-terms {
   display: flex;
@@ -580,7 +588,7 @@ footer {
   gap: 10px;
 }
 .order-button {
-  width: 150px;
+  width: 180px;
   background-color: black;
   color: yellow;
   padding: 10px;
