@@ -290,12 +290,16 @@ body {
 .total__top--voucher-left {
   display: flex;
   align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.6rem;
 }
 .total__top--voucher button {
   background-color: transparent;
   border: none;
-  color: #7d7d7d;
+  color: #474747;
   padding-right: 20px;
+  font-weight: bold;
 }
 .total__top--voucher {
   display: flex;
@@ -314,7 +318,8 @@ body {
   display: flex;
   justify-content: end;
   align-items: end;
-  padding-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 .total__bot--money-right {
   display: flex;
@@ -343,7 +348,7 @@ body {
   gap: 10px;
 }
 .total__bot--money-left-total-number {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 .total__bot--money-left-total-line {
@@ -427,4 +432,6 @@ footer {
   padding: 20px;
   padding-top: 5px;
   z-index: 10;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
