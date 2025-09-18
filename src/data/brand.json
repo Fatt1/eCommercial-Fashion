@@ -1,0 +1,19 @@
+{
+  "brands": [
+    {
+      "id": "1",
+      "name": "Nike",
+      "categoryId": "cate-001"
+    },
+    {
+      "id": "2",
+      "name": "Pula",
+      "categoryId": "cate-001"
+    },
+    {
+      "id": "3",
+      "name": "NY",
+      "categoryId": "cate-002"
+    }
+  ]
+}

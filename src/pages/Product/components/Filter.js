@@ -243,6 +243,7 @@ export default function Filter({ categoryId }) {
 function generateCategoryFilterHtml(categoryId) {
   const categories = getAllCategory();
   let parentIdToShow = null;
+  // tìm parentId nếu mà categoryId truyền vào nếu có parentId
   categories.forEach((cate) => {
     if (cate.id === categoryId && cate.parentId) {
       parentIdToShow = cate.parentId;
@@ -256,10 +257,16 @@ function generateCategoryFilterHtml(categoryId) {
       const childrenCategory = getSubCategory(cate.id);
       let contentChildCategory = "";
       if (childrenCategory) {
-        const showCaret = cate.id === parentIdToShow ? "show" : "";
+        const showCaret =
+          cate.id === parentIdToShow ||
+          (cate.parentId === null && cate.id === categoryId)
+            ? "show"
+            : "";
         contentChildCategory += `<ul class='nested ${showCaret}'>${childrenCategory
           .map((child) => {
-            return `<li class="category-filter-value" data-category-id='${child.id}'>${child.name}</li>`;
+            return `<li class="category-filter-value ${
+              child.id === categoryId ? "active" : ""
+            }" data-category-id='${child.id}'>${child.name}</li>`;
           })
           .join(" ")}</ul>`;
       }

@@ -1,6 +1,5 @@
 export default class Color {
-  constructor(id, colorCode, colorName) {
-    this.id = id;
+  constructor(colorCode, colorName) {
     this.colorCode = colorCode;
     this.colorName = colorName;
   }

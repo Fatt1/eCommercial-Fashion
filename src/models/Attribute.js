@@ -20,7 +20,7 @@ export default class Attribute {
 //input_type
 // SINGLE_DROP_DOWN = 1
 // SINGLE_COMBO_BOX = 2
-// FREE_TEXT_FILED        = 3
+// FREE_TEXT_FILED   = 3
 // MULTI_DROP_DOWN   = 4
 // MULTI_COMBO_BOX   = 5
 
@@ -31,14 +31,7 @@ export default class Attribute {
   inputType: 1
   name: "Phong cách",
   attributeValues: [
-    {
-      valuesId: "123",
-      name: "Đường phố",
-    },
-    {
-      valuesId: "124",
-      name: "Hàn Quốc",
-    }
+    "Đường phố", "Hàn Quốc"
   ],
   categoryId: "213",
   isRequired: true,

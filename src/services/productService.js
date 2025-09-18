@@ -1,7 +1,10 @@
 import { getDbContextFromLocalStorage } from "../helper/initialData.js";
 import { createPagination, generateUniqueId } from "../helper/helper.js";
 import { ORDER_BY } from "../constant/Constant.js";
+import { getColorByCode } from "./colorService.js";
 import { getSubCategoryIds } from "./categoryService.js";
+import { getSizeById } from "./sizeService.js";
+import { getAttributeById } from "./attributeService.js";
 const dbContext = getDbContextFromLocalStorage();
 
 function addProduct(product) {
@@ -31,6 +34,7 @@ function filterProducts({
   // Filter by searchKey
   const subCategoryIds = getSubCategoryIds(categoryId);
   const allRelatedCategoryIds = [categoryId, ...subCategoryIds];
+  console.log("call 2 lân");
   console.log(allRelatedCategoryIds);
   filterProducts = filterProducts.filter((p) => {
     let isMatchingCategoryId;
@@ -98,8 +102,36 @@ function filterProducts({
 
 function getProductById(id) {
   const product = dbContext.products.find((p) => p.id === id);
-
+  if (!product) return null;
+  // lấy sku của product
   product.skus = getSkusByProductId(product.id);
+
+  // lấy thông tin attribute của product
+  product.attributes.forEach((attribute) => {
+    const attributeValue = getAttributeById(attribute.attributeId);
+    attribute.name = attributeValue.name;
+  });
+  // lấy thông tin variation như là màu sắc, kích thước
+  product.variations.forEach((variation) => {
+    if (variation.name === "Màu sắc") {
+      variation.variationOptions.forEach((option) => {
+        const color = getColorByCode(option.id);
+        option.name = color.name;
+      });
+    } else if (variation.name === "Kích thước") {
+      variation.variationOptions.forEach((option) => {
+        const size = getSizeById(option.id);
+        option.name = size.name;
+      });
+    }
+  });
+  // kiểm tra xem giá có phải hay không và tính toán phần trăm giảm giá
+  let salePercentage = Math.round(
+    (1 - product.priceInfo.currentlyPrice / product.priceInfo.originalPrice) *
+      100
+  );
+  console.log(salePercentage);
+  product.salePercentage = salePercentage;
   return product;
 }
 function deleteProductById(id) {
@@ -125,6 +157,13 @@ function getSkusByProductId(productId) {
   return skusVariation;
 }
 
+function getProductsByCategoryId(categoryId) {
+  const categoryProducts = dbContext.products.filter(
+    (p) => p.categoryId === categoryId
+  );
+  return categoryProducts;
+}
+
 export {
   getAllProducts,
   getProductById,
@@ -132,4 +171,5 @@ export {
   deleteProductById,
   updateProductById,
   addProduct,
+  getProductsByCategoryId,
 };

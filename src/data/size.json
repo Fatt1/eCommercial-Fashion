@@ -1,0 +1,40 @@
+{
+  "sizes": [
+    {
+      "id": "s",
+      "name": "Small"
+    },
+    {
+      "id": "m",
+      "name": "Medium"
+    },
+    {
+      "id": "l",
+      "name": "Large"
+    },
+    {
+      "id": "xl",
+      "name": "Extra Large"
+    },
+    {
+      "id": "xxl",
+      "name": "Double Extra Large"
+    },
+    {
+      "id": "32",
+      "name": "Size 32"
+    },
+    {
+      "id": "34",
+      "name": "Size 34"
+    },
+    {
+      "id": "36",
+      "name": "Size 36"
+    },
+    {
+      "id": "one_size",
+      "name": "One Size Fits All"
+    }
+  ]
+}

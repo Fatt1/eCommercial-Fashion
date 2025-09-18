@@ -1,7 +1,4 @@
-import {
-  filterProducts,
-  getAllProducts,
-} from "../../../services/productService.js";
+import { filterProducts } from "../../../services/productService.js";
 import ProductList from "../../../components/ProductList/ProductList.js";
 
 export default function ProductListProductPage({

@@ -1,4 +1,7 @@
-import { filterProducts } from "../../services/productService.js";
+import {
+  filterProducts,
+  getProductById,
+} from "../../services/productService.js";
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
 import { autoSlideId } from "../../components/Carousel/Carousel.js";
@@ -15,13 +18,6 @@ function renderProduct(categoryId) {
   `;
 }
 function setupProduct() {
-  console.log(
-    filterProducts({
-      colors: ["color-dark-blue"],
-      sizes: ["size-28"],
-    })
-  );
-
   document.querySelector(".dropdown").addEventListener("mouseover", () => {
     document.querySelector(".dropdown-menu").classList.add("show");
   });
@@ -33,6 +29,7 @@ function setupProduct() {
 }
 export const filterParams = {};
 export function loadProductPage(categoryId) {
+  console.log(getProductById("prod-001"));
   clearInterval(timerIntervalId);
   clearInterval(autoSlideId);
   window.scrollTo(0, 0);

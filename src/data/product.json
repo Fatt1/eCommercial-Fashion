@@ -10,12 +10,12 @@
       "images": ["image-1a.jpg", "image-1b.jpg"],
       "attributes": [
         {
-          "attributeId": "attr-fabric",
-          "attributeValuesIds": ["val-cotton"]
+          "attributeId": "1",
+          "attributeValues": ["val-cotton"]
         },
         {
-          "attributeId": "attr-style",
-          "attributeValuesIds": ["val-basic"]
+          "attributeId": "2",
+          "attributeValues": ["val-basic"]
         }
       ],
       "priceInfo": {
@@ -28,17 +28,26 @@
           "variationOptions": [
             {
               "image": "category-1.jpg",
-              "colorId": "color-black"
+              "id": "#FF5733"
             },
             {
               "image": "category-1.jpg",
-              "colorId": "color-white"
+              "id": "#33FF57"
             }
           ]
         },
         {
           "name": "Kích thước",
-          "variationOptions": ["size-s", "size-m", "size-l"]
+          "variationOptions": [
+            {
+              "image": "",
+              "id": "s"
+            },
+            {
+              "image": "",
+              "id": "xl"
+            }
+          ]
         }
       ],
       "categoryId": "cate-001",
@@ -56,8 +65,8 @@
       "images": ["image-2a.jpg", "image-2b.jpg"],
       "attributes": [
         {
-          "attributeId": "attr-cut",
-          "attributeValuesIds": ["val-slim"]
+          "attributeId": "1",
+          "attributeValues": ["val-slim"]
         }
       ],
       "priceInfo": {
@@ -70,17 +79,26 @@
           "variationOptions": [
             {
               "image": "category-1.jpg",
-              "colorId": "color-blue"
+              "id": "#F1C40F"
             },
             {
               "image": "category-1.jpg",
-              "colorId": "color-dark-blue"
+              "id": "#8E44AD"
             }
           ]
         },
         {
           "name": "Kích thước",
-          "variationOptions": ["size-28", "size-30", "size-32"]
+          "variationOptions": [
+            {
+              "image": "",
+              "id": "32"
+            },
+            {
+              "image": "",
+              "id": "34"
+            }
+          ]
         }
       ],
       "categoryId": "cate-001",
@@ -98,8 +116,8 @@
       "images": ["image-3a.jpg", "image-3b.jpg"],
       "attributes": [
         {
-          "attributeId": "attr-material",
-          "attributeValuesIds": ["val-leather", "val-rubber"]
+          "attributeId": "2",
+          "attributeValues": ["val-leather", "val-rubber"]
         }
       ],
       "priceInfo": {
@@ -112,17 +130,26 @@
           "variationOptions": [
             {
               "image": "category-1.jpg",
-              "colorId": "color-white"
+              "id": "#2ECC71"
             },
             {
               "image": "category-1.jpg",
-              "colorId": "color-black"
+              "id": "#D35400"
             }
           ]
         },
         {
           "name": "Kích thước",
-          "variationOptions": ["size-39", "size-40", "size-41"]
+          "variationOptions": [
+            {
+              "image": "",
+              "id": "32"
+            },
+            {
+              "image": "category-1.jpg",
+              "id": "34"
+            }
+          ]
         }
       ],
       "categoryId": "cate-001",
@@ -140,8 +167,8 @@
       "images": ["image-4a.jpg", "image-4b.jpg"],
       "attributes": [
         {
-          "attributeId": "attr-sensor",
-          "attributeValuesIds": ["val-full-frame"]
+          "attributeId": "1",
+          "attributeValues": ["val-full-frame"]
         }
       ],
       "priceInfo": {
@@ -164,8 +191,8 @@
       "images": ["image-5a.jpg", "image-5b.jpg"],
       "attributes": [
         {
-          "attributeId": "attr-connection",
-          "attributeValuesIds": ["val-bluetooth"]
+          "attributeId": "1",
+          "attributeValues": ["val-bluetooth"]
         }
       ],
       "priceInfo": {
@@ -178,11 +205,11 @@
           "variationOptions": [
             {
               "image": "category-1.jpg",
-              "colorId": "color-red"
+              "id": "#33FF57"
             },
             {
               "image": "category-1.jpg",
-              "colorId": "color-blue"
+              "id": "#2980B9"
             }
           ]
         }
@@ -202,8 +229,8 @@
       "images": ["image-6a.jpg", "image-6b.jpg"],
       "attributes": [
         {
-          "attributeId": "attr-material",
-          "attributeValuesIds": ["val-pu-leather"]
+          "attributeId": "1",
+          "attributeValues": ["val-pu-leather"]
         }
       ],
       "priceInfo": {
@@ -216,11 +243,11 @@
           "variationOptions": [
             {
               "image": "category-1.jpg",
-              "colorId": "color-red"
+              "id": "#2980B9"
             },
             {
               "image": "category-1.jpg",
-              "colorId": "color-black"
+              "id": "#1ABC9C"
             }
           ]
         }

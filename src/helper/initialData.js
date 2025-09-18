@@ -6,10 +6,18 @@ async function setDataFromJsonIntoDbContext() {
     const products = await loadDataFromJson("product.json", "products");
     const skus = await loadDataFromJson("sku.json", "skus");
     const categories = await loadDataFromJson("category.json", "categories");
+    const colors = await loadDataFromJson("color.json", "colors");
+    const sizes = await loadDataFromJson("size.json", "sizes");
+    const brands = await loadDataFromJson("brand.json", "brands");
+    const attributes = await loadDataFromJson("attribute.json", "attributes");
     dbContext = {
       products,
       skus,
       categories,
+      colors,
+      sizes,
+      brands,
+      attributes,
       saveChanges: saveDbContextToLocalStorage,
     };
   }

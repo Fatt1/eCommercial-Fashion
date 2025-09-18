@@ -1,0 +1,44 @@
+{
+  "colors": [
+    {
+      "id": "#FF5733",
+      "name": "Cam"
+    },
+    {
+      "id": "#33FF57",
+      "name": "Xanh lá cây"
+    },
+    {
+      "id": "#3357FF",
+      "name": "Xanh dương"
+    },
+    {
+      "id": "#F1C40F",
+      "name": "Vàng"
+    },
+    {
+      "id": "#8E44AD",
+      "name": "Tím"
+    },
+    {
+      "id": "#2ECC71",
+      "name": "Xanh ngọc"
+    },
+    {
+      "id": "#D35400",
+      "name": "Nâu đỏ"
+    },
+    {
+      "id": "#C0392B",
+      "name": "Đỏ sẫm"
+    },
+    {
+      "id": "#2980B9",
+      "name": "Xanh da trời"
+    },
+    {
+      "id": "#1ABC9C",
+      "name": "Xanh lam"
+    }
+  ]
+}

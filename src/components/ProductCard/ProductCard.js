@@ -1,14 +1,6 @@
-import ProductDetails from "../../pages/Product/ProductDetails.js";
-
-export default function ProductCard({
-  id = "1",
-  thumbnail,
-  name,
-  sale,
-  priceInfo,
-}) {
+export default function ProductCard({ id, thumbnail, name, sale, priceInfo }) {
   return `
-      <div class="product-card">
+      <div class="product-card" data-product-id=${id}>
               ${
                 sale
                   ? `<div class="product-card__percentage">-${sale}%</div>`

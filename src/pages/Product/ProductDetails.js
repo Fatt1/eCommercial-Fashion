@@ -2,10 +2,73 @@ import BreadCrumb from "../../components/BreadCrumb/BreadCrumb.js";
 import Footer from "../../components/Footer/Footer.js";
 import Header from "../../components/Header/Header.js";
 import ProductList from "../../components/ProductList/ProductList.js";
-import { getAllProducts } from "../../services/productService.js";
+import {
+  getAllProducts,
+  getProductById,
+} from "../../services/productService.js";
 //mai mốt sẽ viết thêm hàm lấy các sản phẩm liên quan
 const relatedProducts = getAllProducts({}).items;
 export default function ProductDetails(productId) {
+  const product = getProductById(productId);
+  let variationColor = undefined;
+  let variationSize = undefined;
+  product.variations.forEach((variation) => {
+    if (variation.name === "Màu sắc") {
+      variationColor = variation;
+    } else variationSize = variation;
+  });
+
+  let variationColorContent = "";
+  let variationSizeContent = "";
+  // tạo content cho variation color
+  if (variationColor) {
+    variationColorContent += `<div class="color-variation variation-group">
+                <p class="name-variation">
+                  ${variationColor.name}: <span class="selected-color">Đỏ</span>
+                </p>
+                <div class="variation-values">
+                  ${variationColor.variationOptions
+                    .map(
+                      (option) => ` <button class="variation-value">
+                    <img
+                      class="variation-value__img"
+                      src="../assets/${option.image}"
+                    />
+                    
+                    <span class="variation-value__value-name">${option.name}</span>
+                      <div class="selection-box-stick">
+                      <img src="../assets/stick.png"/>
+                    </div>
+                  </button>`
+                    )
+                    .join(" ")}
+
+                </div>
+              </div>`;
+  }
+  // tạo content cho variation size
+  if (variationSize) {
+    variationSizeContent += ` <div class="size-variation variation-group">
+                <p class="name-variation">
+                  ${
+                    variationSize.name
+                  }: <span class="selected-size">S</span></span>
+                </p>
+                <div class="variation-values">
+                 ${variationSize.variationOptions
+                   .map(
+                     (option) => ` <button class="variation-value">
+                   
+                    <span class="variation-value__value-name">${option.name}</span>
+                    <div class="selection-box-stick">
+                      <img src="../assets/stick.png"/>
+                    </div>
+                  </button>`
+                   )
+                   .join(" ")}
+                </div>
+              </div>`;
+  }
   return `
   ${Header()}
    <div class="product-page">
@@ -13,32 +76,25 @@ export default function ProductDetails(productId) {
           ${BreadCrumb()}
         <div class="detail-product">
           <div class="image-section">
+          
             <img
               class="image-section__large-img"
-              src="../assets/large-img-detail.png"
+              src="../assets/${product.thumbnail}"
             />
             <div class="small-images-section">
-              <img
+              ${product.images
+                .map(
+                  (img) => `<img
                 class="small-images-section__small"
-                src="../assets/large-img-detail.png"
-              />
-              <img
-                class="small-images-section__small"
-                src="../assets/large-img-detail.png"
-              />
-              <img
-                class="small-images-section__small"
-                src="../assets/large-img-detail.png"
-              />
-              <img
-                class="small-images-section__small"
-                src="../assets/large-img-detail.png"
-              />
+                src="../assets/${img}"
+              />`
+                )
+                .join(" ")}
             </div>
           </div>
 
           <div class="content-section">
-            <h3 class="detail-product-name">ÁO SƠ MI Z02313</h3>
+            <h3 class="detail-product-name">${product.name.toUpperCase()}</h3>
             <div class="rating">
               <img class="rating-star" src="../assets/Star.svg" />
               <img class="rating-img" src="../assets/Star.svg" />
@@ -48,9 +104,22 @@ export default function ProductDetails(productId) {
               <span class="average-rating">5.0</span>
             </div>
             <div class="detail-product-price">
-              <span class="detail-product-price__sale">447.000đ</span>
-              <span class="detail-product-price__origin">500.000đ</span>
-              <span class="detail-product-percentage">-30%</span>
+                
+              <span class="detail-product-price__sale">${
+                product.priceInfo.currentlyPrice
+              }đ</span>
+              ${
+                product.salePercentage !== 0
+                  ? ` <span class="detail-product-price__origin">${product.priceInfo.originalPrice}đ</span>`
+                  : ""
+              }
+             
+              ${
+                product.salePercentage !== 0
+                  ? ` <span class="detail-product-percentage">-${product.salePercentage}%</span>`
+                  : ""
+              }
+             
             </div>
             <div class="product-delivery">
                <p class="delivery-name">
@@ -74,95 +143,8 @@ export default function ProductDetails(productId) {
                 </div>
             </div>
             <div class="variation-prouct">
-              <div class="color-variation variation-group">
-                <p class="name-variation">
-                  Màu sắc: <span class="selected-color">Đỏ</span>
-                </p>
-                <div class="variation-values">
-                  <button class="variation-value">
-                    <img
-                      class="variation-value__img"
-                      src="../assets/large-img-detail.png"
-                    />
-                    <span class="variation-value__value-name">Đen</span>
-                  </button>
-
-                  <button class="variation-value">
-                    <img
-                      class="variation-value__img"
-                      src="../assets/large-img-detail.png"
-                    />
-                    <span class="variation-value__value-name">Hồng</span>
-                  </button>
-
-                  <button class="variation-value">
-                    <img
-                      class="variation-value__img"
-                      src="../assets/large-img-detail.png"
-                    />
-                    <span class="variation-value__value-name">Xanh lam</span>
-                  </button>
-                  <button class="variation-value">
-                    <img
-                      class="variation-value__img"
-                      src="../assets/large-img-detail.png"
-                    />
-                    <span class="variation-value__value-name">Xanh lam</span>
-                  </button>
-                  <button class="variation-value">
-                    <img
-                      class="variation-value__img"
-                      src="../assets/large-img-detail.png"
-                    />
-                    <span class="variation-value__value-name">Xanh lam</span>
-                  </button>
-                  <button class="variation-value">
-                    <img
-                      class="variation-value__img"
-                      src="../assets/large-img-detail.png"
-                    />
-                    <span class="variation-value__value-name">Xanh lam</span>
-                  </button>
-                  <button class="variation-value">
-                    <img
-                      class="variation-value__img"
-                      src="../assets/large-img-detail.png"
-                    />
-                    <span class="variation-value__value-name">Xanh lam</span>
-                  </button>
-                </div>
-              </div>
-
-                <div class="size-variation variation-group">
-                <p class="name-variation">
-                  Kích cỡ: <span class="selected-size">S</span></span>
-                </p>
-                <div class="variation-values">
-                  <button class="variation-value">
-                   
-                    <span class="variation-value__value-name">S</span>
-                  </button>
-
-                  <button class="variation-value">
-                   
-                    <span class="variation-value__value-name">SL</span>
-                  </button>
-
-                  <button class="variation-value">
-                   
-                    <span class="variation-value__value-name">XL</span>
-                  </button>
-                  <button class="variation-value">
-                   
-                    <span class="variation-value__value-name">XX</span>
-                  </button>
-                  <button class="variation-value">
-                   
-                    <span class="variation-value__value-name">XXL</span>
-                  </button>
-                  
-                </div>
-              </div>
+                ${variationColorContent}
+               ${variationSizeContent}
 
               <div class="quantity">
                  <p class="quantity-name">
@@ -203,83 +185,14 @@ export default function ProductDetails(productId) {
                        Đánh giá
                       </li>
                     </ul>
-                  <p id="desc-content" class="extra-information__desc" hidden >
-                    ÁO THUN POLO
-
-Áo thun Cotton 100% co dãn 4 chiều
-
-
-
-✔️Size sz M L XL XXL
-
-
-
-Size M 35-45kg
-
-Size L 45-55kg
-
-Size XL 55-65kg
-
-Size XXL 65-75kg
-
-Tuỳ chiều cao nhích size cho phù hợp giúp em nha. Bảng cân nặng chỉ là tương đối ạ
-
-
-
-=========================================
-
-CAM KẾT - ĐẢM BẢO:
-
-- Đảm bảo vải chuẩn cotton chất lượng cao.
-
-- Hàng có sẵn, giao hàng ngay khi nhận được đơn đặt hàng .
-
-- Hoàn tiền 100% nếu sản phẩm lỗi, nhầm hoặc không giống với mô tả.
-
-- Chấp nhận đổi hàng khi size không vừa (vui lòng nhắn tin riêng cho shop).
-
-- Giao hàng toàn quốc, thanh toán khi nhận hàng.
-
-- Hỗ trợ đổi trả theo quy định của Shopee.
-
-
-
-ĐIỀU KIỆN ĐỔI TRẢ:
-
-- Hỗ trợ trong vòng 03 ngày từ khi nhận hàng.
-
-- Hàng hoá vẫn còn mới nguyên tem mác, chưa qua sử dụng.
-
-- Hàng hoá bị lỗi hoặc hư hỏng do vận chuyển hoặc do nhà sản xuất.
-
-
-
-📌 LƯU Ý:  Khi bạn gặp bất kì vấn đề gì về sản phẩm đừng vội đánh giá  mà hãy chat liên hệ Shop để đc hỗ trợ 1 cách tốt nhất  nhé.
-
-#aothun #aopolonam #polo #polonam #aocotron #aothunnam #aothuncotron #aocotton #aothundep #aophong #aophongnam #aophongcotron #aophongtayngan #aothuntayngan #aothunbody 
+                  <p id="desc-content" class="extra-information__desc" >
+                        ${product.desc}
                   </p>
-                  <div id="details-content" class="extra-information__detail-content">
-                   <div class="extra-information-attribute-container">
-                      <h3 class="extra-information-attribute-container__attribute-name">Phong cách</h3>
-                      <div class="extra-information-attribute-container__attribute-value">Cơ bản, Thể thao, Hàn Quốc</div>
-                   </div>
-                    <div class="extra-information-attribute-container">
-                      <h3 class="extra-information-attribute-container__attribute-name">Phong cách</h3>
-                      <div class="extra-information-attribute-container__attribute-value">Cơ bản, Thể thao, Hàn Quốc</div>
-                   </div>
-
-                    <div class="extra-information-attribute-container">
-                      <h3 class="extra-information-attribute-container__attribute-name">Phong cách</h3>
-                      <div class="extra-information-attribute-container__attribute-value">Cơ bản, Thể thao, Hàn Quốc</div>
-                   </div>
-
-                    <div class="extra-information-attribute-container">
-                      <h3 class="extra-information-attribute-container__attribute-name">Phong cách</h3>
-                      <div class="extra-information-attribute-container__attribute-value">Cơ bản, Thể thao, Hàn Quốc</div>
-                   </div>
+                  <div id="details-content" class="extra-information__detail-content " hidden>
+                      ${generateAttributeContent(product)}
                   </div>
 
-                  <div id="review-content"></div>
+                  <div id="review-content" hidden></div>
             </div>
           <div class="related-products">
             
@@ -293,4 +206,18 @@ CAM KẾT - ĐẢM BẢO:
     </div>
     ${Footer()}
   `;
+}
+function generateAttributeContent(product) {
+  let content = "";
+  product.attributes.forEach((att) => {
+    content += `<div class="extra-information-attribute-container">
+                      <h3 class="extra-information-attribute-container__attribute-name">${
+                        att.name
+                      }</h3>
+                      <div class="extra-information-attribute-container__attribute-value">${att.attributeValues.join(
+                        ", "
+                      )}</div>
+                   </div>`;
+  });
+  return content;
 }
