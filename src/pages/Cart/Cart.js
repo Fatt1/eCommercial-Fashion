@@ -29,6 +29,10 @@ plusButton.addEventListener("click", () => {
 
 const btnSize = document.querySelector(".dropdown-button__size");
 const menuSize = document.querySelector(".dropdown-menu__size");
+
+const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
+const dropItemColors = document.querySelectorAll(".dropdown-item__color");
+
 btnSize.addEventListener("click", () => {
   if (document.querySelector(".show") !== null) {
     const activeMenus = document.querySelectorAll(".show");
@@ -39,6 +43,13 @@ btnSize.addEventListener("click", () => {
 
   menuSize.classList.toggle("show");
   menuSize.classList.toggle("active");
+});
+
+dropItemSizes.forEach((item) => {
+  item.addEventListener("click", () => {
+    menuSize.classList.toggle("show");
+    menuSize.classList.toggle("active");
+  });
 });
 
 const btnColor = document.querySelector(".dropdown-button__color");
@@ -52,6 +63,25 @@ btnColor.addEventListener("click", () => {
   }
   menuColor.classList.toggle("show");
   menuColor.classList.toggle("active");
+});
+
+dropItemColors.forEach((item) => {
+  item.addEventListener("click", () => {
+    menuColor.classList.toggle("show");
+    menuColor.classList.toggle("active");
+  });
+});
+
+// Click ngoài để đóng
+document.addEventListener("click", (e) => {
+  // Nếu click không nằm trong menuSize và không phải button
+  if (!menuSize.contains(e.target) && !btnSize.contains(e.target)) {
+    menuSize.classList.remove("show", "active");
+  }
+  // Nếu click không nằm trong menuColor và không phải button
+  if (!menuColor.contains(e.target) && !btnColor.contains(e.target)) {
+    menuColor.classList.remove("show", "active");
+  }
 });
 
 // document.addEventListener("click", () => {

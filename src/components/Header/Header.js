@@ -38,11 +38,13 @@ export default function Header() {
               <span style="color: white">|</span>
               <a class="register-link">Đăng Kí</a>
               <div class="header-cart">
-                <img
-                  src="../assets/shopping-cart.png"
-                  alt="cart-icon"
-                  class="cart-icon"
-                />
+               <a href='cart.html'>
+                  <img
+                    src="../assets/shopping-cart.png"
+                    alt="cart-icon"
+                    class="cart-icon"
+                  />
+               </a>
                 <span class="cart-quantity">0</span>
               </div>
             </div>
@@ -60,7 +62,7 @@ function generateCategorySubMenu() {
         cate.id
       }' class="category-headings category-submenu-item">${cate.name.toUpperCase()}</h3>`;
       const subCategory = getSubCategory(cate.id);
-      console.log(subCategory);
+
       let ulElem = ``;
       if (subCategory) {
         ulElem += `<ul>${subCategory
