@@ -1,15 +1,9 @@
-import {
-  filterProducts,
-  getProductById,
-} from "../../services/productService.js";
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
 import { autoSlideId } from "../../components/Carousel/Carousel.js";
 import ProductSection from "./components/ProductSection.js";
 import ProductListProductPage from "./components/ProductListProductPage.js";
-import PromotionSection, {
-  timerIntervalId,
-} from "../../components/PromotionSection/Promotion.js";
+import { timerIntervalId } from "../../components/PromotionSection/Promotion.js";
 function renderProduct(categoryId) {
   document.getElementById("root").innerHTML = `
   ${Header()}
@@ -28,7 +22,7 @@ function setupProduct() {
 
   handleSortByPrice();
 }
-export const filterParams = {};
+export let filterParams = {};
 export function loadProductPage(categoryId) {
   clearInterval(timerIntervalId);
   clearInterval(autoSlideId);

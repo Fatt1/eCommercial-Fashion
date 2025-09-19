@@ -54,8 +54,11 @@ function handleClickHome() {
       // xóa categoryFilter có trạng thái active trước khi thêm active cho cái hiện tại
 
       const categoryId = categoryFilterElem.dataset.categoryId;
+
+      for (const key of Object.keys(filterParams)) {
+        if (key != "categoryId") delete filterParams[key];
+      }
       filterParams.categoryId = categoryId;
-      console.log(filterParams);
       document.getElementById("product-list-section").innerHTML =
         ProductListProductPage({ pageNumber: 1, ...filterParams });
       document.querySelector(".filter").innerHTML = Filter({ categoryId });
