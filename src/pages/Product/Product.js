@@ -13,6 +13,7 @@ import PromotionSection, {
 function renderProduct(categoryId) {
   document.getElementById("root").innerHTML = `
   ${Header()}
+    
      ${ProductSection(categoryId)}
      ${Footer()}
   `;
@@ -29,7 +30,6 @@ function setupProduct() {
 }
 export const filterParams = {};
 export function loadProductPage(categoryId) {
-  console.log(getProductById("prod-001"));
   clearInterval(timerIntervalId);
   clearInterval(autoSlideId);
   window.scrollTo(0, 0);

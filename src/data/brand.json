@@ -14,6 +14,11 @@
       "id": "3",
       "name": "NY",
       "categoryId": "cate-002"
+    },
+    {
+      "id": "4",
+      "name": "Calvin Klein",
+      "categoryId": "cate-003"
     }
   ]
 }

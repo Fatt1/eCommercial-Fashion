@@ -10,7 +10,10 @@ export default function ProductSection(categoryId) {
         <div class="main-content">
           ${BreadCrumb()}
           <div class="product-section-main-content">
+          <div class="filter">
             ${Filter({ categoryId })}
+          </div>
+          
             <div class="right-product-section">
               <div class="sort-bar">
                 <div class="left-sort-bar">

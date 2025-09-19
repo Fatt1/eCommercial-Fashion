@@ -15,7 +15,9 @@ import { getAllProducts } from "../../services/productService.js";
 import { loadDataToLocalStorage } from "../../helper/initialData.js";
 import { filterParams, loadProductPage } from "../Product/Product.js";
 import ProductListProductPage from "../Product/components/ProductListProductPage.js";
-
+import Filter from "../Product/components/Filter.js";
+import { getColorByCode } from "../../services/colorService.js";
+import { getContrastTextColor } from "../../helper/helper.js";
 const products = getAllProducts({}).items;
 function renderHome() {
   const root = document.getElementById("root");
@@ -50,15 +52,13 @@ function handleClickHome() {
     const categoryFilterElem = event.target.closest(".category-filter-value");
     if (categoryFilterElem) {
       // xóa categoryFilter có trạng thái active trước khi thêm active cho cái hiện tại
-      document
-        .querySelectorAll(".category-filter-value")
-        .forEach((caret) => caret.classList.remove("active"));
-      categoryFilterElem.classList.add("active");
 
       const categoryId = categoryFilterElem.dataset.categoryId;
       filterParams.categoryId = categoryId;
+      console.log(filterParams);
       document.getElementById("product-list-section").innerHTML =
         ProductListProductPage({ pageNumber: 1, ...filterParams });
+      document.querySelector(".filter").innerHTML = Filter({ categoryId });
       return;
     }
     // Case: Nếu nhấn vào "sản phẩm" ở header thì sẽ mặc định filter theo cate-001: thời trang nam
@@ -116,17 +116,69 @@ function handleClickHome() {
       tabDetailProduct.classList.add("active");
       tabContent.hidden = false;
     }
+
+    // Xử lí sự kiên khi nhấn vào variation options
     const selectedVariationValue = event.target.closest(".variation-value");
     if (selectedVariationValue) {
+      // Case: Nếu mà người dùng nhấn vào các option khác thì sẽ xóa đi các value đc selected
       if (!selectedVariationValue.classList.contains("selected"))
         selectedVariationValue.parentElement
           .querySelectorAll(".variation-value")
           .forEach((value) => value.classList.remove("selected"));
 
+      // Case: Nếu người dùng nhấn lại vào cái value đang đc selected thì sẽ kh còn selected nữa
       if (selectedVariationValue.classList.contains("selected")) {
         selectedVariationValue.classList.remove("selected");
+        //
       } else {
         selectedVariationValue.classList.add("selected");
+      }
+      return;
+    }
+    //
+    const selectedCheckBox = event.target.closest(".checkbox");
+    if (selectedCheckBox) {
+      // Ngăn chặn hành vi mặc định của trình duyệt
+      event.preventDefault();
+      const checkBoxInput = selectedCheckBox.querySelector("input");
+      // check for brand_ids
+
+      if (
+        selectedCheckBox.parentElement.parentElement.classList.contains(
+          "color-filter"
+        )
+      ) {
+        if (!filterParams.colors) filterParams.colors = new Set();
+        checkBoxInput.checked = !checkBoxInput.checked;
+        if (checkBoxInput.checked) {
+          selectedCheckBox.classList.add("selected");
+
+          filterParams.colors.add(selectedCheckBox.dataset.colorId);
+        } else {
+          selectedCheckBox.classList.remove("selected");
+          filterParams.colors.delete(selectedCheckBox.dataset.colorId);
+        }
+        console.log(filterParams);
+        document.querySelector("#product-list-section").innerHTML =
+          ProductListProductPage({ pageNumber: 1, ...filterParams });
+      } else if (
+        selectedCheckBox.parentElement.parentElement.classList.contains(
+          "brand-filter"
+        )
+      ) {
+        if (!filterParams.brandIds) filterParams.brandIds = new Set();
+        checkBoxInput.checked = !checkBoxInput.checked;
+        if (checkBoxInput.checked) {
+          selectedCheckBox.classList.add("selected");
+
+          filterParams.brandIds.add(selectedCheckBox.dataset.brandId);
+        } else {
+          selectedCheckBox.classList.remove("selected");
+          filterParams.brandIds.delete(selectedCheckBox.dataset.brandId);
+        }
+        console.log(filterParams);
+        document.querySelector("#product-list-section").innerHTML =
+          ProductListProductPage({ pageNumber: 1, ...filterParams });
       }
     }
   });

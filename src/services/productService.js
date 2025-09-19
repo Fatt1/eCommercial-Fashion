@@ -29,12 +29,12 @@ function filterProducts({
   sizes,
   sortBy = "createAt",
   order,
+  brandIds,
 }) {
   let filterProducts = [...dbContext.products];
   // Filter by searchKey
   const subCategoryIds = getSubCategoryIds(categoryId);
   const allRelatedCategoryIds = [categoryId, ...subCategoryIds];
-  console.log("call 2 lân");
   console.log(allRelatedCategoryIds);
   filterProducts = filterProducts.filter((p) => {
     let isMatchingCategoryId;
@@ -55,11 +55,12 @@ function filterProducts({
         p.priceInfo.currentlyPrice <= priceTo);
     const isMatchingColor =
       !colors ||
+      colors.size == 0 ||
       p.variations.some((opt) => {
         return (
           opt.name === "Màu sắc" &&
           opt.variationOptions.some((variationOpt) =>
-            colors.includes(variationOpt.colorId)
+            colors.has(variationOpt.id)
           )
         );
       });
@@ -67,20 +68,23 @@ function filterProducts({
     //Lọc theo size
     const isMatchingSize =
       !sizes ||
+      sizes.size == 0 ||
       p.variations.some((opt) => {
         return (
           opt.name === "Kích thước" &&
-          opt.variationOptions.some((variationOpt) =>
-            sizes.includes(variationOpt)
-          )
+          opt.variationOptions.some((variationOpt) => sizes.has(variationOpt))
         );
       });
+    // lọc theo brand
+    const isMatchingBrand =
+      !brandIds || brandIds.size == 0 || brandIds.has(p.brandId);
     return (
       isMatchingColor &&
       isMatchingPrice &&
       isMatchingSize &&
       isMatchingSearchKey &&
-      isMatchingCategoryId
+      isMatchingCategoryId &&
+      isMatchingBrand
     );
   });
 
@@ -130,7 +134,7 @@ function getProductById(id) {
     (1 - product.priceInfo.currentlyPrice / product.priceInfo.originalPrice) *
       100
   );
-  console.log(salePercentage);
+
   product.salePercentage = salePercentage;
   return product;
 }

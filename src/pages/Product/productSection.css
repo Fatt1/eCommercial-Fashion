@@ -155,6 +155,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+.stick-checkbox svg {
+  display: none;
+}
+.checkbox.selected svg {
+  display: inline;
 }
 .stick-checkbox img {
   color: red;
@@ -162,9 +169,11 @@
 .checkbox {
   display: flex;
   align-items: center;
+  user-select: none;
 }
 .checkbox-label {
   font-family: "Geologica", sans-serif;
+  cursor: pointer;
 }
 .filter-group__toggle-btn {
   font-size: 1.6rem;
