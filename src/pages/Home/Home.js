@@ -8,6 +8,7 @@ import CategorySection, {
   setupCategorySection,
 } from "./components/CategorySection.js";
 import ProductDetails from "../Product/ProductDetails.js";
+import { addMessage } from "../Product/ProductDetails.js";
 import BestSeller from "./components/BestSeller.js";
 import Footer from "../../components/Footer/Footer.js";
 import ReviewSection from "../Home/components/ReviewSection.js";
@@ -82,6 +83,16 @@ function handleClickHome() {
       const productId = clickedCard.dataset.productId;
       document.getElementById("root").innerHTML = ProductDetails(productId);
       window.scrollTo(0, 0);
+
+      // func trong product detail
+
+      document
+        .querySelector(".add-to-cart-btn")
+        .addEventListener("click", () => {
+          const productId =
+            document.querySelector(".add-to-cart-btn").dataset.productId;
+          addMessage();
+        });
       return; // Dừng hàm nếu đã xử lý
     }
 
@@ -191,3 +202,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderHome();
   setupHome();
 });
+
+// document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+//   const productId =
+//     document.querySelector(".add-to-cart-btn").dataset.productId;
+//   console.log(productId);
+// });

@@ -3,7 +3,6 @@ export default class Sku {
     id,
     productId,
     stock,
-
     originalPrice,
     tierIndexes,
     createdAt,
