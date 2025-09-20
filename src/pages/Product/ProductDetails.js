@@ -26,7 +26,7 @@ function renderProductDetailHtml(productId) {
   if (variationColor) {
     variationColorContent += `<div class="color-variation variation-group">
                 <p class="name-variation">
-                  ${variationColor.name}: <span class="selected-color">Đỏ</span>
+                  ${variationColor.name}
                 </p>
                 <div class="variation-values">
                   ${variationColor.variationOptions
@@ -52,9 +52,7 @@ function renderProductDetailHtml(productId) {
   if (variationSize) {
     variationSizeContent += ` <div class="size-variation variation-group">
                 <p class="name-variation">
-                  ${
-                    variationSize.name
-                  }: <span class="selected-size">S</span></span>
+                  ${variationSize.name}
                 </p>
                 <div class="variation-values">
                  ${variationSize.variationOptions
@@ -144,7 +142,7 @@ function renderProductDetailHtml(productId) {
                    <p class="return-policy__desc"> 30-day free returns</p>
                 </div>
             </div>
-            <div class="variation-prouct">
+            <div class="variation-product">
                 ${variationColorContent}
                ${variationSizeContent}
 
@@ -155,14 +153,27 @@ function renderProductDetailHtml(productId) {
               <div class="action-quantity">
                   <button class="decrease-quantity"><span class="line"></span></button>
                   <input value="1" class="quantity-input" type="text" >
-                  <button class="increase-quantiy">+</button>
+                  <button class="increase-quantity">+</button>
               </div>
               <span class="available-quantity">499 sản phẩm có sẵn</span>
               </div>
               <div class="product-actions">
-               <button data-product-id="${productId}" class="add-to-cart-btn"> <img class="cart" src="../assets/shopping-cart.png"> Thêm vào giỏ hàng</button>
+                <button data-product-id="${productId}" class="add-to-cart-btn"> 
+                  <img class="cart" src="../assets/shopping-cart.png"> Thêm vào giỏ hàng
+                </button>
                 <button class="buy-now-btn">Mua ngay</button>
               </div>
+
+
+
+              <div class="add-to-cart-message">
+                 
+                 <!--  <img class="add-to-cart-tick" src="../assets/circle-check-solid-full.svg"> -->
+                 Added to cart
+              </div>
+
+
+
             </div>
             <div class="share-section">
               <p class="share-section__name">Chia sẻ</p>
@@ -231,3 +242,25 @@ function generateAttributeContent(product) {
   });
   return content;
 }
+
+export function addMessage() {
+  document
+    .querySelector(".add-to-cart-message")
+    .classList.add("add-to-cart-message-on");
+  setTimeout(() => {
+    document
+      .querySelector(".add-to-cart-message")
+      .classList.remove("add-to-cart-message-on");
+  }, 2000);
+}
+
+// document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+//   const productId =
+//     document.querySelector(".add-to-cart-btn").dataset.productId;
+//   console.log(productId);
+// });
+
+// console.log(document.querySelector(".add-to-cart-btn"));
+// function addedMessage() {
+//   document.querySelector("");
+// }
