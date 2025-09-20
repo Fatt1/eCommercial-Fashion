@@ -1,8 +1,10 @@
 import BreadCrumb from "../../../components/BreadCrumb/BreadCrumb.js";
 import { ORDER_BY } from "../../../constant/Constant.js";
-import Filter from "./Filter.js";
+import Filter, { handleFilterClick } from "./Filter.js";
 
-import ProductListProductPage from "./ProductListProductPage.js";
+import ProductListProductPage, {
+  handleClickProductListPage,
+} from "./ProductListProductPage.js";
 
 export default function ProductSection(categoryId) {
   return `
@@ -44,4 +46,9 @@ export default function ProductSection(categoryId) {
         </div>
       </div>
   `;
+}
+
+export function handleClickProductSection() {
+  handleClickProductListPage();
+  handleFilterClick();
 }

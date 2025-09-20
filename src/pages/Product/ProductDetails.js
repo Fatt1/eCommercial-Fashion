@@ -1,14 +1,16 @@
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb.js";
 import Footer from "../../components/Footer/Footer.js";
-import Header from "../../components/Header/Header.js";
-import ProductList from "../../components/ProductList/ProductList.js";
+import Header, { handleClickHeader } from "../../components/Header/Header.js";
+import ProductList, {
+  handClickProductList,
+} from "../../components/ProductList/ProductList.js";
 import {
   getAllProducts,
   getProductById,
 } from "../../services/productService.js";
 //mai mốt sẽ viết thêm hàm lấy các sản phẩm liên quan
 const relatedProducts = getAllProducts({}).items;
-export default function ProductDetails(productId) {
+function renderProductDetailHtml(productId) {
   const product = getProductById(productId);
   let variationColor = undefined;
   let variationSize = undefined;
@@ -70,7 +72,7 @@ export default function ProductDetails(productId) {
               </div>`;
   }
   return `
-  ${Header()}
+  ${Header("san-pham")}
    <div class="product-page">
       <div class="main-content">
           ${BreadCrumb()}
@@ -219,6 +221,14 @@ export default function ProductDetails(productId) {
     </div>
     ${Footer()}
   `;
+}
+export function loadProductDetail(productId) {
+  document.getElementById("root").innerHTML =
+    renderProductDetailHtml(productId);
+  console.log("chay");
+  window.scrollTo(0, 0);
+  handleClickHeader();
+  handClickProductList();
 }
 function generateAttributeContent(product) {
   let content = "";

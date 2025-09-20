@@ -1,3 +1,4 @@
+import { loadProductDetail } from "../../pages/Product/ProductDetails.js";
 export default function ProductCard({ id, thumbnail, name, sale, priceInfo }) {
   return `
       <div class="product-card" data-product-id=${id}>
@@ -24,4 +25,14 @@ export default function ProductCard({ id, thumbnail, name, sale, priceInfo }) {
               </div>
             </div>
   `;
+}
+
+// xử lí sự kiện cho product card
+export function handleProductCardClick() {
+  document.querySelectorAll(".product-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const productId = card.dataset.productId;
+      loadProductDetail(productId);
+    });
+  });
 }

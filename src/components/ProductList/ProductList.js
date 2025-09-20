@@ -1,4 +1,6 @@
-import ProductCard from "../ProductCard/ProductCard.js";
+import ProductCard, {
+  handleProductCardClick,
+} from "../ProductCard/ProductCard.js";
 
 export default function ProductList({
   products,
@@ -8,4 +10,8 @@ export default function ProductList({
     <div class="${className}">
     ${products.map((value) => ProductCard(value)).join(" ")}
     </div>`;
+}
+
+export function handClickProductList() {
+  handleProductCardClick();
 }

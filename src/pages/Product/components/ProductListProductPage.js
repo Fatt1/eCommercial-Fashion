@@ -1,6 +1,8 @@
 import { filterProducts } from "../../../services/productService.js";
-import ProductList from "../../../components/ProductList/ProductList.js";
-
+import ProductList, {
+  handClickProductList,
+} from "../../../components/ProductList/ProductList.js";
+import { filterParams } from "../../Product/Product.js";
 export default function ProductListProductPage({
   pageNumber,
   ...filterParams
@@ -40,4 +42,18 @@ function generatePaginationBtnHtml(totalPages, pageNumber) {
     }" data-index='${i}'>${i}</a>`;
   }
   return html;
+}
+
+export function handleClickProductListPage() {
+  handClickProductList();
+  document
+    .querySelectorAll(".pagination .pagination-btn")
+    .forEach((paginationBtn) => {
+      paginationBtn.addEventListener("click", (event) => {
+        const pageNumber = Number(paginationBtn.dataset.index);
+        document.querySelector("#product-list-section").innerHTML =
+          ProductListProductPage({ pageNumber, ...filterParams });
+        handleClickProductListPage();
+      });
+    });
 }

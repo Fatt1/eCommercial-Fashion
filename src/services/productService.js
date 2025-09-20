@@ -5,7 +5,7 @@ import { getColorByCode } from "./colorService.js";
 import { getSubCategoryIds } from "./categoryService.js";
 import { getSizeById } from "./sizeService.js";
 import { getAttributeById } from "./attributeService.js";
-const dbContext = getDbContextFromLocalStorage();
+const dbContext = await getDbContextFromLocalStorage();
 
 function addProduct(product) {
   const id = generateUniqueId();
