@@ -12,7 +12,7 @@ import BestSeller from "./components/BestSeller.js";
 import Footer from "../../components/Footer/Footer.js";
 import ReviewSection from "../Home/components/ReviewSection.js";
 import { getAllProducts } from "../../services/productService.js";
-import { loadDataToLocalStorage } from "../../helper/initialData.js";
+
 import { handClickProductList } from "../../components/ProductList/ProductList.js";
 
 const products = getAllProducts({}).items;

@@ -12,6 +12,7 @@ import { filterParams } from "../Product.js";
 import ProductListProductPage, {
   handleClickProductListPage,
 } from "./ProductListProductPage.js";
+import { getSizeById } from "../../../services/sizeService.js";
 export default function Filter({ categoryId }) {
   return `
    
@@ -32,59 +33,7 @@ export default function Filter({ categoryId }) {
         </div>
         ${generateColorFilterHtml(categoryId)}
 
-        <fieldset class="filter-group size-filter">
-          <legend class="filter-group__header">Kích thước</legend>
-          <div class="checkbox-filter">
-            <label class="checkbox" for="S" Bl>
-              <div class="stick-checkbox">
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M11.3872 2.3408L4.82409 10.154L1.23486 6.56476L1.7652 6.03444L4.77597 9.04521L10.8129 1.8584L11.3872 2.3408Z"
-                    fill="black"
-                  />
-                </svg>
-              </div>
-              <input id="S" name="S" type="checkbox" />
-              <span class="checkbox-label">S</span>
-            </label>
-          </div>
-
-          <div class="checkbox-filter">
-            <label class="checkbox" for="M" Bl>
-              <div class="stick-checkbox">
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M11.3872 2.3408L4.82409 10.154L1.23486 6.56476L1.7652 6.03444L4.77597 9.04521L10.8129 1.8584L11.3872 2.3408Z"
-                    fill="black"
-                  />
-                </svg>
-              </div>
-              <input id="M" name="M" type="checkbox" hidden />
-              <span class="checkbox-label">M</span>
-            </label>
-          </div>
-          <button class="filter-group__toggle-btn">
-            Xem thêm
-            <img src="../assets/dropdown-icon.svg" style="margin-left: 3px" />
-          </button>
-        </fieldset>
-
+        ${generateSizeFilterHtml(categoryId)}
         <fieldset class="filter-group price-range-filter">
             <legend class="filter-group__header">Khoảng giá</legend>
             <div class="price-range-filter__edit">
@@ -265,7 +214,58 @@ function generateColorFilterHtml(categoryId) {
         </fieldset>`;
   return content;
 }
+function generateSizeFilterHtml(categoryId) {
+  const parentCategory = getCategoryById(categoryId);
+  const allRelatedCategory = [
+    parentCategory.category,
+    ...parentCategory.childrenCategory,
+  ];
+  let sizes = [];
+  allRelatedCategory.forEach((cate) => sizes.push(...cate.sizeIds));
+  const uniqueSizeIds = new Set(sizes);
+  console.log(uniqueSizeIds);
+  let contentSizes = ``;
+  uniqueSizeIds.forEach((sizeId) => {
+    const size = getSizeById(sizeId);
+    contentSizes += `<div class="checkbox-filter">
+            <label data-size-id="${size.id}" class="checkbox" for="${
+      size.id
+    }" Bl>
+              <div class="stick-checkbox">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M11.3872 2.3408L4.82409 10.154L1.23486 6.56476L1.7652 6.03444L4.77597 9.04521L10.8129 1.8584L11.3872 2.3408Z"
+                    fill="black"
+                  />
+                </svg>
+              </div>
+              <input id="${size.id}" name="${convertStringToKebabCase(
+      size.name.toLowerCase()
+    )}" type="checkbox" hidden />
+              <span class="checkbox-label">${size.name}</span>
+            </label>
+          </div>`;
+  });
 
+  return `
+        <fieldset class="filter-group size-filter">
+          <legend class="filter-group__header">Kích thước</legend>
+
+          ${contentSizes}
+          <button class="filter-group__toggle-btn">
+            Xem thêm
+            <img src="../assets/dropdown-icon.svg" style="margin-left: 3px" />
+          </button>
+        </fieldset>`;
+}
 export function handleFilterClick() {
   // Xử lí sự kiện khi click vào các filter
   document.querySelectorAll(".checkbox").forEach((checkBox) => {
@@ -280,6 +280,10 @@ export function handleFilterClick() {
         checkBox.parentElement.parentElement.classList.contains("brand-filter")
       ) {
         handleCheckBoxClick(checkBox, checkBoxInput, "brandIds", "brandId");
+      } else if (
+        checkBox.parentElement.parentElement.classList.contains("size-filter")
+      ) {
+        handleCheckBoxClick(checkBox, checkBoxInput, "sizes", "sizeId");
       }
     });
   });
@@ -305,13 +309,13 @@ export function handleFilterClick() {
         filterParams.categoryId = categoryId;
         document.getElementById("product-list-section").innerHTML =
           ProductListProductPage({ pageNumber: 1, ...filterParams });
-        handleClickProductListPage();
+
         document.querySelector(".filter").innerHTML = Filter({ categoryId });
         handleFilterClick();
       });
     });
 }
-// Hàm xử lý sự kiện click cho checkbox trong bộ lọc màu sắc
+// Hàm xử lý sự kiện click cho checkbox
 function handleCheckBoxClick(
   selectedCheckBox,
   checkBoxInput,
@@ -328,6 +332,7 @@ function handleCheckBoxClick(
     filterParams[filterParam].delete(selectedCheckBox.dataset[dataSetValue]);
   }
   console.log(filterParams);
+
   document.querySelector("#product-list-section").innerHTML =
     ProductListProductPage({ pageNumber: 1, ...filterParams });
   handleClickProductListPage();

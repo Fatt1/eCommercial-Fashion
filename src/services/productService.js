@@ -72,7 +72,9 @@ function filterProducts({
       p.variations.some((opt) => {
         return (
           opt.name === "Kích thước" &&
-          opt.variationOptions.some((variationOpt) => sizes.has(variationOpt))
+          opt.variationOptions.some((variationOpt) =>
+            sizes.has(variationOpt.id)
+          )
         );
       });
     // lọc theo brand
