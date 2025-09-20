@@ -1,6 +1,6 @@
 import { getDbContextFromLocalStorage } from "../helper/initialData.js";
 
-const dbContext = getDbContextFromLocalStorage();
+const dbContext = await getDbContextFromLocalStorage();
 
 function getAllBrands() {
   return dbContext.brands;

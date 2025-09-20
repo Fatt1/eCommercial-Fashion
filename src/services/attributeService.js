@@ -1,6 +1,6 @@
 import { getDbContextFromLocalStorage } from "../helper/initialData.js";
 
-const dbContext = getDbContextFromLocalStorage();
+const dbContext = await getDbContextFromLocalStorage();
 
 function getAllAttributes() {
   return dbContext.attributes;

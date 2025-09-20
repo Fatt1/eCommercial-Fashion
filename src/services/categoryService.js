@@ -1,6 +1,6 @@
 import { generateUniqueId } from "../helper/helper.js";
 import { getDbContextFromLocalStorage } from "../helper/initialData.js";
-const dbContext = getDbContextFromLocalStorage();
+const dbContext = await getDbContextFromLocalStorage();
 function addCategory(category) {
   const id = generateUniqueId();
   category.id = id;

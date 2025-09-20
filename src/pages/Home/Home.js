@@ -79,8 +79,5 @@ function handleClickHome() {
     }
   });
 }
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadDataToLocalStorage();
-  renderHome();
-  setupHome();
-});
+renderHome();
+setupHome();
