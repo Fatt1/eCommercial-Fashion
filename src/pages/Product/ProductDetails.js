@@ -26,7 +26,7 @@ function renderProductDetailHtml(productId) {
   if (variationColor) {
     variationColorContent += `<div class="color-variation variation-group">
                 <p class="name-variation">
-                  ${variationColor.name}: <span class="selected-color">Đỏ</span>
+                  ${variationColor.name}
                 </p>
                 <div class="variation-values">
                   ${variationColor.variationOptions
@@ -52,9 +52,7 @@ function renderProductDetailHtml(productId) {
   if (variationSize) {
     variationSizeContent += ` <div class="size-variation variation-group">
                 <p class="name-variation">
-                  ${
-                    variationSize.name
-                  }: <span class="selected-size">S</span></span>
+                  ${variationSize.name}
                 </p>
                 <div class="variation-values">
                  ${variationSize.variationOptions
