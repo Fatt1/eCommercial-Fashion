@@ -2,16 +2,20 @@ import {
   getAllCategory,
   getSubCategory,
 } from "../../services/categoryService.js";
-
-export default function Header() {
+import { loadProductPage } from "../../pages/Product/Product.js";
+export default function Header(selectedTab) {
   return ` <header>
         <div class="container">
           <div class="main-content">
             <div class="header-top">
               <nav class="navbar">
                 <ul class="navbar-list">
-                  <li class="nav-item active"><a href="./home.html">TRANG CHỦ</a></li>
-                  <li class="nav-item san-pham-tab" data-tab="san-pham"><a href="#">SẢN PHẨM</a>
+                  <li data-tab="trang-chu" class="nav-item ${
+                    selectedTab === "trang-chu" ? "active" : ""
+                  }"><a href="./home.html">TRANG CHỦ</a></li>
+                  <li class="nav-item san-pham-tab  ${
+                    selectedTab === "san-pham" ? "active" : ""
+                  }" data-tab="san-pham"><a href="#">SẢN PHẨM</a>
                     <div class="category-box">
                       ${generateCategorySubMenu()}
                     </div>
@@ -83,4 +87,26 @@ function generateCategorySubMenu() {
     }
   }
   return content;
+}
+
+export function handleClickHeader() {
+  // Xử lí sự kiện khi click vào các tab ở header
+  document.querySelectorAll(".nav-item").forEach((liHeader) => {
+    liHeader.addEventListener("click", (event) => {
+      const tabSelected = liHeader.dataset.tab;
+      if (tabSelected === "san-pham") {
+        loadProductPage("cate-001");
+        return;
+      }
+    });
+  });
+  document.querySelectorAll(".category-submenu-item").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const categoryId = item.dataset.categoryId;
+      loadProductPage(categoryId);
+
+      return;
+    });
+  });
 }

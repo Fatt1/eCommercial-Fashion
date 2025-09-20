@@ -8,6 +8,10 @@ import {
 import { convertStringToKebabCase } from "../../../helper/helper.js";
 import { getColorByCode } from "../../../services/colorService.js";
 import { getContrastTextColor } from "../../../helper/helper.js";
+import { filterParams } from "../Product.js";
+import ProductListProductPage, {
+  handleClickProductListPage,
+} from "./ProductListProductPage.js";
 export default function Filter({ categoryId }) {
   return `
    
@@ -260,4 +264,71 @@ function generateColorFilterHtml(categoryId) {
           </button>
         </fieldset>`;
   return content;
+}
+
+export function handleFilterClick() {
+  // Xử lí sự kiện khi click vào các filter
+  document.querySelectorAll(".checkbox").forEach((checkBox) => {
+    checkBox.addEventListener("click", (event) => {
+      event.preventDefault();
+      const checkBoxInput = checkBox.querySelector("input");
+      if (
+        checkBox.parentElement.parentElement.classList.contains("color-filter")
+      ) {
+        handleCheckBoxClick(checkBox, checkBoxInput, "colors", "colorId");
+      } else if (
+        checkBox.parentElement.parentElement.classList.contains("brand-filter")
+      ) {
+        handleCheckBoxClick(checkBox, checkBoxInput, "brandIds", "brandId");
+      }
+    });
+  });
+  // Xử lí sự kiện khi click vào các bấm vào nút mở rộng ở category filter
+  document
+    .querySelectorAll(".category-list-product-page .caret-toggle")
+    .forEach((caret) => {
+      caret.addEventListener("click", () => {
+        caret.parentElement.nextElementSibling.classList.toggle("show");
+      });
+    });
+
+  // Xử lí sự kiên khi click vào category filter value
+  document
+    .querySelectorAll(".category-filter-value")
+    .forEach((categoryValue) => {
+      categoryValue.addEventListener("click", () => {
+        const categoryId = categoryValue.dataset.categoryId;
+        // Xóa hết các filterParams đang có
+        for (const key of Object.keys(filterParams)) {
+          if (key != "categoryId") delete filterParams[key];
+        }
+        filterParams.categoryId = categoryId;
+        document.getElementById("product-list-section").innerHTML =
+          ProductListProductPage({ pageNumber: 1, ...filterParams });
+        handleClickProductListPage();
+        document.querySelector(".filter").innerHTML = Filter({ categoryId });
+        handleFilterClick();
+      });
+    });
+}
+// Hàm xử lý sự kiện click cho checkbox trong bộ lọc màu sắc
+function handleCheckBoxClick(
+  selectedCheckBox,
+  checkBoxInput,
+  filterParam,
+  dataSetValue
+) {
+  if (!filterParams[filterParam]) filterParams[filterParam] = new Set();
+  checkBoxInput.checked = !checkBoxInput.checked;
+  if (checkBoxInput.checked) {
+    selectedCheckBox.classList.add("selected");
+    filterParams[filterParam].add(selectedCheckBox.dataset[dataSetValue]);
+  } else {
+    selectedCheckBox.classList.remove("selected");
+    filterParams[filterParam].delete(selectedCheckBox.dataset[dataSetValue]);
+  }
+  console.log(filterParams);
+  document.querySelector("#product-list-section").innerHTML =
+    ProductListProductPage({ pageNumber: 1, ...filterParams });
+  handleClickProductListPage();
 }

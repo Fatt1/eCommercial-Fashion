@@ -1,12 +1,13 @@
-import Header from "../../components/Header/Header.js";
+import Header, { handleClickHeader } from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
 import { autoSlideId } from "../../components/Carousel/Carousel.js";
 import ProductSection from "./components/ProductSection.js";
 import ProductListProductPage from "./components/ProductListProductPage.js";
 import { timerIntervalId } from "../../components/PromotionSection/Promotion.js";
+import { handleClickProductSection } from "./components/ProductSection.js";
 function renderProduct(categoryId) {
   document.getElementById("root").innerHTML = `
-  ${Header()}
+  ${Header("san-pham")}
     
      ${ProductSection(categoryId)}
      ${Footer()}
@@ -21,9 +22,12 @@ function setupProduct() {
   });
 
   handleSortByPrice();
+  handleClickHeader();
+  handleClickProductSection();
 }
 export let filterParams = {};
 export function loadProductPage(categoryId) {
+  filterParams = { categoryId };
   clearInterval(timerIntervalId);
   clearInterval(autoSlideId);
   window.scrollTo(0, 0);
