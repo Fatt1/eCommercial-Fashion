@@ -309,7 +309,7 @@ export function handleFilterClick() {
         filterParams.categoryId = categoryId;
         document.getElementById("product-list-section").innerHTML =
           ProductListProductPage({ pageNumber: 1, ...filterParams });
-
+        handleClickProductListPage();
         document.querySelector(".filter").innerHTML = Filter({ categoryId });
         handleFilterClick();
       });
