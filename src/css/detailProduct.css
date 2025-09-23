@@ -228,8 +228,15 @@
   background: var(--primary-color);
   padding: 5px 30px;
   gap: 10px;
-  color: white;
+  color: gray;
+  cursor: not-allowed;
 }
+
+.add-to-cart-btn.enabled {
+  color: white;
+  cursor: pointer;
+}
+
 .product-delivery,
 .return-policy {
   display: flex;

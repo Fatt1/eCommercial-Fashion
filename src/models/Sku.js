@@ -1,3 +1,5 @@
+import { getSkusByProductId } from "../services/productService.js";
+
 export default class Sku {
   constructor(
     id,
@@ -17,6 +19,32 @@ export default class Sku {
     this.updatedAt = updatedAt;
   }
 }
+
+function isEqualArray(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  return arr1.every((val, index) => val === arr2[index]);
+}
+
+export function getSkuByProductId(productId, tierIndexes) {
+  const skus = getSkusByProductId(productId);
+
+  for (let element of skus) {
+    if (isEqualArray(element.tierIndexes, tierIndexes)) {
+      return element;
+    }
+  }
+
+  return null;
+}
+
+// export function getSkuByProductId(productId, tierIndexes) {
+//   getSkusByProductId(productId).forEach((element) => {
+//     if (element.tierIndexes === tierIndexes) return element;
+//     console.log(element);
+//   });
+//   // console.log(getSkusByProductId(productId));
+// }
+
 /*
 {
   id: "123",
