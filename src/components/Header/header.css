@@ -2,6 +2,8 @@ header {
   background-color: #61604b;
   box-shadow: inset -30px -30px 34px rgba(210, 199, 199, 0.3);
   position: fixed;
+  top: 0px;
+  right: 0px;
   z-index: 99;
   width: 100vw;
 }
