@@ -4,6 +4,7 @@ import Header, { handleClickHeader } from "../../components/Header/Header.js";
 import ProductList, {
   handClickProductList,
 } from "../../components/ProductList/ProductList.js";
+import { getSkuByProductId } from "../../models/Sku.js";
 import {
   getAllProducts,
   getProductById,
@@ -24,6 +25,7 @@ function renderProductDetailHtml(productId) {
   let variationSizeContent = "";
   // tạo content cho variation color
   if (variationColor) {
+    let variationColorIndex = 0;
     variationColorContent += `<div class="color-variation variation-group">
                 <p class="name-variation">
                   ${variationColor.name}
@@ -31,13 +33,17 @@ function renderProductDetailHtml(productId) {
                 <div class="variation-values">
                   ${variationColor.variationOptions
                     .map(
-                      (option) => ` <button class="variation-value">
+                      (option) => ` 
+                  <button class="variation-value color-choice"
+                  data-product-id="${productId}" data-index-color-sku="${variationColorIndex++}">
                     <img
                       class="variation-value__img"
                       src="../assets/${option.image}"
                     />
                     
-                    <span class="variation-value__value-name">${option.name}</span>
+                    <span class="variation-value__value-name">${
+                      option.name
+                    }</span>
                       <div class="selection-box-stick">
                       <img src="../assets/stick.png"/>
                     </div>
@@ -50,6 +56,7 @@ function renderProductDetailHtml(productId) {
   }
   // tạo content cho variation size
   if (variationSize) {
+    let variationSizeIndex = 0;
     variationSizeContent += ` <div class="size-variation variation-group">
                 <p class="name-variation">
                   ${variationSize.name}
@@ -57,9 +64,13 @@ function renderProductDetailHtml(productId) {
                 <div class="variation-values">
                  ${variationSize.variationOptions
                    .map(
-                     (option) => ` <button class="variation-value">
-                   
-                    <span class="variation-value__value-name">${option.name}</span>
+                     (option) => ` 
+                  <button class="variation-value size-choice" 
+                  data-product-id="${productId}" data-index-size-sku="${variationSizeIndex++}">
+
+                    <span class="variation-value__value-name">${
+                      option.name
+                    }</span>
                     <div class="selection-box-stick">
                       <img src="../assets/stick.png"/>
                     </div>
@@ -227,6 +238,10 @@ export function loadProductDetail(productId) {
   window.scrollTo(0, 0);
   handleClickHeader();
   handClickProductList();
+
+  addedMessageAfterClickButton();
+
+  handleClickVariation();
 }
 function generateAttributeContent(product) {
   let content = "";
@@ -243,7 +258,7 @@ function generateAttributeContent(product) {
   return content;
 }
 
-export function addMessage() {
+function addMessage() {
   document
     .querySelector(".add-to-cart-message")
     .classList.add("add-to-cart-message-on");
@@ -254,13 +269,70 @@ export function addMessage() {
   }, 2000);
 }
 
+function addedMessageAfterClickButton() {
+  document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+    addMessage();
+  });
+}
+
+let tierIndexes = [0, 0];
+
+function handleClickVariationColor() {
+  document.querySelectorAll(".color-choice").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tierIndexes[0] = Number(btn.dataset.indexColorSku);
+
+      console.log(tierIndexes);
+
+      console.log(getSkuByProductId(btn.dataset.productId, tierIndexes));
+
+      document.querySelector(".available-quantity").innerHTML = `${
+        getSkuByProductId(btn.dataset.productId, tierIndexes).stock
+      } sản phẩm có sẵn`;
+
+      checkEnableAddToCart();
+    });
+  });
+}
+
+function handleClickVariationSize() {
+  document.querySelectorAll(".size-choice").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tierIndexes[1] = Number(btn.dataset.indexSizeSku);
+      console.log(tierIndexes);
+      console.log(getSkuByProductId(btn.dataset.productId, tierIndexes));
+
+      document.querySelector(".available-quantity").innerHTML = `${
+        getSkuByProductId(btn.dataset.productId, tierIndexes).stock
+      } sản phẩm có sẵn`;
+
+      checkEnableAddToCart();
+    });
+  });
+}
+
+function checkEnableAddToCart() {
+  const colorSelected = document.querySelector(".color-choice.selected");
+  const sizeSelected = document.querySelector(".size-choice.selected");
+  const addToCartBtn = document.querySelector(".add-to-cart-btn");
+
+  if (colorSelected && sizeSelected) {
+    // addToCartBtn.disabled = false;
+    addToCartBtn.classList.add("enabled");
+  } else {
+    // addToCartBtn.disabled = true;
+    addToCartBtn.classList.remove("enabled");
+    addToCartBtn.classList;
+  }
+}
+
+function handleClickVariation() {
+  handleClickVariationColor();
+  handleClickVariationSize();
+}
+
 // document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
 //   const productId =
 //     document.querySelector(".add-to-cart-btn").dataset.productId;
 //   console.log(productId);
 // });
-
-// console.log(document.querySelector(".add-to-cart-btn"));
-// function addedMessage() {
-//   document.querySelector("");
-// }

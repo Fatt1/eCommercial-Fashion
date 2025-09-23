@@ -316,5 +316,6 @@ export {
   updateProductById,
   addProduct,
   getProductsByCategoryId,
+  getSkusByProductId,
   searchProducts,
 };

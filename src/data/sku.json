@@ -28,6 +28,15 @@
       "updatedAt": "2025-09-14T12:02:00Z"
     },
     {
+      "id": "sku-040",
+      "productId": "prod-001",
+      "stock": 50,
+      "originalPrice": 150000,
+      "tierIndexes": [1, 1],
+      "createdAt": "2025-09-14T12:02:00Z",
+      "updatedAt": "2025-09-14T12:02:00Z"
+    },
+    {
       "id": "sku-004",
       "productId": "prod-002",
       "stock": 75,

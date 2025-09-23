@@ -172,3 +172,8 @@
 .add-to-cart-message-on {
   color: green;
 }
+
+.add-to-cart-btn {
+  color: gray;
+  cursor: not-allowed;
+}
