@@ -1,15 +1,18 @@
-import { filterProducts } from "../../../services/productService.js";
+import {
+  filterProducts,
+  searchProducts,
+} from "../../../services/productService.js";
 import ProductList, {
   handClickProductList,
 } from "../../../components/ProductList/ProductList.js";
-import { filterParams } from "../../Product/Product.js";
+import { filterParams, isSearching } from "../../Product/Product.js";
 export default function ProductListProductPage({
   pageNumber,
-  ...filterParams
+  products,
+  isPrev,
+  isNext,
+  totalPages,
 }) {
-  const response = filterProducts({ pageNumber, ...filterParams });
-
-  const products = response.items;
   return `
                        ${ProductList({
                          products,
@@ -17,17 +20,14 @@ export default function ProductListProductPage({
                        })}
                         <div class="pagination">
                             <a href="#" class="prev-btn pagination-btn ${
-                              response.isPrev ? "" : "disable-pagination-link"
+                              isPrev ? "" : "disable-pagination-link"
                             }" data-index='${
     pageNumber - 1
   }'><img src="../assets/prev-btn.svg"></a>
                             
-                            ${generatePaginationBtnHtml(
-                              response.totalPages,
-                              response.pageNumber
-                            )}
+                            ${generatePaginationBtnHtml(totalPages, pageNumber)}
                             <a href="#" class="pagination-btn next-btn ${
-                              response.isNext ? "" : "disable-pagination-link"
+                              isNext ? "" : "disable-pagination-link"
                             }" data-index='${
     pageNumber + 1
   }'><img src="../assets/prev-btn.svg"></a>
@@ -50,9 +50,22 @@ export function handleClickProductListPage() {
     .querySelectorAll(".pagination .pagination-btn")
     .forEach((paginationBtn) => {
       paginationBtn.addEventListener("click", (event) => {
+        console.log(filterParams);
         const pageNumber = Number(paginationBtn.dataset.index);
+
+        let result;
+        if (isSearching) {
+          result = searchProducts({ ...filterParams, pageNumber });
+        } else {
+          result = filterProducts({ ...filterParams, pageNumber });
+        }
+        console.log(result);
         document.querySelector("#product-list-section").innerHTML =
-          ProductListProductPage({ pageNumber, ...filterParams });
+          ProductListProductPage({
+            pageNumber,
+            products: result.items,
+            ...result,
+          });
         handleClickProductListPage();
       });
     });

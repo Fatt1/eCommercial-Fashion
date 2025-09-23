@@ -63,3 +63,30 @@ export function getContrastTextColor(hexColor) {
   // Nếu không, màu là tối -> dùng chữ trắng
   return luminance > 0.5 ? "black" : "white";
 }
+export function preventInputTextForNumberInput() {
+  const numberInputs = document.querySelectorAll(".number-input");
+  numberInputs.forEach((input) => {
+    input.addEventListener("keydown", (event) => {
+      const keyCode = event.keyCode || event.which;
+
+      // Kiểm tra xem phím đó có phải là số (0-9) hay không
+      // Các mã phím đặc biệt như Backspace, Tab, Enter, Delete, mũi tên... vẫn được cho phép
+      if (
+        (keyCode >= 48 && keyCode <= 57) || // Số từ bàn phím chính (0-9)
+        (keyCode >= 96 && keyCode <= 105) || // Số từ bàn phím số (numpad 0-9)
+        keyCode === 8 || // Backspace
+        keyCode === 9 || // Tab
+        keyCode === 13 || // Enter
+        keyCode === 46 || // Delete
+        (keyCode >= 37 && keyCode <= 40) // Các phím mũi tên
+      ) {
+        // Nếu là số hoặc phím đặc biệt, cho phép gõ tiếp
+        return true;
+      } else {
+        // Nếu không phải, ngăn chặn hành động gõ phím
+        event.preventDefault();
+        return false;
+      }
+    });
+  });
+}

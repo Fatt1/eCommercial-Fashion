@@ -109,4 +109,19 @@ export function handleClickHeader() {
       return;
     });
   });
+  handleSearching();
+}
+
+function handleSearching() {
+  const searchBtn = document.querySelector(".search-icon");
+
+  searchBtn.addEventListener("click", () => {
+    loadProductPage(null, true);
+  });
+  const searchInput = document.querySelector(".search");
+  searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      loadProductPage(null, true);
+    }
+  });
 }

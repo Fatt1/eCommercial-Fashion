@@ -1,19 +1,31 @@
-import { getBrandsByCategoryId } from "../../../services/brandService.js";
+import { getBrandById } from "../../../services/brandService.js";
 import {
   getAllCategory,
   getCategoryById,
   getSubCategory,
-  getSubCategoryIds,
 } from "../../../services/categoryService.js";
-import { convertStringToKebabCase } from "../../../helper/helper.js";
+import {
+  convertStringToKebabCase,
+  preventInputTextForNumberInput,
+} from "../../../helper/helper.js";
 import { getColorByCode } from "../../../services/colorService.js";
 import { getContrastTextColor } from "../../../helper/helper.js";
-import { filterParams } from "../Product.js";
+import { filterParams, isSearching } from "../Product.js";
 import ProductListProductPage, {
   handleClickProductListPage,
 } from "./ProductListProductPage.js";
 import { getSizeById } from "../../../services/sizeService.js";
-export default function Filter({ categoryId }) {
+import {
+  filterProducts,
+  searchProducts,
+} from "../../../services/productService.js";
+export default function Filter({
+  categoryId,
+  categoryGroupFilter,
+  colorGroupFilter,
+  sizeGroupFilter,
+  brandGroupFilter,
+}) {
   return `
    
         <div class="category-list-product-page">
@@ -22,7 +34,12 @@ export default function Filter({ categoryId }) {
             <h3 class="category-header-filter">DANH MỤC</h3>
           </div>
           <ul class="category-list-body">
-           ${generateCategoryFilterHtml(categoryId)}
+          ${
+            isSearching
+              ? generateCategoryFilterForSearchingHtml(categoryGroupFilter)
+              : generateCategoryFilterHtml(categoryId)
+          }
+          
            
           </ul>
         </div>
@@ -31,24 +48,70 @@ export default function Filter({ categoryId }) {
           <img src="../assets/Filter.svg" />
           <h2>BỘ LỌC TÌM KIẾM</h2>
         </div>
-        ${generateColorFilterHtml(categoryId)}
+        ${generateColorFilterHtml(colorGroupFilter)}
 
-        ${generateSizeFilterHtml(categoryId)}
+        ${generateSizeFilterHtml(sizeGroupFilter)}
         <fieldset class="filter-group price-range-filter">
             <legend class="filter-group__header">Khoảng giá</legend>
             <div class="price-range-filter__edit">
               <div class="price-range-filter__inputs">
-                  <input class="price-range-filter__input" type="text" maxlength="13" placeholder="đ TỪ">
+                  <input class="price-range-filter__input number-input" type="text" maxlength="13" placeholder="đ TỪ">
                   <div class="price-range-filter__range-line"></div>
-                   <input class="price-range-filter__input" type="text" maxlength="13" placeholder="đ ĐẾN">
+                   <input class="price-range-filter__input number-input" type="text" maxlength="13" placeholder="đ ĐẾN">
                 </div>
                 <button class="btn apply-btn">Áp dụng</button>
               </div>
         </fieldset>
-        ${generateBrandFilterHtml(categoryId)}
+        ${generateBrandFilterHtml(brandGroupFilter)}
 
      
   `;
+}
+function generateCategoryFilterForSearchingHtml(categoryGroupFilter) {
+  const categories = [];
+  categoryGroupFilter.forEach((categoryId) => {
+    const category = getCategoryById(categoryId);
+    categories.push(category.category);
+  });
+
+  return `
+   <fieldset class="filter-group category-searching-filter">
+          <legend class="filter-group__header">Danh mục</legend>
+          ${categories
+            .map(
+              (cate) => `<div class="checkbox-filter">
+            <label data-cate-id="${
+              cate.id
+            }"  class="checkbox" for="${convertStringToKebabCase(
+                cate.name.toLowerCase()
+              )}">
+              <div class="stick-checkbox">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M11.3872 2.3408L4.82409 10.154L1.23486 6.56476L1.7652 6.03444L4.77597 9.04521L10.8129 1.8584L11.3872 2.3408Z"
+                    fill="black"
+                  />
+                </svg>
+              </div>
+              <input id="${convertStringToKebabCase(
+                cate.name.toLowerCase()
+              )}" name="${convertStringToKebabCase(
+                cate.name.toLowerCase()
+              )}" type="checkbox" hidden />
+              <span class="checkbox-label">${cate.name}</span>
+            </label>
+          </div>`
+            )
+            .join(" ")}
+        </fieldset>`;
 }
 function generateCategoryFilterHtml(categoryId) {
   const categories = getAllCategory();
@@ -98,22 +161,17 @@ function generateCategoryFilterHtml(categoryId) {
   });
   return categoryListHtml;
 }
-function generateBrandFilterHtml(categoryId) {
-  const childCategoryIds = getSubCategoryIds(categoryId);
-  const allRelatedCategoryIds = [categoryId, ...childCategoryIds];
-  let brandsByCategoryId = [];
-  allRelatedCategoryIds.forEach((categoryId) => {
-    const brands = getBrandsByCategoryId(categoryId);
-
-    if (brands.length != 0) {
-      brandsByCategoryId.push(...brands);
-    }
+function generateBrandFilterHtml(brandGroupFilter) {
+  const brandsObject = [];
+  brandGroupFilter.forEach((brandId) => {
+    const brand = getBrandById(brandId);
+    brandsObject.push(brand);
   });
 
   return `
            <fieldset class="filter-group brand-filter">
           <legend class="filter-group__header">Thương hiệu</legend>
-          ${brandsByCategoryId
+          ${brandsObject
             .map(
               (brand) => `<div class="checkbox-filter">
             <label data-brand-id="${
@@ -155,21 +213,9 @@ function generateBrandFilterHtml(categoryId) {
         </fieldset>
   `;
 }
-function generateColorFilterHtml(categoryId) {
-  const parentCategory = getCategoryById(categoryId);
-  const allRelatedCategory = [
-    parentCategory.category,
-    ...parentCategory.childrenCategory,
-  ];
-  console.log(allRelatedCategory);
-  let colors = [];
-  allRelatedCategory.forEach((cate) => {
-    if (cate.colorIds) colors.push(...cate.colorIds);
-  });
-  const uniqueColorIds = new Set(colors);
-
+function generateColorFilterHtml(colorGroupFilter) {
   let contentColors = "";
-  uniqueColorIds.forEach((colorId) => {
+  colorGroupFilter.forEach((colorId) => {
     const color = getColorByCode(colorId);
 
     contentColors += ` <div  class="checkbox-filter">
@@ -214,18 +260,9 @@ function generateColorFilterHtml(categoryId) {
         </fieldset>`;
   return content;
 }
-function generateSizeFilterHtml(categoryId) {
-  const parentCategory = getCategoryById(categoryId);
-  const allRelatedCategory = [
-    parentCategory.category,
-    ...parentCategory.childrenCategory,
-  ];
-  let sizes = [];
-  allRelatedCategory.forEach((cate) => sizes.push(...cate.sizeIds));
-  const uniqueSizeIds = new Set(sizes);
-  console.log(uniqueSizeIds);
+function generateSizeFilterHtml(sizeGroupFilter) {
   let contentSizes = ``;
-  uniqueSizeIds.forEach((sizeId) => {
+  sizeGroupFilter.forEach((sizeId) => {
     const size = getSizeById(sizeId);
     contentSizes += `<div class="checkbox-filter">
             <label data-size-id="${size.id}" class="checkbox" for="${
@@ -284,6 +321,12 @@ export function handleFilterClick() {
         checkBox.parentElement.parentElement.classList.contains("size-filter")
       ) {
         handleCheckBoxClick(checkBox, checkBoxInput, "sizes", "sizeId");
+      } else if (
+        checkBox.parentElement.parentElement.classList.contains(
+          "category-searching-filter"
+        )
+      ) {
+        handleCheckBoxClick(checkBox, checkBoxInput, "categoryIds", "cateId");
       }
     });
   });
@@ -307,13 +350,25 @@ export function handleFilterClick() {
           if (key != "categoryId") delete filterParams[key];
         }
         filterParams.categoryId = categoryId;
+        const result = filterProducts({ categoryId, ...filterParams }, true);
         document.getElementById("product-list-section").innerHTML =
-          ProductListProductPage({ pageNumber: 1, ...filterParams });
+          ProductListProductPage({
+            pageNumber: 1,
+            products: result.items,
+            ...result,
+          });
         handleClickProductListPage();
-        document.querySelector(".filter").innerHTML = Filter({ categoryId });
+        document.querySelector(".filter").innerHTML = Filter({
+          categoryId,
+          colorGroupFilter: result.colorGroupFilter,
+          sizeGroupFilter: result.sizeGroupFilter,
+          brandGroupFilter: result.brandGroupFilter,
+        });
         handleFilterClick();
       });
     });
+  preventInputTextForNumberInput();
+  handleFilterProductsByPrice();
 }
 // Hàm xử lý sự kiện click cho checkbox
 function handleCheckBoxClick(
@@ -331,9 +386,44 @@ function handleCheckBoxClick(
     selectedCheckBox.classList.remove("selected");
     filterParams[filterParam].delete(selectedCheckBox.dataset[dataSetValue]);
   }
+  let result;
+  if (!isSearching) {
+    result = filterProducts({
+      ...filterParams,
+    });
+  } else {
+    result = searchProducts({ ...filterParams });
+  }
   console.log(filterParams);
-
   document.querySelector("#product-list-section").innerHTML =
-    ProductListProductPage({ pageNumber: 1, ...filterParams });
+    ProductListProductPage({
+      pageNumber: 1,
+      products: result.items,
+      ...result,
+    });
   handleClickProductListPage();
+}
+function handleFilterProductsByPrice() {
+  const priceInputs = document.querySelectorAll(".price-range-filter__input");
+  const applyBtn = document.querySelector(".price-range-filter .apply-btn");
+  applyBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    const [priceFromInput, priceToInput] = priceInputs;
+    if (priceFromInput.value) filterParams.priceFrom = priceFromInput.value;
+    else delete filterParams.priceFrom;
+    if (priceToInput.value) filterParams.priceTo = priceToInput.value;
+    else delete filterParams.priceTo;
+
+    const result = filterProducts({
+      categoryId: filterParams.categoryId,
+      ...filterParams,
+    });
+    document.querySelector("#product-list-section").innerHTML =
+      ProductListProductPage({
+        pageNumber: 1,
+        products: result.items,
+        ...result,
+      });
+    handleClickProductListPage();
+  });
 }

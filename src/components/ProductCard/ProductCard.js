@@ -1,10 +1,16 @@
 import { loadProductDetail } from "../../pages/Product/ProductDetails.js";
-export default function ProductCard({ id, thumbnail, name, sale, priceInfo }) {
+export default function ProductCard({
+  id,
+  thumbnail,
+  name,
+  salePercentage,
+  priceInfo,
+}) {
   return `
       <div class="product-card" data-product-id=${id}>
               ${
-                sale
-                  ? `<div class="product-card__percentage">-${sale}%</div>`
+                salePercentage
+                  ? `<div class="product-card__percentage">-${salePercentage}%</div>`
                   : ""
               }
               <a class="product-card__img">
@@ -18,9 +24,12 @@ export default function ProductCard({ id, thumbnail, name, sale, priceInfo }) {
                   <span class="product-card-price__sale">${
                     priceInfo.currentlyPrice
                   }đ</span>
-                  <span class="product-card-price__origin">${
-                    priceInfo.originalPrice
-                  }đ</span>
+                  ${
+                    salePercentage
+                      ? `<span class="product-card-price__origin">${priceInfo.originalPrice}đ</span>`
+                      : ""
+                  }
+                  
                 </div>
               </div>
             </div>

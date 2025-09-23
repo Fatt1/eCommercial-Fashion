@@ -256,6 +256,65 @@
       "status": "draft",
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z"
+    },
+    {
+      "id": "prod-007",
+      "name": "Áo Vest Name cao cấp",
+      "desc": "Áo thun cotton cao cấp, mềm mại và thoáng mát, phù hợp cho cả nam và nữ.",
+      "brandId": "1",
+      "thumbnail": "category-1.jpg",
+      "weight": 0.25,
+      "images": ["image-1a.jpg", "image-1b.jpg"],
+      "attributes": [
+        {
+          "attributeId": "1",
+          "attributeValues": ["val-cotton"]
+        },
+        {
+          "attributeId": "2",
+          "attributeValues": ["val-basic"]
+        }
+      ],
+      "priceInfo": {
+        "originalPrice": 250000.0,
+        "currentlyPrice": 250000.0
+      },
+      "variations": [
+        {
+          "name": "Màu sắc",
+          "variationOptions": [
+            {
+              "image": "category-1.jpg",
+              "id": "#2980B9"
+            },
+            {
+              "image": "category-1.jpg",
+              "id": "#1ABC9C"
+            },
+            {
+              "image": "category-1.jpg",
+              "id": "#FF5733"
+            }
+          ]
+        },
+        {
+          "name": "Kích thước",
+          "variationOptions": [
+            {
+              "image": "",
+              "id": "m"
+            },
+            {
+              "image": "",
+              "id": "l"
+            }
+          ]
+        }
+      ],
+      "categoryId": "cate-001",
+      "status": "public",
+      "createdAt": "2025-09-14T08:22:00.000Z",
+      "updatedAt": "2025-09-14T08:22:00.000Z"
     }
   ]
 }
