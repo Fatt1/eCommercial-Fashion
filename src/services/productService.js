@@ -178,4 +178,5 @@ export {
   updateProductById,
   addProduct,
   getProductsByCategoryId,
+  getSkusByProductId,
 };

@@ -71,7 +71,6 @@ function handleClickHome() {
       // Case: Nếu người dùng nhấn lại vào cái value đang đc selected thì sẽ kh còn selected nữa
       if (selectedVariationValue.classList.contains("selected")) {
         selectedVariationValue.classList.remove("selected");
-        //
       } else {
         selectedVariationValue.classList.add("selected");
       }
