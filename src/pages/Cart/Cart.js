@@ -13,6 +13,11 @@
 //   render();
 // });
 
+
+
+
+
+
 const minusButtons = document.querySelector(".product-quantity__minus");
 const plusButton = document.querySelector(".product-quantity__plus");
 const inputQuantity = document.querySelector(".product-quantity__input");
