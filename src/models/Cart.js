@@ -6,6 +6,7 @@ export function loadFromStorage() {
     cart = [
       {
         skuId: "sku-001",
+        productId: "prod-001",
         quantity: 1,
       },
     ];
@@ -24,7 +25,7 @@ export function getTotalQuantity() {
   return cartQuantity;
 }
 
-export function addToCart(skuId) {
+export function addToCart(skuId, productId) {
   let quantity = 1;
   if (document.querySelector(`.js-quantity-selector-${skuId}`) !== null) {
     quantity = Number(
@@ -42,6 +43,7 @@ export function addToCart(skuId) {
   else
     cart.push({
       skuId,
+      productId,
       quantity,
     });
   saveToStorage();
@@ -58,6 +60,13 @@ export function updateCartQuantity(classIdToChange) {
     cartQuantity += cartItem.quantity;
   });
   document.querySelector(`.${classIdToChange}`).innerHTML = cartQuantity;
+}
+export function updateCartQuantityStraight() {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+  document.querySelector(`.cart-quantity`).innerHTML = cartQuantity;
 }
 
 export function updateQuantity(productId, newQuantity) {

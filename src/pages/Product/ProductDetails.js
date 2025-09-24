@@ -4,11 +4,17 @@ import Header, { handleClickHeader } from "../../components/Header/Header.js";
 import ProductList, {
   handClickProductList,
 } from "../../components/ProductList/ProductList.js";
+import {
+  addToCart,
+  updateCartQuantity,
+  updateCartQuantityStraight,
+} from "../../models/Cart.js";
 import { getSkuByProductId } from "../../models/Sku.js";
 import {
   getAllProducts,
   getProductById,
 } from "../../services/productService.js";
+import { cart } from "../../models/Cart.js";
 //mai mốt sẽ viết thêm hàm lấy các sản phẩm liên quan
 const relatedProducts = getAllProducts({}).items;
 function renderProductDetailHtml(productId) {
@@ -239,9 +245,11 @@ export function loadProductDetail(productId) {
   handleClickHeader();
   handClickProductList();
 
-  addedMessageAfterClickButton();
+  // addedMessageAfterClickButton();
 
   handleClickVariation();
+  addToCartBtn();
+  updateCartQuantityStraight();
 }
 function generateAttributeContent(product) {
   let content = "";
@@ -329,6 +337,19 @@ function checkEnableAddToCart() {
 function handleClickVariation() {
   handleClickVariationColor();
   handleClickVariationSize();
+}
+
+function addToCartBtn() {
+  document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.productId;
+      addedMessageAfterClickButton(productId);
+      const sku = getSkuByProductId(button.dataset.productId, tierIndexes);
+      addToCart(sku.id, productId);
+      updateCartQuantity("cart-quantity");
+      console.log(cart);
+    });
+  });
 }
 
 // document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
