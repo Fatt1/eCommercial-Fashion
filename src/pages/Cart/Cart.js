@@ -3,6 +3,7 @@
 import {
   cart,
   removeFromCart,
+  saveToStorage,
   updateCartQuantityStraight,
 } from "../../models/Cart.js";
 import { getProductById } from "../../services/productService.js";
@@ -90,14 +91,14 @@ export function renderCartItemContainer() {
               }</span>
             </div>
             <div class="product-quantity">
-              <button class="product-quantity__button product-quantity__minus">
+              <button class="product-quantity__button product-quantity__minus"
+              data-sku-id = ${skuId}>
                 -
               </button>
-              <input class="product-quantity__input product-quantity-${
-                matchingProduct.id
-              }" 
+              <input class="product-quantity__input product-quantity-input-${skuId}" 
                 value="${cartItem.quantity}" min="1" />
-              <button class="product-quantity__button product-quantity__plus">
+              <button class="product-quantity__button product-quantity__plus"
+              data-sku-id = ${skuId}>
                 +
               </button>
             </div>
@@ -106,7 +107,7 @@ export function renderCartItemContainer() {
             </div>
             <div class="product-action">
               <button class="product-action__button"
-                data-sku-id = ${cartItem.sku}
+                data-sku-id = ${cartItem.skuId}
               >XÓA</button>
             </div>
           </div>
@@ -121,9 +122,9 @@ export function renderCartItemContainer() {
   //    const totalPrice = quantity *
   // }
 
-  document.querySelectorAll(".product-action__button").forEach((link) => {
-    link.addEventListener("click", () => {
-      removeFromCart(link.dataset.skuId);
+  document.querySelectorAll(".product-action__button").forEach((button) => {
+    button.addEventListener("click", () => {
+      removeFromCart(button.dataset.skuId);
 
       renderCartItemContainer();
     });
@@ -220,19 +221,50 @@ export function renderCartItemContainer() {
   //   });
   // });
 
-  const minusButtons = document.querySelector(".product-quantity__minus");
-  const plusButton = document.querySelector(".product-quantity__plus");
-  const inputQuantity = document.querySelector(".product-quantity__input");
+  const minusButtons = document.querySelectorAll(".product-quantity__minus");
+  const plusButtons = document.querySelectorAll(".product-quantity__plus");
+  // const inputQuantity = document.querySelector(".product-quantity__input");
 
-  minusButtons.addEventListener("click", () => {
-    let value = parseInt(inputQuantity.value);
-    if (value > 1) inputQuantity.value = value - 1;
+  // minusButtons.addEventListener("click", () => {
+  //   let value = parseInt(inputQuantity.value);
+  //   if (value > 1) inputQuantity.value = value - 1;
+  // });
+
+  minusButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const skuId = button.dataset.skuId;
+      const inputQuantity = document.querySelector(
+        `.product-quantity-input-${skuId}`
+      );
+      let value = parseInt(inputQuantity.value);
+      if (value > 1) inputQuantity.value = value - 1;
+      const item = cart.find((c) => c.skuId === skuId);
+      if (item) item.quantity = inputQuantity.value;
+
+      saveToStorage();
+    });
   });
 
-  plusButton.addEventListener("click", () => {
-    let value = parseInt(inputQuantity.value);
-    inputQuantity.value = value + 1;
+  plusButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const skuId = button.dataset.skuId;
+      const inputQuantity = document.querySelector(
+        `.product-quantity-input-${skuId}`
+      );
+      let value = parseInt(inputQuantity.value);
+      inputQuantity.value = value + 1;
+      const item = cart.find((c) => c.skuId === skuId);
+      if (item) item.quantity = inputQuantity.value;
+      saveToStorage();
+      console.log(cart);
+      console.log("Da save");
+    });
   });
+
+  // plusButton.addEventListener("click", () => {
+  //   let value = parseInt(inputQuantity.value);
+  //   inputQuantity.value = value + 1;
+  // });
 
   const btnSize = document.querySelector(".dropdown-button__size");
   const menuSize = document.querySelector(".dropdown-menu__size");
