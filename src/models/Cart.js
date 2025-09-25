@@ -8,6 +8,7 @@ export function loadFromStorage() {
         skuId: "sku-001",
         productId: "prod-001",
         quantity: 1,
+        tick: false,
       },
     ];
   }
@@ -30,6 +31,7 @@ export function addToCart(skuId, productId) {
   if (document.querySelector(`.product-quantity__input`) !== null) {
     quantity = Number(document.querySelector(`.product-quantity__input`).value);
   }
+  const tick = false;
   // const quantity = Number(
   //   document.querySelector(`.js-quantity-selector-${skuId}`).value
   // );
@@ -43,6 +45,7 @@ export function addToCart(skuId, productId) {
       skuId,
       productId,
       quantity,
+      tick,
     });
   saveToStorage();
 }

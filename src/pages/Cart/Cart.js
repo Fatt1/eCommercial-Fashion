@@ -38,8 +38,10 @@ export function renderCartItemContainer() {
       <div class="cart-item">
             <div class="product-main">
               <input
+
                 type="checkbox"
-                class="product-main__checkbox"
+                class="product-main__checkbox product-main__checkbox-${skuId}"
+                data-sku-id = ${skuId}
                 name=""
                 id=""
               />
@@ -126,6 +128,7 @@ export function renderCartItemContainer() {
 
   // createPage();
 
+  // btn XÓA remove
   document.querySelectorAll(".product-action__button").forEach((button) => {
     button.addEventListener("click", () => {
       removeFromCart(button.dataset.skuId);
@@ -133,6 +136,92 @@ export function renderCartItemContainer() {
       renderCartItemContainer();
     });
   });
+
+  //tick hết nếu chọn tickAll
+
+  // tính toàn tiền nếu chọn sản phẩm (tick check box)
+  addEventListenerCheckBox();
+  function addEventListenerCheckBox() {
+    // Lấy tất cả checkbox
+    const checkboxAll = document.querySelector(".product-main__checkbox-all");
+    const checkboxes = document.querySelectorAll(".product-main__checkbox");
+
+    checkboxes.forEach((checkbox) => {
+      const skuId = checkbox.dataset.skuId;
+      const item = cart.find((c) => c.skuId === skuId);
+      if (checkbox.checked === false) {
+        if (item.tick === true) checkbox.checked = true;
+        // console.log(item);
+        // console.log(item.tick);
+        // console.log(item);
+      }
+      // if (checkboxAll.checked === true){
+      //   item.tick = true;
+      // }
+
+      //change cái tất cả box
+      checkboxAll.addEventListener("change", () => {
+        if (checkboxAll.checked) {
+          checkbox.checked = true;
+          item.tick = true;
+          console.log(cart);
+        } else {
+          checkbox.checked = false;
+          item.tick = false;
+          console.log(cart);
+        }
+        calculateTotalCheckBox();
+      });
+      //change từng cái riêng
+      checkbox.addEventListener("change", () => {
+        calculateTotalCheckBox();
+        if (checkbox.checked) {
+          console.log("đã tick: ", checkbox);
+          item.tick = true;
+          console.log(cart);
+        } else {
+          console.log("bỏ tick: ", checkbox);
+          item.tick = false;
+          console.log(cart);
+        }
+      });
+    });
+  }
+
+  function calculateTotalCheckBox() {
+    let total = 0;
+    let sumTotalMoney = 0;
+    let sumTotalSaveMoney = 0;
+
+    document.querySelectorAll(".cart-item").forEach((item) => {
+      const checkbox = item.querySelector(".product-main__checkbox");
+
+      const skuId = checkbox.dataset.skuId;
+      const cartItem = cart.find((c) => c.skuId === skuId);
+
+      // if (checkbox.checked) {
+      //   const price = unFormatNumber(
+      //     item.querySelector(".product-total").innerText
+      //   );
+      //   total += price;
+      // }
+
+      if (checkbox.checked) {
+        const skuId = cartItem.skuId;
+        const matchingProduct = getProductById(cartItem.productId);
+        sumTotalMoney +=
+          matchingProduct.priceInfo.currentlyPrice * cartItem.quantity;
+        sumTotalSaveMoney +=
+          (matchingProduct.priceInfo.originalPrice -
+            matchingProduct.priceInfo.currentlyPrice) *
+          cartItem.quantity;
+      }
+    });
+    document.querySelector(".total__bot--money-left-total-number").textContent =
+      formatNumber(sumTotalMoney);
+    document.querySelector(".total__bot--money-left-save-number").textContent =
+      formatNumber(sumTotalSaveMoney);
+  }
 
   // document.querySelectorAll(".js-update-link").forEach((link) => {
   //   link.addEventListener("click", () => {
@@ -231,7 +320,7 @@ export function renderCartItemContainer() {
   //   let value = parseInt(inputQuantity.value);
   //   if (value > 1) inputQuantity.value = value - 1;
   // });
-  calculateTotalMoneyFinal();
+  calculateTotalCheckBox();
   function calculateTotalMoneyFinal() {
     // "priceInfo": {
     //     "originalPrice": 250000.0,
@@ -289,7 +378,7 @@ export function renderCartItemContainer() {
       calculateTotalMoney(skuId);
       updateCartQuantityStraight();
       // test
-      calculateTotalMoneyFinal();
+      calculateTotalCheckBox();
 
       saveToStorage();
     });
@@ -309,7 +398,7 @@ export function renderCartItemContainer() {
       updateCartQuantityStraight();
 
       // test
-      calculateTotalMoneyFinal();
+      calculateTotalCheckBox();
 
       saveToStorage();
 
