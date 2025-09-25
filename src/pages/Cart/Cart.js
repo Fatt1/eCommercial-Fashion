@@ -51,7 +51,9 @@ export function renderCartItemContainer() {
             </div>
             <div class="product-size">
               <div class="dropdown">
-                <button class="dropdown-button dropdown-button__size">
+                <button class="dropdown-button dropdown-button__size"
+                  data-sku-id = ${skuId}
+                >
                   S <img src="../assets/dropdown-icon.svg" />
                 </button>
                 <ul class="dropdown-menu dropdown-menu__size">
@@ -70,7 +72,9 @@ export function renderCartItemContainer() {
                 <option value="XL">Hồng</option>
               </select> -->
               <div class="dropdown">
-                <button class="dropdown-button dropdown-button__color">
+                <button class="dropdown-button dropdown-button__color"
+                 data-sku-id = ${skuId} 
+                >
                   Do <img src="../assets/dropdown-icon.svg" />
                 </button>
                 <ul class="dropdown-menu dropdown-menu__color">
@@ -86,9 +90,9 @@ export function renderCartItemContainer() {
               <span class="product-price__old-price">${
                 matchingProduct.priceInfo.originalPrice
               }</span>
-              <span class="product-price__current-price">${
-                matchingProduct.priceInfo.currentlyPrice
-              }</span>
+              <span class="product-price__current-price product-price__current-price-${skuId}">${
+      matchingProduct.priceInfo.currentlyPrice
+    }</span>
             </div>
             <div class="product-quantity">
               <button class="product-quantity__button product-quantity__minus"
@@ -102,7 +106,7 @@ export function renderCartItemContainer() {
                 +
               </button>
             </div>
-            <div class="product-total product-total-${matchingProduct.id}">
+            <div class="product-total product-total-${skuId}">
             ${matchingProduct.priceInfo.currentlyPrice * cartItem.quantity}
             </div>
             <div class="product-action">
@@ -118,9 +122,6 @@ export function renderCartItemContainer() {
   // }
 
   // createPage();
-  // function calculateTotalMoney(productId,quantity,price) {
-  //    const totalPrice = quantity *
-  // }
 
   document.querySelectorAll(".product-action__button").forEach((button) => {
     button.addEventListener("click", () => {
@@ -221,14 +222,29 @@ export function renderCartItemContainer() {
   //   });
   // });
 
-  const minusButtons = document.querySelectorAll(".product-quantity__minus");
-  const plusButtons = document.querySelectorAll(".product-quantity__plus");
   // const inputQuantity = document.querySelector(".product-quantity__input");
 
   // minusButtons.addEventListener("click", () => {
   //   let value = parseInt(inputQuantity.value);
   //   if (value > 1) inputQuantity.value = value - 1;
   // });
+
+  function calculateTotalMoney(skuId) {
+    const price = Number(
+      document.querySelector(`.product-price__current-price-${skuId}`)
+        .textContent
+    );
+    console.log("price" + price);
+    const quantity = document.querySelector(
+      `.product-quantity-input-${skuId}`
+    ).value;
+    console.log("quantity" + quantity);
+    document.querySelector(`.product-total-${skuId}`).innerHTML =
+      price * quantity;
+  }
+
+  const minusButtons = document.querySelectorAll(".product-quantity__minus");
+  const plusButtons = document.querySelectorAll(".product-quantity__plus");
 
   minusButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -239,7 +255,10 @@ export function renderCartItemContainer() {
       let value = parseInt(inputQuantity.value);
       if (value > 1) inputQuantity.value = value - 1;
       const item = cart.find((c) => c.skuId === skuId);
-      if (item) item.quantity = inputQuantity.value;
+      if (item) item.quantity = Number(inputQuantity.value);
+
+      calculateTotalMoney(skuId);
+      updateCartQuantityStraight();
 
       saveToStorage();
     });
@@ -254,7 +273,9 @@ export function renderCartItemContainer() {
       let value = parseInt(inputQuantity.value);
       inputQuantity.value = value + 1;
       const item = cart.find((c) => c.skuId === skuId);
-      if (item) item.quantity = inputQuantity.value;
+      if (item) item.quantity = Number(inputQuantity.value);
+      calculateTotalMoney(skuId);
+      updateCartQuantityStraight();
       saveToStorage();
       console.log(cart);
       console.log("Da save");
