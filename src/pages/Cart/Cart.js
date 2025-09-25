@@ -7,6 +7,7 @@ import {
   updateCartQuantityStraight,
 } from "../../models/Cart.js";
 import { getProductById } from "../../services/productService.js";
+import { formatNumber, unFormatNumber } from "../../helper/formatNumber.js";
 // import  from "../../services/productService.js";
 // function render() {
 //   const root = document.getElementById("root");
@@ -51,7 +52,7 @@ export function renderCartItemContainer() {
             </div>
             <div class="product-size">
               <div class="dropdown">
-                <button class="dropdown-button dropdown-button__size"
+                <button class="dropdown-button dropdown-button__size dropdown-button__size-${skuId}"
                   data-sku-id = ${skuId}
                 >
                   S <img src="../assets/dropdown-icon.svg" />
@@ -72,7 +73,7 @@ export function renderCartItemContainer() {
                 <option value="XL">Hồng</option>
               </select> -->
               <div class="dropdown">
-                <button class="dropdown-button dropdown-button__color"
+                <button class="dropdown-button dropdown-button__color dropdown-button__color-${skuId}"
                  data-sku-id = ${skuId} 
                 >
                   Do <img src="../assets/dropdown-icon.svg" />
@@ -87,12 +88,12 @@ export function renderCartItemContainer() {
               </div>
             </div>
             <div class="product-price">
-              <span class="product-price__old-price">${
+              <span class="product-price__old-price">${formatNumber(
                 matchingProduct.priceInfo.originalPrice
-              }</span>
-              <span class="product-price__current-price product-price__current-price-${skuId}">${
+              )}</span>
+              <span class="product-price__current-price product-price__current-price-${skuId}">${formatNumber(
       matchingProduct.priceInfo.currentlyPrice
-    }</span>
+    )}</span>
             </div>
             <div class="product-quantity">
               <button class="product-quantity__button product-quantity__minus"
@@ -107,7 +108,9 @@ export function renderCartItemContainer() {
               </button>
             </div>
             <div class="product-total product-total-${skuId}">
-            ${matchingProduct.priceInfo.currentlyPrice * cartItem.quantity}
+            ${formatNumber(
+              matchingProduct.priceInfo.currentlyPrice * cartItem.quantity
+            )}
             </div>
             <div class="product-action">
               <button class="product-action__button"
@@ -228,19 +231,45 @@ export function renderCartItemContainer() {
   //   let value = parseInt(inputQuantity.value);
   //   if (value > 1) inputQuantity.value = value - 1;
   // });
+  calculateTotalMoneyFinal();
+  function calculateTotalMoneyFinal() {
+    // "priceInfo": {
+    //     "originalPrice": 250000.0,
+    //     "currentlyPrice": 250000.0
+    let sumTotalMoney = 0;
+    let sumTotalSaveMoney = 0;
+    cart.forEach((cartItem) => {
+      const skuId = cartItem.skuId;
+      const matchingProduct = getProductById(cartItem.productId);
+      sumTotalMoney +=
+        matchingProduct.priceInfo.currentlyPrice * cartItem.quantity;
+      sumTotalSaveMoney +=
+        (matchingProduct.priceInfo.originalPrice -
+          matchingProduct.priceInfo.currentlyPrice) *
+        cartItem.quantity;
+    });
+    sumTotalMoney;
+
+    document.querySelector(".total__bot--money-left-total-number").textContent =
+      formatNumber(sumTotalMoney);
+    document.querySelector(".total__bot--money-left-save-number").textContent =
+      formatNumber(sumTotalSaveMoney);
+  }
 
   function calculateTotalMoney(skuId) {
     const price = Number(
-      document.querySelector(`.product-price__current-price-${skuId}`)
-        .textContent
+      unFormatNumber(
+        document.querySelector(`.product-price__current-price-${skuId}`)
+          .textContent
+      )
     );
     console.log("price" + price);
     const quantity = document.querySelector(
       `.product-quantity-input-${skuId}`
     ).value;
     console.log("quantity" + quantity);
-    document.querySelector(`.product-total-${skuId}`).innerHTML =
-      price * quantity;
+    document.querySelector(`.product-total-${skuId}`).textContent =
+      formatNumber(price * quantity);
   }
 
   const minusButtons = document.querySelectorAll(".product-quantity__minus");
@@ -259,6 +288,8 @@ export function renderCartItemContainer() {
 
       calculateTotalMoney(skuId);
       updateCartQuantityStraight();
+      // test
+      calculateTotalMoneyFinal();
 
       saveToStorage();
     });
@@ -276,9 +307,14 @@ export function renderCartItemContainer() {
       if (item) item.quantity = Number(inputQuantity.value);
       calculateTotalMoney(skuId);
       updateCartQuantityStraight();
+
+      // test
+      calculateTotalMoneyFinal();
+
       saveToStorage();
-      console.log(cart);
-      console.log("Da save");
+
+      // console.log(cart);
+      // console.log("Da save");
     });
   });
 
@@ -290,8 +326,8 @@ export function renderCartItemContainer() {
   const btnSize = document.querySelector(".dropdown-button__size");
   const menuSize = document.querySelector(".dropdown-menu__size");
 
-  const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
-  const dropItemColors = document.querySelectorAll(".dropdown-item__color");
+  const btnSizes = document.querySelectorAll(".dropdown-button__size");
+  const menuSizes = document.querySelectorAll(".dropdown-menu__size");
 
   btnSize.addEventListener("click", () => {
     if (document.querySelector(".show") !== null) {
@@ -305,15 +341,9 @@ export function renderCartItemContainer() {
     menuSize.classList.toggle("active");
   });
 
-  dropItemSizes.forEach((item) => {
-    item.addEventListener("click", () => {
-      menuSize.classList.toggle("show");
-      menuSize.classList.toggle("active");
-    });
-  });
-
   const btnColor = document.querySelector(".dropdown-button__color");
   const menuColor = document.querySelector(".dropdown-menu__color");
+
   btnColor.addEventListener("click", () => {
     if (document.querySelector(".show") !== null) {
       const activeMenus = document.querySelectorAll(".show");
@@ -325,6 +355,17 @@ export function renderCartItemContainer() {
     menuColor.classList.toggle("active");
   });
 
+  const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
+  // click vô thì tắt
+  dropItemSizes.forEach((item) => {
+    item.addEventListener("click", () => {
+      menuSize.classList.toggle("show");
+      menuSize.classList.toggle("active");
+    });
+  });
+
+  const dropItemColors = document.querySelectorAll(".dropdown-item__color");
+  // click ben vô thì tắt
   dropItemColors.forEach((item) => {
     item.addEventListener("click", () => {
       menuColor.classList.toggle("show");
