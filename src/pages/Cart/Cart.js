@@ -145,7 +145,14 @@ export function renderCartItemContainer() {
     // Lấy tất cả checkbox
     const checkboxAll = document.querySelector(".product-main__checkbox-all");
     const checkboxes = document.querySelectorAll(".product-main__checkbox");
-
+    console.log("hello" + checkBoxCheckAll());
+    if (checkBoxCheckAll2() === true) {
+      checkboxAll.checked = true;
+    }
+    // if (checkBoxCheckAll() === true) {
+    //   checkboxAll.checked = true;
+    //   console.log("checkAll" + checkBoxCheckAll());
+    // }
     checkboxes.forEach((checkbox) => {
       const skuId = checkbox.dataset.skuId;
       const item = cart.find((c) => c.skuId === skuId);
@@ -164,10 +171,12 @@ export function renderCartItemContainer() {
         if (checkboxAll.checked) {
           checkbox.checked = true;
           item.tick = true;
+          saveToStorage();
           console.log(cart);
         } else {
           checkbox.checked = false;
           item.tick = false;
+          saveToStorage();
           console.log(cart);
         }
         calculateTotalCheckBox();
@@ -179,13 +188,47 @@ export function renderCartItemContainer() {
           console.log("đã tick: ", checkbox);
           item.tick = true;
           console.log(cart);
+          if (checkBoxCheckAll() === true) {
+            checkboxAll.checked = true;
+            console.log("checkAll" + checkBoxCheckAll());
+          }
+          saveToStorage();
         } else {
           console.log("bỏ tick: ", checkbox);
           item.tick = false;
           console.log(cart);
+          checkboxAll.checked = false;
+          saveToStorage();
         }
       });
     });
+  }
+
+  //check xem tất cả check box đã bật lên chưa
+  function checkBoxCheckAll() {
+    let isAll = true;
+    const checkboxes = document.querySelectorAll(".product-main__checkbox");
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked === false) {
+        isAll = false;
+        console.log("co false");
+      }
+    });
+    return isAll;
+  }
+  function checkBoxCheckAll2() {
+    let isAll = true;
+
+    const checkboxes = document.querySelectorAll(".product-main__checkbox");
+    checkboxes.forEach((checkbox) => {
+      const skuId = checkbox.dataset.skuId;
+      const item = cart.find((c) => c.skuId === skuId);
+      if (item.tick === false) {
+        isAll = false;
+        console.log("co false");
+      }
+    });
+    return isAll;
   }
 
   function calculateTotalCheckBox() {
