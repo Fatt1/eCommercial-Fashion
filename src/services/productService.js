@@ -308,6 +308,27 @@ function getProductsByCategoryId(categoryId) {
   return categoryProducts;
 }
 
+function getDetailOneSku(sku, productId) {
+  const product = dbContext.products.find((p) => p.id === productId);
+  const tierIndexes = sku.tierIndexes;
+
+  const selectedDetails = product.variations.map(
+    (variation, variationIndex) => {
+      const variationName = variation.name;
+      console.log(variation);
+      const variationOption =
+        variation.variationOptions[tierIndexes[variationIndex]];
+      let detailVariationOption;
+      if (variationName === "Màu sắc") {
+        detailVariationOption = getColorByCode(variationOption.id);
+      } else if (variationName === "Kích thước") {
+        detailVariationOption = getSizeById(variationOption.id);
+      }
+      return detailVariationOption;
+    }
+  );
+  return { sku, selectedDetails };
+}
 export {
   getAllProducts,
   getProductById,
@@ -318,4 +339,5 @@ export {
   getProductsByCategoryId,
   getSkusByProductId,
   searchProducts,
+  getDetailOneSku,
 };

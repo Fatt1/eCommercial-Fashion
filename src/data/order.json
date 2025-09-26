@@ -1,0 +1,43 @@
+{
+  "orders": [
+    {
+      "id": "ORD001",
+      "customerId": "CUST123",
+      "items": [
+        {
+          "productId": "PROD456",
+          "sku": {
+            "skuId": "SKU456-L-BLACK",
+            "name": "Đen, XL"
+          },
+          "name": "Áo Thun Unisex",
+          "quantity": 2,
+          "originalPrice": "300000",
+          "price": 250000
+        },
+        {
+          "productId": "PROD789",
+          "sku": {
+            "skuId": "SKU452L-BLACK",
+            "name": "Xanh, XL"
+          },
+          "name": "Quần Jeans Slim Fit",
+          "quantity": 1,
+          "originalPrice": "600000",
+          "price": 600000
+        }
+      ],
+      "totalApplyDiscount": 1000000,
+      "total": 1100000,
+      "street": "15 Lê Lợi",
+      "city": "TP. Hồ Chí Minh",
+      "ward": "Phường Bến Nghé",
+      "district": "Quận 1",
+      "feeShipping": 30000,
+      "paymentMethodId": "PM001",
+      "status": "Đã đặt hàng",
+      "createdAt": "2024-09-25T10:00:00.000Z",
+      "updatedAt": "2024-09-25T10:00:00.000Z"
+    }
+  ]
+}

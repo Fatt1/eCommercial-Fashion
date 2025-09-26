@@ -90,3 +90,24 @@ export function preventInputTextForNumberInput() {
     });
   });
 }
+export function generateOrderId() {
+  const now = new Date();
+
+  // 1. Tạo phần Ngày/Giờ (YYYYMMDD-HHmmss)
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+
+  const datePart = `${year}${month}${day}`;
+  const timePart = `${hours}${minutes}${seconds}`;
+
+  // 2. Tạo phần ngẫu nhiên (4 chữ số)
+  // Đảm bảo số ngẫu nhiên là 4 chữ số, giúp phân biệt các đơn hàng trong cùng một giây.
+  const randomPart = Math.floor(1000 + Math.random() * 9000);
+
+  // 3. Kết hợp lại
+  return `${datePart}-${timePart}-${randomPart}`;
+}

@@ -1,0 +1,64 @@
+{
+  "discounts": [
+    {
+      "id": "1",
+      "couponCode": "SUMMER20",
+      "name": "Giảm giá Mùa hè 20%",
+      "discountValue": 20,
+      "maxDiscountValue": 50000,
+      "minDiscountValue": 100000,
+      "startDate": "2025-06-01T00:00:00Z",
+      "endDate": "2025-08-31T23:59:59Z",
+      "type": "PERCENTAGE",
+      "isDelete": false
+    },
+    {
+      "id": "2",
+      "couponCode": "FREESHIP",
+      "name": "Miễn phí vận chuyển",
+      "discountValue": 30000,
+      "maxDiscountValue": 30000,
+      "minDiscountValue": 50000,
+      "startDate": "2025-09-01T00:00:00Z",
+      "endDate": "2025-12-31T23:59:59Z",
+      "type": "FIXED_AMOUNT",
+      "isDelete": false
+    },
+    {
+      "id": "3",
+      "couponCode": "NEWUSER100",
+      "name": "Giảm 100K cho người dùng mới",
+      "discountValue": 100000,
+      "maxDiscountValue": 100000,
+      "minDiscountValue": 250000,
+      "startDate": "2025-09-26T00:00:00Z",
+      "endDate": "2026-09-26T23:59:59Z",
+      "type": "FIXED_AMOUNT",
+      "isDelete": false
+    },
+    {
+      "id": "4",
+      "couponCode": "VIP30",
+      "name": "Ưu đãi Khách hàng VIP 30%",
+      "discountValue": 30,
+      "maxDiscountValue": 150000,
+      "minDiscountValue": 500000,
+      "startDate": "2025-01-01T00:00:00Z",
+      "endDate": "2025-12-31T23:59:59Z",
+      "type": "PERCENTAGE",
+      "isDelete": false
+    },
+    {
+      "id": "5",
+      "couponCode": "FLASH50",
+      "name": "Flash Sale Giảm 50K",
+      "discountValue": 50000,
+      "maxDiscountValue": 50000,
+      "minDiscountValue": 0,
+      "startDate": "2025-09-27T10:00:00Z",
+      "endDate": "2025-09-27T14:00:00Z",
+      "type": "FIXED_AMOUNT",
+      "isDelete": false
+    }
+  ]
+}

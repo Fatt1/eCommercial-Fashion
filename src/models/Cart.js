@@ -1,5 +1,6 @@
 export let cart;
 loadFromStorage();
+// nên đổi tên thành getCart() để có ý nghĩa có ràng hơn
 export function loadFromStorage() {
   cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) {
