@@ -125,7 +125,8 @@ export function renderCartItemContainer() {
         .map(
           (option) => `
                         <li class="dropdown-item dropdown-item__color" 
-                          data-index-color-sku="${variationColorIndex++}">
+                          data-index-color-sku="${variationColorIndex++}"
+                          data-sku-id="${skuId}">
                             ${option.name}
                         </li>
                       `
@@ -153,7 +154,8 @@ export function renderCartItemContainer() {
         .map(
           (option) => `
                         <li class="dropdown-item dropdown-item__size" 
-                          data-index-size-sku="${variationSizeIndex++}">
+                          data-index-size-sku="${variationSizeIndex++}"
+                          data-sku-id="${skuId}">
                             ${option.id}
                         </li>
                       `
@@ -444,132 +446,154 @@ export function renderCartItemContainer() {
       formatNumber(price * quantity);
   }
 
-  const minusButtons = document.querySelectorAll(".product-quantity__minus");
-  const plusButtons = document.querySelectorAll(".product-quantity__plus");
+  handleClickQuantityButton();
+  function handleClickQuantityButton() {
+    const minusButtons = document.querySelectorAll(".product-quantity__minus");
+    const plusButtons = document.querySelectorAll(".product-quantity__plus");
 
-  minusButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const skuId = button.dataset.skuId;
-      const inputQuantity = document.querySelector(
-        `.product-quantity-input-${skuId}`
-      );
-      let value = parseInt(inputQuantity.value);
-      if (value > 1) inputQuantity.value = value - 1;
-      const item = cart.find((c) => c.skuId === skuId);
-      if (item) item.quantity = Number(inputQuantity.value);
+    minusButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const skuId = button.dataset.skuId;
+        const inputQuantity = document.querySelector(
+          `.product-quantity-input-${skuId}`
+        );
+        let value = parseInt(inputQuantity.value);
+        if (value > 1) inputQuantity.value = value - 1;
+        const item = cart.find((c) => c.skuId === skuId);
+        if (item) item.quantity = Number(inputQuantity.value);
 
-      calculateTotalMoney(skuId);
-      updateCartQuantityStraight();
-      // test
-      calculateTotalCheckBox();
+        calculateTotalMoney(skuId);
+        updateCartQuantityStraight();
+        // test
+        calculateTotalCheckBox();
 
-      saveToStorage();
+        saveToStorage();
+      });
     });
-  });
 
-  plusButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const skuId = button.dataset.skuId;
-      const inputQuantity = document.querySelector(
-        `.product-quantity-input-${skuId}`
-      );
-      let value = parseInt(inputQuantity.value);
-      inputQuantity.value = value + 1;
-      const item = cart.find((c) => c.skuId === skuId);
-      if (item) item.quantity = Number(inputQuantity.value);
-      calculateTotalMoney(skuId);
-      updateCartQuantityStraight();
+    plusButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const skuId = button.dataset.skuId;
+        const inputQuantity = document.querySelector(
+          `.product-quantity-input-${skuId}`
+        );
+        let value = parseInt(inputQuantity.value);
+        inputQuantity.value = value + 1;
+        const item = cart.find((c) => c.skuId === skuId);
+        if (item) item.quantity = Number(inputQuantity.value);
+        calculateTotalMoney(skuId);
+        updateCartQuantityStraight();
 
-      // test
-      calculateTotalCheckBox();
+        // test
+        calculateTotalCheckBox();
 
-      saveToStorage();
+        saveToStorage();
 
-      // console.log(cart);
-      // console.log("Da save");
+        // console.log(cart);
+        // console.log("Da save");
+      });
     });
-  });
-
+  }
   // plusButton.addEventListener("click", () => {
   //   let value = parseInt(inputQuantity.value);
   //   inputQuantity.value = value + 1;
   // });
 
-  const btnSize = document.querySelector(".dropdown-button__size");
-  const menuSize = document.querySelector(".dropdown-menu__size");
+  handleClickMenuSizeColor();
+  function handleClickMenuSizeColor() {
+    //add toggle on/off menu khi click vào btn size&color
+    const btnSizes = document.querySelectorAll(".dropdown-button__size");
 
-  const btnSizes = document.querySelectorAll(".dropdown-button__size");
-  const menuSizes = document.querySelectorAll(".dropdown-menu__size");
+    btnSizes.forEach((btnSize) => {
+      btnSize.addEventListener("click", () => {
+        const skuId = btnSize.dataset.skuId;
+        const menuSize = document.querySelector(
+          `.dropdown-menu__size-${skuId}`
+        );
+        if (document.querySelector(".show") !== null) {
+          const activeMenus = document.querySelectorAll(".show");
+          activeMenus.forEach((activeMenu) => {
+            if (activeMenu !== menuSize) activeMenu.classList.remove("show");
+          });
+        }
 
-  btnSize.addEventListener("click", () => {
-    if (document.querySelector(".show") !== null) {
-      const activeMenus = document.querySelectorAll(".show");
-      activeMenus.forEach((activeMenu) => {
-        if (activeMenu !== menuSize) activeMenu.classList.remove("show");
+        menuSize.classList.toggle("show");
+        menuSize.classList.toggle("active");
       });
-    }
+    });
 
-    menuSize.classList.toggle("show");
-    menuSize.classList.toggle("active");
-  });
+    //add toggle on/off menu khi click vào btn size&color
+    const btnColors = document.querySelectorAll(".dropdown-button__color");
 
-  const btnColor = document.querySelector(".dropdown-button__color");
-  const menuColor = document.querySelector(".dropdown-menu__color");
-
-  btnColor.addEventListener("click", () => {
-    if (document.querySelector(".show") !== null) {
-      const activeMenus = document.querySelectorAll(".show");
-      activeMenus.forEach((activeMenu) => {
-        if (activeMenu !== menuColor) activeMenu.classList.remove("show");
+    btnColors.forEach((btnColor) => {
+      btnColor.addEventListener("click", () => {
+        const skuId = btnColor.dataset.skuId;
+        const menuColor = document.querySelector(
+          `.dropdown-menu__color-${skuId}`
+        );
+        if (document.querySelector(".show") !== null) {
+          const activeMenus = document.querySelectorAll(".show");
+          activeMenus.forEach((activeMenu) => {
+            if (activeMenu !== menuColor) activeMenu.classList.remove("show");
+          });
+        }
+        menuColor.classList.toggle("show");
+        menuColor.classList.toggle("active");
       });
-    }
-    menuColor.classList.toggle("show");
-    menuColor.classList.toggle("active");
-  });
-
-  const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
-  // click vô thì tắt
-  dropItemSizes.forEach((item) => {
-    item.addEventListener("click", () => {
-      menuSize.classList.toggle("show");
-      menuSize.classList.toggle("active");
     });
-  });
 
-  const dropItemColors = document.querySelectorAll(".dropdown-item__color");
-  // click ben vô thì tắt
-  dropItemColors.forEach((item) => {
-    item.addEventListener("click", () => {
-      menuColor.classList.toggle("show");
-      menuColor.classList.toggle("active");
+    const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
+    // click vô thì tắt
+    dropItemSizes.forEach((item) => {
+      const skuId = item.dataset.skuId;
+      item.addEventListener("click", () => {
+        const menuSize = document.querySelector(
+          `.dropdown-menu__size-${skuId}`
+        );
+        menuSize.classList.toggle("show");
+        menuSize.classList.toggle("active");
+      });
     });
-  });
 
-  // Click ngoài để đóng
-  document.addEventListener("click", (e) => {
-    // Nếu click không nằm trong menuSize và không phải button
-    if (!menuSize.contains(e.target) && !btnSize.contains(e.target)) {
-      menuSize.classList.remove("show", "active");
-    }
-    // Nếu click không nằm trong menuColor và không phải button
-    if (!menuColor.contains(e.target) && !btnColor.contains(e.target)) {
-      menuColor.classList.remove("show", "active");
-    }
-  });
+    const dropItemColors = document.querySelectorAll(".dropdown-item__color");
+    // click ben vô thì tắt
+    dropItemColors.forEach((item) => {
+      const skuId = item.dataset.skuId;
+      item.addEventListener("click", () => {
+        const menuColor = document.querySelector(
+          `.dropdown-menu__color-${skuId}`
+        );
+        menuColor.classList.toggle("show");
+        menuColor.classList.toggle("active");
+      });
+    });
 
-  // document.addEventListener("click", () => {
-  //   if (document.querySelector(".show") !== null) {
-  //     const activeMenus = document.querySelectorAll(".show");
-  //     activeMenus.forEach((activeMenu) => {
-  //       activeMenu.classList.remove("show");
-  //     });
-  //   }
-  // });
-  // menuSize.addEventListener("transitionend", () => {
-  //   if (!menuSize.classList.contains("show")) {
-  //     menuSize.style.display = "none";
-  //   }
-  // });
+    // Click ngoài để đóng
+    document.addEventListener("click", (e) => {
+      // Nếu click không nằm trong menuSize và không phải button
+      if (!menuSize.contains(e.target) && !btnSize.contains(e.target)) {
+        menuSize.classList.remove("show", "active");
+      }
+      // Nếu click không nằm trong menuColor và không phải button
+      if (!menuColor.contains(e.target) && !btnColor.contains(e.target)) {
+        menuColor.classList.remove("show", "active");
+      }
+    });
+
+    // document.addEventListener("click", () => {
+    //   if (document.querySelector(".show") !== null) {
+    //     const activeMenus = document.querySelectorAll(".show");
+    //     activeMenus.forEach((activeMenu) => {
+    //       activeMenu.classList.remove("show");
+    //     });
+    //   }
+    // });
+    // menuSize.addEventListener("transitionend", () => {
+    //   if (!menuSize.classList.contains("show")) {
+    //     menuSize.style.display = "none";
+    //   }
+    // });
+  }
 }
 
 renderCartItemContainer();
