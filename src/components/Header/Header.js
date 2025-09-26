@@ -4,6 +4,10 @@ import {
 } from "../../services/categoryService.js";
 import { logout } from "../../services/authenticateService.js";
 import { loadProductPage } from "../../pages/Product/Product.js";
+import {
+  updateCartQuantity,
+  updateCartQuantityStraight,
+} from "../../models/Cart.js";
 import { Login, setUpLoginForm } from "../Login/Login.js";
 export default function Header(selectedTab) {
   return ` <header>
@@ -53,13 +57,14 @@ export default function Header(selectedTab) {
                     class="cart-icon"
                   />
                </a>
-                <span class="cart-quantity">0</span>
+                <span class="cart-quantity"></span>
               </div>
             </div>
         </div>
       </div>
     </header>`;
 }
+
 function generateCategorySubMenu() {
   const allCategories = getAllCategory();
   let content = "";
@@ -94,6 +99,7 @@ function generateCategorySubMenu() {
 }
 
 export function handleClickHeader() {
+  updateCartQuantityStraight();
   // Xử lí sự kiện khi click vào các tab ở header
   document.querySelectorAll(".nav-item").forEach((liHeader) => {
     liHeader.addEventListener("click", (event) => {

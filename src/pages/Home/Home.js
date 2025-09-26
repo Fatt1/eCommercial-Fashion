@@ -14,6 +14,7 @@ import ReviewSection from "../Home/components/ReviewSection.js";
 import { getAllProducts } from "../../services/productService.js";
 
 import { handClickProductList } from "../../components/ProductList/ProductList.js";
+import { updateCartQuantity } from "../../models/Cart.js";
 
 const products = getAllProducts({}).items;
 function renderHome() {
@@ -38,6 +39,7 @@ function setupHome() {
   handleClickHeader();
 
   handClickProductList();
+  updateCartQuantity("cart-quantity");
 }
 function handleClickHome() {
   document.addEventListener("click", (event) => {

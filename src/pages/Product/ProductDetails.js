@@ -4,11 +4,18 @@ import Header, { handleClickHeader } from "../../components/Header/Header.js";
 import ProductList, {
   handClickProductList,
 } from "../../components/ProductList/ProductList.js";
+import {
+  addToCart,
+  updateCartQuantity,
+  updateCartQuantityStraight,
+} from "../../models/Cart.js";
 import { getSkuByProductId } from "../../models/Sku.js";
 import {
   getAllProducts,
   getProductById,
 } from "../../services/productService.js";
+import { cart } from "../../models/Cart.js";
+import { preventInputTextForNumberInput } from "../../helper/helper.js";
 //mai mốt sẽ viết thêm hàm lấy các sản phẩm liên quan
 const relatedProducts = getAllProducts({}).items;
 function renderProductDetailHtml(productId) {
@@ -162,9 +169,9 @@ function renderProductDetailHtml(productId) {
                   Số lượng
                 </p>
               <div class="action-quantity">
-                  <button class="decrease-quantity"><span class="line"></span></button>
-                  <input value="1" class="quantity-input" type="text" >
-                  <button class="increase-quantity">+</button>
+                  <button class="decrease-quantity product-quantity__minus"><span class="line"></span></button>
+                  <input value="1" class="quantity-input number-input product-quantity__input" type="text" >
+                  <button class="increase-quantity product-quantity__plus">+</button>
               </div>
               <span class="available-quantity">499 sản phẩm có sẵn</span>
               </div>
@@ -239,9 +246,13 @@ export function loadProductDetail(productId) {
   handleClickHeader();
   handClickProductList();
 
-  addedMessageAfterClickButton();
+  // addedMessageAfterClickButton();
 
   handleClickVariation();
+  plusMinusBtn();
+  addToCartBtn();
+  updateCartQuantityStraight();
+  preventInputTextForNumberInput();
 }
 function generateAttributeContent(product) {
   let content = "";
@@ -329,6 +340,35 @@ function checkEnableAddToCart() {
 function handleClickVariation() {
   handleClickVariationColor();
   handleClickVariationSize();
+}
+
+function addToCartBtn() {
+  document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.productId;
+      addedMessageAfterClickButton(productId);
+      const sku = getSkuByProductId(button.dataset.productId, tierIndexes);
+      addToCart(sku.id, productId);
+      updateCartQuantity("cart-quantity");
+      console.log(cart);
+    });
+  });
+}
+
+function plusMinusBtn() {
+  const minusButtons = document.querySelector(".product-quantity__minus");
+  const plusButton = document.querySelector(".product-quantity__plus");
+  const inputQuantity = document.querySelector(".product-quantity__input");
+
+  minusButtons.addEventListener("click", () => {
+    let value = parseInt(inputQuantity.value);
+    if (value > 1) inputQuantity.value = value - 1;
+  });
+
+  plusButton.addEventListener("click", () => {
+    let value = parseInt(inputQuantity.value);
+    inputQuantity.value = value + 1;
+  });
 }
 
 // document.querySelector(".add-to-cart-btn").addEventListener("click", () => {

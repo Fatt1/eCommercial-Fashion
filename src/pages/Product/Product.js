@@ -4,12 +4,14 @@ import { autoSlideId } from "../../components/Carousel/Carousel.js";
 import ProductSection from "./components/ProductSection.js";
 import { timerIntervalId } from "../../components/PromotionSection/Promotion.js";
 import { handleClickProductSection } from "./components/ProductSection.js";
+import { updateCartQuantityStraight } from "../../models/Cart.js";
 function renderProduct(categoryId) {
   document.getElementById("root").innerHTML = `
   ${Header("san-pham")}
     
      ${ProductSection(categoryId)}
      ${Footer()}
+     
   `;
 }
 function setupProduct() {
@@ -29,6 +31,7 @@ function setupProduct() {
     });
   handleClickHeader();
   handleClickProductSection();
+  updateCartQuantityStraight();
 }
 export let filterParams = {};
 export let isSearching = false;
