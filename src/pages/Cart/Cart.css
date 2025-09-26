@@ -563,6 +563,8 @@ footer {
 }
 .row-1-col-3 {
   width: 10%;
+  display: flex;
+  justify-content: end;
 }
 .payments {
   display: flex;
@@ -599,6 +601,8 @@ footer {
   border: none;
   outline: none;
   margin: 10px;
+  position: relative;
+  right: -130px;
 }
 .inform-bar {
   background-color: #ffffff;
