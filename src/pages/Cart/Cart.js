@@ -59,34 +59,18 @@ export function renderCartItemContainer() {
                 >
                   S <img src="../assets/dropdown-icon.svg" />
                 </button>
-                <ul class="dropdown-menu dropdown-menu__size">
-                  <li class="dropdown-item dropdown-item__size">S</li>
-                  <li class="dropdown-item dropdown-item__size">M</li>
-                  <li class="dropdown-item dropdown-item__size">L</li>
-                  <li class="dropdown-item dropdown-item__size">XL</li>
-                </ul>
+                ${renderDropDownMenuSize(matchingProduct, skuId)}
               </div>
             </div>
             <div class="product-color">
-              <!-- <select class="product-color__select" name="" id="color">
-                <option value="S">Đỏ</option>
-                <option value="M">Nâu</option>
-                <option value="L">Đen</option>
-                <option value="XL">Hồng</option>
-              </select> -->
+              
               <div class="dropdown">
                 <button class="dropdown-button dropdown-button__color dropdown-button__color-${skuId}"
                  data-sku-id = ${skuId} 
                 >
                   Do <img src="../assets/dropdown-icon.svg" />
                 </button>
-                <ul class="dropdown-menu dropdown-menu__color">
-                  <li class="dropdown-item dropdown-item__color">Xanh Lam</li>
-                  <li class="dropdown-item dropdown-item__color">Xanh Duong</li>
-                  <li class="dropdown-item dropdown-item__color">Vang</li>
-                  <li class="dropdown-item dropdown-item__color">Do Nau</li>
-                  <li class="dropdown-item dropdown-item__color">Xam Khoi</li>
-                </ul>
+                ${renderDropDownMenuColor(matchingProduct, skuId)}
               </div>
             </div>
             <div class="product-price">
@@ -122,6 +106,63 @@ export function renderCartItemContainer() {
           </div>
     `;
   });
+
+  function renderDropDownMenuColor(product, skuId) {
+    let variationColor = undefined;
+    product.variations.forEach((variation) => {
+      if (variation.name === "Màu sắc") {
+        variationColor = variation;
+      }
+    });
+    let variationColorContent = "";
+    // let variationSizeContent = "";
+    // tạo content cho variation color
+    if (variationColor) {
+      let variationColorIndex = 0;
+      variationColorContent += `
+    <ul class="dropdown-menu dropdown-menu__color dropdown-menu__color-${skuId}">
+      ${variationColor.variationOptions
+        .map(
+          (option) => `
+                        <li class="dropdown-item dropdown-item__color" 
+                          data-index-color-sku="${variationColorIndex++}">
+                            ${option.name}
+                        </li>
+                      `
+        )
+        .join(" ")}
+    </ul>`;
+      return variationColorContent;
+    }
+  }
+  function renderDropDownMenuSize(product, skuId) {
+    let variationSize = undefined;
+    product.variations.forEach((variation) => {
+      if (variation.name !== "Màu sắc") {
+        variationSize = variation;
+      }
+    });
+    let variationSizeContent = "";
+    // let variationSizeContent = "";
+    // tạo content cho variation color
+    if (variationSize) {
+      let variationSizeIndex = 0;
+      variationSizeContent += `
+    <ul class="dropdown-menu dropdown-menu__size dropdown-menu__size-${skuId}">
+      ${variationSize.variationOptions
+        .map(
+          (option) => `
+                        <li class="dropdown-item dropdown-item__size" 
+                          data-index-size-sku="${variationSizeIndex++}">
+                            ${option.id}
+                        </li>
+                      `
+        )
+        .join(" ")}
+    </ul>`;
+      return variationSizeContent;
+    }
+  }
   // console.log(cartSummaryHTML);
   document.querySelector(".cart-item-container").innerHTML = cartSummaryHTML;
   // }

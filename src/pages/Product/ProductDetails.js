@@ -33,14 +33,15 @@ function renderProductDetailHtml(productId) {
   // tạo content cho variation color
   if (variationColor) {
     let variationColorIndex = 0;
-    variationColorContent += `<div class="color-variation variation-group">
+    variationColorContent += `
+              <div class="color-variation variation-group">
                 <p class="name-variation">
                   ${variationColor.name}
                 </p>
                 <div class="variation-values">
                   ${variationColor.variationOptions
                     .map(
-                      (option) => ` 
+                      (option) => `
                   <button class="variation-value color-choice"
                   data-product-id="${productId}" data-index-color-sku="${variationColorIndex++}">
                     <img
