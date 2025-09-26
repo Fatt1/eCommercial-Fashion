@@ -5,6 +5,7 @@ import { getColorByCode } from "./colorService.js";
 import { getSubCategoryIds } from "./categoryService.js";
 import { getSizeById } from "./sizeService.js";
 import { getAttributeById } from "./attributeService.js";
+import { generateAccessToken } from "./paymentService.js";
 const dbContext = await getDbContextFromLocalStorage();
 
 function addProduct(product) {

@@ -26,3 +26,9 @@ export const ORDER_STATUS = {
   REFUNDED: "REFUNDED", // Đã hoàn tiền (Nếu có)
   RETURNED: "RETURNED", // Đã bị trả lại
 };
+
+export const PAY_CLIENT_ID =
+  "AWX03Hr4m9SF6hKtpRlcfF2oG1l_CFxXYqhvYHyanxTDVAce9znVExv43NY_hxShcUGJftk2hAyrbA33";
+export const PAY_SECRET =
+  "EB6dKWMDcZ5ehLZbv0AYr5irBWErA8CEL7aOOutUQjxnfFvi027G7-ZyXJAF5qkT-eSe3iXyzwdg8geJ";
+export const PAY_BASE_URL = "https://api-m.sandbox.paypal.com";
