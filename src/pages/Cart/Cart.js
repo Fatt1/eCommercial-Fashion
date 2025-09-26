@@ -8,6 +8,7 @@ import {
 } from "../../models/Cart.js";
 import { getProductById } from "../../services/productService.js";
 import { formatNumber, unFormatNumber } from "../../helper/formatNumber.js";
+import { getSkuBySkuId } from "../../models/Sku.js";
 // import  from "../../services/productService.js";
 // function render() {
 //   const root = document.getElementById("root");
@@ -57,7 +58,10 @@ export function renderCartItemContainer() {
                 <button class="dropdown-button dropdown-button__size dropdown-button__size-${skuId}"
                   data-sku-id = ${skuId}
                 >
-                  S <img src="../assets/dropdown-icon.svg" />
+                  ${renderSizeButton(
+                    matchingProduct,
+                    skuId
+                  )} <img src="../assets/dropdown-icon.svg" />
                 </button>
                 ${renderDropDownMenuSize(matchingProduct, skuId)}
               </div>
@@ -68,7 +72,11 @@ export function renderCartItemContainer() {
                 <button class="dropdown-button dropdown-button__color dropdown-button__color-${skuId}"
                  data-sku-id = ${skuId} 
                 >
-                  Do <img src="../assets/dropdown-icon.svg" />
+                  ${renderColorButton(
+                    matchingProduct,
+                    skuId
+                  )} <img src="../assets/dropdown-icon.svg" />
+                  
                 </button>
                 ${renderDropDownMenuColor(matchingProduct, skuId)}
               </div>
@@ -108,6 +116,7 @@ export function renderCartItemContainer() {
   });
 
   function renderDropDownMenuColor(product, skuId) {
+    const sku = getSkuBySkuId(skuId, product.id);
     let variationColor = undefined;
     product.variations.forEach((variation) => {
       if (variation.name === "Màu sắc") {
@@ -122,15 +131,20 @@ export function renderCartItemContainer() {
       variationColorContent += `
     <ul class="dropdown-menu dropdown-menu__color dropdown-menu__color-${skuId}">
       ${variationColor.variationOptions
-        .map(
-          (option) => `
+        .map((option) => {
+          if (variationColorIndex === sku.tierIndexes[0]) {
+            console.log(
+              document.querySelector(`.dropdown-button__color-${skuId}`)
+            );
+          }
+          return `
                         <li class="dropdown-item dropdown-item__color" 
                           data-index-color-sku="${variationColorIndex++}"
                           data-sku-id="${skuId}">
                             ${option.name}
                         </li>
-                      `
-        )
+                      `;
+        })
         .join(" ")}
     </ul>`;
       return variationColorContent;
@@ -165,6 +179,57 @@ export function renderCartItemContainer() {
       return variationSizeContent;
     }
   }
+  function renderColorButton(product, skuId) {
+    const sku = getSkuBySkuId(skuId, product.id);
+    let variationColor = undefined;
+    product.variations.forEach((variation) => {
+      if (variation.name === "Màu sắc") {
+        variationColor = variation;
+      }
+    });
+    let variationColorContent = "";
+    let colorName;
+    // let variationSizeContent = "";
+    // tạo content cho variation color
+    if (variationColor) {
+      let variationColorIndex = 0;
+      variationColor.variationOptions.map((option) => {
+        if (variationColorIndex++ === sku.tierIndexes[0]) {
+          console.log(
+            `${option.name} <img src="../assets/dropdown-icon.svg" />`
+          );
+          colorName = option.name;
+        }
+      });
+    }
+    return colorName;
+  }
+  function renderSizeButton(product, skuId) {
+    const sku = getSkuBySkuId(skuId, product.id);
+    let variationSize = undefined;
+    product.variations.forEach((variation) => {
+      if (variation.name !== "Màu sắc") {
+        variationSize = variation;
+      }
+    });
+    let variationSizeContent = "";
+    let sizeName;
+    // let variationSizeContent = "";
+    // tạo content cho variation color
+    if (variationSize) {
+      let variationSizeIndex = 0;
+      variationSize.variationOptions.map((option) => {
+        if (variationSizeIndex++ === sku.tierIndexes[0]) {
+          console.log(
+            `${option.name} <img src="../assets/dropdown-icon.svg" />`
+          );
+          sizeName = option.id;
+        }
+      });
+    }
+    return sizeName;
+  }
+
   // console.log(cartSummaryHTML);
   document.querySelector(".cart-item-container").innerHTML = cartSummaryHTML;
   // }
@@ -568,17 +633,18 @@ export function renderCartItemContainer() {
       });
     });
 
+    //chưa chỉnh lại cái này nó vẫn chưa active khi chuyển thành nhiều item
     // Click ngoài để đóng
-    document.addEventListener("click", (e) => {
-      // Nếu click không nằm trong menuSize và không phải button
-      if (!menuSize.contains(e.target) && !btnSize.contains(e.target)) {
-        menuSize.classList.remove("show", "active");
-      }
-      // Nếu click không nằm trong menuColor và không phải button
-      if (!menuColor.contains(e.target) && !btnColor.contains(e.target)) {
-        menuColor.classList.remove("show", "active");
-      }
-    });
+    // document.addEventListener("click", (e) => {
+    //   // Nếu click không nằm trong menuSize và không phải button
+    //   if (!menuSize.contains(e.target) && !btnSize.contains(e.target)) {
+    //     menuSize.classList.remove("show", "active");
+    //   }
+    //   // Nếu click không nằm trong menuColor và không phải button
+    //   if (!menuColor.contains(e.target) && !btnColor.contains(e.target)) {
+    //     menuColor.classList.remove("show", "active");
+    //   }
+    // });
 
     // document.addEventListener("click", () => {
     //   if (document.querySelector(".show") !== null) {
@@ -595,5 +661,7 @@ export function renderCartItemContainer() {
     // });
   }
 }
+
+function handleClickDropDownItem(skuId) {}
 
 renderCartItemContainer();
