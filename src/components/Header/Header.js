@@ -125,8 +125,9 @@ export function handleClickHeader() {
 }
 function checkLoggedUser() {
   const user = localStorage.getItem("user_info");
+
   if (user) {
-    setupDropdownAfterLogin(user.email);
+    setupDropdownAfterLogin(JSON.parse(user).email);
   } else {
     handleLoginLink();
   }
