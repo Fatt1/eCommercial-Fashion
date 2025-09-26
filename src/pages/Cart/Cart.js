@@ -225,7 +225,6 @@ export function renderCartItemContainer() {
       const item = cart.find((c) => c.skuId === skuId);
       if (item.tick === false) {
         isAll = false;
-        console.log("co false");
       }
     });
     return isAll;
