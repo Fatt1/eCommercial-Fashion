@@ -19,7 +19,6 @@ async function setDataFromJsonIntoDbContext() {
     brands,
     attributes,
     users,
-    saveChanges: saveDbContextToLocalStorage,
   };
 }
 
@@ -43,4 +42,8 @@ async function getDbContextFromLocalStorage() {
 function saveDbContextToLocalStorage(dbContext) {
   localStorage.setItem(DB_KEY, JSON.stringify(dbContext));
 }
-export { loadDataToLocalStorage, getDbContextFromLocalStorage };
+export {
+  loadDataToLocalStorage,
+  getDbContextFromLocalStorage,
+  saveDbContextToLocalStorage,
+};

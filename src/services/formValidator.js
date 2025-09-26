@@ -15,6 +15,13 @@ export class FormValidator {
       const value = inputElem.value;
       const fieldConfig = this.config[fieldName];
       const validator = new Validation(value);
+      /*
+      
+      {
+      email: {isRequire: "Email không đc bỏ trống", isEmail: "Ko khớp"}
+      password: {isRequire: "Password ko đc bỏ trống"}
+      }
+      */
       if (fieldConfig.isRequired) {
         validator.isRequired(fieldConfig.isRequired);
       }
@@ -41,6 +48,12 @@ export class FormValidator {
           fieldConfig.isRange.min,
           fieldConfig.isRange.max,
           fieldConfig.isRange.message
+        );
+      }
+      if (fieldConfig.checkConfirmPassword) {
+        validator.checkConfirmPassword(
+          document.getElementById("password").value,
+          fieldConfig.checkConfirmPassword.message
         );
       }
       if (validator.errors.length > 0) {

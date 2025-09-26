@@ -103,3 +103,34 @@ button:hover {
   opacity: 0.4;
   visibility: visible;
 }
+/* Form-Btn */
+.form-btn {
+  background-color: black;
+  width: 100%;
+  height: 40px;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+.form-btn:visited {
+  color: white;
+}
+.form-btn:hover {
+  color: black;
+  background-color: white;
+}
+
+.form-btn:active {
+  color: white;
+  background-color: black;
+}
+
+/* Loại bỏ biểu tượng con mắt mặc định trong Edge/Chrome */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none; /* Dành cho Edge cũ */
+}
+input[type="password"]::-webkit-reveal,
+input[type="password"]::-webkit-contacts-auto-fill-button {
+  display: none !important; /* Dành cho Chrome/Edge mới */
+}

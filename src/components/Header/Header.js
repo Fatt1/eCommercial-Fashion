@@ -9,6 +9,7 @@ import {
   updateCartQuantityStraight,
 } from "../../models/Cart.js";
 import { Login, setUpLoginForm } from "../Login/Login.js";
+import Register, { setupRegisterForm } from "../Register/Register.js";
 export default function Header(selectedTab) {
   return ` <header>
         <div class="container">
@@ -123,6 +124,7 @@ export function handleClickHeader() {
   handleSearching();
   checkLoggedUser();
 }
+// Kiểm tra xem người đăng nhập hay chưa để hiện thị thông tin user hoặc ko hiện thị nếu chưa đăng nhập
 function checkLoggedUser() {
   const user = localStorage.getItem("user_info");
 
@@ -130,8 +132,10 @@ function checkLoggedUser() {
     setupDropdownAfterLogin(JSON.parse(user).email);
   } else {
     handleLoginLink();
+    handleRegisterLink();
   }
 }
+// xử lí khi người dùng nhấn vào nút logout
 function handleLogoutClick() {
   const userId = JSON.parse(localStorage.getItem("user_info")).id;
   const response = logout(userId);
@@ -143,8 +147,10 @@ function handleLogoutClick() {
                 <a class="register-link">Đăng Kí</a>`;
     document.querySelector(".avatar-user").style.display = "none";
     handleLoginLink();
+    handleRegisterLink();
   }
 }
+// Xử lí khi mà người dùng nhấn vào thanh tìm kiếm
 function handleSearching() {
   const searchBtn = document.querySelector(".search-icon");
 
@@ -152,24 +158,34 @@ function handleSearching() {
     loadProductPage(null, true);
   });
   const searchInput = document.querySelector(".search");
+  // Khi người dùng nhấn nút enter
   searchInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
       loadProductPage(null, true);
     }
   });
 }
-
+function handleRegisterLink() {
+  document.querySelector(".register-link").addEventListener("click", () => {
+    document.getElementById("register-login").innerHTML = Register();
+    setupRegisterForm();
+    renderOverlay();
+  });
+}
+function renderOverlay() {
+  document.querySelector(".overlay").classList.add("show");
+  document.body.style.overflow = "hidden";
+  document.getElementById("register-login").style.left =
+    Math.round(
+      document.body.clientWidth / 2 -
+        document.getElementById("register-login").clientWidth / 2
+    ) + "px";
+}
 export function handleLoginLink() {
-  document.querySelector(".login-link").addEventListener("click", (event) => {
-    document.querySelector(".overlay").classList.add("show");
-    document.body.style.overflow = "hidden";
+  document.querySelector(".login-link").addEventListener("click", () => {
     document.getElementById("register-login").innerHTML = Login();
     setUpLoginForm();
-    document.getElementById("register-login").style.left =
-      Math.round(
-        document.body.clientWidth / 2 -
-          document.getElementById("register-login").clientWidth / 2
-      ) + "px";
+    renderOverlay();
   });
 }
 export function setupDropdownAfterLogin(email) {
@@ -185,7 +201,6 @@ export function setupDropdownAfterLogin(email) {
   // Thiết lập event hover cho dropdown nếu user đã đăng nhập
   const dropdown = document.querySelector(".login-register-link .dropdown");
   dropdown.addEventListener("mouseover", () => {
-    console.log("hi");
     dropdown.querySelector(".dropdown-menu").classList.add("show");
   });
   dropdown.addEventListener("mouseout", () => {

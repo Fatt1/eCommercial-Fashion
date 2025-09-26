@@ -136,16 +136,13 @@
   opacity: 0.7;
 }
 
-.register {
+.bottom-register {
   display: flex;
   justify-content: center;
   gap: 5px;
 }
-.register button {
-  border: none;
-  background-color: transparent;
-}
-.register {
+
+.bottom-register {
   padding: 10px;
 }
 .register-links:hover {

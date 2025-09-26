@@ -45,4 +45,10 @@ export class Validation {
     }
     return this;
   }
+  checkConfirmPassword(password, message) {
+    if (password !== this.value) {
+      this.errors.push(message);
+    }
+    return this;
+  }
 }

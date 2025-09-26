@@ -26,6 +26,7 @@ header a:hover {
   font-size: 1.4rem;
   margin-left: 5px;
   font-family: "Roboto", sans-serif;
+  user-select: none;
 }
 
 .login-link {

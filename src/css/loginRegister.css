@@ -26,7 +26,6 @@
 .login-container {
   display: flex;
   height: 500px;
-
   box-shadow: 5px 5px 10px rgba(77, 69, 69, 0.609);
   border-radius: 4px;
 }
@@ -39,6 +38,7 @@
   border-radius: 4px;
   padding: 0px 25px;
   padding-top: 30px;
+  position: relative;
 }
 
 .content p {
@@ -105,30 +105,10 @@
   display: flex;
   align-items: center;
   border-left: none;
+  cursor: pointer;
 }
 .input-password-container input {
   border-right: none;
-}
-
-.login-button {
-  background-color: black;
-  width: 100%;
-  height: 40px;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-}
-.login-button:visited {
-  color: white;
-}
-.login-button:hover {
-  color: black;
-  background-color: white;
-}
-
-.login-button:active {
-  color: white;
-  background-color: black;
 }
 
 .forgotten-password {
@@ -149,17 +129,6 @@
   display: flex;
   justify-content: center;
   gap: 5px;
-}
-.register button {
-  border: none;
-  background-color: transparent;
-}
-.register {
-  padding: 10px;
-}
-.register-links:hover {
-  opacity: 0.7;
-  cursor: pointer;
 }
 
 .exit-btn {
@@ -192,3 +161,28 @@
   display: none;
 }
 /* register */
+.bottom-register,
+.bottom-login {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+
+.register-links,
+.bottom-register__login-links {
+  margin-left: 6px;
+}
+.register-links:hover,
+.bottom-register__login-links:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.register-container {
+  height: auto;
+}
+
+input[type="password"]:focus + .toggle-eye-btn {
+  border: 1px solid black;
+  border-left-color: transparent;
+}
