@@ -9,6 +9,7 @@ async function setDataFromJsonIntoDbContext() {
   const sizes = await loadDataFromJson("size.json", "sizes");
   const brands = await loadDataFromJson("brand.json", "brands");
   const attributes = await loadDataFromJson("attribute.json", "attributes");
+  const users = await loadDataFromJson("user.json", "users");
   return {
     products,
     skus,
@@ -17,6 +18,7 @@ async function setDataFromJsonIntoDbContext() {
     sizes,
     brands,
     attributes,
+    users,
     saveChanges: saveDbContextToLocalStorage,
   };
 }

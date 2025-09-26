@@ -13,12 +13,20 @@ function renderProduct(categoryId) {
   `;
 }
 function setupProduct() {
-  document.querySelector(".dropdown").addEventListener("mouseover", () => {
-    document.querySelector(".dropdown-menu").classList.add("show");
-  });
-  document.querySelector(".dropdown").addEventListener("mouseout", () => {
-    document.querySelector(".dropdown-menu").classList.remove("show");
-  });
+  document
+    .querySelector(".right-sort-bar .dropdown")
+    .addEventListener("mouseover", () => {
+      document
+        .querySelector(".right-sort-bar .dropdown-menu")
+        .classList.add("show");
+    });
+  document
+    .querySelector(".right-sort-bar .dropdown")
+    .addEventListener("mouseout", () => {
+      document
+        .querySelector(".right-sort-bar .dropdown-menu")
+        .classList.remove("show");
+    });
   handleClickHeader();
   handleClickProductSection();
 }

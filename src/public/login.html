@@ -14,7 +14,7 @@
     />
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../components/Nav/nav.css" />
-    <link rel="stylesheet" href="../css/">
+    
     <link rel="stylesheet" href="../css/index.css">
      <!-- Geologica -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -140,32 +140,33 @@
       </div>
     </header>
 
-    <div class="login">
+    <form id="login">
      <div class="login-container">
         <img src="../assets/carousel-2.jpg" id="jiso1">
         <div class="login-box">
           <div class="content">
         <div style="display: flex; justify-content: center;">  <p>Đăng Nhập</p></div>
         <button class="exit-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="login-response"></div>
           <div class="form-group">
           <label for="email">Email*</label>
-          <input type="text" id="email" placeholder="aovgamer@gmail.com" required>
-          <div class="authentication-input-error">Vui lòng điền vào mục này</div>
+          <input name="email" type="text" id="email" placeholder="aovgamer@gmail.com" required>
+          <div class="error-message error-email"></div>
               </div>
           
           <div class="form-group">
-          <label for="password">Mật Khẩu</label>         
+          <label for="password">Mật Khẩu*</label>         
          <div class="input-password-container">
-            <input type="" id="password" placeholder="Nhap Mat Khau" required>
+            <input name="password" type="password" id="password" placeholder="Nhập mật khẩu" required>
             <button class="toggle-eye-btn">
                 <i class="fa-solid fa-eye-slash"></i>
             </button>
          </div>
-          <div class="authentication-input-error">Vui lòng điền vào mục này</div>
+          <div class="error-message error-password"></div>
           
           </div>
             </div>
-                <button class="login-button">ĐĂNG NHẬP</button>
+                <button type="submit" class="login-button">ĐĂNG NHẬP</button>
                 <button class="forgotten-password">Quên mật khẩu</button>
                 <div class="register">
                 <div >Bạn chưa có tài khoản?</div>
@@ -173,7 +174,12 @@
                 </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </body>
+  <script type="module">
+    import {FormValidator} from "../services/formValidator.js"
+    import {login} from "../services/authenticateService.js"
+   
+  </script>
 </html>

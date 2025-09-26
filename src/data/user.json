@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin123@gmail.com",
+      "password": "admin@123",
+      "addresses": [],
+      "phoneNumber": "0123123123",
+      "role": "admin",
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "email": "viethuy@gmail.com",
+      "password": "test123",
+      "addresses": [
+        {
+          "street": "39 Nguyễn Hữu Cầu",
+          "district": "Quận 4",
+          "ward": "Phường 2",
+          "city": "Tp.Hồ Chí Minh",
+          "isDefault": true
+        },
+        {
+          "street": "40 Nguyễn Hữu Cầu",
+          "district": "Quận 5",
+          "ward": "Phường 2",
+          "city": "Tp.Hồ Chí Minh",
+          "isDefault": false
+        }
+      ],
+      "phoneNumber": "",
+      "role": "user",
+      "status": "active"
+    }
+  ]
+}

@@ -1,3 +1,20 @@
+.overlay {
+  position: fixed;
+  background-color: #3d3738;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+}
+#register-login {
+  z-index: 1000;
+  position: fixed; /* Nên dùng fixed để nó luôn ở vị trí cố định trên màn hình */
+  left: 30%;
+  top: 25%;
+}
+
 #jiso1 {
   width: 500px;
   height: 100%;
@@ -6,22 +23,10 @@
   border: 2px solid black;
 }
 
-#login::before {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  z-index: 99;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.608);
-}
 .login-container {
   display: flex;
-  position: absolute;
-  left: 30%;
-  top: 25%;
   height: 500px;
-  z-index: 100;
+
   box-shadow: 5px 5px 10px rgba(77, 69, 69, 0.609);
   border-radius: 4px;
 }
@@ -33,6 +38,7 @@
   background-color: white;
   border-radius: 4px;
   padding: 0px 25px;
+  padding-top: 30px;
 }
 
 .content p {
@@ -96,6 +102,8 @@
   border: 1px solid #9a8787;
   height: 40px;
   padding: 0px 12px;
+  display: flex;
+  align-items: center;
   border-left: none;
 }
 .input-password-container input {
@@ -130,6 +138,7 @@
   left: 36%;
   padding-top: 10px;
   font-weight: bold;
+  display: inline-block;
 }
 
 .forgotten-password:hover {

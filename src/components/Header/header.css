@@ -93,6 +93,19 @@ header a:hover {
 .san-pham-tab {
   position: relative;
 }
+.login-register-link {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  margin-left: 5px;
+  font-family: "Roboto", sans-serif;
+}
+.header__user-name {
+  max-width: 147px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff;
+}
 /* Categories box */
 .category-box {
   min-width: 500px;
