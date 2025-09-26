@@ -141,6 +141,7 @@ function handleLogoutClick() {
     ).innerHTML = `<a class="login-link">Đăng Nhập</a>
                 <span style="color: white">|</span>
                 <a class="register-link">Đăng Kí</a>`;
+    document.querySelector(".avatar-user").style.display = "none";
     handleLoginLink();
   }
 }
@@ -172,6 +173,7 @@ export function handleLoginLink() {
   });
 }
 export function setupDropdownAfterLogin(email) {
+  document.querySelector(".avatar-user").style.display = "inline";
   document.querySelector(
     ".login-register-link"
   ).innerHTML = ` <div class="dropdown">
