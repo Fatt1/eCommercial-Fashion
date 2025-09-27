@@ -28,7 +28,7 @@ export default function TotalMoneyCal() {
               </div>
             </div>
             <div class="total__bot--money-right">
-              <button>MUA NGAY</button>
+              <button class="buy-now-btn">MUA NGAY</button>
             </div>
           </div>
         </div>

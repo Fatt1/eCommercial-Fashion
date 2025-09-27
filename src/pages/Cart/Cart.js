@@ -8,13 +8,36 @@ import { renderCartItemContainer } from "../../components/CartItem/CartItem.js";
 function renderCart() {
   const root = document.getElementById("root");
   root.innerHTML = `
-  ${Header("trang-chu")}
+   ${Header("trang-chu")}
    ${InformBar()}
    ${CartSection()}
    ${TotalMoneyCal()}
    ${Footer()}
   `;
 }
+
+function renderCheckout() {
+  const root = document.getElementById("root");
+  root.innerHTML = `
+    ${Header("")}
+    ${InformBar()}
+      
+    ${Footer()}
+  `;
+}
+
+export function navigate(page) {
+  if (page === "cart") {
+    renderCart();
+  } else if (page === "checkout") {
+    renderCheckout();
+  } else {
+    console.error("Unknown page:", page);
+  }
+}
+document.querySelector(".buy-now-btn").addEventListener("click", () => {
+  navigate("checkout");
+});
 
 renderCart();
 renderCartItemContainer();
