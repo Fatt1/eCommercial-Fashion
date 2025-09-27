@@ -8,6 +8,7 @@ import {
 } from "../../models/Cart.js";
 import { getProductById } from "../../services/productService.js";
 import { formatNumber, unFormatNumber } from "../../helper/formatNumber.js";
+import { getSkuBySkuId } from "../../models/Sku.js";
 // import  from "../../services/productService.js";
 // function render() {
 //   const root = document.getElementById("root");
@@ -57,36 +58,27 @@ export function renderCartItemContainer() {
                 <button class="dropdown-button dropdown-button__size dropdown-button__size-${skuId}"
                   data-sku-id = ${skuId}
                 >
-                  S <img src="../assets/dropdown-icon.svg" />
+                  ${renderSizeButton(
+                    matchingProduct,
+                    skuId
+                  )} <img src="../assets/dropdown-icon.svg" />
                 </button>
-                <ul class="dropdown-menu dropdown-menu__size">
-                  <li class="dropdown-item dropdown-item__size">S</li>
-                  <li class="dropdown-item dropdown-item__size">M</li>
-                  <li class="dropdown-item dropdown-item__size">L</li>
-                  <li class="dropdown-item dropdown-item__size">XL</li>
-                </ul>
+                ${renderDropDownMenuSize(matchingProduct, skuId)}
               </div>
             </div>
             <div class="product-color">
-              <!-- <select class="product-color__select" name="" id="color">
-                <option value="S">Đỏ</option>
-                <option value="M">Nâu</option>
-                <option value="L">Đen</option>
-                <option value="XL">Hồng</option>
-              </select> -->
+              
               <div class="dropdown">
                 <button class="dropdown-button dropdown-button__color dropdown-button__color-${skuId}"
                  data-sku-id = ${skuId} 
                 >
-                  Do <img src="../assets/dropdown-icon.svg" />
+                  ${renderColorButton(
+                    matchingProduct,
+                    skuId
+                  )} <img src="../assets/dropdown-icon.svg" />
+                  
                 </button>
-                <ul class="dropdown-menu dropdown-menu__color">
-                  <li class="dropdown-item dropdown-item__color">Xanh Lam</li>
-                  <li class="dropdown-item dropdown-item__color">Xanh Duong</li>
-                  <li class="dropdown-item dropdown-item__color">Vang</li>
-                  <li class="dropdown-item dropdown-item__color">Do Nau</li>
-                  <li class="dropdown-item dropdown-item__color">Xam Khoi</li>
-                </ul>
+                ${renderDropDownMenuColor(matchingProduct, skuId)}
               </div>
             </div>
             <div class="product-price">
@@ -122,6 +114,122 @@ export function renderCartItemContainer() {
           </div>
     `;
   });
+
+  function renderDropDownMenuColor(product, skuId) {
+    const sku = getSkuBySkuId(skuId, product.id);
+    let variationColor = undefined;
+    product.variations.forEach((variation) => {
+      if (variation.name === "Màu sắc") {
+        variationColor = variation;
+      }
+    });
+    let variationColorContent = "";
+    // let variationSizeContent = "";
+    // tạo content cho variation color
+    if (variationColor) {
+      let variationColorIndex = 0;
+      variationColorContent += `
+    <ul class="dropdown-menu dropdown-menu__color dropdown-menu__color-${skuId}">
+      ${variationColor.variationOptions
+        .map((option) => {
+          if (variationColorIndex === sku.tierIndexes[0]) {
+            console.log(
+              document.querySelector(`.dropdown-button__color-${skuId}`)
+            );
+          }
+          return `
+                        <li class="dropdown-item dropdown-item__color" 
+                          data-index-color-sku="${variationColorIndex++}"
+                          data-sku-id="${skuId}">
+                            ${option.name}
+                        </li>
+                      `;
+        })
+        .join(" ")}
+    </ul>`;
+      return variationColorContent;
+    }
+  }
+  function renderDropDownMenuSize(product, skuId) {
+    let variationSize = undefined;
+    product.variations.forEach((variation) => {
+      if (variation.name !== "Màu sắc") {
+        variationSize = variation;
+      }
+    });
+    let variationSizeContent = "";
+    // let variationSizeContent = "";
+    // tạo content cho variation color
+    if (variationSize) {
+      let variationSizeIndex = 0;
+      variationSizeContent += `
+    <ul class="dropdown-menu dropdown-menu__size dropdown-menu__size-${skuId}">
+      ${variationSize.variationOptions
+        .map(
+          (option) => `
+                        <li class="dropdown-item dropdown-item__size" 
+                          data-index-size-sku="${variationSizeIndex++}"
+                          data-sku-id="${skuId}">
+                            ${option.id}
+                        </li>
+                      `
+        )
+        .join(" ")}
+    </ul>`;
+      return variationSizeContent;
+    }
+  }
+  function renderColorButton(product, skuId) {
+    const sku = getSkuBySkuId(skuId, product.id);
+    let variationColor = undefined;
+    product.variations.forEach((variation) => {
+      if (variation.name === "Màu sắc") {
+        variationColor = variation;
+      }
+    });
+    let variationColorContent = "";
+    let colorName;
+    // let variationSizeContent = "";
+    // tạo content cho variation color
+    if (variationColor) {
+      let variationColorIndex = 0;
+      variationColor.variationOptions.map((option) => {
+        if (variationColorIndex++ === sku.tierIndexes[0]) {
+          console.log(
+            `${option.name} <img src="../assets/dropdown-icon.svg" />`
+          );
+          colorName = option.name;
+        }
+      });
+    }
+    return colorName;
+  }
+  function renderSizeButton(product, skuId) {
+    const sku = getSkuBySkuId(skuId, product.id);
+    let variationSize = undefined;
+    product.variations.forEach((variation) => {
+      if (variation.name !== "Màu sắc") {
+        variationSize = variation;
+      }
+    });
+    let variationSizeContent = "";
+    let sizeName;
+    // let variationSizeContent = "";
+    // tạo content cho variation color
+    if (variationSize) {
+      let variationSizeIndex = 0;
+      variationSize.variationOptions.map((option) => {
+        if (variationSizeIndex++ === sku.tierIndexes[0]) {
+          console.log(
+            `${option.name} <img src="../assets/dropdown-icon.svg" />`
+          );
+          sizeName = option.id;
+        }
+      });
+    }
+    return sizeName;
+  }
+
   // console.log(cartSummaryHTML);
   document.querySelector(".cart-item-container").innerHTML = cartSummaryHTML;
   // }
@@ -403,132 +511,157 @@ export function renderCartItemContainer() {
       formatNumber(price * quantity);
   }
 
-  const minusButtons = document.querySelectorAll(".product-quantity__minus");
-  const plusButtons = document.querySelectorAll(".product-quantity__plus");
+  handleClickQuantityButton();
+  function handleClickQuantityButton() {
+    const minusButtons = document.querySelectorAll(".product-quantity__minus");
+    const plusButtons = document.querySelectorAll(".product-quantity__plus");
 
-  minusButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const skuId = button.dataset.skuId;
-      const inputQuantity = document.querySelector(
-        `.product-quantity-input-${skuId}`
-      );
-      let value = parseInt(inputQuantity.value);
-      if (value > 1) inputQuantity.value = value - 1;
-      const item = cart.find((c) => c.skuId === skuId);
-      if (item) item.quantity = Number(inputQuantity.value);
+    minusButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const skuId = button.dataset.skuId;
+        const inputQuantity = document.querySelector(
+          `.product-quantity-input-${skuId}`
+        );
+        let value = parseInt(inputQuantity.value);
+        if (value > 1) inputQuantity.value = value - 1;
+        const item = cart.find((c) => c.skuId === skuId);
+        if (item) item.quantity = Number(inputQuantity.value);
 
-      calculateTotalMoney(skuId);
-      updateCartQuantityStraight();
-      // test
-      calculateTotalCheckBox();
+        calculateTotalMoney(skuId);
+        updateCartQuantityStraight();
+        // test
+        calculateTotalCheckBox();
 
-      saveToStorage();
+        saveToStorage();
+      });
     });
-  });
 
-  plusButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const skuId = button.dataset.skuId;
-      const inputQuantity = document.querySelector(
-        `.product-quantity-input-${skuId}`
-      );
-      let value = parseInt(inputQuantity.value);
-      inputQuantity.value = value + 1;
-      const item = cart.find((c) => c.skuId === skuId);
-      if (item) item.quantity = Number(inputQuantity.value);
-      calculateTotalMoney(skuId);
-      updateCartQuantityStraight();
+    plusButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const skuId = button.dataset.skuId;
+        const inputQuantity = document.querySelector(
+          `.product-quantity-input-${skuId}`
+        );
+        let value = parseInt(inputQuantity.value);
+        inputQuantity.value = value + 1;
+        const item = cart.find((c) => c.skuId === skuId);
+        if (item) item.quantity = Number(inputQuantity.value);
+        calculateTotalMoney(skuId);
+        updateCartQuantityStraight();
 
-      // test
-      calculateTotalCheckBox();
+        // test
+        calculateTotalCheckBox();
 
-      saveToStorage();
+        saveToStorage();
 
-      // console.log(cart);
-      // console.log("Da save");
+        // console.log(cart);
+        // console.log("Da save");
+      });
     });
-  });
-
+  }
   // plusButton.addEventListener("click", () => {
   //   let value = parseInt(inputQuantity.value);
   //   inputQuantity.value = value + 1;
   // });
 
-  const btnSize = document.querySelector(".dropdown-button__size");
-  const menuSize = document.querySelector(".dropdown-menu__size");
+  handleClickMenuSizeColor();
+  function handleClickMenuSizeColor() {
+    //add toggle on/off menu khi click vào btn size&color
+    const btnSizes = document.querySelectorAll(".dropdown-button__size");
 
-  const btnSizes = document.querySelectorAll(".dropdown-button__size");
-  const menuSizes = document.querySelectorAll(".dropdown-menu__size");
+    btnSizes.forEach((btnSize) => {
+      btnSize.addEventListener("click", () => {
+        const skuId = btnSize.dataset.skuId;
+        const menuSize = document.querySelector(
+          `.dropdown-menu__size-${skuId}`
+        );
+        if (document.querySelector(".show") !== null) {
+          const activeMenus = document.querySelectorAll(".show");
+          activeMenus.forEach((activeMenu) => {
+            if (activeMenu !== menuSize) activeMenu.classList.remove("show");
+          });
+        }
 
-  btnSize.addEventListener("click", () => {
-    if (document.querySelector(".show") !== null) {
-      const activeMenus = document.querySelectorAll(".show");
-      activeMenus.forEach((activeMenu) => {
-        if (activeMenu !== menuSize) activeMenu.classList.remove("show");
+        menuSize.classList.toggle("show");
+        menuSize.classList.toggle("active");
       });
-    }
+    });
 
-    menuSize.classList.toggle("show");
-    menuSize.classList.toggle("active");
-  });
+    //add toggle on/off menu khi click vào btn size&color
+    const btnColors = document.querySelectorAll(".dropdown-button__color");
 
-  const btnColor = document.querySelector(".dropdown-button__color");
-  const menuColor = document.querySelector(".dropdown-menu__color");
-
-  btnColor.addEventListener("click", () => {
-    if (document.querySelector(".show") !== null) {
-      const activeMenus = document.querySelectorAll(".show");
-      activeMenus.forEach((activeMenu) => {
-        if (activeMenu !== menuColor) activeMenu.classList.remove("show");
+    btnColors.forEach((btnColor) => {
+      btnColor.addEventListener("click", () => {
+        const skuId = btnColor.dataset.skuId;
+        const menuColor = document.querySelector(
+          `.dropdown-menu__color-${skuId}`
+        );
+        if (document.querySelector(".show") !== null) {
+          const activeMenus = document.querySelectorAll(".show");
+          activeMenus.forEach((activeMenu) => {
+            if (activeMenu !== menuColor) activeMenu.classList.remove("show");
+          });
+        }
+        menuColor.classList.toggle("show");
+        menuColor.classList.toggle("active");
       });
-    }
-    menuColor.classList.toggle("show");
-    menuColor.classList.toggle("active");
-  });
-
-  const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
-  // click vô thì tắt
-  dropItemSizes.forEach((item) => {
-    item.addEventListener("click", () => {
-      menuSize.classList.toggle("show");
-      menuSize.classList.toggle("active");
     });
-  });
 
-  const dropItemColors = document.querySelectorAll(".dropdown-item__color");
-  // click ben vô thì tắt
-  dropItemColors.forEach((item) => {
-    item.addEventListener("click", () => {
-      menuColor.classList.toggle("show");
-      menuColor.classList.toggle("active");
+    const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
+    // click vô thì tắt
+    dropItemSizes.forEach((item) => {
+      const skuId = item.dataset.skuId;
+      item.addEventListener("click", () => {
+        const menuSize = document.querySelector(
+          `.dropdown-menu__size-${skuId}`
+        );
+        menuSize.classList.toggle("show");
+        menuSize.classList.toggle("active");
+      });
     });
-  });
 
-  // Click ngoài để đóng
-  document.addEventListener("click", (e) => {
-    // Nếu click không nằm trong menuSize và không phải button
-    if (!menuSize.contains(e.target) && !btnSize.contains(e.target)) {
-      menuSize.classList.remove("show", "active");
-    }
-    // Nếu click không nằm trong menuColor và không phải button
-    if (!menuColor.contains(e.target) && !btnColor.contains(e.target)) {
-      menuColor.classList.remove("show", "active");
-    }
-  });
+    const dropItemColors = document.querySelectorAll(".dropdown-item__color");
+    // click ben vô thì tắt
+    dropItemColors.forEach((item) => {
+      const skuId = item.dataset.skuId;
+      item.addEventListener("click", () => {
+        const menuColor = document.querySelector(
+          `.dropdown-menu__color-${skuId}`
+        );
+        menuColor.classList.toggle("show");
+        menuColor.classList.toggle("active");
+      });
+    });
 
-  // document.addEventListener("click", () => {
-  //   if (document.querySelector(".show") !== null) {
-  //     const activeMenus = document.querySelectorAll(".show");
-  //     activeMenus.forEach((activeMenu) => {
-  //       activeMenu.classList.remove("show");
-  //     });
-  //   }
-  // });
-  // menuSize.addEventListener("transitionend", () => {
-  //   if (!menuSize.classList.contains("show")) {
-  //     menuSize.style.display = "none";
-  //   }
-  // });
+    //chưa chỉnh lại cái này nó vẫn chưa active khi chuyển thành nhiều item
+    // Click ngoài để đóng
+    // document.addEventListener("click", (e) => {
+    //   // Nếu click không nằm trong menuSize và không phải button
+    //   if (!menuSize.contains(e.target) && !btnSize.contains(e.target)) {
+    //     menuSize.classList.remove("show", "active");
+    //   }
+    //   // Nếu click không nằm trong menuColor và không phải button
+    //   if (!menuColor.contains(e.target) && !btnColor.contains(e.target)) {
+    //     menuColor.classList.remove("show", "active");
+    //   }
+    // });
+
+    // document.addEventListener("click", () => {
+    //   if (document.querySelector(".show") !== null) {
+    //     const activeMenus = document.querySelectorAll(".show");
+    //     activeMenus.forEach((activeMenu) => {
+    //       activeMenu.classList.remove("show");
+    //     });
+    //   }
+    // });
+    // menuSize.addEventListener("transitionend", () => {
+    //   if (!menuSize.classList.contains("show")) {
+    //     menuSize.style.display = "none";
+    //   }
+    // });
+  }
 }
+
+function handleClickDropDownItem(skuId) {}
 
 renderCartItemContainer();

@@ -36,6 +36,15 @@ export function getSkuByProductId(productId, tierIndexes) {
 
   return null;
 }
+export function getSkuBySkuId(skuId, productId) {
+  const skus = getSkusByProductId(productId);
+  for (let element of skus) {
+    if (element.id === skuId && element.productId === productId) {
+      return element;
+    }
+  }
+  return null;
+}
 
 // export function getSkuByProductId(productId, tierIndexes) {
 //   getSkusByProductId(productId).forEach((element) => {
