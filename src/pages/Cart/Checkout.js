@@ -1,7 +1,7 @@
 import Footer from "../../components/Footer/Footer.js";
 import Header from "../../components/Header/Header.js";
 export function renderCheckout() {
-  return `
+  document.getElementById("id").innerHTML = `
   ${Header("san-pham")}
      <div class="checkout">
         <!-- inform-bar -->
