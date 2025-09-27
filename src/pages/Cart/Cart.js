@@ -629,7 +629,7 @@ export function renderCartItemContainer() {
         //   console.log();
         // }
         if (item.dataset.type == "size") {
-          changeSkuClickDropItemSize(skuId, item.dataset.indexSizeSku);
+          changeSkuClickDropItemSize2(skuId, item.dataset.indexSizeSku);
           console.log("size");
         }
         menuSize.classList.toggle("show");
@@ -659,6 +659,28 @@ export function renderCartItemContainer() {
       }
     }
 
+    function changeSkuClickDropItemSize2(skuId, sizeIndex) {
+      let tierIndexes = [0, 0];
+      const colorBtn = document.querySelector(
+        `.dropdown-button__color-${skuId}`
+      );
+      tierIndexes[0] = Number(colorBtn.dataset.indexColor);
+      tierIndexes[1] = Number(sizeIndex);
+      const newSku = getSkuByProductId(colorBtn.dataset.productId, tierIndexes);
+      const cartItem = cart.find((c) => c.skuId === skuId);
+      if (!cartItem || !newSku) return;
+      const existingItem = cart.find((c) => c.skuId === newSku.id);
+      if (existingItem) {
+        existingItem.quantity += cartItem.quantity;
+        cart.splice(cart.indexOf(cartItem), 1);
+      } else {
+        cartItem.skuId = newSku.id;
+      }
+
+      saveToStorage();
+      renderCartItemContainer();
+    }
+
     const dropItemColors = document.querySelectorAll(".dropdown-item__color");
     // click ben vô thì tắt
     dropItemColors.forEach((item) => {
@@ -668,7 +690,7 @@ export function renderCartItemContainer() {
           `.dropdown-menu__color-${skuId}`
         );
         if (item.dataset.type == "color") {
-          changeSkuClickDropItemColor(skuId, item.dataset.indexColorSku);
+          changeSkuClickDropItemColor2(skuId, item.dataset.indexColorSku);
           console.log("color");
         }
         menuColor.classList.toggle("show");
@@ -692,6 +714,26 @@ export function renderCartItemContainer() {
       cartItem.skuId = newSku.id;
       saveToStorage();
       console.log(cart);
+      renderCartItemContainer();
+    }
+
+    function changeSkuClickDropItemColor2(skuId, colorIndex) {
+      let tierIndexes = [0, 0];
+      tierIndexes[0] = Number(colorIndex);
+      const sizeBtn = document.querySelector(`.dropdown-button__size-${skuId}`);
+      tierIndexes[1] = Number(sizeBtn.dataset.indexSize);
+      const newSku = getSkuByProductId(sizeBtn.dataset.productId, tierIndexes);
+      const cartItem = cart.find((c) => c.skuId === skuId);
+      if (!cartItem || !newSku) return;
+      const existingItem = cart.find((c) => c.skuId === newSku.id);
+      if (existingItem) {
+        existingItem.quantity += cartItem.quantity;
+        cart.splice(cart.indexOf(cartItem), 1);
+      } else {
+        cartItem.skuId = newSku.id;
+      }
+
+      saveToStorage();
       renderCartItemContainer();
     }
 
