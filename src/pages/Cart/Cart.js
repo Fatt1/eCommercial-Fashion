@@ -672,7 +672,8 @@ export function renderCartItemContainer() {
       const existingItem = cart.find((c) => c.skuId === newSku.id);
       if (existingItem) {
         existingItem.quantity += cartItem.quantity;
-        cart.splice(cart.indexOf(cartItem), 1);
+        // cart.splice(cart.indexOf(cartItem), 1);
+        removeFromCart(cartItem.skuId);
       } else {
         cartItem.skuId = newSku.id;
       }
@@ -728,7 +729,8 @@ export function renderCartItemContainer() {
       const existingItem = cart.find((c) => c.skuId === newSku.id);
       if (existingItem) {
         existingItem.quantity += cartItem.quantity;
-        cart.splice(cart.indexOf(cartItem), 1);
+        // cart.splice(cart.indexOf(cartItem), 1);
+        removeFromCart(cartItem.skuId);
       } else {
         cartItem.skuId = newSku.id;
       }

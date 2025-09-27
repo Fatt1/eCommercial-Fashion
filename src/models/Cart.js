@@ -51,8 +51,8 @@ export function addToCart(skuId, productId) {
   saveToStorage();
 }
 
-export function removeFromCart(id) {
-  cart = cart.filter((item) => item.skuId !== id);
+export function removeFromCart(skuId) {
+  cart = cart.filter((item) => item.skuId !== skuId);
   saveToStorage();
 }
 
