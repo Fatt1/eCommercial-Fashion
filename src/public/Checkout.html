@@ -78,7 +78,7 @@
     </header>
 
     <!-- inform-bar -->
-    <div class="inform-bar">
+    <div class="inform-bar main-content">
       <div><img class="inform-bar-icon" src="../assets/inform-icon.svg" /></div>
       <div class="vertical-line"></div>
       <div class="inform-bar-text">GIỎ HÀNG</div>
@@ -88,32 +88,16 @@
     <div class="main-content">
       <section class="cart">
         <div class="cart-info">
-          <div class="product-main">
-            <!-- <input
-              type="checkbox"
-              class="product-main__checkbox-all"
-              name=""
-              id=""
-            /> -->
-            Sản Phẩm
-          </div>
+          <div class="product-main">Sản Phẩm</div>
           <div class="product-size">Kích Cỡ</div>
           <div class="product-color">Màu Sắc</div>
           <div class="product-price">Đơn Giá</div>
           <div class="product-quantity">Số Lượng</div>
           <div class="product-total">Thành tiền</div>
-          <div class="product-action">Thao Tác</div>
         </div>
         <div class="cart-item-container">
           <div class="cart-item">
             <div class="product-main">
-              <!-- <input
-                type="checkbox"
-                class="product-main__checkbox product-main__checkbox-${skuId}"
-                data-sku-id="${skuId}"
-                name=""
-                id=""
-              /> -->
               <img
                 class="product-main__img"
                 src="../assets/large-img-detail.png"
@@ -123,84 +107,26 @@
             </div>
             <div class="product-size">
               <div class="dropdown">
-                <button
-                  disabled
-                  class="dropdown-button dropdown-button__size dropdown-button__size-${skuId}"
-                  data-sku-id="${skuId}"
-                >
+                <span disabled class="dropdown-button dropdown-button__size">
                   S
-                </button>
-                <!-- <ul class="dropdown-menu dropdown-menu__size">
-                  <li class="dropdown-item dropdown-item__size">S</li>
-                  <li class="dropdown-item dropdown-item__size">M</li>
-                  <li class="dropdown-item dropdown-item__size">L</li>
-                  <li class="dropdown-item dropdown-item__size">XL</li>
-                </ul> -->
+                </span>
               </div>
             </div>
             <div class="product-color">
-              <!-- <select class="product-color__select" name="" id="color">
-                <option value="S">Đỏ</option>
-                <option value="M">Nâu</option>
-                <option value="L">Đen</option>
-                <option value="XL">Hồng</option>
-              </select> -->
               <div class="dropdown">
-                <button
-                  disabled
-                  class="dropdown-button dropdown-button__color dropdown-button__color-${skuId}"
-                  data-sku-id="${skuId}"
-                >
+                <span disabled class="dropdown-button dropdown-button__color">
                   Nâu
-                </button>
-                <!-- <ul class="dropdown-menu dropdown-menu__color">
-                  <li class="dropdown-item dropdown-item__color">Xanh Lam</li>
-                  <li class="dropdown-item dropdown-item__color">Xanh Duong</li>
-                  <li class="dropdown-item dropdown-item__color">Vang</li>
-                  <li class="dropdown-item dropdown-item__color">Do Nau</li>
-                  <li class="dropdown-item dropdown-item__color">Xam Khoi</li>
-                </ul> -->
+                </span>
               </div>
             </div>
             <div class="product-price">
               <span class="product-price__old-price">557.000đ</span>
-              <span
-                class="product-price__current-price product-price__current-price-${skuId}"
-                >447.000đ</span
-              >
+              <span class="product-price__current-price">447.000đ</span>
             </div>
             <div class="product-quantity">
-              <!-- <button
-                class="product-quantity__button product-quantity__minus"
-                data-sku-id="${skuId}"
-              >
-                -
-              </button> -->
-              <input
-                disabled
-                class="product-quantity__input product-quantity-input-${skuId}"
-                placeholder="1"
-              />
-              <!-- <button
-                class="product-quantity__button product-quantity__plus"
-                data-sku-id="${skuId}"
-              >
-                +
-              </button> -->
+              <span disabled class="product-quantity__input">1</span>
             </div>
-            <div
-              class="product-total product-total-text product-total-${skuId}"
-            >
-              447.000đ
-            </div>
-            <div class="product-action">
-              <!-- <button
-                class="product-action__button"
-                data-sku-id="${cartItem.skuId}"
-              >
-                XÓA
-              </button> -->
-            </div>
+            <div class="product-total product-total-text">447.000đ</div>
           </div>
         </div>
       </section>
@@ -264,6 +190,10 @@
             ><button class="row-1-col-3 blue-button">Thay đổi</button>
           </div>
           <div class="row-2">
+            <div class="payment-methods">
+              <div class="payment-method active">Thanh toán khi nhận hàng</div>
+              <div class="payment-method">Paypal</div>
+            </div>
             <div class="row-2-info">
               <div class="payments">
                 <span class="grey-text">Tổng tiền hàng</span>

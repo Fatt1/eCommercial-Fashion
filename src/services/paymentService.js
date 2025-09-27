@@ -23,7 +23,6 @@ export async function generateAccessToken() {
       const data = await response.json();
       return data.access_token;
     }
-    console.log(bodyParams.toString());
   } catch (err) {
     console.log(err);
   }
