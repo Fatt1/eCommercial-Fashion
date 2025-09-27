@@ -620,9 +620,8 @@ export function renderCartItemContainer() {
 
       const existingItem = cart.find((c) => c.skuId === newSku.id);
       if (existingItem) {
-        // cộng dồn quantity
         existingItem.quantity += cartItem.quantity;
-        // xoá cartItem cũ bằng filter
+
         const index = cart.findIndex((c) => c.skuId === skuId);
         if (index !== -1) cart.splice(index, 1);
       } else {
