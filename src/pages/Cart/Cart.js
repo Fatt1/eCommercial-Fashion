@@ -8,7 +8,7 @@ import {
 } from "../../models/Cart.js";
 import { getProductById } from "../../services/productService.js";
 import { formatNumber, unFormatNumber } from "../../helper/formatNumber.js";
-import { getSkuBySkuId } from "../../models/Sku.js";
+import { getSkuByProductId, getSkuBySkuId } from "../../models/Sku.js";
 // import  from "../../services/productService.js";
 // function render() {
 //   const root = document.getElementById("root");
@@ -55,29 +55,17 @@ export function renderCartItemContainer() {
             </div>
             <div class="product-size">
               <div class="dropdown">
-                <button class="dropdown-button dropdown-button__size dropdown-button__size-${skuId}"
-                  data-sku-id = ${skuId}
-                >
-                  ${renderSizeButton(
-                    matchingProduct,
-                    skuId
-                  )} <img src="../assets/dropdown-icon.svg" />
-                </button>
+                
+                ${renderSizeButton(matchingProduct, skuId)} 
+                
                 ${renderDropDownMenuSize(matchingProduct, skuId)}
               </div>
             </div>
             <div class="product-color">
               
               <div class="dropdown">
-                <button class="dropdown-button dropdown-button__color dropdown-button__color-${skuId}"
-                 data-sku-id = ${skuId} 
-                >
-                  ${renderColorButton(
-                    matchingProduct,
-                    skuId
-                  )} <img src="../assets/dropdown-icon.svg" />
-                  
-                </button>
+                
+                  ${renderColorButton(matchingProduct, skuId)} 
                 ${renderDropDownMenuColor(matchingProduct, skuId)}
               </div>
             </div>
@@ -133,14 +121,16 @@ export function renderCartItemContainer() {
       ${variationColor.variationOptions
         .map((option) => {
           if (variationColorIndex === sku.tierIndexes[0]) {
-            console.log(
-              document.querySelector(`.dropdown-button__color-${skuId}`)
-            );
+            // console.log(
+            //   document.querySelector(`.dropdown-button__color-${skuId}`)
+            // );
           }
           return `
                         <li class="dropdown-item dropdown-item__color" 
                           data-index-color-sku="${variationColorIndex++}"
-                          data-sku-id="${skuId}">
+                          data-sku-id="${skuId}"
+                          data-variation-id = "${option.id}"
+                          data-type ="color">
                             ${option.name}
                         </li>
                       `;
@@ -169,7 +159,9 @@ export function renderCartItemContainer() {
           (option) => `
                         <li class="dropdown-item dropdown-item__size" 
                           data-index-size-sku="${variationSizeIndex++}"
-                          data-sku-id="${skuId}">
+                          data-sku-id="${skuId}"
+                          data-variation-id = "${option.id}"
+                          data-type ="size">
                             ${option.id}
                         </li>
                       `
@@ -195,10 +187,17 @@ export function renderCartItemContainer() {
       let variationColorIndex = 0;
       variationColor.variationOptions.map((option) => {
         if (variationColorIndex++ === sku.tierIndexes[0]) {
-          console.log(
-            `${option.name} <img src="../assets/dropdown-icon.svg" />`
-          );
-          colorName = option.name;
+          // console.log(
+          //   `${option.name} <img src="../assets/dropdown-icon.svg" />`
+          // );
+          colorName = `<button class="dropdown-button dropdown-button__color dropdown-button__color-${skuId}"
+                  data-sku-id = ${skuId} 
+                  data-index-color = ${variationColorIndex - 1}
+                  data-product-id = ${product.id}
+                >
+                  ${option.name}
+                   <img src="../assets/dropdown-icon.svg" />
+                </button>`;
         }
       });
     }
@@ -219,11 +218,18 @@ export function renderCartItemContainer() {
     if (variationSize) {
       let variationSizeIndex = 0;
       variationSize.variationOptions.map((option) => {
-        if (variationSizeIndex++ === sku.tierIndexes[0]) {
-          console.log(
-            `${option.name} <img src="../assets/dropdown-icon.svg" />`
-          );
-          sizeName = option.id;
+        if (variationSizeIndex++ === sku.tierIndexes[1]) {
+          // console.log(
+          //   `${option.name} <img src="../assets/dropdown-icon.svg" />`
+          // );
+          sizeName = `<button class="dropdown-button dropdown-button__size dropdown-button__size-${skuId}"
+                  data-sku-id = ${skuId} 
+                  data-index-size = ${variationSizeIndex - 1}
+                  data-product-id = ${product.id}
+                >
+                  ${option.id}
+                   <img src="../assets/dropdown-icon.svg" />
+                </button>`;
         }
       });
     }
@@ -608,17 +614,50 @@ export function renderCartItemContainer() {
     });
 
     const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
-    // click vô thì tắt
+    // click vo tat + handle change sku
     dropItemSizes.forEach((item) => {
       const skuId = item.dataset.skuId;
       item.addEventListener("click", () => {
         const menuSize = document.querySelector(
           `.dropdown-menu__size-${skuId}`
         );
+        // if (item.dataset.type == "color") {
+        //   changeSkuClickDropItemColor(skuId, item.dataset.indexColorSku);
+        //   console.log("color");
+        // } else if (item.dataset.type == "size") {
+        //   changeSkuClickDropItemSize(skuId, item.dataset.indexSizeSku);
+        //   console.log();
+        // }
+        if (item.dataset.type == "size") {
+          changeSkuClickDropItemSize(skuId, item.dataset.indexSizeSku);
+          console.log("size");
+        }
         menuSize.classList.toggle("show");
         menuSize.classList.toggle("active");
       });
     });
+
+    function changeSkuClickDropItemSize(skuId, sizeIndex) {
+      let tierIndexes = [0, 0];
+
+      // Lấy lại color hiện tại đang được chọn từ button màu
+      const item = document.querySelector(`.dropdown-button__color-${skuId}`);
+      tierIndexes[0] = Number(item.dataset.indexColor); // giữ color cũ
+      tierIndexes[1] = Number(sizeIndex); // gán size mới
+
+      console.log("tierIndexes size", tierIndexes);
+
+      const newSku = getSkuByProductId(item.dataset.productId, tierIndexes);
+      console.log(item.dataset.productId, tierIndexes, newSku);
+
+      // Cập nhật lại sku trong giỏ
+      const cartItem = cart.find((c) => c.skuId === skuId);
+      if (cartItem && newSku) {
+        cartItem.skuId = newSku.id;
+        saveToStorage();
+        renderCartItemContainer();
+      }
+    }
 
     const dropItemColors = document.querySelectorAll(".dropdown-item__color");
     // click ben vô thì tắt
@@ -628,10 +667,53 @@ export function renderCartItemContainer() {
         const menuColor = document.querySelector(
           `.dropdown-menu__color-${skuId}`
         );
+        if (item.dataset.type == "color") {
+          changeSkuClickDropItemColor(skuId, item.dataset.indexColorSku);
+          console.log("color");
+        }
         menuColor.classList.toggle("show");
         menuColor.classList.toggle("active");
       });
     });
+
+    function changeSkuClickDropItemColor(skuId, colorIndex) {
+      let tierIndexes = [0, 0];
+      // console.log(typeof tierIndexes);
+      tierIndexes[0] = Number(colorIndex);
+      const item = document.querySelector(`.dropdown-button__size-${skuId}`);
+      tierIndexes[1] = Number(item.dataset.indexSize);
+      console.log(tierIndexes);
+      const newSku = getSkuByProductId(item.dataset.productId, tierIndexes);
+      console.log(item.dataset.productId + " " + tierIndexes);
+      console.log(newSku);
+      // console.log(typeof item.dataset.productId + " " + typeof tierIndexes);
+      const cartItem = cart.find((c) => c.skuId === skuId);
+      console.log(cartItem);
+      cartItem.skuId = newSku.id;
+      saveToStorage();
+      console.log(cart);
+      renderCartItemContainer();
+    }
+
+    // function changeSkuClickDropItemColor2(skuId, colorIndex) {
+    //   const cartItem = cart.find((c) => c.skuId === skuId);
+    //   const productId = cartItem.productId;
+
+    //   // Lấy SKU hiện tại trong cart để giữ nguyên sizeIndex
+    //   const currentSku = getSkuBySkuId(skuId, productId);
+    //   const sizeIndex = currentSku.tierIndexes[1]; // giữ size cũ
+
+    //   const newTierIndexes = [Number(colorIndex), sizeIndex];
+    //   const newSku = getSkuByProductId(productId, newTierIndexes);
+
+    //   if (newSku) {
+    //     cartItem.skuId = newSku.id;
+    //     saveToStorage();
+    //     renderCartItemContainer();
+    //   } else {
+    //     console.warn("Không tìm thấy SKU với tierIndexes:", newTierIndexes);
+    //   }
+    // }
 
     //chưa chỉnh lại cái này nó vẫn chưa active khi chuyển thành nhiều item
     // Click ngoài để đóng
