@@ -271,21 +271,19 @@ function generateAttributeContent(product) {
 }
 
 function addMessage() {
-  document
-    .querySelector(".add-to-cart-message")
-    .classList.add("add-to-cart-message-on");
+  const msg = document.querySelector(".add-to-cart-message");
+  msg.classList.add("add-to-cart-message-on");
   setTimeout(() => {
-    document
-      .querySelector(".add-to-cart-message")
-      .classList.remove("add-to-cart-message-on");
-  }, 2000);
+    msg.classList.remove("add-to-cart-message-on");
+  }, 1000);
 }
 
-function addedMessageAfterClickButton() {
-  document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-    addMessage();
-  });
-}
+// function addedMessageAfterClickButton() {
+//   document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+//     console.log("clicked");
+//     addMessage();
+//   });
+// }
 
 let tierIndexes = [0, 0];
 
@@ -347,11 +345,13 @@ function addToCartBtn() {
   document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
     button.addEventListener("click", () => {
       const productId = button.dataset.productId;
-      addedMessageAfterClickButton(productId);
-      const sku = getSkuByProductId(button.dataset.productId, tierIndexes);
+      const sku = getSkuByProductId(productId, tierIndexes);
+
       addToCart(sku.id, productId);
       updateCartQuantity("cart-quantity");
       console.log(cart);
+
+      addMessage();
     });
   });
 }
