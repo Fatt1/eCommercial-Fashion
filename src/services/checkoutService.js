@@ -3,6 +3,7 @@ import { loadFromStorage } from "../models/Cart";
 import Order from "../models/Order.js";
 import { createOrder } from "./orderService.js";
 import { getProductById } from "./productService.js";
+import { applyCoupon } from "./discountService.js";
 function checkoutPreview(cart, couponCode = null) {
   const cart = loadFromStorage();
 
