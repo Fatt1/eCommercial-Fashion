@@ -26,18 +26,18 @@ function renderCheckout() {
   `;
 }
 
-export function navigate(page) {
-  if (page === "cart") {
-    renderCart();
-  } else if (page === "checkout") {
-    renderCheckout();
-  } else {
-    console.error("Unknown page:", page);
-  }
-}
-document.querySelector(".buy-now-btn").addEventListener("click", () => {
-  navigate("checkout");
-});
+// export function navigate(page) {
+//   if (page === "cart") {
+//     renderCart();
+//   } else if (page === "checkout") {
+//     renderCheckout();
+//   } else {
+//     console.error("Unknown page:", page);
+//   }
+// }
+// document.querySelector(".buy-now-btn").addEventListener("click", () => {
+//   navigate("checkout");
+// });
 
 renderCart();
 renderCartItemContainer();
