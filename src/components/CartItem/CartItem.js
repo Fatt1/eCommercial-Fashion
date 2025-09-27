@@ -90,72 +90,52 @@ export function renderCartItemContainer() {
 
   function renderDropDownMenuColor(product, skuId) {
     const sku = getSkuBySkuId(skuId, product.id);
-    let variationColor = undefined;
-    product.variations.forEach((variation) => {
-      if (variation.name === "Màu sắc") {
-        variationColor = variation;
-      }
+    let variationColor = product.variations.find((v) => v.name === "Màu sắc");
+    if (!variationColor) return "";
+
+    let html = `<ul class="dropdown-menu dropdown-menu__color dropdown-menu__color-${skuId}">`;
+    variationColor.variationOptions.forEach((option, idx) => {
+      const isActive = idx === sku.tierIndexes[0];
+      html += `
+      <li 
+        class="dropdown-item dropdown-item__color ${
+          isActive ? "disabled" : ""
+        }" 
+        data-index-color-sku="${idx}"
+        data-sku-id="${skuId}"
+        data-variation-id="${option.id}"
+        data-type="color"
+      >
+        ${option.name}
+      </li>`;
     });
-    let variationColorContent = "";
-    // let variationSizeContent = "";
-    // tạo content cho variation color
-    if (variationColor) {
-      let variationColorIndex = 0;
-      variationColorContent += `
-    <ul class="dropdown-menu dropdown-menu__color dropdown-menu__color-${skuId}">
-      ${variationColor.variationOptions
-        .map((option) => {
-          if (variationColorIndex === sku.tierIndexes[0]) {
-            // console.log(
-            //   document.querySelector(`.dropdown-button__color-${skuId}`)
-            // );
-          }
-          return `
-                        <li class="dropdown-item dropdown-item__color" 
-                          data-index-color-sku="${variationColorIndex++}"
-                          data-sku-id="${skuId}"
-                          data-variation-id = "${option.id}"
-                          data-type ="color">
-                            ${option.name}
-                        </li>
-                      `;
-        })
-        .join(" ")}
-    </ul>`;
-      return variationColorContent;
-    }
+    html += "</ul>";
+    return html;
   }
+
   function renderDropDownMenuSize(product, skuId) {
-    let variationSize = undefined;
-    product.variations.forEach((variation) => {
-      if (variation.name !== "Màu sắc") {
-        variationSize = variation;
-      }
+    const sku = getSkuBySkuId(skuId, product.id);
+    let variationSize = product.variations.find((v) => v.name !== "Màu sắc");
+    if (!variationSize) return "";
+
+    let html = `<ul class="dropdown-menu dropdown-menu__size dropdown-menu__size-${skuId}">`;
+    variationSize.variationOptions.forEach((option, idx) => {
+      const isActive = idx === sku.tierIndexes[1];
+      html += `
+      <li 
+        class="dropdown-item dropdown-item__size ${isActive ? "disabled" : ""}" 
+        data-index-size-sku="${idx}"
+        data-sku-id="${skuId}"
+        data-variation-id="${option.id}"
+        data-type="size"
+      >
+        ${option.id}
+      </li>`;
     });
-    let variationSizeContent = "";
-    // let variationSizeContent = "";
-    // tạo content cho variation color
-    if (variationSize) {
-      let variationSizeIndex = 0;
-      variationSizeContent += `
-    <ul class="dropdown-menu dropdown-menu__size dropdown-menu__size-${skuId}">
-      ${variationSize.variationOptions
-        .map(
-          (option) => `
-                        <li class="dropdown-item dropdown-item__size" 
-                          data-index-size-sku="${variationSizeIndex++}"
-                          data-sku-id="${skuId}"
-                          data-variation-id = "${option.id}"
-                          data-type ="size">
-                            ${option.id}
-                        </li>
-                      `
-        )
-        .join(" ")}
-    </ul>`;
-      return variationSizeContent;
-    }
+    html += "</ul>";
+    return html;
   }
+
   function renderColorButton(product, skuId) {
     const sku = getSkuBySkuId(skuId, product.id);
     let variationColor = undefined;
@@ -598,67 +578,53 @@ export function renderCartItemContainer() {
       });
     });
 
-    const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
-    // click vo tat + handle change sku
-    dropItemSizes.forEach((item) => {
-      const skuId = item.dataset.skuId;
+    const dropItemColors = document.querySelectorAll(".dropdown-item__color");
+    dropItemColors.forEach((item) => {
+      if (item.classList.contains("disabled")) return; // chặn click
       item.addEventListener("click", () => {
-        const menuSize = document.querySelector(
-          `.dropdown-menu__size-${skuId}`
+        const skuId = item.dataset.skuId;
+        const menuColor = document.querySelector(
+          `.dropdown-menu__color-${skuId}`
         );
-        // if (item.dataset.type == "color") {
-        //   changeSkuClickDropItemColor(skuId, item.dataset.indexColorSku);
-        //   console.log("color");
-        // } else if (item.dataset.type == "size") {
-        //   changeSkuClickDropItemSize(skuId, item.dataset.indexSizeSku);
-        //   console.log();
-        // }
-        if (item.dataset.type == "size") {
-          changeSkuClickDropItemSize2(skuId, item.dataset.indexSizeSku);
-          console.log("size");
-        }
-        menuSize.classList.toggle("show");
-        menuSize.classList.toggle("active");
+        changeSkuClickDropItemColor2(skuId, item.dataset.indexColorSku);
+        menuColor.classList.remove("show", "active");
       });
     });
 
-    function changeSkuClickDropItemSize(skuId, sizeIndex) {
-      let tierIndexes = [0, 0];
+    const dropItemSizes = document.querySelectorAll(".dropdown-item__size");
+    dropItemSizes.forEach((item) => {
+      if (item.classList.contains("disabled")) return; // chặn click
+      item.addEventListener("click", () => {
+        const skuId = item.dataset.skuId;
+        const menuSize = document.querySelector(
+          `.dropdown-menu__size-${skuId}`
+        );
+        changeSkuClickDropItemSize2(skuId, item.dataset.indexSizeSku);
+        menuSize.classList.remove("show", "active");
+      });
+    });
 
-      // Lấy lại color hiện tại đang được chọn từ button màu
-      const item = document.querySelector(`.dropdown-button__color-${skuId}`);
-      tierIndexes[0] = Number(item.dataset.indexColor); // giữ color cũ
-      tierIndexes[1] = Number(sizeIndex); // gán size mới
-
-      console.log("tierIndexes size", tierIndexes);
-
-      const newSku = getSkuByProductId(item.dataset.productId, tierIndexes);
-      console.log(item.dataset.productId, tierIndexes, newSku);
-
-      // Cập nhật lại sku trong giỏ
+    function changeSkuClickDropItemColor2(skuId, colorIndex) {
       const cartItem = cart.find((c) => c.skuId === skuId);
-      if (cartItem && newSku) {
-        cartItem.skuId = newSku.id;
-        saveToStorage();
-        renderCartItemContainer();
-      }
-    }
+      if (!cartItem) return;
 
-    function changeSkuClickDropItemSize2(skuId, sizeIndex) {
-      let tierIndexes = [0, 0];
-      const colorBtn = document.querySelector(
-        `.dropdown-button__color-${skuId}`
-      );
-      tierIndexes[0] = Number(colorBtn.dataset.indexColor);
-      tierIndexes[1] = Number(sizeIndex);
-      const newSku = getSkuByProductId(colorBtn.dataset.productId, tierIndexes);
-      const cartItem = cart.find((c) => c.skuId === skuId);
-      if (!cartItem || !newSku) return;
+      const productId = cartItem.productId;
+      const currentSku = getSkuBySkuId(skuId, productId);
+      if (!currentSku) return;
+
+      let tierIndexes = [...currentSku.tierIndexes];
+      tierIndexes[0] = Number(colorIndex);
+
+      const newSku = getSkuByProductId(productId, tierIndexes);
+      if (!newSku) return;
+
       const existingItem = cart.find((c) => c.skuId === newSku.id);
       if (existingItem) {
+        // cộng dồn quantity
         existingItem.quantity += cartItem.quantity;
-        // cart.splice(cart.indexOf(cartItem), 1);
-        removeFromCart(cartItem.skuId);
+        // xoá cartItem cũ bằng filter
+        const index = cart.findIndex((c) => c.skuId === skuId);
+        if (index !== -1) cart.splice(index, 1);
       } else {
         cartItem.skuId = newSku.id;
       }
@@ -667,55 +633,25 @@ export function renderCartItemContainer() {
       renderCartItemContainer();
     }
 
-    const dropItemColors = document.querySelectorAll(".dropdown-item__color");
-    // click ben vô thì tắt
-    dropItemColors.forEach((item) => {
-      const skuId = item.dataset.skuId;
-      item.addEventListener("click", () => {
-        const menuColor = document.querySelector(
-          `.dropdown-menu__color-${skuId}`
-        );
-        if (item.dataset.type == "color") {
-          changeSkuClickDropItemColor2(skuId, item.dataset.indexColorSku);
-          console.log("color");
-        }
-        menuColor.classList.toggle("show");
-        menuColor.classList.toggle("active");
-      });
-    });
-
-    function changeSkuClickDropItemColor(skuId, colorIndex) {
-      let tierIndexes = [0, 0];
-      // console.log(typeof tierIndexes);
-      tierIndexes[0] = Number(colorIndex);
-      const item = document.querySelector(`.dropdown-button__size-${skuId}`);
-      tierIndexes[1] = Number(item.dataset.indexSize);
-      console.log(tierIndexes);
-      const newSku = getSkuByProductId(item.dataset.productId, tierIndexes);
-      console.log(item.dataset.productId + " " + tierIndexes);
-      console.log(newSku);
-      // console.log(typeof item.dataset.productId + " " + typeof tierIndexes);
+    function changeSkuClickDropItemSize2(skuId, sizeIndex) {
       const cartItem = cart.find((c) => c.skuId === skuId);
-      console.log(cartItem);
-      cartItem.skuId = newSku.id;
-      saveToStorage();
-      console.log(cart);
-      renderCartItemContainer();
-    }
+      if (!cartItem) return;
 
-    function changeSkuClickDropItemColor2(skuId, colorIndex) {
-      let tierIndexes = [0, 0];
-      tierIndexes[0] = Number(colorIndex);
-      const sizeBtn = document.querySelector(`.dropdown-button__size-${skuId}`);
-      tierIndexes[1] = Number(sizeBtn.dataset.indexSize);
-      const newSku = getSkuByProductId(sizeBtn.dataset.productId, tierIndexes);
-      const cartItem = cart.find((c) => c.skuId === skuId);
-      if (!cartItem || !newSku) return;
+      const productId = cartItem.productId;
+      const currentSku = getSkuBySkuId(skuId, productId);
+      if (!currentSku) return;
+
+      let tierIndexes = [...currentSku.tierIndexes];
+      tierIndexes[1] = Number(sizeIndex);
+
+      const newSku = getSkuByProductId(productId, tierIndexes);
+      if (!newSku) return;
+
       const existingItem = cart.find((c) => c.skuId === newSku.id);
       if (existingItem) {
         existingItem.quantity += cartItem.quantity;
-        // cart.splice(cart.indexOf(cartItem), 1);
-        removeFromCart(cartItem.skuId);
+        const index = cart.findIndex((c) => c.skuId === skuId);
+        if (index !== -1) cart.splice(index, 1);
       } else {
         cartItem.skuId = newSku.id;
       }
