@@ -5,6 +5,7 @@ import CartSection from "../../components/CartSection/CartSection.js";
 import TotalMoneyCal from "../../components/TotalMoneyCal/TotalMoneyCal.js";
 import { renderCartItemContainer } from "../../components/CartItem/CartItem.js";
 import { renderCheckout } from "./Checkout.js";
+import { checkCart } from "../../services/cartService.js";
 
 function renderCart() {
   const root = document.getElementById("root");
@@ -41,9 +42,11 @@ function renderCart() {
 // });
 function handleClickCheckout() {
   document.querySelector(".buy-now-btn").addEventListener("click", () => {
-    console.log("buy");
-    const root = document.getElementById("root");
-    root.innerHTML = renderCheckout();
+    if (checkCart()) {
+      console.log("buy");
+      const root = document.getElementById("root");
+      root.innerHTML = renderCheckout();
+    }
   });
 }
 

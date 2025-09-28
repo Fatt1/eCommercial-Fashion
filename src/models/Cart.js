@@ -4,14 +4,7 @@ loadFromStorage();
 export function loadFromStorage() {
   cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) {
-    cart = [
-      {
-        skuId: "sku-001",
-        productId: "prod-001",
-        quantity: 1,
-        tick: false,
-      },
-    ];
+    cart = [];
   }
 }
 
