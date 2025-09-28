@@ -4,6 +4,7 @@ import InformBar from "../../components/InformBar/InformBar.js";
 import CartSection from "../../components/CartSection/CartSection.js";
 import TotalMoneyCal from "../../components/TotalMoneyCal/TotalMoneyCal.js";
 import { renderCartItemContainer } from "../../components/CartItem/CartItem.js";
+import { renderCheckout } from "./Checkout.js";
 
 function renderCart() {
   const root = document.getElementById("root");
@@ -16,15 +17,15 @@ function renderCart() {
   `;
 }
 
-function renderCheckout() {
-  const root = document.getElementById("root");
-  root.innerHTML = `
-    ${Header("")}
-    ${InformBar()}
-      
-    ${Footer()}
-  `;
-}
+// function renderCheckout() {
+//   const root = document.getElementById("root");
+//   root.innerHTML = `
+//     ${Header("")}
+//     ${InformBar()}
+
+//     ${Footer()}
+//   `;
+// }
 
 // export function navigate(page) {
 //   if (page === "cart") {
@@ -38,6 +39,14 @@ function renderCheckout() {
 // document.querySelector(".buy-now-btn").addEventListener("click", () => {
 //   navigate("checkout");
 // });
+function handleClickCheckout() {
+  document.querySelector(".buy-now-btn").addEventListener("click", () => {
+    console.log("buy");
+    const root = document.getElementById("root");
+    root.innerHTML = renderCheckout();
+  });
+}
 
 renderCart();
 renderCartItemContainer();
+handleClickCheckout();

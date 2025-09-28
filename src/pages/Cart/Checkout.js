@@ -1,8 +1,10 @@
+import CheckoutItem from "../../components/CheckoutItem/CheckoutItem.js";
 import Footer from "../../components/Footer/Footer.js";
 import Header from "../../components/Header/Header.js";
 export function renderCheckout() {
-  document.getElementById("id").innerHTML = `
+  return `
   ${Header("san-pham")}
+
      <div class="checkout">
         <!-- inform-bar -->
         <div class="inform-bar main-content">
@@ -25,44 +27,7 @@ export function renderCheckout() {
               <div class="product-total">Thành tiền</div>
             </div>
             <div class="checkout-item-container">
-              <div class="checkout-item">
-                <div class="product-main">
-                  <img
-                    class="product-main__img"
-                    src="../assets/large-img-detail.png"
-                    alt=""
-                  />
-                  <span>ÁO SƠ MI Z02313</span>
-                </div>
-                <div class="product-size">
-                  <div class="dropdown">
-                    <span
-                      disabled
-                      class="dropdown-button dropdown-button__size"
-                    >
-                      S
-                    </span>
-                  </div>
-                </div>
-                <div class="product-color">
-                  <div class="dropdown">
-                    <span
-                      disabled
-                      class="dropdown-button dropdown-button__color"
-                    >
-                      Nâu
-                    </span>
-                  </div>
-                </div>
-                <div class="product-price">
-                  <span class="product-price__old-price">557.000đ</span>
-                  <span class="product-price__current-price">447.000đ</span>
-                </div>
-                <div class="product-quantity">
-                  <span disabled class="product-quantity__input">1</span>
-                </div>
-                <div class="product-total product-total-text">447.000đ</div>
-              </div>
+              ${CheckoutItem()}
             </div>
           </section>
 
