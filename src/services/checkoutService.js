@@ -1,18 +1,20 @@
 import { FEE_SHIPPING } from "../constant/Constant.js";
-import { loadFromStorage } from "../models/Cart";
+
 import Order from "../models/Order.js";
 import { createOrder } from "./orderService.js";
-import { getProductById } from "./productService.js";
+import { getDetailOneSku, getProductById } from "./productService.js";
 import { applyCoupon } from "./discountService.js";
-function checkoutPreview(cart, couponCode = null) {
-  const cart = loadFromStorage();
-
+import { getTickedProductInCart } from "./cartService.js";
+function checkoutPreview(discountId = null) {
+  const cart = getTickedProductInCart();
+  console.log(cart);
   const checkoutOrder = {
     totalPrice: 0, // Tổng tiền hàng
     feeShipping: 0,
     totalDiscount: 0,
     totalCheckout: 0, // Tổng tiền phải thanh toán
     itemsCheckout: [],
+    totalItems: 0,
   };
 
   // lấy thông tin về sản phẩm
@@ -24,24 +26,26 @@ function checkoutPreview(cart, couponCode = null) {
 
     // Tính giá thô (nhân số lượng), giá thành tiền
     const rawPrice = cartItem.quantity * product.priceInfo.currentlyPrice;
-
+    let detailSku = getDetailOneSku(sku, product.id);
     checkoutOrder.itemsCheckout.push({
       item: {
-        productId: product.productId,
-        sku,
+        productId: product.id,
+        detailSku,
         productName: product.name,
         originalPrice: product.priceInfo.originalPrice,
         currentlyPrice: product.priceInfo.currentlyPrice,
-        image: product.image,
+        image: product.thumbnail,
       },
       rawPrice,
       quantity: cartItem.quantity,
     });
     checkoutOrder.totalPrice += rawPrice;
   }
+  checkoutOrder.totalItems = checkoutOrder.itemsCheckout.length;
 
-  if (couponCode) {
-    const totalDiscount = applyCoupon(couponCode, checkoutOrder.totalPrice);
+  // Tính tiền nếu có mã giảm giá
+  if (discountId) {
+    const totalDiscount = applyCoupon(discountId, checkoutOrder.totalPrice);
     checkoutOrder.totalDiscount += totalDiscount;
   }
 
@@ -90,3 +94,4 @@ function checkout(
   });
 }
 export { checkoutPreview };
+console.log(checkoutPreview());

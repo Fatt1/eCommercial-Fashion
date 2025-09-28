@@ -99,6 +99,16 @@ button:hover {
 .dropdown-menu.show {
   max-height: 230px;
 }
+.overlay {
+  position: fixed;
+  background-color: #3d3738;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+}
 .overlay.show {
   opacity: 0.4;
   visibility: visible;

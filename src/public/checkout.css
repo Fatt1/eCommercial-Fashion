@@ -25,7 +25,9 @@ body {
   align-items: center;
   font-size: medium;
 }
-
+.checkout-item {
+  margin-bottom: 20px;
+}
 .checkout-info .product-main {
   display: flex;
   justify-content: start;
@@ -109,6 +111,9 @@ body {
   gap: 10px;
 }
 .product-quantity__input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.6rem;
 }
 .product-quantity__button {
@@ -394,7 +399,7 @@ body {
   padding: 5px;
 }
 
-.blue-button {
+.voucher-button {
   background-color: transparent;
   border: none;
   color: #003cff;
@@ -500,6 +505,14 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* Currency style */
+.currency {
+  margin-left: 3px;
+  font-size: 0.9em;
+  opacity: 0.8;
+  font-weight: normal;
 }
 .order-button {
   width: 180px;

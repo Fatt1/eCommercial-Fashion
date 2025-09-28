@@ -607,10 +607,12 @@ footer {
   position: relative;
   right: -130px;
 }
+.cart-container {
+  padding-top: 140px;
+}
 .inform-bar {
   background-color: #ffffff;
 
-  margin-top: 140px;
   margin-bottom: 80px;
   height: 70px;
   display: flex;

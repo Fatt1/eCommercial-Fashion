@@ -11,9 +11,11 @@ function renderCart() {
   const root = document.getElementById("root");
   root.innerHTML = `
    ${Header("trang-chu")}
-   ${InformBar()}
+    <div class="cart-container">
+    ${InformBar()}
    ${CartSection()}
    ${TotalMoneyCal()}
+    </div>
    ${Footer()}
   `;
 }
@@ -43,9 +45,7 @@ function renderCart() {
 function handleClickCheckout() {
   document.querySelector(".buy-now-btn").addEventListener("click", () => {
     if (checkCart()) {
-      console.log("buy");
-      const root = document.getElementById("root");
-      root.innerHTML = renderCheckout();
+      renderCheckout();
     }
   });
 }

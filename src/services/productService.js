@@ -322,13 +322,16 @@ function getDetailOneSku(sku, productId) {
       let detailVariationOption;
       if (variationName === "Màu sắc") {
         detailVariationOption = getColorByCode(variationOption.id);
+        detailVariationOption.variation = "Màu sắc";
       } else if (variationName === "Kích thước") {
         detailVariationOption = getSizeById(variationOption.id);
+        detailVariationOption.variation = "Kích thước";
       }
       return detailVariationOption;
     }
   );
-  return { sku, selectedDetails };
+  sku.selectedDetails = selectedDetails;
+  return sku;
 }
 export {
   getAllProducts,

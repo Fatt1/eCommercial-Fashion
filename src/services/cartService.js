@@ -1,8 +1,8 @@
-import { cart, loadFromStorage } from "../models/Cart.js";
+import { cart } from "../models/Cart.js";
 
 function getTickedProductInCart() {
-  const cart = loadFromStorage();
-  return cart.filter((c) => c.tick === true);
+  const cartItems = JSON.parse(localStorage.getItem("cart"));
+  return cartItems.filter((c) => c.tick === true);
 }
 
 export function checkCart() {

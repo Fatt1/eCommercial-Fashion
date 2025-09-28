@@ -1,29 +1,23 @@
-import { DISCOUNT_TYPE } from "../constant/Constant";
-import { getDbContextFromLocalStorage } from "../helper/initialData";
+import { DISCOUNT_TYPE } from "../constant/Constant.js";
+import { getDbContextFromLocalStorage } from "../helper/initialData.js";
 
-const dbContext = getDbContextFromLocalStorage();
+const dbContext = await getDbContextFromLocalStorage();
 
-function checkValidCoupon(couponCode, totalRaw) {
-  const now = new Date();
-  const couponCode = dbContext.discounts.find(
-    (discount) => discount.couponCode === couponCode
+function checkValidCoupon(discountId, totalRaw) {
+  const existingCouponCode = dbContext.discounts.find(
+    (discount) => discount.id === discountId
   );
-  if (!couponCode)
+  if (!existingCouponCode)
     return { successful: false, message: "Không tìm thấy mã giảm giá" };
   // check xem totalPrice có đủ để giảm giá không
-  if (couponCode.minDiscountValue > totalRaw)
+  if (existingCouponCode.minDiscountValue > totalRaw)
     return { successful: false, message: "Tổng tiền không đủ để áp mã này" };
-
-  if (couponCode.startDate > now || couponCode.endDate < now)
-    return {
-      successful: false,
-      message: "Mã khuyến mãi không trong thời gian sử dụng",
-    };
+  return { successful: true, message: "Áp dụng mã giảm giá hợp lệ" };
 }
 
-function applyCoupon(couponCode, totalRaw) {
+function applyCoupon(discountId, totalRaw) {
   const coupon = dbContext.discounts.find(
-    (discount) => discount.couponCode === couponCode
+    (discount) => discount.id === discountId
   );
   let totalDiscount = 0;
   const type = coupon.type;
@@ -32,25 +26,37 @@ function applyCoupon(couponCode, totalRaw) {
   } else {
     totalDiscount = totalRaw * (coupon.discountValue / 100);
   }
-  if (totalDiscount > coupon.maxDiscountValue) totalDiscount = maxDiscountValue;
+  if (totalDiscount > coupon.maxDiscountValue)
+    totalDiscount = coupon.maxDiscountValue;
   return totalDiscount;
 }
 
 function getDiscountByCouponCode(couponCode) {
-  const couponCode = dbContext.discounts.find(
+  const existingCouponCode = dbContext.discounts.find(
     (discount) => discount.couponCode === couponCode
   );
-  return couponCode;
+  return existingCouponCode;
 }
 function getDiscountById(id) {
-  const couponCode = dbContext.discounts.find((discount) => discount.id === id);
-  return couponCode;
+  const existingCouponCode = dbContext.discounts.find(
+    (discount) => discount.id === id
+  );
+  return existingCouponCode;
 }
 function getAllAvailableDiscounts() {
   const now = new Date();
-  return dbContext.discounts.filter(
-    (discount) => discount.startDate > now && discount.endDate < now
-  );
+  const discounts = dbContext.discounts.filter((discount) => {
+    const endDate = new Date(discount.endDate);
+    return endDate >= now;
+  });
+  return discounts.map((discount) => {
+    const endDate = new Date(discount.endDate);
+    const timeDifferenceMs = endDate.getTime() - now.getTime();
+    const msInDay = 1000 * 60 * 60 * 24;
+    const leftTimeDays = Math.ceil(timeDifferenceMs / msInDay);
+
+    return { ...discount, leftTimeDays: leftTimeDays }; // Số ngày còn lại (dạng số nguyên) };
+  });
 }
 
 export {

@@ -1,8 +1,16 @@
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem.js";
 import Footer from "../../components/Footer/Footer.js";
 import Header from "../../components/Header/Header.js";
+import VoucherPopup, {
+  setupVoucherPopup,
+} from "../../components/VoucherPopup/VoucherPopup.js";
+import { formatNumber } from "../../helper/formatNumber.js";
+import { checkoutPreview } from "../../services/checkoutService.js";
+export const selectedVoucherId = {};
+export let checkout = {};
 export function renderCheckout() {
-  return `
+  checkout.prop = checkoutPreview();
+  document.getElementById("root").innerHTML = `
   ${Header("san-pham")}
 
      <div class="checkout">
@@ -27,15 +35,18 @@ export function renderCheckout() {
               <div class="product-total">Thành tiền</div>
             </div>
             <div class="checkout-item-container">
-              ${CheckoutItem()}
+              ${checkout.prop.itemsCheckout
+                .map((checkoutItem) => {
+                  return CheckoutItem(
+                    checkoutItem.item,
+                    checkoutItem.quantity,
+                    checkoutItem.rawPrice
+                  );
+                })
+                .join(" ")}
             </div>
           </section>
 
-          <main class="content">
-            <!-- nội dung dài ở đây -->
-          </main>
-
-          <!-- total money cal  -->
 
           <!--Fashion-checkout-->
           <section class="fashion-checkout">
@@ -57,7 +68,7 @@ export function renderCheckout() {
                       /></span>
                       <span>Voucher</span>
                     </div>
-                    <button class="blue-button">Chọn Voucher khác</button>
+                    <button class="blue-button voucher-btn">Chọn Voucher khác</button>
                   </div>
                   <div class="checkout-top-right__shipping">
                     <div class="shipping-col-1">Phương thức vận chuyển:</div>
@@ -74,7 +85,7 @@ export function renderCheckout() {
                         >
                       </div>
                       <div class="grey-text">
-                        Nhận voucher trị giá 15.000đ nếu đơn hàng bị giao trễ
+                        Nhận voucher trị giá 15.000<span class="currency">đ</span> nếu đơn hàng bị giao trễ
                         sau 20 tháng 9
                       </div>
                     </div>
@@ -83,8 +94,12 @@ export function renderCheckout() {
                 </div>
               </div>
               <div class="checkout-box-bot">
-                <span>Tổng số tiền (0 sản phẩm):</span>
-                <div>0đ</div>
+                <span>Tổng số tiền (${
+                  checkout.prop.totalItems
+                } sản phẩm):</span>
+                <div>${formatNumber(
+                  checkout.prop.totalPrice
+                )}<span class="currency">đ</span></div>
               </div>
             </div>
             <div class="checkout-box2 checkout-box">
@@ -103,19 +118,32 @@ export function renderCheckout() {
                 <div class="row-2-info">
                   <div class="payments">
                     <span class="grey-text">Tổng tiền hàng</span>
-                    <div>0đ</div>
+                    <div id="total-price">
+                    <span>${formatNumber(checkout.prop.totalPrice)}</span>
+                    <span class="currency">đ</span></div>
                   </div>
                   <div class="payments">
                     <span class="grey-text">Tổng tiền vận chuyển</span>
-                    <div>0đ</div>
+                    <div><span id="total-shipping">${formatNumber(
+                      checkout.prop.feeShipping
+                    )}</span><span class="currency">đ</span></div>
                   </div>
                   <div class="payments">
                     <span class="grey-text">Tổng cộng voucher giảm giá</span>
-                    <div style="color: orange">0đ</div>
+                    <div style="color: orange">-
+                    <span id="total-discount">${formatNumber(
+                      checkout.prop.totalDiscount
+                    )}
+                    </span>
+                    <span class="currency">đ</span></div>
                   </div>
                   <div class="payments">
                     <span class="grey-text">Tổng thanh toán</span>
-                    <div style="font-size: x-large">0đ</div>
+                    <div  style="font-size: x-large">
+                    <span id="total-checkout">${formatNumber(
+                      checkout.prop.totalCheckout
+                    )}</span>
+                    <span class="currency">đ</span></div>
                   </div>
                 </div>
               </div>
@@ -125,7 +153,7 @@ export function renderCheckout() {
                     >Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân
                     theo.</span
                   >
-                  <button class="blue-button">Điều khoản của Diorn</button>
+                  <button class="voucher-button">Điều khoản của Diorn</button>
                 </div>
                 <button class="order-button">Đặt hàng</button>
               </div>
@@ -133,7 +161,21 @@ export function renderCheckout() {
           </section>
         </div>
       </div>
+      <div id="voucher-popup"></div>
 
       ${Footer()}
   `;
+  setUpCheckout();
+}
+
+function setUpCheckout() {
+  document.querySelector(".voucher-btn").addEventListener("click", (event) => {
+    document.querySelector(".overlay").classList.add("show");
+    const voucherPopup = document.getElementById("voucher-popup");
+    voucherPopup.innerHTML = VoucherPopup();
+    setupVoucherPopup();
+    console.log("chạy");
+    voucherPopup.style.left =
+      document.body.clientWidth / 2 - voucherPopup.clientWidth / 2 + "px";
+  });
 }
