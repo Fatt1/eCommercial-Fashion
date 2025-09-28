@@ -6,7 +6,14 @@ function getTickedProductInCart() {
 }
 
 export function checkCart() {
-  return cart.length > 0;
+  if (cart.length <= 0) return false;
+  let check = false;
+  cart.forEach((cartItem) => {
+    console.log(cartItem.tick);
+    if (cartItem.tick === true) check = true;
+  });
+  console.log("a");
+  return check;
 }
 
 export { getTickedProductInCart };
