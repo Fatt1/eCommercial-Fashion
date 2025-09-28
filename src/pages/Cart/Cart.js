@@ -18,6 +18,7 @@ function renderCart() {
     </div>
    ${Footer()}
   `;
+  handleClickHeader();
 }
 
 // function renderCheckout() {

@@ -2,7 +2,7 @@ import {
   getAllCategory,
   getSubCategory,
 } from "../../services/categoryService.js";
-import { logout } from "../../services/authenticateService.js";
+import { logout, isLogin } from "../../services/authenticateService.js";
 import { loadProductPage } from "../../pages/Product/Product.js";
 import {
   updateCartQuantity,
@@ -10,6 +10,7 @@ import {
 } from "../../models/Cart.js";
 import { Login, setUpLoginForm } from "../Login/Login.js";
 import Register, { setupRegisterForm } from "../Register/Register.js";
+
 export default function Header(selectedTab) {
   return ` <header>
         <div class="container">
@@ -120,7 +121,7 @@ export function handleClickHeader() {
       return;
     });
   });
-
+  handleClickCartIcon();
   handleSearching();
   checkLoggedUser();
 }
@@ -172,7 +173,7 @@ function handleRegisterLink() {
     renderOverlay();
   });
 }
-function renderOverlay() {
+export function renderOverlay() {
   document.querySelector(".overlay").classList.add("show");
   document.body.style.overflow = "hidden";
   document.getElementById("register-login").style.left =
@@ -211,5 +212,18 @@ export function setupDropdownAfterLogin(email) {
 
   document.querySelector(".logout-btn").addEventListener("click", () => {
     handleLogoutClick();
+  });
+}
+
+function handleClickCartIcon() {
+  document.querySelector(".header-cart").addEventListener("click", (event) => {
+    event.preventDefault();
+    if (!isLogin()) {
+      document.getElementById("register-login").innerHTML = Login();
+      setUpLoginForm();
+      renderOverlay();
+      return;
+    }
+    window.location.href = "./cart.html";
   });
 }

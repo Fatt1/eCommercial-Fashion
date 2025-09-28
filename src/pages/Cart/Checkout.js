@@ -1,11 +1,17 @@
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem.js";
 import Footer from "../../components/Footer/Footer.js";
-import Header from "../../components/Header/Header.js";
+import Header, { handleClickHeader } from "../../components/Header/Header.js";
+import PaymentMethod, {
+  setUpPaymentMethod,
+} from "../../components/PaymentMethod/PaymentMethod.js";
 import VoucherPopup, {
   setupVoucherPopup,
 } from "../../components/VoucherPopup/VoucherPopup.js";
 import { formatNumber } from "../../helper/formatNumber.js";
 import { checkoutPreview } from "../../services/checkoutService.js";
+import PickerLocation from "../../components/PickerLocation/PickerLocation.js";
+import { renderAddressForm } from "../../components/AddressFormPopup/AddressFormPopup.js";
+import DeliveryAddress from "../../components/DeliveryAddress/DeliveryAddress.js";
 export const selectedVoucherId = {};
 export let checkout = {};
 export function renderCheckout() {
@@ -22,7 +28,7 @@ export function renderCheckout() {
           <div class="vertical-line"></div>
           <div class="inform-bar-text">THANH TOÁN</div>
         </div>
-
+          ${DeliveryAddress()}
         <!-- checkout summary  -->
         <div class="main-content">
           <section class="checkout-summary">
@@ -109,12 +115,7 @@ export function renderCheckout() {
                 ><button class="row-1-col-3 blue-button">Thay đổi</button>
               </div>
               <div class="row-2">
-                <div class="payment-methods">
-                  <div class="payment-method active">
-                    Thanh toán khi nhận hàng
-                  </div>
-                  <div class="payment-method">Paypal</div>
-                </div>
+              ${PaymentMethod()}
                 <div class="row-2-info">
                   <div class="payments">
                     <span class="grey-text">Tổng tiền hàng</span>
@@ -161,8 +162,7 @@ export function renderCheckout() {
           </section>
         </div>
       </div>
-      <div id="voucher-popup"></div>
-
+      
       ${Footer()}
   `;
   setUpCheckout();
@@ -178,4 +178,6 @@ function setUpCheckout() {
     voucherPopup.style.left =
       document.body.clientWidth / 2 - voucherPopup.clientWidth / 2 + "px";
   });
+  setUpPaymentMethod();
+  handleClickHeader();
 }

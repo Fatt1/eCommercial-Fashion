@@ -15,6 +15,7 @@ function renderProduct(categoryId) {
   `;
 }
 function setupProduct() {
+  document.body.style.backgroundColor = "white";
   document
     .querySelector(".right-sort-bar .dropdown")
     .addEventListener("mouseover", () => {

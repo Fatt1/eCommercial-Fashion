@@ -1,4 +1,4 @@
-body {
+#root {
   font-family: "Geologica", sans-serif;
   background-color: #e3e3e3;
 }
@@ -27,6 +27,7 @@ body {
 }
 .checkout-item {
   margin-bottom: 20px;
+  padding-bottom: 10px;
 }
 .checkout-info .product-main {
   display: flex;

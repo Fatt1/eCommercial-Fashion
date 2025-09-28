@@ -46,4 +46,9 @@ function logout(userId) {
   }
   return false;
 }
-export { login, register, logout };
+function isLogin() {
+  const user = localStorage.getItem("user_info");
+  if (!user) return false;
+  return true;
+}
+export { login, register, logout, isLogin };

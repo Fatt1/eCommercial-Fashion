@@ -11,6 +11,10 @@ async function setDataFromJsonIntoDbContext() {
   const attributes = await loadDataFromJson("attribute.json", "attributes");
   const users = await loadDataFromJson("user.json", "users");
   const discounts = await loadDataFromJson("discount.json", "discounts");
+  const paymentMethods = await loadDataFromJson(
+    "paymentMethod.json",
+    "paymentMethods"
+  );
   return {
     products,
     skus,
@@ -21,6 +25,7 @@ async function setDataFromJsonIntoDbContext() {
     attributes,
     users,
     discounts,
+    paymentMethods,
   };
 }
 

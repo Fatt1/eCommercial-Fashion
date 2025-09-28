@@ -2,6 +2,7 @@
   "users": [
     {
       "id": "1",
+      "fullName": "Admin",
       "email": "admin123@gmail.com",
       "password": "admin@123",
       "addresses": [],
@@ -11,6 +12,7 @@
     },
     {
       "id": "2",
+      "fullName": "Phan Việt Huy",
       "email": "viethuy@gmail.com",
       "password": "test123",
       "addresses": [

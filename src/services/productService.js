@@ -316,7 +316,7 @@ function getDetailOneSku(sku, productId) {
   const selectedDetails = product.variations.map(
     (variation, variationIndex) => {
       const variationName = variation.name;
-      console.log(variation);
+
       const variationOption =
         variation.variationOptions[tierIndexes[variationIndex]];
       let detailVariationOption;

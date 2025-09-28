@@ -1,6 +1,9 @@
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb.js";
 import Footer from "../../components/Footer/Footer.js";
-import Header, { handleClickHeader } from "../../components/Header/Header.js";
+import Header, {
+  handleClickHeader,
+  renderOverlay,
+} from "../../components/Header/Header.js";
 import ProductList, {
   handClickProductList,
 } from "../../components/ProductList/ProductList.js";
@@ -16,6 +19,8 @@ import {
 } from "../../services/productService.js";
 import { cart } from "../../models/Cart.js";
 import { preventInputTextForNumberInput } from "../../helper/helper.js";
+import { isLogin } from "../../services/authenticateService.js";
+import { Login, setUpLoginForm } from "../../components/Login/Login.js";
 //mai mốt sẽ viết thêm hàm lấy các sản phẩm liên quan
 const relatedProducts = getAllProducts({}).items;
 function renderProductDetailHtml(productId) {
@@ -178,7 +183,7 @@ function renderProductDetailHtml(productId) {
               </div>
               <div class="product-actions">
                 <button data-product-id="${productId}" class="add-to-cart-btn"> 
-                  <img class="cart" src="../assets/shopping-cart.png"> Thêm vào giỏ hàng
+                  <img class="cart-img" src="../assets/shopping-cart.png"> Thêm vào giỏ hàng
                 </button>
                 <button class="buy-now-btn">Mua ngay</button>
               </div>
@@ -344,6 +349,12 @@ function handleClickVariation() {
 function addToCartBtn() {
   document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
     button.addEventListener("click", () => {
+      if (!isLogin()) {
+        document.getElementById("register-login").innerHTML = Login();
+        setUpLoginForm();
+        renderOverlay();
+        return;
+      }
       const productId = button.dataset.productId;
       const sku = getSkuByProductId(productId, tierIndexes);
 
