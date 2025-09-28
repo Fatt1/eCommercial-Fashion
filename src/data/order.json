@@ -28,7 +28,8 @@
         }
       ],
       "totalApplyDiscount": 1000000,
-      "total": 1100000,
+      "totalCheckout": 1100000,
+      "totalPrice": 600000,
       "street": "15 Lê Lợi",
       "city": "TP. Hồ Chí Minh",
       "ward": "Phường Bến Nghé",

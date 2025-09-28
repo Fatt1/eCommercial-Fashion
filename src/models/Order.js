@@ -4,7 +4,8 @@ export default class Order {
     customerId,
     items,
     totalApplyDiscount,
-    total,
+    totalCheckout,
+    totalPrice,
     street,
     city,
     ward,
@@ -20,7 +21,8 @@ export default class Order {
     this.ward = ward;
     this.district = district;
     this.items = items;
-    this.total = total;
+    this.totalCheckout = totalCheckout;
+    this.totalPrice = totalPrice;
     this.totalApplyDiscount = totalApplyDiscount;
     this.feeShipping = feeShipping;
     this.paymentMethodId = paymentMethodId;

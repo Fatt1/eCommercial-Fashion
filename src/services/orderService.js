@@ -5,12 +5,13 @@ import {
   saveDbContextToLocalStorage,
 } from "../helper/initialData.js";
 import Order from "../models/Order.js";
-const dbContext = getDbContextFromLocalStorage;
-function createOrder({
+
+async function createOrder({
   customerId,
   items,
   totalApplyDiscount,
-  total,
+  totalCheckout,
+  totalPrice,
   street,
   city,
   ward,
@@ -18,13 +19,15 @@ function createOrder({
   feeShipping,
   paymentMethodId,
 }) {
+  const dbContext = await getDbContextFromLocalStorage();
   const id = generateOrderId();
   const order = new Order(
     id,
     customerId,
     items,
     totalApplyDiscount,
-    total,
+    totalCheckout,
+    totalPrice,
     street,
     city,
     ward,
@@ -33,9 +36,18 @@ function createOrder({
     paymentMethodId,
     ORDER_STATUS.PENDING
   );
+
   dbContext.orders.push(order);
+  console.log(dbContext);
   saveDbContextToLocalStorage(dbContext);
-  return true;
+
+  return order;
+}
+async function updateStatusOrder(orderId, status) {
+  const dbContext = await getDbContextFromLocalStorage();
+  const order = dbContext.orders.find((o) => o.id === orderId);
+  order.status = status;
+  saveDbContextToLocalStorage(dbContext);
 }
 
-export { createOrder };
+export { createOrder, updateStatusOrder };

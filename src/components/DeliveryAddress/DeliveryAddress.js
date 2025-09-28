@@ -1,17 +1,16 @@
 import { getDefaultAddress } from "../../services/userService.js";
 import { renderAddressForm } from "../AddressFormPopup/AddressFormPopup.js";
-export default function DeliveryAddress() {
+export default function DeliveryAddress(selectedAddress) {
   let fullName = "";
   let phoneNumber = "";
   let address = "";
   const loggedUser = JSON.parse(localStorage.getItem("user_info"));
-  if (loggedUser.addresses.length === 0) {
+  if (!selectedAddress) {
     renderAddressForm();
   } else {
     fullName = loggedUser.fullName;
     phoneNumber = loggedUser.phoneNumber;
-    const fullAddress = getDefaultAddress(loggedUser.id);
-    address += `${fullAddress.street}, ${fullAddress.district}, ${fullAddress.ward}, ${fullAddress.city}`;
+    address += `${selectedAddress.street}, ${selectedAddress.district}, ${selectedAddress.ward}, ${selectedAddress.city}`;
   }
   return `  <!-- delivery -->
               <div class="delivery-address main-content">
