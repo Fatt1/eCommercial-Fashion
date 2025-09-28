@@ -5,9 +5,10 @@ import { createOrder } from "./orderService.js";
 import { getDetailOneSku, getProductById } from "./productService.js";
 import { applyCoupon } from "./discountService.js";
 import { getTickedProductInCart } from "./cartService.js";
+import { payWithPayPal } from "./paymentService.js";
+import { getPaymentMethodById } from "./paymentMethodService.js";
 function checkoutPreview(discountId = null) {
   const cart = getTickedProductInCart();
-  console.log(cart);
   const checkoutOrder = {
     totalPrice: 0, // Tổng tiền hàng
     feeShipping: 0,
@@ -57,7 +58,7 @@ function checkoutPreview(discountId = null) {
     checkoutOrder.feeShipping;
   return checkoutOrder;
 }
-function checkout(
+async function placeOrder(
   checkoutOrder,
   customerId,
   street,
@@ -66,21 +67,27 @@ function checkout(
   district,
   paymentMethodId
 ) {
-  const { checkoutItems } = checkoutOrder;
-  const items = checkoutItems.map((checkout) => {
+  const { itemsCheckout } = checkoutOrder;
+  const items = itemsCheckout.map((checkout) => {
     return {
       productId: checkout.item.productId,
       name: checkout.item.productName,
+      sku: {
+        skuId: checkout.item.detailSku.id,
+        name: checkout.item.detailSku.selectedDetails
+          .map((v) => v.name)
+          .join(", "),
+      },
       quantity: checkout.quantity,
       originalPrice: checkout.item.originalPrice,
       price: checkout.item.currentlyPrice,
     };
   });
   //call API thanh toán tiền gì đó
-
-  // sau khi thanh toán thành công thì sẽ tạo order mới
-
-  const order = createOrder({
+  let approvalUrl = undefined;
+  const paymentMethod = getPaymentMethodById(paymentMethodId);
+  console.log(paymentMethod);
+  const order = await createOrder({
     customerId,
     street,
     city,
@@ -89,9 +96,20 @@ function checkout(
     feeShipping: checkoutOrder.feeShipping,
     items: items,
     paymentMethodId,
-    total: checkoutOrder.totalCheckout,
+    totalCheckout: checkoutOrder.totalCheckout,
+    totalPrice: checkoutOrder.totalPrice,
     totalApplyDiscount: checkoutOrder.totalDiscount,
   });
+  localStorage.setItem("temp_order", JSON.stringify(order));
+  if (paymentMethod.name === "Paypal") {
+    approvalUrl = await payWithPayPal(checkoutOrder);
+
+    window.location.href = approvalUrl;
+  }
+  // Phương thức thanh toán trả tiền sau khi nhận hàng
+  else {
+    window.location.href = "./payment-successful.html";
+  }
+  // sau khi thanh toán thành công thì sẽ tạo order mới
 }
-export { checkoutPreview };
-console.log(checkoutPreview());
+export { checkoutPreview, placeOrder };

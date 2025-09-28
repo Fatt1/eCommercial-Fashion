@@ -111,3 +111,18 @@ export function generateOrderId() {
   // 3. Kết hợp lại
   return `${datePart}-${timePart}-${randomPart}`;
 }
+export function convertVndToUsd(value) {
+  // Tỷ giá hối đoái giả định (ví dụ: 1 USD = 25,000 VND)
+  const EXCHANGE_RATE = 26403;
+
+  if (typeof value !== "number" || value < 0) {
+    console.error("Lỗi: Giá trị phải là một số không âm.");
+    return 0; // Trả về 0 hoặc ném lỗi
+  }
+
+  // Tính toán: USD = VND / Tỷ giá
+  const usdValue = value / EXCHANGE_RATE;
+
+  // Làm tròn đến 2 chữ số thập phân (chuẩn cho tiền tệ)
+  return parseFloat(usdValue.toFixed(2));
+}

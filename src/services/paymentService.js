@@ -3,7 +3,7 @@ import {
   PAY_CLIENT_ID,
   PAY_SECRET,
 } from "../constant/Constant.js";
-
+import { convertVndToUsd } from "../helper/helper.js";
 export async function generateAccessToken() {
   const credentials = `${PAY_CLIENT_ID}:${PAY_SECRET}`;
   const encodedCredentials = btoa(credentials); // mã hóa chuỗi sang base64
@@ -30,6 +30,23 @@ export async function generateAccessToken() {
 export async function payWithPayPal(checkoutOrder) {
   const accessToken = await generateAccessToken();
   try {
+    const itemTotal = convertVndToUsd(checkoutOrder.totalPrice);
+    const shipping = convertVndToUsd(checkoutOrder.feeShipping);
+    const discount = convertVndToUsd(checkoutOrder.totalDiscount);
+
+    console.log("shipping" + shipping);
+    console.log("dis" + discount);
+    const totalCheckout = itemTotal + shipping - discount;
+    const items = checkoutOrder.itemsCheckout.map((checkout) => {
+      return {
+        name: checkout.item.productName,
+        quantity: checkout.quantity,
+        unit_amount: {
+          currency_code: "USD",
+          value: convertVndToUsd(checkout.item.currentlyPrice),
+        },
+      };
+    });
     const response = await fetch(PAY_BASE_URL + "/v2/checkout/orders", {
       method: "POST",
       headers: {
@@ -57,32 +74,36 @@ export async function payWithPayPal(checkoutOrder) {
           {
             amount: {
               currency_code: "USD",
-              value: "200",
+              value: totalCheckout,
               breakdown: {
                 item_total: {
                   currency_code: "USD",
-                  value: "200",
+                  value: itemTotal,
+                },
+                shipping: {
+                  currency_code: "USD",
+                  value: shipping, // <-- PHÍ VẬN CHUYỂN BẠN MUỐN THÊM
+                },
+                discount: {
+                  // <-- KHOẢN GIẢM TRỪ
+                  currency_code: "USD",
+                  value: discount, // <-- Số tiền chiết khấu (2.00 USD)
                 },
               },
             },
-            items: [
-              {
-                name: "T-Shirt",
-                description: "Trình là gì mà trình ai chấm",
-                quantity: 2,
-                unit_amount: {
-                  currency_code: "USD",
-                  value: "100",
-                },
-              },
-            ],
+            items: items,
           },
         ],
       }),
     });
-    console.log(await response.json());
+
+    if (response.ok) {
+      const dataResponse = await response.json();
+      console.log(dataResponse);
+      return dataResponse.links.find((link) => link.rel === "payer-action")
+        .href;
+    }
   } catch (err) {
     console.log(err);
   }
 }
-payWithPayPal();

@@ -8,4 +8,11 @@
   <body>
     <h1>THANH TOÁN THÀNH CÔNG RỒI</h1>
   </body>
+  <script type="module">
+    import { ORDER_STATUS } from "../constant/Constant.js";
+    import { updateStatusOrder } from "../services/orderService.js";
+    const tempOrder = JSON.parse(localStorage.getItem("temp_order"));
+    updateStatusOrder(tempOrder.id, ORDER_STATUS.PROCESSING);
+    localStorage.removeItem("temp_order");
+  </script>
 </html>

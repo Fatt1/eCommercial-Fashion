@@ -6,7 +6,7 @@ export default function PaymentMethod() {
  <div class="payment-methods">
     ${paymentMethods
       .map((method) => {
-        return `<div dataset-method-id="${method.id}" class="payment-method ${
+        return `<div data-method-id="${method.id}" class="payment-method ${
           method.name === "Thanh toán khi nhận hàng" ? "active" : ""
         }">
         ${method.name}

@@ -24,7 +24,8 @@ function addNewAddress({
 }) {
   const user = dbContext.users.find((u) => u.id === userId);
   const newAddress = { street, district, ward, city, isDefault: true };
-  (user.fullName = fullName), user.addresses.push(newAddress);
+  user.fullName = fullName;
+  user.addresses.push(newAddress);
   user.phoneNumber = phoneNumber;
   saveDbContextToLocalStorage(dbContext);
   localStorage.setItem("user_info", JSON.stringify(user));
