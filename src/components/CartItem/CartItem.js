@@ -39,7 +39,7 @@ export function renderCartItemContainer() {
               <span>${matchingProduct.name}</span>
             </div>
             <div class="product-size">
-              <div class="dropdown">
+              <div class="dropdown dropdown-cart">
                 
                 ${renderSizeButton(matchingProduct, skuId)} 
                 
@@ -48,7 +48,7 @@ export function renderCartItemContainer() {
             </div>
             <div class="product-color">
               
-              <div class="dropdown">
+              <div class="dropdown dropdown-cart">
                 
                   ${renderColorButton(matchingProduct, skuId)} 
                 ${renderDropDownMenuColor(matchingProduct, skuId)}
@@ -93,12 +93,12 @@ export function renderCartItemContainer() {
     let variationColor = product.variations.find((v) => v.name === "Màu sắc");
     if (!variationColor) return "";
 
-    let html = `<ul class="dropdown-menu dropdown-menu__color dropdown-menu__color-${skuId}">`;
+    let html = `<ul class="dropdown-menu dropdown-menu-cart dropdown-menu__color dropdown-menu__color-${skuId}">`;
     variationColor.variationOptions.forEach((option, idx) => {
       const isActive = idx === sku.tierIndexes[0];
       html += `
       <li 
-        class="dropdown-item dropdown-item__color ${
+        class="dropdown-item dropdown-item-cart dropdown-item__color ${
           isActive ? "disabled" : ""
         }" 
         data-index-color-sku="${idx}"
@@ -118,12 +118,14 @@ export function renderCartItemContainer() {
     let variationSize = product.variations.find((v) => v.name !== "Màu sắc");
     if (!variationSize) return "";
 
-    let html = `<ul class="dropdown-menu dropdown-menu__size dropdown-menu__size-${skuId}">`;
+    let html = `<ul class="dropdown-menu dropdown-menu-cart dropdown-menu__size dropdown-menu__size-${skuId}">`;
     variationSize.variationOptions.forEach((option, idx) => {
       const isActive = idx === sku.tierIndexes[1];
       html += `
       <li 
-        class="dropdown-item dropdown-item__size ${isActive ? "disabled" : ""}" 
+        class="dropdown-item dropdown-item-cart dropdown-item__size ${
+          isActive ? "disabled" : ""
+        }" 
         data-index-size-sku="${idx}"
         data-sku-id="${skuId}"
         data-variation-id="${option.id}"
