@@ -5,12 +5,12 @@ export default function DeliveryAddress(selectedAddress) {
   let fullName = "";
   let phoneNumber = "";
   let address = "";
-  const loggedUser = JSON.parse(localStorage.getItem("user_info"));
+
   if (!selectedAddress) {
     renderAddressForm();
   } else {
-    fullName = loggedUser.fullName;
-    phoneNumber = loggedUser.phoneNumber;
+    fullName = selectedAddress.fullName;
+    phoneNumber = selectedAddress.phoneNumber;
     address += `${selectedAddress.street}, ${selectedAddress.district}, ${selectedAddress.ward}, ${selectedAddress.city}`;
   }
   return `  <!-- delivery -->
@@ -37,7 +37,6 @@ export function setUpDeliveryAddress() {
   document
     .querySelector(".change-address-link")
     .addEventListener("click", () => {
-      const loggedUser = JSON.parse(localStorage.getItem("user_info"));
-      renderAddressList(loggedUser.addresses);
+      renderAddressList();
     });
 }

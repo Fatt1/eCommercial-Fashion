@@ -16,6 +16,7 @@
   height: 18px;
   border: 2px solid rgb(146, 142, 142);
   border-radius: 50%;
+  cursor: pointer;
 }
 .address-list-item__ratio.active {
   background-color: rgb(255, 163, 4);

@@ -1,10 +1,11 @@
 import { renderCheckout } from "../../pages/Cart/Checkout.js";
 import { addNewAddress } from "../../services/userService.js";
+import { renderAddressList } from "../ListAddressPopup/ListAddressPopup.js";
 import PickerLocation, {
   setUpPickerLocation,
 } from "../PickerLocation/PickerLocation.js";
 
-export function renderAddressForm() {
+export function renderAddressForm(isReturnAddressList) {
   document.getElementById("address-form-popup").style.display = "block";
   document.getElementById("address-form-popup").innerHTML = `
     <div class="address-form-popup__header">Địa chỉ mới </div>
@@ -30,10 +31,10 @@ export function renderAddressForm() {
       </div>
   `;
 
-  setUpAddressForm();
+  setUpAddressForm(isReturnAddressList);
 }
 
-function setUpAddressForm() {
+function setUpAddressForm(isReturnAddressList) {
   const loggedUser = JSON.parse(localStorage.getItem("user_info"));
   setUpPickerLocation();
   document.querySelector(".overlay").classList.add("show");
@@ -59,8 +60,14 @@ function setUpAddressForm() {
       document.querySelector("#provinces").options[
         document.querySelector("#provinces").selectedIndex
       ].text;
-    const district = document.querySelector("#districts").options[document.querySelector("#districts").selectedIndex].text;
-    const ward = document.querySelector("#wards").options[document.querySelector("#wards").selectedIndex].text;
+    const district =
+      document.querySelector("#districts").options[
+        document.querySelector("#districts").selectedIndex
+      ].text;
+    const ward =
+      document.querySelector("#wards").options[
+        document.querySelector("#wards").selectedIndex
+      ].text;
     const street = document.querySelector("#address").value;
     addNewAddress({
       userId: loggedUser.id,
@@ -74,6 +81,8 @@ function setUpAddressForm() {
     document.querySelector(".overlay").classList.remove("show");
     document.getElementById("address-form-popup").innerHTML = "";
     document.getElementById("address-form-popup").style.display = "none";
-    renderCheckout();
+    if (isReturnAddressList) {
+      renderAddressList();
+    } else renderCheckout();
   });
 }

@@ -4,7 +4,6 @@ export default class User {
     this.email = email;
     this.password = password;
     this.addresses = [];
-    this.phoneNumber = null;
     this.status = "active";
   }
 }

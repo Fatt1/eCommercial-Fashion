@@ -34,9 +34,7 @@ export async function payWithPayPal(checkoutOrder) {
     const shipping = convertVndToUsd(checkoutOrder.feeShipping);
     const discount = convertVndToUsd(checkoutOrder.totalDiscount);
 
-    console.log("shipping" + shipping);
-    console.log("dis" + discount);
-    const totalCheckout = itemTotal + shipping - discount;
+    const totalCheckout = (itemTotal + shipping - discount).toFixed(2);
     const items = checkoutOrder.itemsCheckout.map((checkout) => {
       return {
         name: checkout.item.productName,
@@ -96,10 +94,9 @@ export async function payWithPayPal(checkoutOrder) {
         ],
       }),
     });
-
+    const dataResponse = await response.json();
+    console.log(dataResponse);
     if (response.ok) {
-      const dataResponse = await response.json();
-      console.log(dataResponse);
       return dataResponse.links.find((link) => link.rel === "payer-action")
         .href;
     }

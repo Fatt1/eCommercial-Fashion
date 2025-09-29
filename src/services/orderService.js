@@ -18,6 +18,8 @@ async function createOrder({
   district,
   feeShipping,
   paymentMethodId,
+  fullName,
+  phoneNumber,
 }) {
   const dbContext = await getDbContextFromLocalStorage();
   const id = generateOrderId();
@@ -34,7 +36,9 @@ async function createOrder({
     district,
     feeShipping,
     paymentMethodId,
-    ORDER_STATUS.PENDING
+    ORDER_STATUS.PENDING,
+    fullName,
+    phoneNumber
   );
 
   dbContext.orders.push(order);

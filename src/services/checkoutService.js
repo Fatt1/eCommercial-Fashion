@@ -1,6 +1,5 @@
 import { FEE_SHIPPING } from "../constant/Constant.js";
 
-import Order from "../models/Order.js";
 import { createOrder } from "./orderService.js";
 import { getDetailOneSku, getProductById } from "./productService.js";
 import { applyCoupon } from "./discountService.js";
@@ -65,7 +64,9 @@ async function placeOrder(
   city,
   ward,
   district,
-  paymentMethodId
+  paymentMethodId,
+  fullName,
+  phoneNumber
 ) {
   const { itemsCheckout } = checkoutOrder;
   const items = itemsCheckout.map((checkout) => {
@@ -84,7 +85,7 @@ async function placeOrder(
     };
   });
   //call API thanh toán tiền gì đó
-  let approvalUrl = undefined;
+
   const paymentMethod = getPaymentMethodById(paymentMethodId);
   console.log(paymentMethod);
   const order = await createOrder({
@@ -99,10 +100,12 @@ async function placeOrder(
     totalCheckout: checkoutOrder.totalCheckout,
     totalPrice: checkoutOrder.totalPrice,
     totalApplyDiscount: checkoutOrder.totalDiscount,
+    fullName,
+    phoneNumber,
   });
   localStorage.setItem("temp_order", JSON.stringify(order));
   if (paymentMethod.name === "Paypal") {
-    approvalUrl = await payWithPayPal(checkoutOrder);
+    const approvalUrl = await payWithPayPal(checkoutOrder);
 
     window.location.href = approvalUrl;
   }

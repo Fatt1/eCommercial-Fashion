@@ -14,5 +14,9 @@
     const tempOrder = JSON.parse(localStorage.getItem("temp_order"));
     updateStatusOrder(tempOrder.id, ORDER_STATUS.PROCESSING);
     localStorage.removeItem("temp_order");
+    // còn 1 phần là sẽ xóa đi các sản phẩm đã mua trong cart;
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const newCart = cart.filter((c) => c.tick === false);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   </script>
 </html>

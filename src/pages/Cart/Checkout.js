@@ -16,12 +16,12 @@ import { getDefaultAddress } from "../../services/userService.js";
 import { renderAddressList } from "../../components/ListAddressPopup/ListAddressPopup.js";
 export const selectedVoucherId = {};
 export let checkout = {};
-let selectedAddress;
+export const selectedAddressObject = {};
 export function renderCheckout() {
   const loggedUser = JSON.parse(localStorage.getItem("user_info"));
   console.log(loggedUser);
-
-  selectedAddress = getDefaultAddress(loggedUser.id);
+  if (!selectedAddressObject.selectedAddress)
+    selectedAddressObject.selectedAddress = getDefaultAddress(loggedUser.id);
 
   checkout.prop = checkoutPreview();
   document.getElementById("root").innerHTML = `
@@ -36,7 +36,10 @@ export function renderCheckout() {
           <div class="vertical-line"></div>
           <div class="inform-bar-text">THANH TOÁN</div>
         </div>
-          ${DeliveryAddress(selectedAddress)}
+        <div id="delivery-address">
+            ${DeliveryAddress(selectedAddressObject.selectedAddress)}
+          </div>
+        
         <!-- checkout summary  -->
         <div class="main-content">
           <section class="checkout-summary">
@@ -196,6 +199,7 @@ function setUpCheckout() {
 }
 
 function handlePlaceOrder() {
+  const { selectedAddress } = selectedAddressObject;
   console.log(document.querySelector(".payment-method.active"));
   const paymentMethodId = document.querySelector(".payment-method.active")
     .dataset.methodId;
@@ -207,6 +211,8 @@ function handlePlaceOrder() {
     selectedAddress.city,
     selectedAddress.ward,
     selectedAddress.district,
-    paymentMethodId
+    paymentMethodId,
+    selectedAddress.fullName,
+    selectedAddress.phoneNumber
   );
 }
