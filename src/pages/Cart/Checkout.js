@@ -9,16 +9,18 @@ import VoucherPopup, {
 } from "../../components/VoucherPopup/VoucherPopup.js";
 import { formatNumber } from "../../helper/formatNumber.js";
 import { checkoutPreview, placeOrder } from "../../services/checkoutService.js";
-import PickerLocation from "../../components/PickerLocation/PickerLocation.js";
-import { renderAddressForm } from "../../components/AddressFormPopup/AddressFormPopup.js";
-import DeliveryAddress from "../../components/DeliveryAddress/DeliveryAddress.js";
+import DeliveryAddress, {
+  setUpDeliveryAddress,
+} from "../../components/DeliveryAddress/DeliveryAddress.js";
 import { getDefaultAddress } from "../../services/userService.js";
+import { renderAddressList } from "../../components/ListAddressPopup/ListAddressPopup.js";
 export const selectedVoucherId = {};
 export let checkout = {};
 let selectedAddress;
 export function renderCheckout() {
   const loggedUser = JSON.parse(localStorage.getItem("user_info"));
   console.log(loggedUser);
+
   selectedAddress = getDefaultAddress(loggedUser.id);
 
   checkout.prop = checkoutPreview();
@@ -188,6 +190,8 @@ function setUpCheckout() {
     handlePlaceOrder();
   });
   setUpPaymentMethod();
+  setUpDeliveryAddress();
+
   handleClickHeader();
 }
 

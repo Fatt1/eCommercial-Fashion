@@ -1,5 +1,6 @@
 import { getDefaultAddress } from "../../services/userService.js";
 import { renderAddressForm } from "../AddressFormPopup/AddressFormPopup.js";
+import { renderAddressList } from "../ListAddressPopup/ListAddressPopup.js";
 export default function DeliveryAddress(selectedAddress) {
   let fullName = "";
   let phoneNumber = "";
@@ -25,9 +26,18 @@ export default function DeliveryAddress(selectedAddress) {
                   ${address}
                 </div>
                 <div class="delivery-info-3">Mặc định</div>
-                <button class="blue-button">Thay đổi</button>
+                <button class="blue-button change-address-link">Thay đổi</button>
               </div>
             </div>
           </div>
   `;
+}
+
+export function setUpDeliveryAddress() {
+  document
+    .querySelector(".change-address-link")
+    .addEventListener("click", () => {
+      const loggedUser = JSON.parse(localStorage.getItem("user_info"));
+      renderAddressList(loggedUser.addresses);
+    });
 }

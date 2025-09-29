@@ -1,0 +1,67 @@
+#addresses-list {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  color: rgb(92, 83, 83);
+}
+.addresses-list__header {
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgb(146, 142, 142);
+}
+.address-list-item {
+  display: flex;
+  margin-top: 15px;
+}
+.address-list-item__ratio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgb(146, 142, 142);
+  border-radius: 50%;
+}
+.address-list-item__ratio.active {
+  background-color: rgb(255, 163, 4);
+  border: 1px solid rgb(255, 163, 4);
+}
+.address-item__info {
+  margin-left: 10px;
+}
+.update-address-link {
+  margin-left: auto;
+  margin-right: 8px;
+  color: rgb(72, 72, 251);
+  cursor: pointer;
+}
+.address-item__full-name {
+  color: black;
+}
+.address-item__phone-number {
+  color: rgb(92, 83, 83);
+}
+.address-item__street {
+  margin-top: 10px;
+}
+.address-item__street,
+.address-item__district-ward {
+  font-size: 1.4rem;
+  line-height: 21px;
+}
+.address-item__default {
+  color: rgba(239, 10, 10, 0.77);
+  font-size: 1.4rem;
+  padding: 3px 5px;
+  border: 1px solid rgba(239, 10, 10, 0.77);
+  display: inline-block;
+  border-radius: 2px;
+  margin-top: 5px;
+}
+.add-new-address-btn {
+  border-radius: 2px;
+  background-color: transparent;
+  border: 1px solid rgb(164, 148, 148);
+  padding: 8px 10px;
+  font-size: 1.6rem;
+  color: rgb(74, 64, 64);
+  margin-top: 20px;
+}
+.add-new-address-btn:hover {
+  opacity: 0.7;
+}

@@ -3,10 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <meta
+    <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; connect-src 'self' http://127.0.0.1:5500"
-    /> -->
+      content="
+        default-src 'self'; 
+        script-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com 'unsafe-inline'; 
+        connect-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com; 
+        child-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com; 
+        frame-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com; 
+        img-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com data:; 
+        style-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com 'unsafe-inline';
+    "
+    />
 
     <title>Cart</title>
     <link rel="stylesheet" href="../css/reset.css" />
@@ -21,6 +29,10 @@
     <link
       rel="stylesheet"
       href="../components/AddressFormPopup/addressFormPopup.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../components//ListAddressPopup/listAddressPopup.css"
     />
     <!-- fonts -->
     <!-- Geologica -->
