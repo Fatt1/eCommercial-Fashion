@@ -19,6 +19,7 @@ export async function generateAccessToken() {
       },
       body: bodyParams.toString(),
     });
+
     if (response.ok) {
       const data = await response.json();
       return data.access_token;
@@ -30,12 +31,10 @@ export async function generateAccessToken() {
 export async function payWithPayPal(checkoutOrder) {
   const accessToken = await generateAccessToken();
   try {
-    const itemTotal = convertVndToUsd(checkoutOrder.totalPrice);
-    const shipping = convertVndToUsd(checkoutOrder.feeShipping);
-    const discount = convertVndToUsd(checkoutOrder.totalDiscount);
-
-    const totalCheckout = (itemTotal + shipping - discount).toFixed(2);
+    let itemTotal = 0;
     const items = checkoutOrder.itemsCheckout.map((checkout) => {
+      itemTotal +=
+        convertVndToUsd(checkout.item.currentlyPrice) * checkout.quantity;
       return {
         name: checkout.item.productName,
         quantity: checkout.quantity,
@@ -45,6 +44,10 @@ export async function payWithPayPal(checkoutOrder) {
         },
       };
     });
+    const shipping = convertVndToUsd(checkoutOrder.feeShipping);
+    const discount = convertVndToUsd(checkoutOrder.totalDiscount);
+    console.log(itemTotal);
+    const totalCheckout = (itemTotal + shipping - discount).toFixed(2);
     const response = await fetch(PAY_BASE_URL + "/v2/checkout/orders", {
       method: "POST",
       headers: {
