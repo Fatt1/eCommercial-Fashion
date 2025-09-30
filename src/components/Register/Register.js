@@ -105,6 +105,11 @@ export function setupRegisterForm() {
         clearErrors(input);
       if (event.key === "Enter") {
         event.preventDefault();
+        const idValid = formValidator.validate();
+        if (!idValid) {
+          formValidator.displayErrors();
+          return;
+        }
         handleRegister();
       }
     })
