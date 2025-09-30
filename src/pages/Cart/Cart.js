@@ -10,39 +10,19 @@ import { checkCart } from "../../services/cartService.js";
 function renderCart() {
   const root = document.getElementById("root");
   root.innerHTML = `
-   ${Header("trang-chu")}
-    <div class="cart-container">
-    ${InformBar()}
-   ${CartSection()}
-   ${TotalMoneyCal()}
-    </div>
-   ${Footer()}
+  <div id="cart-page">
+     ${Header("trang-chu")}
+      <div class="cart-container">
+      ${InformBar()}
+     ${CartSection()}
+     ${TotalMoneyCal()}
+      </div>
+     ${Footer()}
+  </div>
   `;
   handleClickHeader();
 }
 
-// function renderCheckout() {
-//   const root = document.getElementById("root");
-//   root.innerHTML = `
-//     ${Header("")}
-//     ${InformBar()}
-
-//     ${Footer()}
-//   `;
-// }
-
-// export function navigate(page) {
-//   if (page === "cart") {
-//     renderCart();
-//   } else if (page === "checkout") {
-//     renderCheckout();
-//   } else {
-//     console.error("Unknown page:", page);
-//   }
-// }
-// document.querySelector(".buy-now-btn").addEventListener("click", () => {
-//   navigate("checkout");
-// });
 function handleClickCheckout() {
   document.querySelector(".buy-now-btn").addEventListener("click", () => {
     if (checkCart()) {

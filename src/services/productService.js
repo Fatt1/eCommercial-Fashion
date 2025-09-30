@@ -1,22 +1,29 @@
-import { getDbContextFromLocalStorage } from "../helper/initialData.js";
+import {
+  getDbContextFromLocalStorage,
+  loadDataToLocalStorage,
+  saveDbContextToLocalStorage,
+} from "../helper/initialData.js";
 import { createPagination, generateUniqueId } from "../helper/helper.js";
 import { ORDER_BY } from "../constant/Constant.js";
 import { getColorByCode } from "./colorService.js";
-import { getSubCategoryIds } from "./categoryService.js";
+import { getCategoryById, getSubCategoryIds } from "./categoryService.js";
 import { getSizeById } from "./sizeService.js";
 import { getAttributeById } from "./attributeService.js";
+import { getBrandsByCategoryId } from "./brandService.js";
 
-const dbContext = await getDbContextFromLocalStorage();
+await loadDataToLocalStorage();
 
 function addProduct(product) {
+  const dbContext = getDbContextFromLocalStorage();
   const id = generateUniqueId();
   product.id = id;
   dbContext.products.push(product);
-  dbContext.saveChanges();
+  saveDbContextToLocalStorage(dbContext);
   return product;
 }
 
 function getAllProducts({ pageSize = 5, pageNumber = 1 }) {
+  const dbContext = getDbContextFromLocalStorage();
   return createPagination(dbContext.products, pageSize, pageNumber);
 }
 function searchProducts(
@@ -35,6 +42,7 @@ function searchProducts(
   },
   isGetGroupsFilter = false
 ) {
+  const dbContext = getDbContextFromLocalStorage();
   let filterProducts = [...dbContext.products];
   const result = applyFilter(
     filterProducts,
@@ -80,6 +88,7 @@ function applyFilter(
   },
   isGetGroupsFilter = false
 ) {
+  const dbContext = getDbContextFromLocalStorage();
   const filteredProducts = filterProducts.filter((p) => {
     let isMatchingCategoryId;
     if (!categoryIds || categoryIds.size === 0) isMatchingCategoryId = true;
@@ -207,6 +216,7 @@ function filterProducts(
   },
   isGetGroupsFilter = false
 ) {
+  const dbContext = getDbContextFromLocalStorage();
   let filterProducts = [...dbContext.products];
   // Filter by searchKey
   const subCategoryIds = getSubCategoryIds(categoryId);
@@ -243,6 +253,7 @@ function filterProducts(
 }
 
 function getProductById(id) {
+  const dbContext = getDbContextFromLocalStorage();
   const product = dbContext.products.find((p) => p.id === id);
   if (!product) return null;
   // lấy sku của product
@@ -280,6 +291,7 @@ function getSalePercentage(originalPrice, currentlyPrice) {
   return Math.round((1 - currentlyPrice / originalPrice) * 100);
 }
 function deleteProductById(id) {
+  const dbContext = getDbContextFromLocalStorage();
   const product = dbContext.products.find((p) => p.id === id);
   if (!product) return false;
   // xóa sản phẩm thành công
@@ -289,6 +301,7 @@ function deleteProductById(id) {
   return true;
 }
 function updateProductById(id, updateProduct) {
+  const dbContext = getDbContextFromLocalStorage();
   const product = dbContext.products.find((p) => p.id === id);
   if (!product) return false;
   product = updateProduct;
@@ -296,20 +309,26 @@ function updateProductById(id, updateProduct) {
   return true;
 }
 function getSkusByProductId(productId) {
+  const dbContext = getDbContextFromLocalStorage();
   const skusVariation = dbContext.skus.filter(
     (sku) => sku.productId === productId
   );
   return skusVariation;
 }
 
+// Lấy tất cả product theo categoryId và các category con của nó luôn
 function getProductsByCategoryId(categoryId) {
-  const categoryProducts = dbContext.products.filter(
-    (p) => p.categoryId === categoryId
+  const subCategoryIds = getSubCategoryIds(categoryId);
+  const allRelatedCategory = [subCategoryIds, categoryId];
+  const dbContext = getDbContextFromLocalStorage();
+  const categoryProducts = dbContext.products.filter((p) =>
+    allRelatedCategory.includes(p.categoryId)
   );
   return categoryProducts;
 }
 
 function getDetailOneSku(sku, productId) {
+  const dbContext = getDbContextFromLocalStorage();
   const product = dbContext.products.find((p) => p.id === productId);
   const tierIndexes = sku.tierIndexes;
 
@@ -333,6 +352,35 @@ function getDetailOneSku(sku, productId) {
   sku.selectedDetails = selectedDetails;
   return sku;
 }
+function getBestSellerWith3Categories() {
+  const bestSellerCategoriesId = ["cate-001", "cate-002"];
+  const result = [];
+  bestSellerCategoriesId.forEach((id) => {
+    const products = getProductsByCategoryId(id);
+    const bestSeller = products
+      .slice(0, 6)
+      .map((p) => {
+        const salePercentage = getSalePercentage(
+          p.priceInfo.originalPrice,
+          p.priceInfo.currentlyPrice
+        );
+        if (salePercentage > 0) {
+          p.salePercentage = salePercentage;
+          p.isSale = true;
+        }
+        return p;
+      })
+      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+    const { category } = getCategoryById(id);
+    result.push({
+      categoryName: category.name,
+      categoryId: category.id,
+      products: bestSeller,
+    });
+  });
+  return result;
+}
 export {
   getAllProducts,
   getProductById,
@@ -344,4 +392,5 @@ export {
   getSkusByProductId,
   searchProducts,
   getDetailOneSku,
+  getBestSellerWith3Categories,
 };

@@ -8,16 +8,16 @@ import CategorySection, {
   setupCategorySection,
 } from "./components/CategorySection.js";
 
-import BestSeller from "./components/BestSeller.js";
+import BestSeller, { setUpBestSeller } from "./components/BestSeller.js";
 import Footer from "../../components/Footer/Footer.js";
 import ReviewSection from "../Home/components/ReviewSection.js";
-import { getAllProducts } from "../../services/productService.js";
+import { getBestSellerWith3Categories } from "../../services/productService.js";
 
 import { handClickProductList } from "../../components/ProductList/ProductList.js";
-import { updateCartQuantity } from "../../models/Cart.js";
+import { updateCartQuantity } from "../../services/cartService.js";
 
-const products = getAllProducts({}).items;
 function renderHome() {
+  const result = getBestSellerWith3Categories();
   const root = document.getElementById("root");
   root.innerHTML = `
   ${Header("trang-chu")}
@@ -25,13 +25,14 @@ function renderHome() {
    <h2 class="header-text main-content">KHUYẾN MÃI HÔM NAY</h2>
    ${PromotionSection()}
    ${CategorySection()}
-   ${BestSeller({ products })}
+   ${BestSeller({ result })}
    ${ReviewSection()}
    ${Footer()}
    
   `;
 }
 function setupHome() {
+  setUpBestSeller();
   setupCarousel();
   setupPromotion();
   setupCategorySection();

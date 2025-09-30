@@ -7,17 +7,19 @@ import Header, {
 import ProductList, {
   handClickProductList,
 } from "../../components/ProductList/ProductList.js";
+
 import {
+  cart,
   addToCart,
   updateCartQuantity,
   updateCartQuantityStraight,
-} from "../../models/Cart.js";
+} from "../../services/cartService.js";
 import { getSkuByProductId } from "../../models/Sku.js";
 import {
   getAllProducts,
   getProductById,
 } from "../../services/productService.js";
-import { cart } from "../../models/Cart.js";
+
 import { preventInputTextForNumberInput } from "../../helper/helper.js";
 import { isLogin } from "../../services/authenticateService.js";
 import { Login, setUpLoginForm } from "../../components/Login/Login.js";
@@ -290,13 +292,27 @@ function addMessage() {
 //   });
 // }
 
-let tierIndexes = [0, 0];
+let tierIndexes = [];
+
+function checkTierIndexes() {
+  if (tierIndexes[0] != undefined && tierIndexes[1] != undefined) return true;
+  return false;
+}
 
 function handleClickVariationColor() {
   document.querySelectorAll(".color-choice").forEach((btn) => {
     btn.addEventListener("click", () => {
-      tierIndexes[0] = Number(btn.dataset.indexColorSku);
-
+      if (btn.classList.contains("selected")) {
+        tierIndexes[0] = undefined;
+      } else {
+        tierIndexes[0] = Number(btn.dataset.indexColorSku);
+      }
+      const addToCartBtn = document.querySelector(".add-to-cart-btn");
+      if (checkTierIndexes()) {
+        addToCartBtn.classList.add("enabled");
+      } else {
+        addToCartBtn.classList.remove("enabled");
+      }
       console.log(tierIndexes);
 
       console.log(getSkuByProductId(btn.dataset.productId, tierIndexes));
@@ -313,7 +329,18 @@ function handleClickVariationColor() {
 function handleClickVariationSize() {
   document.querySelectorAll(".size-choice").forEach((btn) => {
     btn.addEventListener("click", () => {
-      tierIndexes[1] = Number(btn.dataset.indexSizeSku);
+      if (btn.classList.contains("selected")) {
+        tierIndexes[1] = undefined;
+      } else {
+        tierIndexes[1] = Number(btn.dataset.indexSizeSku);
+      }
+      const addToCartBtn = document.querySelector(".add-to-cart-btn");
+      if (checkTierIndexes()) {
+        addToCartBtn.classList.add("enabled");
+      } else {
+        addToCartBtn.classList.remove("enabled");
+      }
+      // tierIndexes[1] = Number(btn.dataset.indexSizeSku);
       console.log(tierIndexes);
       console.log(getSkuByProductId(btn.dataset.productId, tierIndexes));
 
@@ -331,14 +358,12 @@ function checkEnableAddToCart() {
   const sizeSelected = document.querySelector(".size-choice.selected");
   const addToCartBtn = document.querySelector(".add-to-cart-btn");
 
-  if (colorSelected && sizeSelected) {
-    // addToCartBtn.disabled = false;
-    addToCartBtn.classList.add("enabled");
-  } else {
-    // addToCartBtn.disabled = true;
-    addToCartBtn.classList.remove("enabled");
-    addToCartBtn.classList;
-  }
+  // if (colorSelected && sizeSelected) {
+  //   addToCartBtn.classList.add("enabled");
+  // } else {
+  //   addToCartBtn.classList.remove("enabled");
+  //   addToCartBtn.classList;
+  // }
 }
 
 function handleClickVariation() {
@@ -349,20 +374,22 @@ function handleClickVariation() {
 function addToCartBtn() {
   document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
     button.addEventListener("click", () => {
-      if (!isLogin()) {
-        document.getElementById("register-login").innerHTML = Login();
-        setUpLoginForm();
-        renderOverlay();
-        return;
+      if (checkTierIndexes()) {
+        if (!isLogin()) {
+          document.getElementById("register-login").innerHTML = Login();
+          setUpLoginForm();
+          renderOverlay();
+          return;
+        }
+        const productId = button.dataset.productId;
+        const sku = getSkuByProductId(productId, tierIndexes);
+
+        addToCart(sku.id, productId);
+        updateCartQuantity("cart-quantity");
+        console.log(cart);
+
+        addMessage();
       }
-      const productId = button.dataset.productId;
-      const sku = getSkuByProductId(productId, tierIndexes);
-
-      addToCart(sku.id, productId);
-      updateCartQuantity("cart-quantity");
-      console.log(cart);
-
-      addMessage();
     });
   });
 }

@@ -4,10 +4,11 @@ import {
 } from "../../services/categoryService.js";
 import { logout, isLogin } from "../../services/authenticateService.js";
 import { loadProductPage } from "../../pages/Product/Product.js";
+
 import {
   updateCartQuantity,
   updateCartQuantityStraight,
-} from "../../models/Cart.js";
+} from "../../services/cartService.js";
 import { Login, setUpLoginForm } from "../Login/Login.js";
 import Register, { setupRegisterForm } from "../Register/Register.js";
 

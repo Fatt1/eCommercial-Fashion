@@ -1,9 +1,9 @@
 import {
   cart,
   removeFromCart,
-  saveToStorage,
+  saveCart,
   updateCartQuantityStraight,
-} from "../../models/Cart.js";
+} from "../../services/cartService.js";
 import { getProductById } from "../../services/productService.js";
 import { formatNumber, unFormatNumber } from "../../helper/formatNumber.js";
 import { getSkuByProductId, getSkuBySkuId } from "../../models/Sku.js";
@@ -252,12 +252,12 @@ export function renderCartItemContainer() {
         if (checkboxAll.checked) {
           checkbox.checked = true;
           item.tick = true;
-          saveToStorage();
+          saveCart();
           console.log(cart);
         } else {
           checkbox.checked = false;
           item.tick = false;
-          saveToStorage();
+          saveCart();
           console.log(cart);
         }
         calculateTotalCheckBox();
@@ -273,13 +273,13 @@ export function renderCartItemContainer() {
             checkboxAll.checked = true;
             console.log("checkAll" + checkBoxCheckAll());
           }
-          saveToStorage();
+          saveCart();
         } else {
           console.log("bỏ tick: ", checkbox);
           item.tick = false;
           console.log(cart);
           checkboxAll.checked = false;
-          saveToStorage();
+          saveCart();
         }
       });
     });
@@ -505,7 +505,7 @@ export function renderCartItemContainer() {
         // test
         calculateTotalCheckBox();
 
-        saveToStorage();
+        saveCart();
       });
     });
 
@@ -525,7 +525,7 @@ export function renderCartItemContainer() {
         // test
         calculateTotalCheckBox();
 
-        saveToStorage();
+        saveCart();
 
         // console.log(cart);
         // console.log("Da save");
@@ -630,7 +630,7 @@ export function renderCartItemContainer() {
         cartItem.skuId = newSku.id;
       }
 
-      saveToStorage();
+      saveCart();
       renderCartItemContainer();
     }
 
@@ -657,7 +657,7 @@ export function renderCartItemContainer() {
         cartItem.skuId = newSku.id;
       }
 
-      saveToStorage();
+      saveCart();
       renderCartItemContainer();
     }
 
@@ -674,7 +674,7 @@ export function renderCartItemContainer() {
 
     //   if (newSku) {
     //     cartItem.skuId = newSku.id;
-    //     saveToStorage();
+    //     saveCart();
     //     renderCartItemContainer();
     //   } else {
     //     console.warn("Không tìm thấy SKU với tierIndexes:", newTierIndexes);
