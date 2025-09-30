@@ -10,6 +10,7 @@ export default function PickerLocation() {
      <select id="wards">
       <option value="">-- Chọn phường/xã  -- </option>
     </select>
+    <div class="error-message error-picker"></div>
   </div>`;
 }
 
@@ -21,6 +22,21 @@ export async function setUpPickerLocation() {
   document.getElementById("districts").addEventListener("change", (event) => {
     fetchWards(event.target.value);
   });
+  document.querySelectorAll("picker-location select").forEach(
+    (select) => select.addEventListener("change"),
+    () => {
+      if (document.querySelector(".error-picker").textContent.length !== 0)
+        document.querySelector(".error-picker").innerHTML = "";
+    }
+  );
+}
+export function validatePickerLocation() {
+  let isValid = true;
+  console.log("value" + document.querySelector("#provinces").value);
+  if (document.querySelector("#provinces").value === "") isValid = false;
+  else if (document.querySelector("#districts").value === "") isValid = false;
+  else if (document.querySelector("#wards").value === "") isValid = false;
+  return isValid;
 }
 async function fetchAllProvinces() {
   try {
