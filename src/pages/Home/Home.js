@@ -14,7 +14,7 @@ import ReviewSection from "../Home/components/ReviewSection.js";
 import { getAllProducts } from "../../services/productService.js";
 
 import { handClickProductList } from "../../components/ProductList/ProductList.js";
-import { updateCartQuantity } from "../../models/Cart.js";
+import { updateCartQuantity } from "../../services/cartService.js";
 
 const products = getAllProducts({}).items;
 function renderHome() {

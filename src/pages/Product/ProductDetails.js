@@ -7,17 +7,19 @@ import Header, {
 import ProductList, {
   handClickProductList,
 } from "../../components/ProductList/ProductList.js";
+
 import {
+  cart,
   addToCart,
   updateCartQuantity,
   updateCartQuantityStraight,
-} from "../../models/Cart.js";
+} from "../../services/cartService.js";
 import { getSkuByProductId } from "../../models/Sku.js";
 import {
   getAllProducts,
   getProductById,
 } from "../../services/productService.js";
-import { cart } from "../../models/Cart.js";
+
 import { preventInputTextForNumberInput } from "../../helper/helper.js";
 import { isLogin } from "../../services/authenticateService.js";
 import { Login, setUpLoginForm } from "../../components/Login/Login.js";
