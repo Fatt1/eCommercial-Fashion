@@ -16,19 +16,22 @@ async function setDataFromJsonIntoDbContext() {
     "paymentMethod.json",
     "paymentMethods"
   );
-  return {
-    products,
-    skus,
-    categories,
-    colors,
-    sizes,
-    brands,
-    attributes,
-    users,
-    discounts,
-    paymentMethods,
-    orders,
-  };
+  localStorage.setItem(
+    DB_KEY,
+    JSON.stringify({
+      products,
+      skus,
+      categories,
+      colors,
+      sizes,
+      brands,
+      attributes,
+      users,
+      discounts,
+      paymentMethods,
+      orders,
+    })
+  );
 }
 
 async function loadDataToLocalStorage() {
@@ -39,14 +42,9 @@ async function loadDataToLocalStorage() {
   await setDataFromJsonIntoDbContext();
   // localStorage.setItem(DB_KEY, JSON.stringify(dbContext));
 }
-async function getDbContextFromLocalStorage() {
-  let dbContext = JSON.parse(localStorage.getItem(DB_KEY));
-  if (!dbContext) {
-    dbContext = await setDataFromJsonIntoDbContext();
-    localStorage.setItem(DB_KEY, JSON.stringify(dbContext));
-  }
 
-  return dbContext;
+function getDbContextFromLocalStorage() {
+  return JSON.parse(localStorage.getItem(DB_KEY));
 }
 function saveDbContextToLocalStorage(dbContext) {
   localStorage.setItem(DB_KEY, JSON.stringify(dbContext));
