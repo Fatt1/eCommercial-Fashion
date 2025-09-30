@@ -17,7 +17,7 @@ import {
 } from "../../services/productService.js";
 
 import { handClickProductList } from "../../components/ProductList/ProductList.js";
-import { updateCartQuantity } from "../../models/Cart.js";
+import { updateCartQuantity } from "../../services/cartService.js";
 
 function renderHome() {
   const result = getBestSellerWith3Categories();

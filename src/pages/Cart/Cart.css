@@ -192,6 +192,7 @@
 .dropdown-menu.show {
   max-height: 300px;
   padding: 10px;
+  z-index: 99;
 }
 .dropdown-menu-cart.show {
   max-height: 300px;
