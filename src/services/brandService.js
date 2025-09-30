@@ -1,16 +1,21 @@
-import { getDbContextFromLocalStorage } from "../helper/initialData.js";
+import {
+  getDbContextFromLocalStorage,
+  loadDataToLocalStorage,
+} from "../helper/initialData.js";
 
-const dbContext = await getDbContextFromLocalStorage();
+await loadDataToLocalStorage();
 
 function getAllBrands() {
   return dbContext.brands;
 }
 
 function getBrandById(id) {
+  const dbContext = getDbContextFromLocalStorage();
   const brand = dbContext.brands.find((b) => b.id === id);
   return brand;
 }
 function getBrandsByCategoryId(categoryId) {
+  const dbContext = getDbContextFromLocalStorage();
   const brands = dbContext.brands.filter((b) => b.categoryId === categoryId);
   return brands;
 }

@@ -1,12 +1,17 @@
-import { getDbContextFromLocalStorage } from "../helper/initialData.js";
+import {
+  getDbContextFromLocalStorage,
+  loadDataToLocalStorage,
+} from "../helper/initialData.js";
 
-const dbContext = await getDbContextFromLocalStorage();
+await loadDataToLocalStorage();
 
 function getAllAttributes() {
+  const dbContext = getDbContextFromLocalStorage();
   return dbContext.attributes;
 }
 
 function getAttributeById(id) {
+  const dbContext = getDbContextFromLocalStorage();
   const attribute = dbContext.attributes.find((a) => a.id === id);
   return attribute;
 }

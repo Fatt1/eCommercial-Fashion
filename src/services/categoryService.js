@@ -1,17 +1,23 @@
 import { generateUniqueId } from "../helper/helper.js";
-import { getDbContextFromLocalStorage } from "../helper/initialData.js";
-const dbContext = await getDbContextFromLocalStorage();
+import {
+  getDbContextFromLocalStorage,
+  loadDataToLocalStorage,
+} from "../helper/initialData.js";
+await loadDataToLocalStorage();
 function addCategory(category) {
+  const dbContext = getDbContextFromLocalStorage();
   const id = generateUniqueId();
   category.id = id;
   dbContext.categories.push(category);
   return category;
 }
 function getAllCategory() {
+  const dbContext = getDbContextFromLocalStorage();
   return dbContext.categories;
 }
 
 function deleteCategoryById(categoryId) {
+  const dbContext = getDbContextFromLocalStorage();
   const category = dbContext.categories.find((c) => c.id === categoryId);
   if (!category) return false;
   const newCategories = dbContext.categories.filter((c) => c.id !== categoryId);
@@ -20,6 +26,7 @@ function deleteCategoryById(categoryId) {
   return true;
 }
 function updateCategoryById(updatedCategory) {
+  const dbContext = getDbContextFromLocalStorage();
   const category = dbContext.categories.find(
     (c) => c.id === updatedCategory.id
   );
@@ -29,6 +36,7 @@ function updateCategoryById(updatedCategory) {
   return true;
 }
 function getCategoryById(categoryId) {
+  const dbContext = getDbContextFromLocalStorage();
   const category = dbContext.categories.find((c) => c.id === categoryId);
   if (!category) return null;
   const childrenCategory = getSubCategory(categoryId);
@@ -39,6 +47,7 @@ function getCategoryById(categoryId) {
 }
 
 function getSubCategory(categoryId) {
+  const dbContext = getDbContextFromLocalStorage();
   const subCategories = [];
   function findChildren(currentId) {
     const children = dbContext.categories.filter(
@@ -54,6 +63,7 @@ function getSubCategory(categoryId) {
 }
 // lấy categoryIds con ở tất cả các mức
 function getSubCategoryIds(categoryId) {
+  const dbContext = getDbContextFromLocalStorage();
   const subCategories = [];
   function findChildren(currentId) {
     const children = dbContext.categories.filter(

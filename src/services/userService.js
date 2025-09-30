@@ -1,11 +1,13 @@
 import { generateUniqueId } from "../helper/helper.js";
 import {
   getDbContextFromLocalStorage,
+  loadDataToLocalStorage,
   saveDbContextToLocalStorage,
 } from "../helper/initialData.js";
 
-const dbContext = await getDbContextFromLocalStorage();
+await loadDataToLocalStorage();
 function getUserById(userId) {
+  const dbContext = getDbContextFromLocalStorage();
   const user = dbContext.users.find((u) => u.id === userId);
   return user;
 }
@@ -23,6 +25,7 @@ function addNewAddress({
   city,
   phoneNumber,
 }) {
+  const dbContext = getDbContextFromLocalStorage();
   const user = dbContext.users.find((u) => u.id === userId);
   const isDefault = user.addresses.length === 0 ? true : false;
   const id = generateUniqueId();
@@ -41,6 +44,7 @@ function addNewAddress({
   localStorage.setItem("user_info", JSON.stringify(user));
 }
 function getDefaultAddress(userId) {
+  const dbContext = getDbContextFromLocalStorage();
   const user = dbContext.users.find((u) => u.id === userId);
   const address = user.addresses.find((ad) => ad.isDefault === true);
   return address;

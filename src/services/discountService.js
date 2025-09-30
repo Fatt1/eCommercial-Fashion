@@ -1,9 +1,13 @@
 import { DISCOUNT_TYPE } from "../constant/Constant.js";
-import { getDbContextFromLocalStorage } from "../helper/initialData.js";
+import {
+  getDbContextFromLocalStorage,
+  loadDataToLocalStorage,
+} from "../helper/initialData.js";
 
-const dbContext = await getDbContextFromLocalStorage();
+await loadDataToLocalStorage();
 
 function checkValidCoupon(discountId, totalRaw) {
+  const dbContext = getDbContextFromLocalStorage();
   const existingCouponCode = dbContext.discounts.find(
     (discount) => discount.id === discountId
   );
@@ -16,6 +20,7 @@ function checkValidCoupon(discountId, totalRaw) {
 }
 
 function applyCoupon(discountId, totalRaw) {
+  const dbContext = getDbContextFromLocalStorage();
   const coupon = dbContext.discounts.find(
     (discount) => discount.id === discountId
   );
@@ -32,18 +37,21 @@ function applyCoupon(discountId, totalRaw) {
 }
 
 function getDiscountByCouponCode(couponCode) {
+  const dbContext = getDbContextFromLocalStorage();
   const existingCouponCode = dbContext.discounts.find(
     (discount) => discount.couponCode === couponCode
   );
   return existingCouponCode;
 }
 function getDiscountById(id) {
+  const dbContext = getDbContextFromLocalStorage();
   const existingCouponCode = dbContext.discounts.find(
     (discount) => discount.id === id
   );
   return existingCouponCode;
 }
 function getAllAvailableDiscounts() {
+  const dbContext = getDbContextFromLocalStorage();
   const now = new Date();
   const discounts = dbContext.discounts.filter((discount) => {
     const endDate = new Date(discount.endDate);

@@ -1,11 +1,13 @@
 import { generateUniqueId } from "../helper/helper.js";
 import {
   getDbContextFromLocalStorage,
+  loadDataToLocalStorage,
   saveDbContextToLocalStorage,
 } from "../helper/initialData.js";
 import User from "../models/User.js";
-const dbContext = await getDbContextFromLocalStorage();
+await loadDataToLocalStorage();
 function login(email, password) {
+  const dbContext = getDbContextFromLocalStorage();
   const user = dbContext.users.find(
     (c) => c.email === email && c.password === password
   );
@@ -18,6 +20,7 @@ function login(email, password) {
   return { successful: true, message: "Đăng nhập thành công!", data: user };
 }
 function register(email, password) {
+  const dbContext = getDbContextFromLocalStorage();
   console.log(dbContext);
   // Kiểm tra xem email đã tồn tại chưa ?
   if (dbContext.users.some((user) => user.email === email)) {
@@ -39,6 +42,7 @@ function register(email, password) {
   };
 }
 function logout(userId) {
+  const dbContext = getDbContextFromLocalStorage();
   const user = dbContext.users.find((c) => c.id === userId);
   if (user) {
     localStorage.removeItem("user_info");
