@@ -3,7 +3,7 @@ import {
   removeFromCart,
   saveToStorage,
   updateCartQuantityStraight,
-} from "../../models/Cart.js";
+} from "../../services/cartService.js";
 import { getProductById } from "../../services/productService.js";
 import { formatNumber, unFormatNumber } from "../../helper/formatNumber.js";
 import { getSkuByProductId, getSkuBySkuId } from "../../models/Sku.js";
