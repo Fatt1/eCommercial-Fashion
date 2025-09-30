@@ -176,5 +176,6 @@
 
 .add-to-cart-btn {
   color: gray;
+  /* background-color: ; */
   cursor: not-allowed;
 }

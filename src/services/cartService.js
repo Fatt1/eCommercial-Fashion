@@ -1,14 +1,14 @@
 export let cart;
-loadFromStorage();
+loadCart();
 // nên đổi tên thành getCart() để có ý nghĩa có ràng hơn
-export function loadFromStorage() {
+export function loadCart() {
   cart = JSON.parse(localStorage.getItem("cart"));
   if (!cart) {
     cart = [];
   }
 }
 
-export function saveToStorage() {
+export function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
@@ -41,12 +41,12 @@ export function addToCart(skuId, productId) {
       quantity,
       tick,
     });
-  saveToStorage();
+  saveCart();
 }
 
 export function removeFromCart(skuId) {
   cart = cart.filter((item) => item.skuId !== skuId);
-  saveToStorage();
+  saveCart();
 }
 
 export function updateCartQuantity(classIdToChange) {
