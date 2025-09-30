@@ -10,13 +10,15 @@ import { checkCart } from "../../services/cartService.js";
 function renderCart() {
   const root = document.getElementById("root");
   root.innerHTML = `
-   ${Header("trang-chu")}
-    <div class="cart-container">
-    ${InformBar()}
-   ${CartSection()}
-   ${TotalMoneyCal()}
-    </div>
-   ${Footer()}
+  <div id="cart-page">
+     ${Header("trang-chu")}
+      <div class="cart-container">
+      ${InformBar()}
+     ${CartSection()}
+     ${TotalMoneyCal()}
+      </div>
+     ${Footer()}
+  </div>
   `;
   handleClickHeader();
 }

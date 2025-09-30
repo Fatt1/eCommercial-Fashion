@@ -11,10 +11,7 @@ import CategorySection, {
 import BestSeller, { setUpBestSeller } from "./components/BestSeller.js";
 import Footer from "../../components/Footer/Footer.js";
 import ReviewSection from "../Home/components/ReviewSection.js";
-import {
-  getAllProducts,
-  getBestSellerWith3Categories,
-} from "../../services/productService.js";
+import { getBestSellerWith3Categories } from "../../services/productService.js";
 
 import { handClickProductList } from "../../components/ProductList/ProductList.js";
 import { updateCartQuantity } from "../../services/cartService.js";
