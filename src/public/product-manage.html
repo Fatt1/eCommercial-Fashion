@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../public/product-manage.css" />
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Admin</title>
+  </head>
+  <body>
+    <div id="root">
+      <div class="admin">
+        <div class="admin__nav">
+          <div class="admin__info">
+            <div><img src="../assets/defaut-avatar.png" /></div>
+            <div>Admin</div>
+            <div>admin@gmail.com</div>
+          </div>
+
+          <ul class="admin__category">
+            <button>
+              <li class="admin__category--1">
+                <img class="icon" src="../assets/admin-icon1.png" />Trang Chủ
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--2">
+                <img class="icon" src="../assets/admin-icon2.png" />Sản Phẩm
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--3">
+                <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Nhãn
+                Hàng
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--4">
+                <img class="icon" src="../assets/admin-icon4.png" />Quản Lý
+                Thuộc Tính
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--5">
+                <img class="icon" src="../assets/admin-icon5.png" />Quản Lý
+                Người Dùng
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--6">
+                <img class="icon" src="../assets/admin-icon6.png" />Quản Lý
+                Thống Kê
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--7">
+                <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Đơn
+                Hàng
+              </li>
+            </button>
+          </ul>
+        </div>
+        <div class="admin__main">
+          <div class="admin__main--operate">
+            <div class="product-manage">
+              <div class="product-manage__head">
+                <div class="product-manage__head-left">
+                  <a class="selected">Danh sách sản phẩm</a>
+                  <a class="">Thông tin cơ bản</a>
+                  <a class="">Thông tin chi tiết</a>
+                </div>
+                <div class="product-manage__head-right">
+                  <button>Thêm sản phẩm</button>
+                </div>
+              </div>
+              <div class="product-manage-main">
+                <div class="product-manage-main-search">
+                  <input
+                    type="text"
+                    size="50"
+                    placeholder="Tìm kiếm sản phẩm..."
+                  />
+                  <input type="text" size="50" placeholder="Chọn ngành hàng" />
+                  <button
+                    class="product-manage-main-search__button product-manage-main-search__button1"
+                  >
+                    Áp Dụng
+                  </button>
+                  <button
+                    class="product-manage-main-search__button product-manage-main-search__button2"
+                  >
+                    Nhập Lại
+                  </button>
+                </div>
+                <div class="product-manage-main-result">
+                  <div class="product-manage-main-result__top">
+                    <span class="product-manage-main-result__top--quantity"
+                      >1 Sản Phẩm</span
+                    >
+                  </div>
+                  <div class="product-manage-main-result__bot">
+                    <section class="cart">
+                      <div class="cart-info">
+                        <div class="product-main">
+                          <input
+                            type="checkbox"
+                            class="product-main__checkbox-all"
+                            name=""
+                            id=""
+                          />
+                          Tất Cả Sản Phẩm
+                        </div>
+                        <div class="product-price">Giá</div>
+                        <div class="product-quantity">Kho hàng</div>
+                      </div>
+                      <div class="cart-item-container">
+                        <div class="cart-item">
+                          <div class="product-main">
+                            <input
+                              type="checkbox"
+                              class="product-main__checkbox product-main__checkbox-${skuId}"
+                              data-sku-id="${skuId}"
+                              name=""
+                              id=""
+                            />
+                            <img
+                              class="product-main__img"
+                              src="../assets/large-img-detail.png"
+                              alt=""
+                            />
+                            <span>Áo sơ mi z</span>
+                          </div>
+
+                          <div class="product-price">
+                            <span class="product-price__current-price"
+                              >300.000đ</span
+                            >
+                          </div>
+                          <div class="product-quantity">
+                            <span
+                              class="product-quantity__input product-quantity-input-${skuId}"
+                              >1000</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
