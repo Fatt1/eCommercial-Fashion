@@ -3,52 +3,112 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../public/admin.css" />
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
     <title>Document</title>
   </head>
   <body>
-    <div class="admin">
-      <div class="admin__nav">
-        <div class="admin__info">
-          <div><img src="../assets/defaut-avatar.png" /></div>
-          <div>Admin</div>
-          <div>admin@gmail.com</div>
-        </div>
+    <div id="root">
+      <div class="admin">
+        <div class="admin__nav">
+          <div class="admin__info">
+            <div><img src="../assets/defaut-avatar.png" /></div>
+            <div>Admin</div>
+            <div>admin@gmail.com</div>
+          </div>
 
-        <ul class="admin__category">
-          <li class="admin__category--1">
-            <img class="icon" src="../assets/admin-icon1.png" />Trang Chủ
-          </li>
-          <li class="admin__category--2">
-            <img class="icon" src="../assets/admin-icon2.png" />Sản Phẩm
-          </li>
-          <li class="admin__category--3">
-            <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Nhãn
-            Hàng
-          </li>
-          <li class="admin__category--4">
-            <img class="icon" src="../assets/admin-icon4.png" />Quản Lý Thuộc
-            Tính
-          </li>
-          <li class="admin__category--5">
-            <img class="icon" src="../assets/admin-icon5.png" />Quản Lý Người
-            Dùng
-          </li>
-          <li class="admin__category--6">
-            <img class="icon" src="../assets/admin-icon6.png" />Quản Lý Thống Kê
-          </li>
-          <li class="admin__category--7">
-            <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Đơn Hàng
-          </li>
-        </ul>
-      </div>
-      <div class="vertical-line"></div>
-      <div class="admin__main">
-        <div class="admin__header">
-          <div>Trang chủ</div>
-          <div class="admin__search-bar"></div>
-          <div></div>
+          <ul class="admin__category">
+            <button>
+              <li class="admin__category--1">
+                <img class="icon" src="../assets/admin-icon1.png" />Trang Chủ
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--2">
+                <img class="icon" src="../assets/admin-icon2.png" />Sản Phẩm
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--3">
+                <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Nhãn
+                Hàng
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--4">
+                <img class="icon" src="../assets/admin-icon4.png" />Quản Lý
+                Thuộc Tính
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--5">
+                <img class="icon" src="../assets/admin-icon5.png" />Quản Lý
+                Người Dùng
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--6">
+                <img class="icon" src="../assets/admin-icon6.png" />Quản Lý
+                Thống Kê
+              </li>
+            </button>
+            <button>
+              <li class="admin__category--7">
+                <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Đơn
+                Hàng
+              </li>
+            </button>
+          </ul>
+        </div>
+        <div class="admin__main">
+          <div class="admin__header">
+            <div class="admin__header--left">
+              <h1 class="admin__homepage--text">Trang chủ</h1>
+              <div class="vertical-line"></div>
+              <div class="admin__search-bar">
+                <input type="text" placeholder="Tìm kiếm" class="search-bar" />
+                <button>SEARCH</button>
+              </div>
+            </div>
+            <div class="admin__header--right">
+              <img src="../assets/notification-icon.png" class="icon" /><img
+                src="../assets/defaut-avatar.png"
+                class="icon2"
+              />ADMIN
+            </div>
+          </div>
+          <div class="logo"><img src="../assets/logo2.svg" /></div>
+          <div class="admin__main--operate">
+            <button class="admin__option">
+              <img src="../assets/admin__customer.png" class="option__logo" />
+              <p class="two-first-line">KHÁCH HÀNG</p>
+              <p class="two-first-line">100</p>
+              <p class="third-line">Bạn mặc, bạn đẹp, bạn là chính mình</p>
+            </button>
+            <button class="admin__option">
+              <img src="../assets/admin__product.png" class="option__logo" />
+              <p class="two-first-line">SẢN PHẨM</p>
+              <p class="two-first-line">100</p>
+              <p class="third-line">Tự tin tỏa sáng cùng phong cách riêng</p>
+            </button>
+            <button class="admin__option">
+              <img src="../assets/admin__revenue.png" class="option__logo" />
+              <p class="two-first-line">DOANH THU</p>
+              <p class="two-first-line">100</p>
+              <p class="second-line">
+                Order là cá tính riêng, Delivery là phong cách riêng
+              </p>
+            </button>
+          </div>
         </div>
       </div>
     </div>
