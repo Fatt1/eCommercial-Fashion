@@ -1,0 +1,13 @@
+.create-product-tabs {
+  gap: 30px;
+  display: flex;
+}
+.create-product__header {
+  margin-top: 20px;
+  width: 100%;
+  background-color: white;
+  padding: 20px 10px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border-radius: 5px;
+}
