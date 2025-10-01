@@ -346,108 +346,8 @@ export function renderCartItemContainer() {
       formatNumber(sumTotalSaveMoney);
   }
 
-  // document.querySelectorAll(".js-update-link").forEach((link) => {
-  //   link.addEventListener("click", () => {
-  //     const skuId = link.dataset.skuId;
-  //     document
-  //       .querySelector(`.js-cart-item-container-${link.dataset.skuId}`)
-  //       .classList.add("is-editing-quantity");
-  //     // updateCartQuantity("return-to-home-link-quantity");
-
-  //     // createPage();
-  //   });
-  // });
-
-  // document.querySelectorAll(".js-save-link").forEach((link) => {
-  //   link.addEventListener("click", () => {
-  //     const skuId = link.dataset.skuId;
-  //     document
-  //       .querySelector(`.js-cart-item-container-${link.dataset.skuId}`)
-  //       .classList.remove("is-editing-quantity");
-
-  //     const valueInput = Number(
-  //       document.querySelector(`.input-${skuId}`).value
-  //     );
-  //     if (valueInput < 0 || valueInput > 1000) {
-  //       alert("Pls update quantity from 0 to 1000");
-  //       return;
-  //     }
-
-  //     updateQuantity(skuId, valueInput);
-
-  //     document.querySelector(`.js-quantity-label-${skuId}`).innerText =
-  //       valueInput;
-  //     // updateCartQuantity("return-to-home-link-quantity");
-
-  //     // createPage();
-  //     renderCheckoutHeader();
-  //     renderCartItemContainer();
-  //     renderPaymentSummary();
-  //   });
-  // });
-
-  // document.querySelectorAll(".js-quantity-input").forEach((link) => {
-  //   link.addEventListener("keydown", (event) => {
-  //     if (event.key === "Enter") {
-  //       const skuId = link.dataset.skuId;
-  //       document
-  //         .querySelector(`.js-cart-item-container-${link.dataset.skuId}`)
-  //         .classList.remove("is-editing-quantity");
-
-  //       const valueInput = Number(
-  //         document.querySelector(`.input-${skuId}`).value
-  //       );
-  //       if (valueInput < 0 || valueInput > 1000) {
-  //         alert("Pls update quantity from 0 to 1000");
-  //         return;
-  //       }
-
-  //       updateQuantity(skuId, valueInput);
-
-  //       document.querySelector(`.js-quantity-label-${skuId}`).innerText =
-  //         valueInput;
-  //       // updateCartQuantity("return-to-home-link-quantity");
-
-  //       // createPage();
-  //       renderCheckoutHeader();
-  //       renderCartItemContainer();
-  //       renderPaymentSummary();
-  //     }
-  //   });
-  // });
-
-  // function updateCartQuantityForHeader() {
-  //   let cartQuantity = 0;
-  //   cart.forEach((cartItem) => {
-  //     cartQuantity += cartItem.quantity;
-  //   });
-  //   document.querySelector(".return-to-home-link-quantity").innerHTML =
-  //     cartQuantity;
-  // }
-
-  // updateCartQuantity("return-to-home-link-quantity");
-
-  // document.querySelectorAll(".js-delivery-option").forEach((element) => {
-  //   element.addEventListener("click", () => {
-  //     const { skuId, deliveryOptionId } = element.dataset;
-  //     updateDeliveryOption(skuId, deliveryOptionId);
-  //     renderCartItemContainer();
-  //     renderPaymentSummary();
-  //     renderCheckoutHeader();
-  //   });
-  // });
-
-  // const inputQuantity = document.querySelector(".product-quantity__input");
-
-  // minusButtons.addEventListener("click", () => {
-  //   let value = parseInt(inputQuantity.value);
-  //   if (value > 1) inputQuantity.value = value - 1;
-  // });
   calculateTotalCheckBox();
   function calculateTotalMoneyFinal() {
-    // "priceInfo": {
-    //     "originalPrice": 250000.0,
-    //     "currentlyPrice": 250000.0
     let sumTotalMoney = 0;
     let sumTotalSaveMoney = 0;
     cart.forEach((cartItem) => {
@@ -502,7 +402,7 @@ export function renderCartItemContainer() {
 
         calculateTotalMoney(skuId);
         updateCartQuantityStraight();
-        // test
+
         calculateTotalCheckBox();
 
         saveCart();
