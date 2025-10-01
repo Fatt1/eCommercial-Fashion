@@ -36,50 +36,10 @@ function setupHome() {
   setupCarousel();
   setupPromotion();
   setupCategorySection();
-  handleClickHome();
   handleClickHeader();
-
   handClickProductList();
   updateCartQuantity("cart-quantity");
 }
-function handleClickHome() {
-  document.addEventListener("click", (event) => {
-    //Xử lí cho sự kiện khi nhấn vào tabs thông tin ở detail product
-    const tabDetailProduct = event.target.closest(".extra-information__tab");
-    if (tabDetailProduct) {
-      const currentlyActiveTab = document.querySelector(
-        ".extra-information__tab.active"
-      );
-      currentlyActiveTab.classList.remove("active");
-      document.getElementById(
-        `${currentlyActiveTab.dataset.target}`
-      ).hidden = true;
 
-      const tabContent = document.getElementById(
-        `${tabDetailProduct.dataset.target}`
-      );
-      tabDetailProduct.classList.add("active");
-      tabContent.hidden = false;
-    }
-
-    // Xử lí sự kiên khi nhấn vào variation options
-    const selectedVariationValue = event.target.closest(".variation-value");
-    if (selectedVariationValue) {
-      // Case: Nếu mà người dùng nhấn vào các option khác thì sẽ xóa đi các value đc selected
-      if (!selectedVariationValue.classList.contains("selected"))
-        selectedVariationValue.parentElement
-          .querySelectorAll(".variation-value")
-          .forEach((value) => value.classList.remove("selected"));
-
-      // Case: Nếu người dùng nhấn lại vào cái value đang đc selected thì sẽ kh còn selected nữa
-      if (selectedVariationValue.classList.contains("selected")) {
-        selectedVariationValue.classList.remove("selected");
-      } else {
-        selectedVariationValue.classList.add("selected");
-      }
-      return;
-    }
-  });
-}
 renderHome();
 setupHome();

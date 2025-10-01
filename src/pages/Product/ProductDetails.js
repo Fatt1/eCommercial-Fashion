@@ -257,10 +257,52 @@ export function loadProductDetail(productId) {
   // addedMessageAfterClickButton();
 
   handleClickVariation();
+  handleClickSelectedVariation();
+  handleClickTabInformationProduct();
   plusMinusBtn();
   addToCartBtn();
   updateCartQuantityStraight();
   preventInputTextForNumberInput();
+}
+function handleClickSelectedVariation() {
+  document
+    .querySelectorAll(".variation-value")
+    .forEach((selectedVariationValue) => {
+      selectedVariationValue.addEventListener("click", () => {
+        if (!selectedVariationValue.classList.contains("selected"))
+          selectedVariationValue.parentElement
+            .querySelectorAll(".variation-value")
+            .forEach((value) => value.classList.remove("selected"));
+
+        // Case: Nếu người dùng nhấn lại vào cái value đang đc selected thì sẽ kh còn selected nữa
+        if (selectedVariationValue.classList.contains("selected")) {
+          selectedVariationValue.classList.remove("selected");
+        } else {
+          selectedVariationValue.classList.add("selected");
+        }
+      });
+    });
+}
+function handleClickTabInformationProduct() {
+  document
+    .querySelectorAll(".extra-information__tab")
+    .forEach((tabDetailProduct) =>
+      tabDetailProduct.addEventListener("click", () => {
+        const currentlyActiveTab = document.querySelector(
+          ".extra-information__tab.active"
+        );
+        currentlyActiveTab.classList.remove("active");
+        document.getElementById(
+          `${currentlyActiveTab.dataset.target}`
+        ).hidden = true;
+
+        const tabContent = document.getElementById(
+          `${tabDetailProduct.dataset.target}`
+        );
+        tabDetailProduct.classList.add("active");
+        tabContent.hidden = false;
+      })
+    );
 }
 function generateAttributeContent(product) {
   let content = "";
