@@ -3,7 +3,9 @@
   font-family: "Inter", sans-serif;
   height: 100%;
 }
-
+body {
+  background-color: rgb(224, 233, 232);
+}
 .main-content__admin {
   width: 95%;
   margin: auto auto;
