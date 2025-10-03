@@ -9,7 +9,6 @@ import { getColorByCode } from "./colorService.js";
 import { getCategoryById, getSubCategoryIds } from "./categoryService.js";
 import { getSizeById } from "./sizeService.js";
 import { getAttributeById } from "./attributeService.js";
-import { getBrandsByCategoryId } from "./brandService.js";
 
 await loadDataToLocalStorage();
 
@@ -21,6 +20,9 @@ function addProduct(product) {
   saveDbContextToLocalStorage(dbContext);
   return product;
 }
+
+// Lấy danh sách thông tin sản phẩm
+function getAllProductListForAdmin({ pageSize = 5, pageNumber = 1 }) {}
 
 function getAllProducts({ pageSize = 5, pageNumber = 1 }) {
   const dbContext = getDbContextFromLocalStorage();
