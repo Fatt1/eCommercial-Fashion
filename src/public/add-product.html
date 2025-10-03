@@ -15,310 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <style>
-      .create-product-tabs {
-  gap: 30px;
-  display: flex;
-}
-body {
-  height: 1500px;
-}
-.create-product__header {
-  margin-top: 20px;
-  width: 100%;
-  background-color: white;
-  padding: 20px 10px;
-  font-size: 1.6rem;
-  font-weight: 500;
-  border-radius: 5px;
-}
 
-.create-product-tab.active {
-  color: #ef961b;
-  position: relative;
-}
-.create-product-tab.active::before {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  width: 100%;
-  height: 2px;
-  background-color: #ef961b;
-  top: 34px;
-}
-.image-input-icon {
-  width: 45px;
-  height: 45px;
-  object-fit: cover;
-}
-.label-image-input {
-  border: 2px dotted #de6915;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  padding: 20px 10px;
-  cursor: pointer;
-}
-.add-image-text {
-  font-size: 1.2rem;
-}
-#create-product-form {
-  background-color: white;
-  padding: 15px 25px;
-  margin-top: 30px;
-  border: 5px;
-}
-.create-product-image {
-  margin-top: 10px;
-  margin-bottom: 25px;
-}
-.selected-images-list {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  margin-left: 25px;
-}
-.create-product__ratio {
-  margin-left: 40px;
-}
-.lbl-input-thumbnail {
-  display: block;
-  margin-top: 10px;
-  margin-left: 25px;
-}
-#create-product-form .form-group label {
-  display: inline-block;
-  color: black;
-  min-width: 120px;
-}
-#create-product-form .form-group input {
-  width: 80%;
-  background-color: #f6f5f5;
-}
-.wrapper-create-product-category-btn {
-  display: inline-flex;
-  width: 80%;
-  align-items: center;
-  background-color: #f6f5f5;
-  border: 1px solid #9a8787;
-  border-radius: 2px;
-}
-.create-product__category-btn {
-  display: inline-block;
-  background-color: #f6f5f5;
-  border: none;
-  padding: 0.8rem;
-  height: 40px;
-  color: #716969;
-  font-size: 1.3rem;
-  margin-right: 2px;
-  width: 100%;
-  text-align: start;
-}
-/* Detail product */
-.create-detail-product {
-  padding: 15px 25px;
-  margin-top: 30px;
-  background-color: white;
-  padding-bottom: 50px;
-  border-radius: 4px;
-}
-
-.admin__main .dropdown-btn {
-  width: 515px;
-  padding: 12px 5px;
-  margin-top: 15px;
-  background-color: #f6f5f5;
-  border: 1px solid #9a8787;
-  border-radius: 2px;
-  text-align: start;
-  color: #0000007b;
-  display: inline-flex;
-  justify-content: space-between;
-}
-.create-detail-product__header,
-.create-product-variation__header {
-  margin-top: 10px;
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-.attribute-container {
-  width: 48%;
-}
-.attribute-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* variation-product */
-
-.create-product-variation {
-  background-color: white;
-  border-radius: 5px;
-  padding: 15px 25px;
-  margin-top: 30px;
-}
-.product-variation-option {
-  background-color: #ebe9e9;
-  width: 90%;
-  padding: 10px;
-  border-radius: 3px;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-}
-.product-variation {
-  display: flex;
-  gap: 30px;
-  padding-top: 20px;
-}
-.product-variation__header {
-  font-size: 1.7rem;
-  font-weight: 600;
-}
-.product-variation-items {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.product-variation-item__label img {
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-}
-
-.product-variation-item {
-  margin-top: 15px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.input-variation {
-  padding: 12px 5px;
-  height: 40px;
-  width: 434px;
-}
-.input-variation::placeholder {
-  color: #00000080;
-}
-.input-variation:focus {
-  outline: none;
-}
-.delete-variation-btn {
-  background: none;
-  border: none;
-  margin-left: 5px;
-}
-/* product-variation-value */
-.product-variation-value {
-  display: flex;
-  gap: 20px;
-}
-.product-variation-value .form-group {
-  width: 220px;
-}
-.product-variation-value-right__top {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-.product-variation-value-left {
-  width: 10%;
-}
-.btn-admin {
-  background-color: black;
-  color: #e6f514;
-  border-radius: 2px;
-  padding: 7px 10px;
-  height: 40px;
-  margin-top: 4px;
-  border: none;
-}
-.product-variation-value-right {
-  width: 80%;
-}
-/* table */
-table,
-th,
-td {
-  border: 1px solid black; /* Độ dày 1px, kiểu liền nét (solid), màu đen */
-}
-#product-variation-table {
-  width: 100%;
-  table-layout: fixed;
-}
-#product-variation-table td {
-  /* 1. Thiết lập căn giữa nội dung theo chiều dọc */
-  vertical-align: middle;
-  text-align: center;
-}
-#product-variation-table th {
-  background-color: #ebe9e9;
-  padding: 15px 25px;
-}
-.color-variation-value__img {
-  max-height: 50px;
-  width: auto;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-.color-name {
-  text-align: center;
-}
-.color-data {
-  padding: 15px 0px;
-}
-.size-data {
-  padding: 30px 0px;
-}
-.input-variation-value {
-  width: 70%;
-}
-.price {
-  border: 1px solid rgb(118, 118, 118);
-  display: inline-block;
-  padding: 10px;
-  margin-right: -6px;
-  border-right: none;
-  height: 40px;
-  color: #716969;
-}
-/* create-product-action */
-.create-product-action {
-  margin-top: 20px;
-  display: flex;
-  gap: 20px;
-  justify-content: end;
-  padding-bottom: 100px;
-  margin-right: 20px;
-}
-.create-product-action-btn {
-  font-family: "Inter", sans-serif;
-  text-align: center;
-  padding: 10px 50px;
-  height: 40px;
-  background-color: #fffdfd;
-  border: 1px solid #747070;
-  border-radius: 2px;
-  font-size: 1.8rem;
-}
-.create-product-action-btn__cancel {
-}
-.create-product-action-btn__save {
-  font-family: "Inter", sans-serif;
-  margin: 0;
-  font-size: 1.8rem;
-  padding: 10px 50px;
-}
-.product-variation-size-item {
-  margin-left: 30px;
-}
-
-    </style>
     <link rel="stylesheet" href="../css/loginRegister.css">
     <title>Admin</title>
   </head>
@@ -421,16 +118,44 @@ td {
                 <div class="error-message error-name"></div>
               </div>
 
-               <div class="form-group">
+               <div class="form-group category-input ">
+                
                 <label for="category">*Ngành hàng</label>
                 <div class="wrapper-create-product-category-btn">
                    <button class="create-product__category-btn">Chọn ngành hàng</button>
                    <img src="../assets/Pencil.svg" alt="">
                 </div>
                 <div class="error-message error-category"></div>
-                
+                 <div class="category-selector-wrapper show">
+              <div class="category-list">
+                  <ul class="category-list-menu">
+                    <li class="category-item selected">Thời trang nam
+                     <img src="../assets/Forward.svg" class="category-item-right">
+                    </li>
+                    <li class="category-item">Thời trang nữ  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Sắc đẹp  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                  </ul>
+                  <ul class="category-list-menu">
+                    <li class="category-item selected">Áo  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Quần đùi  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Sắc đẹp  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                  </ul>
+                  <ul class="category-list-menu">
+                    <li class="category-item">Áo hai dây  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Áo ống  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Áo thun  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                  </ul>
               </div>
-
+              <div class="footer-category">
+                <div class="footer-category-left"><span>Đã chọn: </span> <span class="category-selected">Thời trang nam</span> > <span class="category-selected">Thời trang nam</span></div>
+                <div class="footer-category-action">
+                  <button class="footer-category-action__cancel-btn ">Hủy</button>
+                   <button class="footer-category-action__agree-btn btn-admin">Xác nhận</button>
+                </div>
+              </div>
+              </div>
+              </div>
+             
                 <div class="form-group">
                 <label style="display: block;" for="category">*Mô tả sản phẩm</label>
                 <textarea style="width: 80%; margin-left: 120px;" class="description" rows="10"></textarea>
@@ -501,29 +226,17 @@ td {
                   <p class="product-variation__header">Màu</p>
                   <div class="product-variation-color-items product-variation-items">
                     <div class="product-variation-color-item product-variation-item">
-                      <label class="product-variation-item__label" for="product-variation-color-item__img">
-                      <img class="" src="../assets/Add Image.svg"/>
-                        <input id="product-variation-color-item__img" type="file" hidden>
-                   
-                  </label>
+                    
                        <input class="input-variation" placeholder="Vui lòng chọn" type="text">
                         <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
                     </div>
                       <div class="product-variation-color-item product-variation-item">
-                      <label class="product-variation-item__label" for="product-variation-color-item__img">
-                      <img class="" src="../assets/Add Image.svg"/>
-                        <input id="product-variation-color-item__img" type="file" hidden>
-                   
-                  </label>
+                    
                        <input class="input-variation" placeholder="Vui lòng chọn" type="text">
                         <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
                     </div>
                      <div class="product-variation-color-item product-variation-item">
-                      <label class="product-variation-item__label" for="product-variation-color-item__img">
-                      <img class="" src="../assets/Add Image.svg"/>
-                        <input id="product-variation-color-item__img" type="file" hidden>
-                   
-                  </label>
+                     
                        <input class="input-variation" placeholder="Vui lòng chọn" type="text">
                         <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
                     </div>
@@ -578,7 +291,7 @@ td {
                     <tr>
                      <td rowspan="2" class="color-data">
                         <p class="color-name">Be</p>
-                        <img class="color-variation-value__img" src="../assets/large-img-detail.png">
+                        <img class="color-variation-value__img" src="../assets/Add Image.svg">
                      </td>
                      <td class="size-data">
                       S
@@ -604,7 +317,7 @@ td {
                     <tr>
                     <td rowspan="2" class="color-data">
                         <p class="color-name">Be</p>
-                        <img class="color-variation-value__img" src="../assets/large-img-detail.png">
+                        <img class="color-variation-value__img" src="../assets/Add Image.svg">
                     </td>
                     <td class="size-data"> S </td>
                     <td  >

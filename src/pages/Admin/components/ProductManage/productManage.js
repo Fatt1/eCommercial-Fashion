@@ -1,90 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../public/product-manage.css" />
-    <link rel="stylesheet" href="../public/admin.css" />
-    <!-- Inter font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <title>Admin</title>
-  </head>
-  <body>
-    <div id="root">
-      <div class="admin">
-        <div class="admin__nav">
-          <div class="admin__info">
-            <div><img src="../assets/defaut-avatar.png" /></div>
-            <div>Admin</div>
-            <div>admin@gmail.com</div>
-          </div>
-
-          <ul class="admin__category">
-            <button>
-              <li class="admin__category--1">
-                <img class="icon" src="../assets/admin-icon1.png" />Trang Chủ
-              </li>
-            </button>
-            <button>
-              <li class="admin__category--2">
-                <img class="icon" src="../assets/admin-icon2.png" />Sản Phẩm
-              </li>
-            </button>
-            <button>
-              <li class="admin__category--3">
-                <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Nhãn
-                Hàng
-              </li>
-            </button>
-            <button>
-              <li class="admin__category--4">
-                <img class="icon" src="../assets/admin-icon4.png" />Quản Lý
-                Thuộc Tính
-              </li>
-            </button>
-            <button>
-              <li class="admin__category--5">
-                <img class="icon" src="../assets/admin-icon5.png" />Quản Lý
-                Người Dùng
-              </li>
-            </button>
-            <button>
-              <li class="admin__category--6">
-                <img class="icon" src="../assets/admin-icon6.png" />Quản Lý
-                Thống Kê
-              </li>
-            </button>
-            <button>
-              <li class="admin__category--7">
-                <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Đơn
-                Hàng
-              </li>
-            </button>
-          </ul>
-        </div>
-        <div class="admin__main">
-            <div class="main-content__admin">
-                <div class="product-manage">
-                  <div class="product-manage__head">
+import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
+function ProductManageHead() {
+  return `
+    <div class="product-manage__head">
                     <div class="product-manage__head-left">
                       <a class="selected">Danh sách sản phẩm</a>
                       <a class="">Thông tin cơ bản</a>
                       <a class="">Thông tin chi tiết</a>
                     </div>
                     <div class="product-manage__head-right">
-                      <button>Thêm sản phẩm</button>
+                      <button class="add-product-btn">Thêm sản phẩm</button>
                     </div>
                   </div>
-                  <div class="product-manage-main">
-                    <div class="product-manage-main-search">
+  `;
+}
+function ProductSearch() {
+  return `
+     <div class="product-manage-main-search">
                       <input
                         type="text"
                         size="50"
@@ -106,34 +37,17 @@
                         Nhập Lại
                       </button>
                     </div>
-                    <div class="product-manage-main-result">
-                      <div class="product-manage-main-result__top">
-                        <span class="product-manage-main-result__top--quantity"
-                          >1 Sản Phẩm</span
-                        >
-                      </div>
-                      <div class="product-manage-main-result__bot">
-                        <section class="cart">
-                          <div class="cart-info">
-                            <div class="product-main">
-                              <input
-                                type="checkbox"
-                                class="product-main__checkbox-all"
-                                name=""
-                                id=""
-                              />
-                              Tất Cả Sản Phẩm
-                            </div>
-                            <div class="product-price">Giá</div>
-                            <div class="product-quantity">Kho hàng</div>
-                          </div>
-                          <div class="cart-item-container">
+  `;
+}
+function ProductItem() {
+  return `
+   <div class="cart-item-container">
                             <div class="cart-item">
                               <div class="product-main">
                                 <input
                                   type="checkbox"
-                                  class="product-main__checkbox product-main__checkbox-${skuId}"
-                                  data-sku-id="${skuId}"
+                                  class="product-main__checkbox product-main__checkbox-"
+                                  data-sku-id=""
                                   name=""
                                   id=""
                                 />
@@ -152,7 +66,7 @@
                               </div>
                               <div class="product-quantity">
                                 <span
-                                  class="product-quantity__input product-quantity-input-${skuId}"
+                                  class="product-quantity__input product-quantity-input-"
                                   >1000</span
                                 >
                               </div>
@@ -185,7 +99,7 @@
                                   </div>
                                   <div class="product-quantity">
                                     <span
-                                      class="product-quantity__input product-quantity-input-${skuId}"
+                                      class="product-quantity__input product-quantity-input-"
                                       >1000</span
                                     >
                                   </div>
@@ -218,7 +132,7 @@
                                   </div>
                                   <div class="product-quantity">
                                     <span
-                                      class="product-quantity__input product-quantity-input-${skuId}"
+                                      class="product-quantity__input product-quantity-input-"
                                       >1000</span
                                     >
                                   </div>
@@ -251,7 +165,7 @@
                                   </div>
                                   <div class="product-quantity">
                                     <span
-                                      class="product-quantity__input product-quantity-input-${skuId}"
+                                      class="product-quantity__input product-quantity-input-"
                                       >1000</span
                                     >
                                   </div>
@@ -262,7 +176,47 @@
                               <a href="#!">Xem Thêm (Còn 3 sản phầm)</a>
                             </div>
                           </div>
+  `;
+}
+function ProductList() {
+  return `
+    <section class="cart">
+                          <div class="cart-info">
+                            <div class="product-main">
+                              <input
+                                type="checkbox"
+                                class="product-main__checkbox-all"
+                                name=""
+                                id=""
+                              />
+                              Tất Cả Sản Phẩm
+                            </div>
+                            <div class="product-price">Giá</div>
+                            <div class="product-quantity">Kho hàng</div>
+                          </div>
+                            ${ProductItem()}
                         </section>
+  `;
+}
+
+export function renderProductAdminHtml() {
+  document.getElementById("root").innerHTML = `
+    <div class="admin">
+      ${AdminNav()}
+      <div class="admin__main">
+          <div class="main-content__admin">
+               <div class="product-manage">
+                  ${ProductManageHead()}
+                  <div class="product-manage-main">
+                    ${ProductSearch()}
+                    <div class="product-manage-main-result">
+                      <div class="product-manage-main-result__top">
+                        <span class="product-manage-main-result__top--quantity"
+                          >1 Sản Phẩm</span
+                        >
+                      </div>
+                      <div class="product-manage-main-result__bot">
+                       ${ProductList()}
                       </div>
                       <div class="product-manage-main-result__end">
                         <div class="noti-message">
@@ -291,11 +245,19 @@
                     </div>
                   </div>
                 </div>
-          
-            </div>
-        
-      </div>
-    </div>
-  </body>
-  <script type="module" src="../pages/Admin/components/ProductManage/productManage.js"></script>
-</html>
+          </div>
+        </div>
+    </div> 
+  `;
+}
+
+function setUpProductAdmin() {
+  setUpAdminNav();
+  document.querySelector(".add-product-btn").addEventListener("click", () => {
+    // tuw tu viet tiep
+  });
+}
+export function loadProductAdmin() {
+  renderProductAdminHtml();
+  setUpProductAdmin();
+}
