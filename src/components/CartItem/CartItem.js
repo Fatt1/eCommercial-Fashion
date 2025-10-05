@@ -561,26 +561,6 @@ export function renderCartItemContainer() {
       renderCartItemContainer();
     }
 
-    // function changeSkuClickDropItemColor2(skuId, colorIndex) {
-    //   const cartItem = cart.find((c) => c.skuId === skuId);
-    //   const productId = cartItem.productId;
-
-    //   // Lấy SKU hiện tại trong cart để giữ nguyên sizeIndex
-    //   const currentSku = getSkuBySkuId(skuId, productId);
-    //   const sizeIndex = currentSku.tierIndexes[1]; // giữ size cũ
-
-    //   const newTierIndexes = [Number(colorIndex), sizeIndex];
-    //   const newSku = getSkuByProductId(productId, newTierIndexes);
-
-    //   if (newSku) {
-    //     cartItem.skuId = newSku.id;
-    //     saveCart();
-    //     renderCartItemContainer();
-    //   } else {
-    //     console.warn("Không tìm thấy SKU với tierIndexes:", newTierIndexes);
-    //   }
-    // }
-
     //chưa chỉnh lại cái này nó vẫn chưa active khi chuyển thành nhiều item
     // Click ngoài để đóng
     // document.addEventListener("click", (e) => {
