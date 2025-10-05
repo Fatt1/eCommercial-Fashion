@@ -370,16 +370,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //tét event
 
-    //   const showAllSkuButtons = document.querySelectorAll(".show-sku-button");
-    //   showAllSkuButtons.forEach((btn) => {
-    //     btn.addEventListener("click", () => {
-    //       console.log(btn.dataset.productId);
-    //       console.log("1");
-    //     });
-    //   });
-    // }
     document.querySelectorAll(".show-sku-btn").forEach((btn) => {
-      btn.addEventListener("click", async (e) => {
+      btn.addEventListener("click", (e) => {
         const productId = e.target.dataset.productId;
         const container = document.getElementById(`sku-container-${productId}`);
 
