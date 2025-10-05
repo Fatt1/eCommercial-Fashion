@@ -75,6 +75,11 @@ function searchProducts(
     categoryGroupFilter: result.categoryGroupFilter,
   };
 }
+
+export function filterProductByName(name, pageNumber = 1, pageSize = 5) {
+  return searchProducts({ searchKey: name, pageNumber, pageSize });
+}
+
 function applyFilter(
   filterProducts,
   {
