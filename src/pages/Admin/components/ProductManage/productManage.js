@@ -1,4 +1,4 @@
-import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
+// import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
 function ProductManageHead() {
   return `
     <div class="product-manage__head">
@@ -41,16 +41,9 @@ function ProductSearch() {
 }
 function ProductItem() {
   return `
-   <div class="cart-item-container">
-                            <div class="cart-item">
+                          <div class="cart-item-container product-result-item">
+                            <div class="cart-item product-result-item__product">
                               <div class="product-main">
-                                <input
-                                  type="checkbox"
-                                  class="product-main__checkbox product-main__checkbox-"
-                                  data-sku-id=""
-                                  name=""
-                                  id=""
-                                />
                                 <img
                                   class="product-main__img"
                                   src="../assets/large-img-detail.png"
@@ -66,12 +59,12 @@ function ProductItem() {
                               </div>
                               <div class="product-quantity">
                                 <span
-                                  class="product-quantity__input product-quantity-input-"
+                                  class="product-quantity__input "
                                   >1000</span
                                 >
                               </div>
                             </div>
-                            <div class="skus">
+                            <div class="skus product-result-item__skus">
                               <div class="sku">
                                 <div class="cart-item">
                                   <div class="product-main product-main-sku">
@@ -180,22 +173,16 @@ function ProductItem() {
 }
 function ProductList() {
   return `
-    <section class="cart">
-                          <div class="cart-info">
-                            <div class="product-main">
-                              <input
-                                type="checkbox"
-                                class="product-main__checkbox-all"
-                                name=""
-                                id=""
-                              />
+                        <div class="cart product-result">
+                          <div class="cart-info product-result-info">
+                            <div class="product-main product-result-info__main">
                               Tất Cả Sản Phẩm
                             </div>
-                            <div class="product-price">Giá</div>
-                            <div class="product-quantity">Kho hàng</div>
+                            <div class="product-price product-result-info__price">Giá</div>
+                            <div class="product-quantity product-result-info__stock">Kho hàng</div>
                           </div>
                             ${ProductItem()}
-                        </section>
+                        </div>
   `;
 }
 
@@ -251,13 +238,76 @@ export function renderProductAdminHtml() {
   `;
 }
 
-function setUpProductAdmin() {
-  setUpAdminNav();
-  document.querySelector(".add-product-btn").addEventListener("click", () => {
-    // tuw tu viet tiep
+// function setUpProductAdmin() {
+//   setUpAdminNav();
+//   document
+//     .querySelector(".add-product-btn")
+//     .addEventListener("click", () => {});
+// }
+// export function loadProductAdmin() {
+//   renderProductAdminHtml();
+//   setUpProductAdmin();
+// }
+
+//tét
+import { searchProducts } from "../../../../services/productService.js";
+import { formatNumber } from "../../../../helper/formatNumber.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector(
+    ".product-manage-main-search__text"
+  );
+  const searchBtn = document.querySelector(
+    ".product-manage-main-search__button1"
+  );
+  const resultContainer = document.querySelector(".product-result-item");
+
+  // render test
+  function renderSearchResults(products) {
+    if (!products || products.length === 0) {
+      resultContainer.innerHTML = `<p style="padding: 16px;">Không tìm thấy sản phẩm nào.</p>`;
+      return;
+    }
+
+    const html = products
+      .map(
+        (p) => `
+      <div class="cart-item product-result-item__product">
+        <div class="product-main">
+          <img class="product-main__img" src="../assets/large-img-detail.png" />
+          <span>${p.name}</span>
+        </div>
+        <div class="product-price">
+          <span class="product-price__current-price">
+            ${
+              formatNumber
+                ? formatNumber(p.priceInfo.currentlyPrice)
+                : p.priceInfo.currentlyPrice
+            }đ
+          </span>
+        </div>
+        <div class="product-quantity">
+          <span class="product-quantity__input">Kho: ${p.stock || 1000}</span>
+        </div>
+      </div>
+    `
+      )
+      .join("");
+
+    resultContainer.innerHTML = html;
+  }
+
+  searchBtn.addEventListener("click", async () => {
+    const keyword = searchInput.value.trim();
+    console.log("tìm:", keyword);
+
+    const { items, totalPages } = searchProducts({
+      searchKey: keyword,
+      pageSize: 5,
+      pageNumber: 1,
+    });
+
+    console.log("result:", items);
+    renderSearchResults(items);
   });
-}
-export function loadProductAdmin() {
-  renderProductAdminHtml();
-  setUpProductAdmin();
-}
+});
