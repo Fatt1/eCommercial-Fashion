@@ -5,8 +5,8 @@ function ProductManageHead() {
     <div class="product-manage__head">
                     <div class="product-manage__head-left">
                       <a class="selected">Danh sách sản phẩm</a>
-                      <a class="">Thông tin cơ bản</a>
-                      <a class="">Thông tin chi tiết</a>
+                      <a class="">Đang hoạt động</a>
+                      <a class="">Đang ẩn</a>
                     </div>
                     <div class="product-manage__head-right">
                       <button class="add-product-btn">Thêm sản phẩm</button>
@@ -265,6 +265,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.querySelector(
     ".product-manage-main-search__button1"
   );
+  const clearBtn = document.querySelector(
+    ".product-manage-main-search__button2"
+  );
+
   const resultContainer = document.querySelector(".product-result-item");
 
   // render test
@@ -282,7 +286,13 @@ document.addEventListener("DOMContentLoaded", () => {
         (p) => `
         <div class="product-block" data-product-id="${p.id}">
           <div class="cart-item product-result-item__product">
+            
             <div class="product-main">
+            ${
+              p.status === "public"
+                ? `<span class="status-public">${p.status}</span>`
+                : `<span class="status-private">${p.status}</span>`
+            }
               <img class="product-main__img" src="../assets/large-img-detail.png" />
               <span>${p.name}</span>
             </div>
@@ -391,8 +401,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  clearBtn.addEventListener("click", () => {
+    document.querySelector(".product-manage-main-search__text").value = "";
+    document.querySelector(".product-manage-main-search__category").value = "";
+    searchBtn.click();
+  });
+
   searchBtn.addEventListener("click", async () => {
     const keyword = searchInput.value.trim();
+
     console.log("tìm:", keyword);
 
     const { items, totalPages } = searchProducts({

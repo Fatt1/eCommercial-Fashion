@@ -292,7 +292,10 @@ function getProductById(id) {
   );
 
   product.salePercentage = salePercentage;
-  return product;
+  return {
+    ...product,
+    status: product.status,
+  };
 }
 function getSalePercentage(originalPrice, currentlyPrice) {
   return Math.round((1 - currentlyPrice / originalPrice) * 100);

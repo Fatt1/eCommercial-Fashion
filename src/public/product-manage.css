@@ -466,3 +466,15 @@
 .noti-message {
   color: gray;
 }
+.status-public {
+  color: rgb(50, 178, 50);
+  font-size: 1.6rem;
+}
+.status-private {
+  color: rgb(180, 42, 42);
+  font-size: 1.6rem;
+}
+
+/*  */
+
+/* Thêm hoặc cập nhật các CSS class sau vào file CSS của bạn */
