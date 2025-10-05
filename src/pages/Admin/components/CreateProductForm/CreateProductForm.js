@@ -19,7 +19,7 @@ export function CreateProductForm() {
                   
                   </div>
                  
-                  <input id="input-images" type="file" hidden>
+                  <input id="input-images" type="file"  hidden accept="image/*">
                 </div>
                   
               </div>
