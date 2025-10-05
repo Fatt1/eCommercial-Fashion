@@ -65,7 +65,7 @@
 
 .admin__main {
   background-color: rgb(224, 233, 232);
-  width: 85%;
+  width: 100%;
 }
 
 .admin__header {
@@ -162,8 +162,8 @@
 
 /* product manage */
 .product-manage {
-  padding: 20px;
   background-color: rgb(220, 220, 220);
+  padding-top: 30px;
 }
 .product-manage__head-top {
   display: flex;

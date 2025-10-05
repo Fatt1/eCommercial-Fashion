@@ -15,7 +15,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    
+
+    <link rel="stylesheet" href="../css/loginRegister.css">
     <title>Admin</title>
   </head>
   <body>
@@ -77,10 +78,271 @@
               <ul class="create-product-tabs">
                 <li class="create-product-tab active">Thông tin cơ bản</li>
                 <li class="create-product-tab">Thông tin chi tiết</li>
+                <li class="create-product-tab">Thông tin bán hàng</li>
               </ul>
             </div>
+            <!-- create-product-form -->
+            <div id="create-product-form">
+              <div class="create-product-image">
+                <span class="create-product-image__header-text">Hình ảnh sản phẩm</span>
+                <span class="create-product__ratio">Hình ảnh tỷ lệ 3:4</span>
+              <div >
+                <div class="selected-images-list">
+                    
+                    <label for="input-images">
+                    <div class="label-image-input">
+                      <img class="image-input-icon" src="../assets/Add Image.svg"/>
+                      <p class="add-image-text">Thêm hình ảnh (<span class="current-total-image">0</span>/7)</p>
+                    </div>
+                  </label>
+                  <img class="selected-image" src="../assets/Add Image.svg"/>
+                  <input id="input-images" type="file" hidden>
+                </div>
+                  
+              </div>
+              </div>
+              <div class="create-product-thumbnail">
+                 <span class="create-product-thumbnail__header-text">*Ảnh bìa</span>
+                  <label class="lbl-input-thumbnail" for="input-thumbnail">
+                    <div class="label-image-input">
+                      <img class="image-input-icon" src="../assets/Add Image.svg"/>
+                      <p class="add-image-text">Thêm hình ảnh (<span class="current-total-image">0</span>/1)</p>
+                    </div>
+                  </label>
+                  <input id="input-images" type="file" hidden>
+              </div>
+
+              <div class="form-group">
+                <label for="name">*Tên sản phẩm</label>
+                <input name="name" type="text" id="name" placeholder="Tên sản phẩm + Thương hiệu + kích cỡ + màu" required>
+                <div class="error-message error-name"></div>
+              </div>
+
+               <div class="form-group category-input ">
+                
+                <label for="category">*Ngành hàng</label>
+                <div class="wrapper-create-product-category-btn">
+                   <button class="create-product__category-btn">Chọn ngành hàng</button>
+                   <img src="../assets/Pencil.svg" alt="">
+                </div>
+                <div class="error-message error-category"></div>
+                 <div class="category-selector-wrapper show">
+              <div class="category-list">
+                  <ul class="category-list-menu">
+                    <li class="category-item selected">Thời trang nam
+                     <img src="../assets/Forward.svg" class="category-item-right">
+                    </li>
+                    <li class="category-item">Thời trang nữ  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Sắc đẹp  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                  </ul>
+                  <ul class="category-list-menu">
+                    <li class="category-item selected">Áo  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Quần đùi  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Sắc đẹp  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                  </ul>
+                  <ul class="category-list-menu">
+                    <li class="category-item">Áo hai dây  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Áo ống  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                    <li class="category-item">Áo thun  <img src="../assets/Forward.svg" class="category-item-right"></li>
+                  </ul>
+              </div>
+              <div class="footer-category">
+                <div class="footer-category-left"><span>Đã chọn: </span> <span class="category-selected">Thời trang nam</span> > <span class="category-selected">Thời trang nam</span></div>
+                <div class="footer-category-action">
+                  <button class="footer-category-action__cancel-btn ">Hủy</button>
+                   <button class="footer-category-action__agree-btn btn-admin">Xác nhận</button>
+                </div>
+              </div>
+              </div>
+              </div>
+             
+                <div class="form-group">
+                <label style="display: block;" for="category">*Mô tả sản phẩm</label>
+                <textarea style="width: 80%; margin-left: 120px;" class="description" rows="10"></textarea>
+                <div class="error-message error-category"></div>
+                
+              </div>
+            </div>
+            <!-- create-detail-product -->
+            <div class="create-detail-product">
+                <h3 class="create-detail-product__header">Thông tin chi tiết</h3>
+           <div class="attribute-list">
+                 <div class="attribute-container">
+                    <span class="attribute-name">*Thương Hiệu</span>
+                    <div class="dropdown brand-dropdown">
+                      <button class="brand-dropdown-btn dropdown-btn">Vui lòng chọn <img src="../assets/dropdown-icon.svg"></button>
+                      <ul style="top: 56px" class="dropdown-menu show">
+                          <li class="dropdown-item">Nike</li>
+                          <li class="dropdown-item">Luffy</li>
+                        </ul>
+                    </div>
+                 </div>
+  
+                  <div class="attribute-container">
+                    <span class="attribute-name">*Thương Hiệu</span>
+                    <div class="dropdown brand-dropdown">
+                      <button class="brand-dropdown-btn dropdown-btn">Vui lòng chọn <img src="../assets/dropdown-icon.svg"></button>
+                      <ul style="top: 26px" class="dropdown-menu">
+                          <li class="dropdown-item">Nike</li>
+                          <li class="dropdown-item">Luffy</li>
+                        </ul>
+                    </div>
+                 </div>
+                    <div class="attribute-container">
+                    <span class="attribute-name">*Thương Hiệu</span>
+                    <div class="dropdown brand-dropdown">
+                      <button class="brand-dropdown-btn dropdown-btn">Vui lòng chọn <img src="../assets/dropdown-icon.svg"></button>
+                      <ul style="top: 26px" class="dropdown-menu">
+                          <li class="dropdown-item">Nike</li>
+                          <li class="dropdown-item">Luffy</li>
+                        </ul>
+                    </div>
+                 </div>
+                    <div class="attribute-container">
+                    <span class="attribute-name">*Thương Hiệu</span>
+                    <div class="dropdown brand-dropdown">
+                      <button class="brand-dropdown-btn dropdown-btn">Vui lòng chọn <img src="../assets/dropdown-icon.svg"></button>
+                      <ul style="top: 26px" class="dropdown-menu">
+                          <li class="dropdown-item">Nike</li>
+                          <li class="dropdown-item">Luffy</li>
+                        </ul>
+                    </div>
+                 </div>
+           </div>
+
+
+                 
+
+               
+            </div>
+             <!-- create-variation-product -->
+            <div class="create-product-variation">
+            <h3 class="create-product-variation__header">Thông tin bán hàng</h3>
+            <!-- product-variation-options -->
+            <div class="product-variation">
+              <h3 class="product-variation__left">*Phân loại hàng</h3>
+              <div class="product-variation-container">
+                <div class="product-variation-color product-variation-option">
+                  <p class="product-variation__header">Màu</p>
+                  <div class="product-variation-color-items product-variation-items">
+                    <div class="product-variation-color-item product-variation-item">
+                    
+                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
+                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
+                    </div>
+                      <div class="product-variation-color-item product-variation-item">
+                    
+                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
+                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
+                    </div>
+                     <div class="product-variation-color-item product-variation-item">
+                     
+                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
+                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
+                    </div>
+                  </div>
+                </div>
+
+                  <div class="product-variation-size product-variation-option">
+                    <p class="product-variation__header">Kích thước</p>
+                    <div class="product-variation-size-items product-variation-items">
+                      <div class="product-variation-size-item product-variation-item">
+                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
+                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
+                      </div>
+                      <div class="product-variation-size-item product-variation-item">  
+                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
+                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
+                      </div>
+                     <div class="product-variation-size-item product-variation-item">
+                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
+                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+               <!-- product-variation-value -->
+              <div class="product-variation-value">
+               <h3 class="product-variation-value-left">Danh sách phân loại hàng</h3>
+              <div class="product-variation-value-right">
+                 <div class="product-variation-value-right__top">
+                    <div class="form-group">
+                      <input type="text" placeholder="Giá tiền">
+                    </div>
+                     <div class="form-group">
+                      <input type="text" placeholder="Giá giảm">
+                    </div>
+                     <div class="form-group">
+                      <input type="text" placeholder="Kho">
+                    </div>
+                    <button class="apply-all-btn btn-admin">Áp dụng cho tất cả</button>
+                 </div>
+                 <table id="product-variation-table">
+                  <thead>
+                      <tr>
+                        <th style="width: 150px;">Màu</th>
+                        <th style="width: 170px;">Kích thước</th>
+                        <th>Giá</th>
+                        <th>Kho hàng</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                     <td rowspan="2" class="color-data">
+                        <p class="color-name">Be</p>
+                        <img class="color-variation-value__img" src="../assets/Add Image.svg">
+                     </td>
+                     <td class="size-data">
+                      S
+                     </td>
+                     <td  >
+                      <span class="price">đ</span>
+                      <input class="input-variation input-variation-value input-variation-value__price" type="text" placeholder="Giá">
+                     </td>
+                      <td  >
+                      <input class="input-variation input-variation-value" type="text" placeholder="Kho">
+                     </td>
+                    </tr>
+                   <tr>
+                      <td class="size-data"> M </td>
+                       <td >
+                        <span class="price">đ</span>
+                      <input class="input-variation input-variation-value input-variation-value__price" type="text" placeholder="Giá">
+                     </td>
+                      <td >
+                      <input class="input-variation input-variation-value" type="text" placeholder="Kho">
+                     </td>
+                  </tr>
+                    <tr>
+                    <td rowspan="2" class="color-data">
+                        <p class="color-name">Be</p>
+                        <img class="color-variation-value__img" src="../assets/Add Image.svg">
+                    </td>
+                    <td class="size-data"> S </td>
+                    <td  >
+                      <span class="price">đ</span>
+                        <input class="input-variation input-variation-value input-variation-value__price" type="text" placeholder="Giá">
+                    </td>
+                    <td  >
+                        <input class="input-variation input-variation-value" type="text" placeholder="Kho">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="size-data"> M </td>
+                </tr>
+                  </tbody>
+                 </table>
+              </div>
+            </div>
+            </div>
+            <div class="create-product-action">
+              <button class="create-product-action-btn create-product-action-btn__cancel">Hủy</button>
+              <button class="create-product-action-btn create-product-action-btn__hide">Lưu và ẩn</button>
+              <button class="btn-admin create-product-action-btn__save">Lưu và hiển thị</button>
+            </div>
           </div>
-          
+         
         
       </div>
     </div>
