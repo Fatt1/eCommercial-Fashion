@@ -127,7 +127,7 @@ function generateCategoryFilterHtml(categoryId) {
   categories.forEach((cate) => {
     // nếu mà cateParentId ko có tìm mới tìm các con của nó
     if (!cate.parentId) {
-      const childrenCategory = getSubCategory(cate.id);
+      const childrenCategory = getSubCategory(cate.id, 1);
       let contentChildCategory = "";
       if (childrenCategory) {
         const showCaret =

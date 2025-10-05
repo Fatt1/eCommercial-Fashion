@@ -77,7 +77,7 @@ function generateCategorySubMenu() {
       let categoryHeaderContent = ` <h3 data-category-id='${
         cate.id
       }' class="category-headings category-submenu-item">${cate.name.toUpperCase()}</h3>`;
-      const subCategory = getSubCategory(cate.id);
+      const subCategory = getSubCategory(cate.id, 1);
 
       let ulElem = ``;
       if (subCategory) {

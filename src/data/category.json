@@ -4,49 +4,49 @@
       "id": "cate-001",
       "name": "Thời trang nam",
       "parentId": null,
-      "createdAt": "2025-09-16T15:13:23.000Z",
-      "colorIds": ["#3357FF", "#33FF57", "#FF5733", "#F1C40F"],
-      "sizeIds": ["s", "xl", "m"]
+      "createdAt": "2025-09-16T15:13:23.000Z"
     },
     {
       "id": "cate-002",
       "name": "Thời trang nữ",
       "parentId": null,
-      "createdAt": "2025-09-16T15:13:23.000Z",
-      "colorIds": ["#8E44AD", "#3357FF", "#2ECC71"],
-      "sizeIds": ["s", "xl", "xxl", "m", "l"]
+      "createdAt": "2025-09-16T15:13:23.000Z"
     },
     {
       "id": "cate-003",
       "name": "Phụ kiện",
       "parentId": "cate-001",
-      "createdAt": "2025-09-16T15:13:23.000Z",
-      "colorIds": ["#D35400"],
-      "sizeIds": ["l", "xl", "m"]
+      "createdAt": "2025-09-16T15:13:23.000Z"
     },
     {
       "id": "cate-004",
       "name": "Đồng hồ nam",
       "parentId": "cate-001",
-      "createdAt": "2025-09-16T15:13:23.000Z",
-      "colorIds": ["#D35400", "#C0392B"],
-      "sizeIds": ["32", "34", "36"]
+      "createdAt": "2025-09-16T15:13:23.000Z"
     },
     {
       "id": "cate-005",
       "name": "Túi xách nữ",
       "parentId": "cate-002",
-      "createdAt": "2025-09-16T15:13:23.000Z",
-      "colorIds": ["#C0392B", "#D35400", "#8E44AD"],
-      "sizeIds": ["32", "34"]
+      "createdAt": "2025-09-16T15:13:23.000Z"
     },
     {
       "id": "cate-006",
       "name": "Nước hoa nữ",
       "parentId": "cate-002",
-      "createdAt": "2025-09-16T15:13:23.000Z",
-      "colorIds": ["#C0392B", "#1ABC9C"],
-      "sizeIds": ["32", "36"]
+      "createdAt": "2025-09-16T15:13:23.000Z"
+    },
+    {
+      "id": "cate-007",
+      "name": "Áo",
+      "parentId": "cate-001",
+      "createdAt": "2025-09-16T15:13:23.000Z"
+    },
+    {
+      "id": "cate-008",
+      "name": "Áo ba lỗ",
+      "parentId": "cate-007",
+      "createdAt": "2025-09-16T15:13:23.000Z"
     }
   ]
 }
