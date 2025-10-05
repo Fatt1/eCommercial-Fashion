@@ -4,8 +4,7 @@ export default class Category {
     this.name = name;
     this.parentId = parentId;
     this.createdAt = new Date();
-    this.colorIds = [];
-    this.sizeIds = [];
+    this.image = image;
   }
 }
 
@@ -17,8 +16,7 @@ export default class Category {
       name: "Thoi trang nam",
       parentId: "111",
       createdAt : 23:23:23 23/23/2023,
-      colorIds: ["33", "22", "12"],
-      sizeIds: [],
+      image: img
     }
   ]
 }

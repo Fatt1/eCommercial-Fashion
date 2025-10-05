@@ -40,14 +40,23 @@ export function CreateProductForm() {
 
                <div class="form-group category-input ">
                 
-                <label for="category">*Ngành hàng</label>
+                <label>*Ngành hàng</label>
                 <div class="wrapper-create-product-category-btn">
                    <button class="create-product__category-btn">Chọn ngành hàng</button>
                    <img src="../assets/Pencil.svg" alt="">
                 </div>
                 <div class="error-message error-category"></div>
-                 <div class="category-selector-wrapper show">
-                ${generateCategoryListHtml()}
+                 <div class="category-selector-wrapper">
+                <div class="category-list">
+                  <ul class="category-list-menu" data-level="0">
+                  </ul>
+                  <ul class="category-list-menu" data-level="1">
+                   
+                  </ul>
+                  <ul class="category-list-menu" data-level="2">
+                   
+                  </ul>
+              </div>
               <div class="footer-category">
                 <div class="footer-category-left"><span>Đã chọn: </span> <div class="category-selected-list"></div></div>
                 <div class="footer-category-action">
@@ -71,7 +80,7 @@ export function CreateProductForm() {
 let uploadedFiles = [];
 let thumbnailFile = null;
 let draggedItem = null;
-
+let savedSelectedCategories = [];
 export function setUpCreateProductForm() {
   handleUploadImg();
   const categoriesLevel0 = getAllCategoriesByLevel();
@@ -80,22 +89,194 @@ export function setUpCreateProductForm() {
     ".category-list-menu[data-level='0']"
   );
   categoriesLevel0.forEach((cate) => {
-    const liElem = document.createElement("li");
-    liElem.classList.add("category-item");
-    liElem.setAttribute("data-has-children", cate.hasChildren);
-    liElem.setAttribute("data-cate-id", cate.id);
-    liElem.onclick = handleCategoryClick;
-    liElem.textContent = cate.name;
-    if (cate.hasChildren) {
-      const imgElem = document.createElement("img");
-      imgElem.src = "../assets/Forward.svg";
-      imgElem.classList.add("category-item-right");
-      liElem.appendChild(imgElem);
-    }
+    const liElem = createCategoryItem(cate);
     cateMenu.appendChild(liElem);
   });
+
+  //Handle khi mà nhấn chọn category
+  document
+    .querySelector(".wrapper-create-product-category-btn")
+    .addEventListener("click", () => {
+      restoreSavedCategories();
+      document
+        .querySelector(".category-selector-wrapper")
+        .classList.add("show");
+    });
+
+  //Handle khi mà nhấn nút cancel không chọn category nào hết
+  document
+    .querySelector(".footer-category-action__cancel-btn")
+    .addEventListener("click", () => {
+      //Xóa đi các menu category đã chọn
+      clearAllMenus();
+
+      document
+        .querySelector(".category-selector-wrapper")
+        .classList.remove("show");
+    });
+  document
+    .querySelector(".footer-category-action__agree-btn")
+    .addEventListener("click", () => {
+      saveSelectedCategories();
+      let selectedCategory = "";
+      document.querySelectorAll(".category-item.selected").forEach((cate) => {
+        selectedCategory += `${cate.textContent} > `;
+      });
+      document.querySelector(".create-product__category-btn").textContent =
+        selectedCategory;
+      document
+        .querySelector(".category-selector-wrapper")
+        .classList.remove("show");
+    });
 }
 
+// Hàm tạo category item element (tái sử dụng)
+function createCategoryItem(cate) {
+  const liElem = document.createElement("li");
+  liElem.classList.add("category-item");
+  liElem.setAttribute("data-has-children", cate.hasChildren);
+  liElem.setAttribute("data-cate-id", cate.id);
+  liElem.onclick = handleCategoryClick;
+  liElem.textContent = cate.name;
+
+  if (cate.hasChildren) {
+    const imgElem = document.createElement("img");
+    imgElem.src = "../assets/Forward.svg";
+    imgElem.classList.add("category-item-right");
+    liElem.appendChild(imgElem);
+  }
+
+  return liElem;
+}
+// Khôi phục lại các category đã được lưu
+function restoreSavedCategories() {
+  if (savedSelectedCategories.length === 0) {
+    document.querySelector(".category-selected-list").innerHTML = "";
+    return;
+  }
+
+  // Xóa tất cả selected hiện tại
+  document
+    .querySelectorAll(".category-item.selected")
+    .forEach((cate) => cate.classList.remove("selected"));
+
+  // Khôi phục lại từng category theo thứ tự level
+  savedSelectedCategories.forEach((savedCate, index) => {
+    const categoryItem = document.querySelector(
+      `.category-list-menu[data-level='${savedCate.level}'] .category-item[data-cate-id='${savedCate.cateId}']`
+    );
+
+    if (categoryItem) {
+      categoryItem.classList.add("selected");
+
+      // Nếu category có children và không phải là category cuối cùng
+      // thì load các con của nó cho level tiếp theo
+      if (savedCate.hasChildren && index < savedSelectedCategories.length - 1) {
+        const nextLevel = savedCate.level + 1;
+        const categoryByLevel = getAllCategoriesByLevel(nextLevel).filter(
+          (cate) => cate.parentId === savedCate.cateId
+        );
+
+        const nextMenu = document.querySelector(
+          `.category-list-menu[data-level='${nextLevel}']`
+        );
+        nextMenu.innerHTML = "";
+
+        categoryByLevel.forEach((cate) => {
+          const liElem = createCategoryItem(cate);
+          nextMenu.appendChild(liElem);
+        });
+      }
+    }
+  });
+
+  updateFooterCategory();
+}
+
+function handleCategoryClick(event) {
+  const category = event.target;
+  const hasChildren = category.dataset.hasChildren === "true";
+  const cateId = category.dataset.cateId;
+  const currentMenu = category.closest(".category-list-menu");
+  const level = Number(currentMenu.dataset.level);
+
+  // Xóa class selected của category trước đó ở cùng level
+  const selectedCategoryBefore = currentMenu.querySelector(
+    ".category-item.selected"
+  );
+  if (selectedCategoryBefore) {
+    selectedCategoryBefore.classList.remove("selected");
+  }
+
+  // Thêm class selected cho category hiện tại
+  category.classList.add("selected");
+
+  // Nếu category được chọn mà có children thì sẽ hiện thị các con của nó
+  if (hasChildren) {
+    const categoryByLevel = getAllCategoriesByLevel(level + 1).filter(
+      (cate) => cate.parentId === cateId
+    );
+    document.querySelector(
+      `.category-list-menu[data-level='${level + 1}']`
+    ).innerHTML = "";
+    categoryByLevel.forEach((cate) => {
+      const liElem = createCategoryItem(cate);
+      document
+        .querySelector(`.category-list-menu[data-level='${level + 1}']`)
+        .appendChild(liElem);
+      clearHigherLevelMenus(level + 1);
+    });
+  } else {
+    clearHigherLevelMenus(level);
+  }
+
+  updateFooterCategory();
+}
+
+// Update các category đã đc chọn
+function updateFooterCategory() {
+  const footerSelectedCategoryList = document.querySelector(
+    ".category-selected-list"
+  );
+  let content = ``;
+  document.querySelectorAll(".category-item.selected").forEach((cate) => {
+    content += `<span class="category-selected">${cate.textContent} > </span>`;
+  });
+
+  footerSelectedCategoryList.innerHTML = content;
+}
+//Xóa hết mấy menu mà có mức cao hơn
+function clearHigherLevelMenus(currentLevel) {
+  document
+    .querySelectorAll(`.category-list-menu[data-level]`)
+    .forEach((menu) => {
+      const menuLevel = Number(menu.dataset.level);
+      if (menuLevel > currentLevel) {
+        menu.innerHTML = "";
+      }
+    });
+}
+// Xóa tất cả các menu con (level > 0)
+function clearAllMenus() {
+  document
+    .querySelectorAll(`.category-list-menu[data-level]`)
+    .forEach((menu) => {
+      const menuLevel = Number(menu.dataset.level);
+      if (menuLevel > 0) {
+        menu.innerHTML = "";
+      }
+    });
+}
+function saveSelectedCategories() {
+  savedSelectedCategories = [];
+  document.querySelectorAll(".category-item.selected").forEach((cate) => {
+    savedSelectedCategories.push({
+      cateId: cate.dataset.cateId,
+      level: Number(cate.closest(".category-list-menu").dataset.level),
+      hasChildren: cate.dataset.hasChildren === "true",
+    });
+  });
+}
 function uploadThumbnail(file) {
   thumbnailFile = file;
   document.querySelector(".thumbnail-preview").src = file.blobUrl;
@@ -253,93 +434,4 @@ function updateThumbnailOnReorder() {
 }
 function getDOMIndex(element) {
   return Array.prototype.indexOf.call(element.parentNode.children, element);
-}
-
-function generateCategoryListHtml() {
-  return `
-     <div class="category-list">
-                  <ul class="category-list-menu" data-level="0">
-                  </ul>
-                  <ul class="category-list-menu" data-level="1">
-                   
-                  </ul>
-                  <ul class="category-list-menu" data-level="2">
-                   
-                  </ul>
-              </div>
-  `;
-}
-function handleCategoryClick(event) {
-  const category = event.target;
-  const hasChildren = category.dataset.hasChildren === "true";
-  const cateId = category.dataset.cateId;
-  const currentMenu = category.closest(".category-list-menu");
-  const level = Number(currentMenu.dataset.level);
-
-  // Xóa class selected của category trước đó ở cùng level
-  const selectedCategoryBefore = currentMenu.querySelector(
-    ".category-item.selected"
-  );
-  if (selectedCategoryBefore) {
-    selectedCategoryBefore.classList.remove("selected");
-  }
-
-  // Thêm class selected cho category hiện tại
-  category.classList.add("selected");
-
-  // Nếu category được chọn mà có children thì sẽ hiện thị các con của nó
-  if (hasChildren) {
-    const categoryByLevel = getAllCategoriesByLevel(level + 1).filter(
-      (cate) => cate.parentId === cateId
-    );
-    document.querySelector(
-      `.category-list-menu[data-level='${level + 1}']`
-    ).innerHTML = "";
-    categoryByLevel.forEach((cate) => {
-      const liElem = document.createElement("li");
-      liElem.classList.add("category-item");
-      liElem.setAttribute("data-has-children", cate.hasChildren);
-      liElem.setAttribute("data-cate-id", cate.id);
-      liElem.onclick = handleCategoryClick;
-      liElem.textContent = cate.name;
-      // Nếu mà category mà có children thì hiện thêm cái mũi tên sang phải
-      if (cate.hasChildren) {
-        const imgElem = document.createElement("img");
-        imgElem.src = "../assets/Forward.svg";
-        imgElem.classList.add("category-item-right");
-        liElem.appendChild(imgElem);
-      }
-      document
-        .querySelector(`.category-list-menu[data-level='${level + 1}']`)
-        .appendChild(liElem);
-      clearHigherLevelMenus(level + 1);
-    });
-  } else {
-    clearHigherLevelMenus(level);
-  }
-
-  updateFooterCategory();
-}
-
-// Update các category đã đc chọn
-function updateFooterCategory() {
-  const footerSelectedCategoryList = document.querySelector(
-    ".category-selected-list"
-  );
-  let content = ``;
-  document.querySelectorAll(".category-item.selected").forEach((cate) => {
-    content += `<span class="category-selected">${cate.textContent} > </span>`;
-  });
-  footerSelectedCategoryList.innerHTML = content;
-}
-
-function clearHigherLevelMenus(currentLevel) {
-  document
-    .querySelectorAll(`.category-list-menu[data-level]`)
-    .forEach((menu) => {
-      const menuLevel = Number(menu.dataset.level);
-      if (menuLevel > currentLevel) {
-        menu.innerHTML = "";
-      }
-    });
 }

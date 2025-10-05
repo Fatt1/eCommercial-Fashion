@@ -72,19 +72,22 @@ function getCategoryById(categoryId) {
   };
 }
 
-function getSubCategory(categoryId) {
+function getSubCategory(categoryId, maxLevel = null) {
   const dbContext = getDbContextFromLocalStorage();
   const subCategories = [];
-  function findChildren(currentId) {
+  function findChildren(currentId, currentLevel) {
+    if (maxLevel !== null && currentLevel > maxLevel) {
+      return;
+    }
     const children = dbContext.categories.filter(
       (cate) => cate.parentId === currentId
     );
     for (const child of children) {
       subCategories.push(child);
-      findChildren(child);
+      findChildren(child.id, currentLevel + 1);
     }
   }
-  findChildren(categoryId);
+  findChildren(categoryId, 1);
   return subCategories;
 }
 // lấy categoryIds con ở tất cả các mức
