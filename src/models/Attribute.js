@@ -1,16 +1,7 @@
 export default class Attribute {
-  constructor(
-    id,
-    name,
-    categoryId,
-    attributeValues,
-    inputType,
-    isRequired,
-    createdAt
-  ) {
+  constructor(id, name, attributeValues, inputType, isRequired, createdAt) {
     this.id = id;
     this.name = name;
-    this.categoryId = categoryId;
     this.attributeValues = attributeValues;
     this.isRequired = isRequired;
     this.inputType = inputType;
@@ -19,10 +10,8 @@ export default class Attribute {
 }
 //input_type
 // SINGLE_DROP_DOWN = 1
-// SINGLE_COMBO_BOX = 2
-// FREE_TEXT_FILED   = 3
-// MULTI_DROP_DOWN   = 4
-// MULTI_COMBO_BOX   = 5
+// FREE_TEXT_FILED   = 2
+// MULTI_DROP_DOWN   = 3
 
 /*
 {
@@ -33,7 +22,6 @@ export default class Attribute {
   attributeValues: [
     "Đường phố", "Hàn Quốc"
   ],
-  categoryId: "213",
   isRequired: true,
   createdAt: 23:23:23 12/12/2025
 }

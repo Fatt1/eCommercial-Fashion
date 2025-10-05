@@ -1,5 +1,9 @@
+import { getAttributeByCategoryId } from "../../../../services/attributeService.js";
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
-import { CreateProductDetail } from "../CreateProductDetail/CreateProductDetail.js";
+import {
+  CreateProductDetail,
+  renderCreateProductDetailAttribute,
+} from "../CreateProductDetail/CreateProductDetail.js";
 import {
   CreateProductForm,
   setUpCreateProductForm,
@@ -15,7 +19,12 @@ function renderAddProductHtml() {
         <div class=""main-content__admin">
           ${CreateProductHeader()}
           ${CreateProductForm()}
-          ${CreateProductDetail()}
+          <div class="create-detail-product">
+                <h3 class="create-detail-product__header">Thông tin chi tiết</h3>
+           <div class="attribute-list">
+          
+           </div>
+            </div>
           ${CreateProductVariation()}
             <div class="create-product-action">
               <button class="create-product-action-btn create-product-action-btn__cancel">Hủy</button>
@@ -30,6 +39,7 @@ function renderAddProductHtml() {
 function setUpAddProduct() {
   setUpAdminNav();
   setUpCreateProductForm();
+  renderCreateProductDetailAttribute([]);
 }
 export function loadAddProduct() {
   renderAddProductHtml();

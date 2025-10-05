@@ -26,7 +26,22 @@ export const ORDER_STATUS = {
   REFUNDED: "REFUNDED", // Đã hoàn tiền (Nếu có)
   RETURNED: "RETURNED", // Đã bị trả lại
 };
+export const INPUT_TYPE = {
+  // Loại 1: Chỉ chọn một giá trị từ danh sách (Không cho phép nhập mới)
+  SINGLE_DROP_DOWN: 1,
 
+  // Loại 2: Chọn một giá trị từ danh sách HOẶC nhập giá trị mới (Combo Box)
+  SINGLE_COMBO_BOX: 2,
+
+  // Loại 3: Trường nhập văn bản tự do (Không có danh sách gợi ý)
+  FREE_TEXT_FIELD: 3,
+
+  // Loại 4: Cho phép chọn nhiều giá trị từ danh sách (Không cho phép nhập mới)
+  MULTI_DROP_DOWN: 4,
+
+  // Loại 5: Cho phép chọn nhiều giá trị từ danh sách HOẶC nhập các giá trị mới
+  MULTI_COMBO_BOX: 5,
+};
 export const PAY_CLIENT_ID =
   "AWX03Hr4m9SF6hKtpRlcfF2oG1l_CFxXYqhvYHyanxTDVAce9znVExv43NY_hxShcUGJftk2hAyrbA33";
 export const PAY_SECRET =

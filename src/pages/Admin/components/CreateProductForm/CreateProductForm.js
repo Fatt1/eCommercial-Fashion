@@ -1,4 +1,9 @@
-import { getAllCategoriesByLevel } from "../../../../services/categoryService.js";
+import { getAttributeByCategoryId } from "../../../../services/attributeService.js";
+import {
+  getAllCategoriesByLevel,
+  getAllParentCategory,
+} from "../../../../services/categoryService.js";
+import { renderCreateProductDetailAttribute } from "../CreateProductDetail/CreateProductDetail.js";
 
 export function CreateProductForm() {
   return `
@@ -146,6 +151,11 @@ function handleCancelSelection() {
 function handleConfirmSelection() {
   saveSelectedCategories();
   updateCategoryButtonText();
+  const finalCategory =
+    savedSelectedCategories[savedSelectedCategories.length - 1];
+  const attributes = getAttributeByCategoryId(finalCategory.cateId);
+  console.log(attributes);
+  renderCreateProductDetailAttribute(attributes);
   DOM.categorySelectorWrapper.classList.remove("show");
 }
 

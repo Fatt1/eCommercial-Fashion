@@ -1,31 +1,153 @@
 {
   "attributes": [
     {
-      "id": "1",
-      "inputType": 2,
+      "id": "A003",
       "name": "Thương hiệu",
-      "attributeValues": ["1", "2", "3"],
-      "categoryId": ["cate-001", "cate-002"],
+      "attributeValues": ["Nike", "Adidas", "Zara", "H&M", "Uniqlo"],
+      "inputType": 1,
       "isRequired": true,
-      "createdAt": "2025-09-16T15:13:23.000Z"
+      "createdAt": "2025-10-05T10:02:00Z"
     },
     {
-      "id": "2",
-      "inputType": 3,
-      "name": "Chất liệu",
-      "attributeValues": [],
-      "categoryId": ["cate-001"],
-      "isRequired": false,
-      "createdAt": "2025-09-16T15:13:23.000Z"
+      "id": "A004",
+      "name": "Chất liệu chính",
+      "attributeValues": ["Cotton", "Polyester", "Len", "Da"],
+      "inputType": 1,
+      "isRequired": true,
+      "createdAt": "2025-10-05T10:03:00Z"
     },
     {
-      "id": "3",
-      "inputType": 5,
+      "id": "A005",
       "name": "Phong cách",
-      "attributeValues": ["Streetwear", "Casual", "Sporty"],
-      "categoryId": ["cate-004"],
+      "attributeValues": ["Đường phố", "Hàn Quốc", "Vintage", "Công sở"],
+      "inputType": 3,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:04:00Z"
+    },
+    {
+      "id": "A006",
+      "name": "Chiều dài tay áo",
+      "attributeValues": ["Ngắn", "Dài", "3/4", "Không tay"],
+      "inputType": 1,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:05:00Z"
+    },
+    {
+      "id": "A007",
+      "name": "Kiểu cổ áo",
+      "attributeValues": ["Cổ tròn", "Cổ V", "Cổ bẻ", "Cổ lọ"],
+      "inputType": 1,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:06:00Z"
+    },
+    {
+      "id": "A008",
+      "name": "Đối tượng",
+      "attributeValues": ["Nam", "Nữ", "Unisex"],
+      "inputType": 1,
       "isRequired": true,
-      "createdAt": "2025-09-16T15:13:23.000Z"
+      "createdAt": "2025-10-05T10:07:00Z"
+    },
+    {
+      "id": "A009",
+      "name": "Xuất xứ",
+      "attributeValues": ["Việt Nam", "Trung Quốc", "Thái Lan", "Hàn Quốc"],
+      "inputType": 1,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:08:00Z"
+    },
+    {
+      "id": "A010",
+      "name": "Mùa phù hợp",
+      "attributeValues": ["Xuân/Hè", "Thu/Đông", "Quanh năm"],
+      "inputType": 3,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:09:00Z"
+    },
+    {
+      "id": "A011",
+      "name": "Họa tiết",
+      "attributeValues": ["Trơn", "Kẻ sọc", "Chấm bi", "In chữ", "In hình"],
+      "inputType": 3,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:10:00Z"
+    },
+    {
+      "id": "A012",
+      "name": "Trọng lượng (gram)",
+      "attributeValues": [],
+      "inputType": 2,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:11:00Z"
+    },
+    {
+      "id": "A013",
+      "name": "Độ cao gót (cm)",
+      "attributeValues": [],
+      "inputType": 2,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:12:00Z"
+    },
+    {
+      "id": "A014",
+      "name": "Hình dáng",
+      "attributeValues": ["Slim fit", "Regular fit", "Oversize"],
+      "inputType": 1,
+      "isRequired": true,
+      "createdAt": "2025-10-05T10:13:00Z"
+    },
+    {
+      "id": "A015",
+      "name": "Độ co giãn",
+      "attributeValues": ["Không co giãn", "Co giãn ít", "Co giãn tốt"],
+      "inputType": 1,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:14:00Z"
+    },
+    {
+      "id": "A016",
+      "name": "Độ dày",
+      "attributeValues": ["Mỏng", "Trung bình", "Dày"],
+      "inputType": 1,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:15:00Z"
+    },
+    {
+      "id": "A017",
+      "name": "Tính năng",
+      "attributeValues": [
+        "Chống thấm",
+        "Thoáng khí",
+        "Chống tia UV",
+        "Khô nhanh"
+      ],
+      "inputType": 3,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:16:00Z"
+    },
+    {
+      "id": "A018",
+      "name": "Chất liệu phụ",
+      "attributeValues": ["Spandex", "Silk", "Linen"],
+      "inputType": 3,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:17:00Z"
+    },
+    {
+      "id": "A019",
+      "name": "Tên nhà thiết kế",
+      "attributeValues": [],
+      "inputType": 2,
+      "isRequired": false,
+      "createdAt": "2025-10-05T10:18:00Z"
+    },
+    {
+      "id": "A020",
+      "name": "Loại sản phẩm",
+      "attributeValues": ["Áo", "Quần", "Váy", "Giày", "Phụ kiện"],
+      "inputType": 1,
+      "isRequired": true,
+      "createdAt": "2025-10-05T10:19:00Z"
     }
   ]
 }
