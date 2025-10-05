@@ -426,4 +426,38 @@ document.addEventListener("DOMContentLoaded", () => {
       searchBtn.click();
     }
   });
+
+  //đổi tab filter lại cái result trả về là all || public hay != public
+  const tabLinks = document.querySelectorAll(".product-manage__head-left a");
+
+  function setActiveTab(index) {
+    tabLinks.forEach((a, i) => {
+      a.classList.toggle("selected", i === index);
+    });
+  }
+
+  let currentTab = 0;
+
+  tabLinks.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+      setActiveTab(index);
+      currentTab = index;
+
+      const keyword = searchInput.value.trim();
+      const { items } = searchProducts({
+        searchKey: keyword,
+        pageSize: 5,
+        pageNumber: 1,
+      });
+      let filtered = items;
+
+      //so index cho nhanh
+      if (index === 1) {
+        filtered = items.filter((p) => p.status === "public");
+      } else if (index === 2) {
+        filtered = items.filter((p) => p.status !== "public");
+      }
+      renderSearchResults(filtered);
+    });
+  });
 });
