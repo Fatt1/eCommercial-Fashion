@@ -1,4 +1,5 @@
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
+import { loadAddProduct } from "./addProduct.js";
 function ProductManageHead() {
   return `
     <div class="product-manage__head">
@@ -254,7 +255,7 @@ export function renderProductAdminHtml() {
 function setUpProductAdmin() {
   setUpAdminNav();
   document.querySelector(".add-product-btn").addEventListener("click", () => {
-    // tuw tu viet tiep
+    loadAddProduct();
   });
 }
 export function loadProductAdmin() {

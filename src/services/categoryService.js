@@ -15,7 +15,33 @@ function getAllCategory() {
   const dbContext = getDbContextFromLocalStorage();
   return dbContext.categories;
 }
-
+function getAllCategoriesByLevel(level = null) {
+  const dbContext = getDbContextFromLocalStorage();
+  if (level === null || level === 0) {
+    return dbContext.categories
+      .filter((cate) => cate.parentId === null)
+      .map((cate) => ({
+        ...cate,
+        hasChildren: dbContext.categories.some((c) => c.parentId === cate.id),
+      }));
+  }
+  const categoriesByLevel = [];
+  dbContext.categories.forEach((cate) => {
+    const categoryLevel = getCategoryLevel(cate.id, dbContext.categories);
+    if (categoryLevel === level) {
+      const hasChildren = dbContext.categories.some(
+        (ca) => ca.parentId === cate.id
+      );
+      categoriesByLevel.push({ ...cate, hasChildren });
+    }
+  });
+  return categoriesByLevel;
+}
+function getCategoryLevel(categoryId, categories) {
+  const category = categories.find((c) => c.id === categoryId);
+  if (!category || category.parentId === null) return 0;
+  return 1 + getCategoryLevel(category.parentId, categories);
+}
 function deleteCategoryById(categoryId) {
   const dbContext = getDbContextFromLocalStorage();
   const category = dbContext.categories.find((c) => c.id === categoryId);
@@ -86,4 +112,5 @@ export {
   getCategoryById,
   getSubCategory,
   getSubCategoryIds,
+  getAllCategoriesByLevel,
 };
