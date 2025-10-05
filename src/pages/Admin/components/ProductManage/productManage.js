@@ -1,4 +1,5 @@
 // import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
+
 function ProductManageHead() {
   return `
     <div class="product-manage__head">
@@ -252,6 +253,10 @@ export function renderProductAdminHtml() {
 //tét
 import { searchProducts } from "../../../../services/productService.js";
 import { formatNumber } from "../../../../helper/formatNumber.js";
+import { getSkusByProductId } from "../../../../services/productService.js";
+import { getSkuBySkuId } from "../../../../models/Sku.js";
+import { getDetailOneSku } from "../../../../services/productService.js";
+import { getProductById } from "../../../../services/productService.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector(
@@ -268,33 +273,130 @@ document.addEventListener("DOMContentLoaded", () => {
       resultContainer.innerHTML = `<p style="padding: 16px;">Không tìm thấy sản phẩm nào.</p>`;
       return;
     }
-
+    console.log(products.length);
+    document.querySelector(
+      ".product-manage-main-result__top--quantity"
+    ).textContent = products.length + " Sản Phẩm";
     const html = products
       .map(
         (p) => `
-      <div class="cart-item product-result-item__product">
-        <div class="product-main">
-          <img class="product-main__img" src="../assets/large-img-detail.png" />
-          <span>${p.name}</span>
+        <div class="product-block" data-product-id="${p.id}">
+          <div class="cart-item product-result-item__product">
+            <div class="product-main">
+              <img class="product-main__img" src="../assets/large-img-detail.png" />
+              <span>${p.name}</span>
+            </div>
+            <div class="product-price">
+              <span class="product-price__current-price">${formatNumber(
+                p.priceInfo.currentlyPrice
+              )}đ</span>
+            </div>
+            <div class="product-quantity">
+              <span class="product-quantity__input">Kho: ${
+                p.stock || 1000
+              }</span>
+            </div>
+          </div>
+          <button class="show-sku-btn" data-product-id="${
+            p.id
+          }">Xem tất cả SKU</button>
+          <div class="sku-container" id="sku-container-${p.id}"></div>
         </div>
-        <div class="product-price">
-          <span class="product-price__current-price">
-            ${
-              formatNumber
-                ? formatNumber(p.priceInfo.currentlyPrice)
-                : p.priceInfo.currentlyPrice
-            }đ
-          </span>
-        </div>
-        <div class="product-quantity">
-          <span class="product-quantity__input">Kho: ${p.stock || 1000}</span>
-        </div>
-      </div>
     `
       )
       .join("");
 
+    //render skuList
+    function renderSkuList(skus) {
+      let htmlSku = "";
+      console.log(skus);
+      if (!skus || skus.length === 0) {
+        htmlSku += `<div class="sku-empty">Không có SKU nào</div>`;
+      } else {
+        skus.map((sku) => {
+          // console.log(getSkuBySkuId(sku.id, sku.productId));
+          const detail = getDetailOneSku(sku, sku.productId);
+          const p = getProductById(sku.productId);
+
+          console.log("detail" + detail);
+          console.log(detail);
+          //check xem sku co đủ vơi hợp lệ k ( đủ name và tierIndex[] 2 phần tử)
+          if (detail) {
+            htmlSku += `
+          <div class="sku">
+            <div class="cart-item">
+              <div class="product-main product-main-sku">
+                <img class="product-main__img product-main__img-sku" src="../assets/large-img-detail.png" />
+                <div class="name-sku">
+
+                  <span>${
+                    p.name ||
+                    sku.name ||
+                    getSkuBySkuId(sku.id, sku.productId).name ||
+                    "noname"
+                  }</span> 
+                  <div>${detail.selectedDetails[0].name},${
+              detail.selectedDetails[1].name
+            }</div>
+                </div>
+              </div>
+              <div class="product-price">
+                <span class="product-price__current-price">${formatNumber(
+                  p.priceInfo.currentlyPrice || 0
+                )}đ</span>
+              </div>
+              <div class="product-quantity">
+                <span class="product-quantity__input">${
+                  sku.stock || 0
+                } trong kho</span>
+              </div>
+            </div>
+          </div>
+        `;
+          }
+        });
+      }
+
+      let html = `
+      <div class="skus product-result-item__skus">
+        ${htmlSku}
+      </div>
+      `;
+
+      return html;
+    }
+
     resultContainer.innerHTML = html;
+
+    //tét event
+
+    //   const showAllSkuButtons = document.querySelectorAll(".show-sku-button");
+    //   showAllSkuButtons.forEach((btn) => {
+    //     btn.addEventListener("click", () => {
+    //       console.log(btn.dataset.productId);
+    //       console.log("1");
+    //     });
+    //   });
+    // }
+    document.querySelectorAll(".show-sku-btn").forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
+        const productId = e.target.dataset.productId;
+        const container = document.getElementById(`sku-container-${productId}`);
+
+        if (container.classList.contains("opened")) {
+          container.classList.remove("opened");
+          container.innerHTML = "";
+          e.target.textContent = "Xem tất cả SKU";
+          return;
+        }
+
+        const skus = getSkusByProductId(productId);
+        console.log("product sku", productId, skus);
+        container.innerHTML = renderSkuList(skus);
+        container.classList.add("opened");
+        e.target.textContent = "Thu gọn SKU";
+      });
+    });
   }
 
   searchBtn.addEventListener("click", async () => {
@@ -309,5 +411,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("result:", items);
     renderSearchResults(items);
+  });
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      searchBtn.click();
+    }
   });
 });
