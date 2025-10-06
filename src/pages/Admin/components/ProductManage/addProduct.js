@@ -1,15 +1,15 @@
 import { getAttributeByCategoryId } from "../../../../services/attributeService.js";
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
-import {
-  CreateProductDetail,
-  renderCreateProductDetailAttribute,
-} from "../CreateProductDetail/CreateProductDetail.js";
+import { renderCreateProductDetailAttribute } from "../CreateProductDetail/CreateProductDetail.js";
 import {
   CreateProductForm,
   setUpCreateProductForm,
 } from "../CreateProductForm/CreateProductForm.js";
 import { CreateProductHeader } from "../CreateProductHeader/CreateProductHeader.js";
-import { CreateProductVariation } from "../CreateProductVariation/CreateProductVariation.js";
+import {
+  CreateProductVariation,
+  setUpEventListenerCreateProductVariation,
+} from "../CreateProductVariation/CreateProductVariation.js";
 
 function renderAddProductHtml() {
   document.getElementById("root").innerHTML = `
@@ -39,6 +39,7 @@ function renderAddProductHtml() {
 function setUpAddProduct() {
   setUpAdminNav();
   setUpCreateProductForm();
+  setUpEventListenerCreateProductVariation();
   renderCreateProductDetailAttribute([]);
 }
 export function loadAddProduct() {

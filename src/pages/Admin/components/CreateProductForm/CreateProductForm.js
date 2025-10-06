@@ -154,7 +154,6 @@ function handleConfirmSelection() {
   const finalCategory =
     savedSelectedCategories[savedSelectedCategories.length - 1];
   const attributes = getAttributeByCategoryId(finalCategory.cateId);
-  console.log(attributes);
   renderCreateProductDetailAttribute(attributes);
   DOM.categorySelectorWrapper.classList.remove("show");
 }
