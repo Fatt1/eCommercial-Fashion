@@ -84,7 +84,7 @@ button:hover {
   box-shadow: 3px 3px 10px rgba(41, 41, 41, 0.202);
   border-radius: 3px;
   max-height: 0;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.2s ease-out;
   overflow: hidden;
 }
 

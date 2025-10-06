@@ -284,6 +284,9 @@
 .product-variation-value-left {
   width: 10%;
 }
+.product-variation-container {
+  width: 100%;
+}
 .btn-admin {
   background-color: black;
   color: #e6f514;
@@ -296,7 +299,11 @@
 .product-variation-value-right {
   width: 80%;
 }
-.create-detail-product .dropdown-menu.show {
+.selected-values {
+  color: black;
+}
+.create-detail-product .dropdown-menu.show,
+.create-product-variation .dropdown-menu.show {
   overflow-y: scroll;
 }
 .checkbox {

@@ -107,7 +107,10 @@ function setUpEventListener(attributes) {
         const isMultiDropdown = item.classList.contains("multi-dropdown");
         if (isMultiDropdown) {
           handleMultiDropdown(item, dropdownBtn, attributeName, value);
-        } else handleSingleDropdown(item, dropdownBtn, attributeName, value);
+        } else {
+          handleSingleDropdown(item, dropdownBtn, attributeName, value);
+          item.closest(".dropdown-menu").classList.remove("show");
+        }
       });
     });
 

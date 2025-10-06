@@ -18,18 +18,7 @@ export function CreateProductVariation() {
                   <div class="product-variation-size product-variation-option">
                     <p class="product-variation__header">Kích thước</p>
                     <div class="product-variation-size-items product-variation-items">
-                      <div class="product-variation-size-item product-variation-item">
-                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
-                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
-                      </div>
-                      <div class="product-variation-size-item product-variation-item">  
-                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
-                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
-                      </div>
-                     <div class="product-variation-size-item product-variation-item">
-                       <input class="input-variation" placeholder="Vui lòng chọn" type="text">
-                        <button class="delete-variation-btn"><img src="../assets/Garbage can.svg" alt=""></button>
-                    </div>
+                      
                   </div>
                 </div>
               </div>
@@ -113,11 +102,16 @@ export function CreateProductVariation() {
             </div>
   `;
 }
+const allColors = getAllColors();
+const allSizes = getAllSizes();
 export function setUpEventListenerCreateProductVariation() {
-  const allColors = getAllColors();
   document
     .querySelector(".product-variation-color-items")
     .appendChild(createVariationOptionItemElem(allColors, "color"));
+
+  document
+    .querySelector(".product-variation-size-items")
+    .appendChild(createVariationOptionItemElem(allSizes, "size"));
 }
 function createDropdown(items, name) {
   return `
@@ -129,21 +123,23 @@ function createDropdown(items, name) {
                       <ul style="top: 56px" class="dropdown-menu">
                           ${items
                             .map((item) => {
-                              return `  <li class="dropdown-item" id="${item.id}">${item.name}</li>`;
+                              return `  <li class="dropdown-item" data-id="${item.id}">${item.name}</li>`;
                             })
                             .join(" ")}
                         </ul>
                     </div>
   `;
 }
-const variationOptions = { colors: [], sizes: [] };
-// Map để tracking item nào đang được chọn bởi variation nào
+// Tracking item nào đang được chọn bởi variation nào
+const selectedVariationOptions = { colors: [], sizes: [] };
+
 function createVariationOptionItemElem(items, name) {
   const variationOptionElem = document.createElement("div");
 
   variationOptionElem.classList.add(
     `product-variation-${name}-item`,
-    "product-variation-item"
+    "product-variation-item",
+    "no-value"
   );
   variationOptionElem.innerHTML = `
     ${createDropdown(items, name)}
@@ -158,23 +154,98 @@ function createVariationOptionItemElem(items, name) {
     this.nextElementSibling.classList.toggle("show");
   });
 
-  // Cập nhật disable state khi tạo mới
-  updateDisabledItems(variationOptionElem, name);
-
+  // Khi mà click vào dropdown item
+  // gắn sự kiện xử lí cho mỗi dropdown item
+  //Hàm sự kiện sẽ thêm value của variation color hoặc size vào biến selectedVariationOptions
+  // Chặn không cho chọn dropdown-item đã chọn
+  // Có thể thay đổi dropdown-item đã chọn
+  // Đồng bộ các dropdown-item đã chọn
   dropdownItems.forEach((item) => {
     item.addEventListener("click", () => {
       const selectedValue = item.textContent;
-      const id = item.id;
+      const id = item.dataset.id;
       const selectedValuesSpan = dropdownBtn.querySelector(".selected-values");
       selectedValuesSpan.textContent = selectedValue;
       item.classList.add("disable");
-      getDomVariationIndexDropdownItem(item, name);
+      const keyVariation = name + "s";
+      // Lấy vị trí index của variation option
+      const variationOptionIndex = getDomVariationIndexDropdownItem(item, name);
+      // Trường hợp khi mà lần đầu tiên chọn dropdown-item, thì sẽ thêm mới vào selectedVariation
+      if (
+        variationOptionIndex >
+        selectedVariationOptions[keyVariation].length - 1
+      ) {
+        selectedVariationOptions[keyVariation].push(id);
+        // Khi mà chọn 1 variation mới thì sẽ tự động tạo 1 cái variation kế bên
+        if (name === "color") {
+          document
+            .querySelector(".product-variation-color-items")
+            .appendChild(createVariationOptionItemElem(allColors, "color"));
+        } else {
+          document
+            .querySelector(".product-variation-size-items")
+            .appendChild(createVariationOptionItemElem(allSizes, "size"));
+        }
+      }
+      // Trường hợp đã chọn dropdown-item rồi, mà muốn thay đổi cái khác
+      else {
+        const prevSelectedId =
+          selectedVariationOptions[keyVariation][variationOptionIndex];
+        document
+          .querySelector(`.dropdown-item[data-id='${prevSelectedId}']`)
+          .classList.remove("disable");
+        selectedVariationOptions[keyVariation][variationOptionIndex] = id;
+      }
+      // Cập nhật disable state khi tạo mới
+
+      updateDisabledItems(keyVariation);
+
+      // Khi thêm hoặc thay đổi dropdown item mới thì tự động tắt đi cái menu
+      item.closest(".dropdown-menu").classList.remove("show");
+      variationOptionElem.classList.remove("no-value");
     });
   });
+
+  // Hàm xử lí sự kiện khi muốn xóa 1 cái variation value đã chọn
+  deleteBtn.addEventListener("click", () => {
+    const variationOptionIndex = getDomVariationIndex(
+      deleteBtn.parentElement,
+      name
+    );
+    // Nếu là index đầu tiên thì không cho xóa
+    if (deleteBtn.parentElement.classList.contains("no-value")) {
+      return;
+    }
+    const keyVariation = name + "s";
+
+    const selectedValue =
+      selectedVariationOptions[keyVariation][variationOptionIndex];
+
+    document
+      .querySelectorAll(`.dropdown-item[data-id='${selectedValue}']`)
+      .forEach((item) => item.classList.remove("disable"));
+    selectedVariationOptions[keyVariation].splice(variationOptionIndex, 1);
+    deleteBtn.parentElement.remove();
+  });
+
   return variationOptionElem;
 }
 
-function updateDisabledItems(variationOptionElem, name) {}
+function updateDisabledItems(keyVariation) {
+  selectedVariationOptions[keyVariation].forEach((value) => {
+    document
+      .querySelectorAll(`.dropdown-item[data-id='${value}']`)
+      .forEach((item) => item.classList.add("disable"));
+  });
+}
+
+function getDomVariationIndex(elem, name) {
+  const array = Array.from(
+    document.querySelectorAll(`.product-variation-${name}-item`)
+  );
+  const index = array.indexOf(elem);
+  return index;
+}
 
 function getDomVariationIndexDropdownItem(dropdownItem, name) {
   const array = Array.from(
