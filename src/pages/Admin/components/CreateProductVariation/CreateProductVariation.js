@@ -192,8 +192,8 @@ function createVariationOptionItemElem(items, name) {
         const prevSelectedId =
           selectedVariationOptions[keyVariation][variationOptionIndex];
         document
-          .querySelector(`.dropdown-item[data-id='${prevSelectedId}']`)
-          .classList.remove("disable");
+          .querySelectorAll(`.dropdown-item[data-id='${prevSelectedId}']`)
+          .forEach((val) => val.classList.remove("disable"));
         selectedVariationOptions[keyVariation][variationOptionIndex] = id;
       }
       // Cập nhật disable state khi tạo mới
