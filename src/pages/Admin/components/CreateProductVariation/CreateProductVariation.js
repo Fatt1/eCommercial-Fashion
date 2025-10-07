@@ -1,5 +1,8 @@
-import { getAllColors } from "../../../../services/colorService.js";
-import { getAllSizes } from "../../../../services/sizeService.js";
+import {
+  getAllColors,
+  getColorByCode,
+} from "../../../../services/colorService.js";
+import { getAllSizes, getSizeById } from "../../../../services/sizeService.js";
 export function CreateProductVariation() {
   return `
     <div class="create-product-variation">
@@ -112,6 +115,7 @@ export function setUpEventListenerCreateProductVariation() {
   document
     .querySelector(".product-variation-size-items")
     .appendChild(createVariationOptionItemElem(allSizes, "size"));
+  initializeVariationTable();
 }
 function createDropdown(items, name) {
   return `
@@ -181,10 +185,12 @@ function createVariationOptionItemElem(items, name) {
           document
             .querySelector(".product-variation-color-items")
             .appendChild(createVariationOptionItemElem(allColors, "color"));
+          addNewRowsForNewColor(id);
         } else {
           document
             .querySelector(".product-variation-size-items")
             .appendChild(createVariationOptionItemElem(allSizes, "size"));
+          addNewRowsForNewSize(id);
         }
       }
       // Trường hợp đã chọn dropdown-item rồi, mà muốn thay đổi cái khác
@@ -255,4 +261,129 @@ function getDomVariationIndexDropdownItem(dropdownItem, name) {
     dropdownItem.parentElement.parentElement.parentElement;
   const index = array.indexOf(parentVariation);
   return index;
+}
+
+function initializeVariationTable() {
+  const tableBody = document.querySelector("#product-variation-table tbody");
+
+  if (!tableBody) return;
+
+  tableBody.innerHTML = `
+    <tr data-group="true" data-color-id="default" data-size-id="default">
+      <td class="color-data" rowspan="1">
+        <p class="color-name">-</p>
+        <img class="color-variation-value__img" src="../assets/Add Image.svg">
+      </td>
+      <td class="size-data">-</td>
+      <td>
+        <span class="price">đ</span>
+        <input class="input-variation input-variation-value input-variation-value__price" type="text" placeholder="Giá">
+      </td>
+      <td>
+        <input class="input-variation input-variation-value" type="text" placeholder="Kho">
+      </td>
+    </tr>
+  `;
+}
+
+function addNewRowsForNewColor(colorId) {
+  const tableBody = document.querySelector("#product-variation-table tbody");
+  const color = getColorByCode(colorId);
+  if (!color) return;
+  // Xóa dòng default nếu còn
+  const defaultRow = tableBody.querySelector(
+    `tr[data-color-id="default"][data-group='true']`
+  );
+  if (defaultRow) {
+    defaultRow.setAttribute("data-color-id", colorId);
+    defaultRow.querySelector(".color-name").textContent = color.name;
+    return;
+  }
+  const sizes =
+    selectedVariationOptions.sizes.length > 0
+      ? selectedVariationOptions.sizes.map((id) => getSizeById(id))
+      : [{ id: "default", name: "-" }];
+  const fragment = document.createDocumentFragment();
+  const rowSpan = sizes.length;
+  sizes.forEach((size, index) => {
+    const row = document.createElement("tr");
+    row.setAttribute("data-color-id", colorId);
+    row.setAttribute("data-size-id", size.id);
+    row.setAttribute("data-group", "true");
+    if (index === 0) {
+      row.innerHTML = `
+      <td rowspan="${rowSpan}" class="color-data" data-color-id="${colorId}">
+          <p class="color-name">${color.name}</p>
+          <img class="color-variation-value__img" src="../assets/Add Image.svg">
+        </td>
+        <td class="size-data">${size.name}</td>
+        <td>
+          <span class="price">đ</span>
+          <input class="input-variation input-variation-value input-variation-value__price" type="text" placeholder="Giá">
+        </td>
+        <td>
+          <input class="input-variation input-variation-value" type="text" placeholder="Kho">
+        </td>
+      `;
+    } else {
+      row.innerHTML = `
+       <td class="size-data"> ${size.name} </td>
+                       <td >
+                        <span class="price">đ</span>
+                      <input class="input-variation input-variation-value input-variation-value__price" type="text" placeholder="Giá">
+                     </td>
+                      <td >
+                      <input class="input-variation input-variation-value" type="text" placeholder="Kho">
+                     </td>`;
+    }
+    fragment.appendChild(row);
+  });
+  tableBody.appendChild(fragment);
+}
+function addNewRowsForNewSize(sizeId) {
+  const tableBody = document.querySelector("#product-variation-table tbody");
+  const size = allSizes.find((s) => s.id === sizeId);
+  if (!size) return;
+
+  const defaultRow = tableBody.querySelector('tr[data-size-id="default"]');
+  if (defaultRow) {
+    defaultRow.setAttribute("data-size-id", sizeId);
+    defaultRow.querySelector(".size-data").textContent = size.name;
+    return;
+  }
+
+  // Lấy danh sách colors đã chọn, nếu chưa có thì dùng default
+  const colors =
+    selectedVariationOptions.colors.length > 0
+      ? selectedVariationOptions.colors.map((id) => getColorByCode(id))
+      : [{ id: "default", name: "-" }];
+
+  colors.forEach((color) => {
+    const existingRows = Array.from(
+      tableBody.querySelectorAll(
+        `tr[data-color-id="${color.id}"][data-group='true']`
+      )
+    );
+    existingRows.forEach((existingRow) => {
+      const row = document.createElement("tr");
+      row.setAttribute("data-color-id", color.id);
+      row.setAttribute("data-size-id", sizeId);
+      row.innerHTML = `
+     <td class="size-data"> ${size.name} </td>
+                       <td >
+                        <span class="price">đ</span>
+                      <input class="input-variation input-variation-value input-variation-value__price" type="text" placeholder="Giá">
+                     </td>
+                      <td >
+                      <input class="input-variation input-variation-value" type="text" placeholder="Kho">
+                     </td>
+  `;
+      existingRow.after(row);
+      console.log(existingRow);
+      const td = existingRow.querySelector(".color-data");
+      console.log(td);
+      const rowSpan = parseInt(td.getAttribute("rowspan") || "1");
+      td.setAttribute("rowspan", rowSpan + 1);
+    });
+  });
 }
