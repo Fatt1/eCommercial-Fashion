@@ -59,14 +59,16 @@ function InputMultiDropDown(att) {
          <img src="../assets/dropdown-icon.svg">
       </button>
       <ul style="top: 56px" class="dropdown-menu ">
-        ${att.attributeValues.map((value) => {
-          return `
+        ${att.attributeValues
+          .map((value) => {
+            return `
            <li class="dropdown-item multi-dropdown" data-value="${attributeKey}">
           <div class="checkbox"></div>
           <span>${value}</span>
         </li>
           `;
-        })} 
+          })
+          .join(" ")} 
       </ul>
     </div>
   `;

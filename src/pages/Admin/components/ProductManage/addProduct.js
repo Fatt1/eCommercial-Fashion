@@ -16,7 +16,7 @@ function renderAddProductHtml() {
     <div class="admin">
       ${AdminNav()}
       <div class="admin__main">
-        <div class=""main-content__admin">
+        <div class="main-content__admin">
           ${CreateProductHeader()}
           ${CreateProductForm()}
           <div class="create-detail-product">
