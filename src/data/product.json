@@ -10,12 +10,12 @@
       "images": ["image-1a.jpg", "image-1b.jpg"],
       "attributes": [
         {
-          "attributeId": "1",
-          "attributeValues": ["val-cotton"]
+          "attributeId": "A003",
+          "attributeValues": ["Nike"]
         },
         {
-          "attributeId": "2",
-          "attributeValues": ["val-basic"]
+          "attributeId": "A004",
+          "attributeValues": ["Cotton"]
         }
       ],
       "priceInfo": {
@@ -65,8 +65,8 @@
       "images": ["image-2a.jpg", "image-2b.jpg"],
       "attributes": [
         {
-          "attributeId": "1",
-          "attributeValues": ["val-slim"]
+          "attributeId": "A003",
+          "attributeValues": ["Adidas"]
         }
       ],
       "priceInfo": {
@@ -116,8 +116,8 @@
       "images": ["image-3a.jpg", "image-3b.jpg"],
       "attributes": [
         {
-          "attributeId": "2",
-          "attributeValues": ["val-leather", "val-rubber"]
+          "attributeId": "A005",
+          "attributeValues": ["Đường phố", "Hàn Quốc"]
         }
       ],
       "priceInfo": {
@@ -167,8 +167,8 @@
       "images": ["image-4a.jpg", "image-4b.jpg"],
       "attributes": [
         {
-          "attributeId": "1",
-          "attributeValues": ["val-full-frame"]
+          "attributeId": "A003",
+          "attributeValues": ["Nike"]
         }
       ],
       "priceInfo": {
@@ -191,8 +191,8 @@
       "images": ["image-5a.jpg", "image-5b.jpg"],
       "attributes": [
         {
-          "attributeId": "1",
-          "attributeValues": ["val-bluetooth"]
+          "attributeId": "A003",
+          "attributeValues": ["Zara"]
         }
       ],
       "priceInfo": {
@@ -229,8 +229,8 @@
       "images": ["image-6a.jpg", "image-6b.jpg"],
       "attributes": [
         {
-          "attributeId": "1",
-          "attributeValues": ["val-pu-leather"]
+          "attributeId": "A003",
+          "attributeValues": ["Nike"]
         }
       ],
       "priceInfo": {
@@ -267,12 +267,12 @@
       "images": ["image-1a.jpg", "image-1b.jpg"],
       "attributes": [
         {
-          "attributeId": "1",
-          "attributeValues": ["val-cotton"]
+          "attributeId": "A003",
+          "attributeValues": ["Nike"]
         },
         {
-          "attributeId": "2",
-          "attributeValues": ["val-basic"]
+          "attributeId": "A004",
+          "attributeValues": ["Cotton"]
         }
       ],
       "priceInfo": {
