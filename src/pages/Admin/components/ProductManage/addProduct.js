@@ -138,7 +138,7 @@ async function handleClickCreateProduct(productStatus) {
       ) {
         attribute["attributeId"] = key;
         attribute["attributeValues"] = selectedAttributeValues[key];
-      } else {
+      } else if (selectedAttributeValues[key] instanceof Array === false) {
         if (selectedAttributeValues[key]) {
           attribute["attributeId"] = key;
           attribute.attributeValues.push(selectedAttributeValues[key]);
@@ -149,6 +149,7 @@ async function handleClickCreateProduct(productStatus) {
     .filter((attr) => attr !== undefined && attr.attributeId !== "");
   const productId = generateUniqueId();
   const brandId = getBrandByName(selectedAttributeValues["brand"]).id;
+
   const newProduct = new Product(
     productId,
     productName,
@@ -175,7 +176,7 @@ async function handleClickCreateProduct(productStatus) {
       });
     });
   });
-  addProduct(newProduct);
+  //addProduct(newProduct);
   alert("Thêm sản phẩm thành công");
 }
 function validationProduct({ productName, productDescription }) {
