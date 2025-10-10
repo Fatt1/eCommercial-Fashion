@@ -19,6 +19,56 @@
       "id": "4",
       "name": "Calvin Klein",
       "categoryId": "cate-003"
+    },
+    {
+      "id": "5",
+      "name": "Adidas",
+      "categoryId": "cate-001"
+    },
+    {
+      "id": "6",
+      "name": "Zara Man",
+      "categoryId": "cate-001"
+    },
+    {
+      "id": "7",
+      "name": "Chanel",
+      "categoryId": "cate-002"
+    },
+    {
+      "id": "8",
+      "name": "Gucci",
+      "categoryId": "cate-002"
+    },
+    {
+      "id": "9",
+      "name": "Casio",
+      "categoryId": "cate-004"
+    },
+    {
+      "id": "10",
+      "name": "Longines",
+      "categoryId": "cate-004"
+    },
+    {
+      "id": "11",
+      "name": "Dior",
+      "categoryId": "cate-005"
+    },
+    {
+      "id": "12",
+      "name": "The Body Shop",
+      "categoryId": "cate-006"
+    },
+    {
+      "id": "13",
+      "name": "H&M",
+      "categoryId": "cate-007"
+    },
+    {
+      "id": "14",
+      "name": "Uniqlo",
+      "categoryId": "cate-007"
     }
   ]
 }

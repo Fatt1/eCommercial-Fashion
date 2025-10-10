@@ -53,7 +53,7 @@ function renderProductDetailHtml(productId) {
                   data-product-id="${productId}" data-index-color-sku="${variationColorIndex++}">
                     <img
                       class="variation-value__img"
-                      src="../assets/${option.image}"
+                      src="${option.image}"
                     />
                     
                     <span class="variation-value__value-name">${
@@ -105,14 +105,14 @@ function renderProductDetailHtml(productId) {
           
             <img
               class="image-section__large-img"
-              src="../assets/${product.thumbnail}"
+              src="${product.thumbnail}"
             />
             <div class="small-images-section">
               ${product.images
                 .map(
                   (img) => `<img
                 class="small-images-section__small"
-                src="../assets/${img}"
+                src="${img}"
               />`
                 )
                 .join(" ")}
@@ -247,6 +247,7 @@ function renderProductDetailHtml(productId) {
     ${Footer()}
   `;
 }
+
 export function loadProductDetail(productId) {
   document.getElementById("root").innerHTML =
     renderProductDetailHtml(productId);

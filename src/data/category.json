@@ -6,7 +6,7 @@
       "parentId": null,
       "createdAt": "2025-09-16T15:13:23.000Z",
 
-      "attributeIds": ["A003", "A008", "A009", "A019", "A020"]
+      "attributeIds": ["A008", "A009", "A019", "A020"]
     },
     {
       "id": "cate-002",
@@ -14,7 +14,7 @@
       "parentId": null,
       "createdAt": "2025-09-16T15:13:23.000Z",
 
-      "attributeIds": ["A003", "A008", "A009", "A019", "A020"]
+      "attributeIds": ["A008", "A009", "A019", "A020"]
     },
     {
       "id": "cate-003",

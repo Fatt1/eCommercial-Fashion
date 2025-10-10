@@ -10,7 +10,7 @@
       "images": ["image-1a.jpg", "image-1b.jpg"],
       "attributes": [
         {
-          "attributeId": "A003",
+          "attributeId": "A005",
           "attributeValues": ["Nike"]
         },
         {
@@ -65,7 +65,7 @@
       "images": ["image-2a.jpg", "image-2b.jpg"],
       "attributes": [
         {
-          "attributeId": "A003",
+          "attributeId": "A004",
           "attributeValues": ["Adidas"]
         }
       ],
@@ -167,7 +167,7 @@
       "images": ["image-4a.jpg", "image-4b.jpg"],
       "attributes": [
         {
-          "attributeId": "A003",
+          "attributeId": "A004",
           "attributeValues": ["Nike"]
         }
       ],
@@ -191,7 +191,7 @@
       "images": ["image-5a.jpg", "image-5b.jpg"],
       "attributes": [
         {
-          "attributeId": "A003",
+          "attributeId": "A004",
           "attributeValues": ["Zara"]
         }
       ],
@@ -229,7 +229,7 @@
       "images": ["image-6a.jpg", "image-6b.jpg"],
       "attributes": [
         {
-          "attributeId": "A003",
+          "attributeId": "A004",
           "attributeValues": ["Nike"]
         }
       ],
@@ -267,7 +267,7 @@
       "images": ["image-1a.jpg", "image-1b.jpg"],
       "attributes": [
         {
-          "attributeId": "A003",
+          "attributeId": "A005",
           "attributeValues": ["Nike"]
         },
         {

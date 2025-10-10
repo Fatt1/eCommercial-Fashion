@@ -16,11 +16,18 @@ function addProduct(product) {
   const dbContext = getDbContextFromLocalStorage();
   const id = generateUniqueId();
   product.id = id;
+  let skus = product.skus;
+  skus.forEach((sku) => {
+    sku.id = generateUniqueId();
+    dbContext.skus.push(sku);
+  });
+  delete product.skus;
   dbContext.products.push(product);
+
   saveDbContextToLocalStorage(dbContext);
   return product;
 }
-
+function updatePriceProductById(productId) {}
 // Lấy danh sách thông tin sản phẩm
 function getAllProductListForAdmin({ pageSize = 5, pageNumber = 1 }) {}
 
@@ -95,7 +102,6 @@ function applyFilter(
   },
   isGetGroupsFilter = false
 ) {
-  const dbContext = getDbContextFromLocalStorage();
   const filteredProducts = filterProducts.filter((p) => {
     let isMatchingCategoryId;
     if (!categoryIds || categoryIds.size === 0) isMatchingCategoryId = true;
@@ -285,6 +291,7 @@ function getProductById(id) {
       });
     }
   });
+  if (product.priceInfo.originalPrice === 0) return 0;
   // kiểm tra xem giá có phải hay không và tính toán phần trăm giảm giá
   let salePercentage = Math.round(
     (1 - product.priceInfo.currentlyPrice / product.priceInfo.originalPrice) *

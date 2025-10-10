@@ -23,7 +23,7 @@ export default function ProductCard({
                   : ""
               }
               <a class="product-card__img">
-                <img src="../assets/${thumbnail}" alt=""
+                <img src="${thumbnail}" alt=""
                 />
                 <div class="product-card-overlay">
                 <button class="product-card-overlay__btn">Mua ngay</button>

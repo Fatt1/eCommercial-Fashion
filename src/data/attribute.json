@@ -1,19 +1,11 @@
 {
   "attributes": [
     {
-      "id": "A003",
-      "name": "Thương hiệu",
-      "attributeValues": ["Nike", "Adidas", "Zara", "H&M", "Uniqlo"],
-      "inputType": 1,
-      "isRequired": true,
-      "createdAt": "2025-10-05T10:02:00Z"
-    },
-    {
       "id": "A004",
       "name": "Chất liệu chính",
       "attributeValues": ["Cotton", "Polyester", "Len", "Da"],
       "inputType": 1,
-      "isRequired": true,
+      "isRequired": false,
       "createdAt": "2025-10-05T10:03:00Z"
     },
     {
@@ -45,7 +37,7 @@
       "name": "Đối tượng",
       "attributeValues": ["Nam", "Nữ", "Unisex"],
       "inputType": 1,
-      "isRequired": true,
+      "isRequired": false,
       "createdAt": "2025-10-05T10:07:00Z"
     },
     {
@@ -93,7 +85,7 @@
       "name": "Hình dáng",
       "attributeValues": ["Slim fit", "Regular fit", "Oversize"],
       "inputType": 1,
-      "isRequired": true,
+      "isRequired": false,
       "createdAt": "2025-10-05T10:13:00Z"
     },
     {
@@ -146,7 +138,7 @@
       "name": "Loại sản phẩm",
       "attributeValues": ["Áo", "Quần", "Váy", "Giày", "Phụ kiện"],
       "inputType": 1,
-      "isRequired": true,
+      "isRequired": false,
       "createdAt": "2025-10-05T10:19:00Z"
     }
   ]

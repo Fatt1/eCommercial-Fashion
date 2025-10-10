@@ -1,8 +1,9 @@
 import { INPUT_TYPE } from "../../../../constant/Constant.js";
-import { convertStringToKebabCase } from "../../../../helper/helper.js";
+import { getBrandsByCategoryId } from "../../../../services/brandService.js";
 
-export function renderCreateProductDetailAttribute(attributes) {
+export function renderCreateProductDetailAttribute(attributes, categoryId) {
   document.querySelector(".attribute-list").innerHTML = `
+  ${!categoryId ? "" : InputDropdownBrand(categoryId)}
   ${attributes
     .map((att) => {
       let inputHtml = ``;
@@ -25,15 +26,15 @@ export function renderCreateProductDetailAttribute(attributes) {
   setUpEventListener(attributes);
 }
 function InputText(att) {
+  const attributeKey = att.id;
   return `
-  <input class="input-free-text" data-attribute-name=${convertStringToKebabCase(
-    att.name.toLowerCase()
-  )} type="text" placeholder="Vui lòng nhập">
+  <input class="input-free-text" data-attribute-name="${attributeKey}"
+   type="text" placeholder="Vui lòng nhập">
   `;
 }
 
 function InputSingleDropDown(att) {
-  const attributeKey = convertStringToKebabCase(att.name.toLowerCase());
+  const attributeKey = att.id;
   return `
   <div class="dropdown brand-dropdown">
                       <button class="brand-dropdown-btn dropdown-btn" data-attribute-name="${attributeKey}">
@@ -50,8 +51,30 @@ function InputSingleDropDown(att) {
                     </div>
   `;
 }
+function InputDropdownBrand(categoryId) {
+  const brands = getBrandsByCategoryId(categoryId);
+  return `
+   <div class="attribute-container required-attribute">
+      <span class="attribute-name">Thương hiệu</span>
+     <div class="dropdown brand-dropdown">
+                        <button class="brand-dropdown-btn dropdown-btn" data-attribute-name="brand">
+                        <span class="selected-values placeholder">Vui lòng chọn</span> 
+                        <img src="../assets/dropdown-icon.svg">
+                        </button>
+                        <ul style="top: 56px" class="dropdown-menu">
+                            ${brands
+                              .map((value) => {
+                                return `  <li class="dropdown-item">${value.name}</li>`;
+                              })
+                              .join(" ")}
+                          </ul>
+                      </div>
+     <div class="error-message-required"></div>                 
+   </div>
+  `;
+}
 function InputMultiDropDown(att) {
-  const attributeKey = convertStringToKebabCase(att.name.toLowerCase());
+  const attributeKey = att.id;
   return `
    <div class="dropdown brand-dropdown">
       <button class="brand-dropdown-btn dropdown-btn"  data-attribute-name="${attributeKey}">
@@ -74,11 +97,12 @@ function InputMultiDropDown(att) {
   `;
 }
 // lưu lại để mốt khi mà nhấn lưu sản phẩm thì sẽ lấy từ trong biến này ra
-let selectedAttributeValues = {};
+export let selectedAttributeValues = {};
 function setUpEventListener(attributes) {
+  selectedAttributeValues = {};
   // khởi tạo các attribute
   attributes.forEach((att) => {
-    const attributeKey = convertStringToKebabCase(att.name.toLowerCase());
+    const attributeKey = att.id;
     if (att.inputType === INPUT_TYPE.MULTI_DROP_DOWN) {
       selectedAttributeValues[attributeKey] = []; // Array cho multi
     } else if (att.inputType === INPUT_TYPE.SINGLE_DROP_DOWN) {
@@ -105,7 +129,8 @@ function setUpEventListener(attributes) {
           .closest(".dropdown")
           .querySelector(".dropdown-btn");
         const attributeName = dropdownBtn.dataset.attributeName;
-        const value = item.textContent;
+        const value = item.textContent.trim();
+
         const isMultiDropdown = item.classList.contains("multi-dropdown");
         if (isMultiDropdown) {
           handleMultiDropdown(item, dropdownBtn, attributeName, value);
@@ -118,8 +143,10 @@ function setUpEventListener(attributes) {
 
   // Handle khi nhập free text input
   document.querySelectorAll(".input-free-text").forEach((input) => {
-    const attributeName = input.dataset.attributeName;
-    selectedAttributeValues[attributeName] = input.value;
+    input.addEventListener("input", () => {
+      const attributeName = input.dataset.attributeName;
+      selectedAttributeValues[attributeName] = input.value;
+    });
   });
 }
 

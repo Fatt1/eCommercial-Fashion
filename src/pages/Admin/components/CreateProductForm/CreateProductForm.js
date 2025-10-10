@@ -82,10 +82,10 @@ export function CreateProductForm() {
   
   `;
 }
-let uploadedFiles = [];
-let thumbnailFile = null;
+export let uploadedFiles = [];
+export let thumbnailFile = null;
 let draggedItem = null;
-let savedSelectedCategories = [];
+export let savedSelectedCategories = [];
 
 const DOM = {
   categoryBtn: null,
@@ -120,6 +120,9 @@ const DOM = {
 };
 
 export function setUpCreateProductForm() {
+  uploadedFiles = [];
+  thumbnailFile = null;
+  savedSelectedCategories = [];
   handleUploadImg();
   DOM.init();
   renderCategoriesByLevel(0);
@@ -154,7 +157,8 @@ function handleConfirmSelection() {
   const finalCategory =
     savedSelectedCategories[savedSelectedCategories.length - 1];
   const attributes = getAttributeByCategoryId(finalCategory.cateId);
-  renderCreateProductDetailAttribute(attributes);
+  renderCreateProductDetailAttribute(attributes, finalCategory.cateId);
+
   DOM.categorySelectorWrapper.classList.remove("show");
 }
 

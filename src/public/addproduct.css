@@ -512,3 +512,32 @@ td {
 .category-selector-wrapper.show {
   display: block;
 }
+.remove-image-btn {
+  position: absolute;
+  top: 1px;
+  right: -2px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.preview-img-variation {
+  position: relative;
+  display: inline-block;
+}
+.error-message-required {
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.required-attribute .attribute-name::before {
+  content: "*";
+  color: red;
+  margin-right: 2px;
+}
