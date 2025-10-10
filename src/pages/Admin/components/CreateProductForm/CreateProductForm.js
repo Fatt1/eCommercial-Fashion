@@ -1,8 +1,5 @@
 import { getAttributeByCategoryId } from "../../../../services/attributeService.js";
-import {
-  getAllCategoriesByLevel,
-  getAllParentCategory,
-} from "../../../../services/categoryService.js";
+import { getAllCategoriesByLevel } from "../../../../services/categoryService.js";
 import { renderCreateProductDetailAttribute } from "../CreateProductDetail/CreateProductDetail.js";
 
 export function CreateProductForm() {
@@ -324,7 +321,8 @@ function saveSelectedCategories() {
 }
 function uploadThumbnail(file) {
   thumbnailFile = file;
-  document.querySelector(".thumbnail-preview").src = file.blobUrl;
+  document.querySelector(".thumbnail-preview").src =
+    "../assets/products/" + file.fileName;
 }
 
 function handleUploadImg() {
@@ -341,15 +339,14 @@ function handleUploadImg() {
           return;
         }
 
-        // tạo BLOB URL
-        const blobUrl = URL.createObjectURL(file);
+        const fileName = file.name;
         uploadedFiles.push({
           id: fileId,
           file: file,
-          blobUrl: blobUrl,
+          fileName,
         });
 
-        createPreviewElement(blobUrl, fileId);
+        createPreviewElement(fileId, fileName);
       }
       if (uploadedFiles.length === 1) {
         updateThumbnailOnReorder();
@@ -359,16 +356,13 @@ function handleUploadImg() {
 function deleteUploadImg(elementToRemove, fileId) {
   const arrayIndex = uploadedFiles.findIndex((item) => item.id === fileId);
   if (arrayIndex !== -1) {
-    const fileObject = uploadedFiles[arrayIndex];
-    // Giải phóng Blob URL để tránh rỏ rỉ bộ nhớ
-    URL.revokeObjectURL(fileObject.blobUrl);
     uploadedFiles.splice(arrayIndex, 1);
   }
   elementToRemove.remove();
   updateThumbnailOnReorder();
   updateTotalUploadedFile();
 }
-function createPreviewElement(dataUrl, fileId) {
+function createPreviewElement(fileId, fileName) {
   const previewContainer = document.querySelector(".preview-container");
   const itemDiv = document.createElement("div");
   itemDiv.classList.add("image-item");
@@ -381,7 +375,7 @@ function createPreviewElement(dataUrl, fileId) {
   itemDiv.addEventListener("dragend", handleDragEnd);
   // 2. Tạo thẻ <img>
   const img = document.createElement("img");
-  img.src = dataUrl; // Gán Blob URL vào src
+  img.src = `../assets/products/${fileName}`; // Gán Blob URL vào src
   img.alt = `Xem trước ảnh ${fileId}`;
 
   // 3. Tạo nút xóa

@@ -445,13 +445,12 @@ function createColorRowsFragment(colorId, colorName, sizes) {
   return fragment;
 }
 function uploadImageForColor(colorId, file, uploadInputImg) {
-  const blobUrl = URL.createObjectURL(file);
-  colorImages.push({ colorId, selectedFile: file });
+  colorImages.push({ colorId, fileName: file.name });
   uploadInputImg.disabled = true;
   const previewImg = document.querySelector(
     `label[for='load-image-input-${colorId}'] img`
   );
-  previewImg.src = blobUrl;
+  previewImg.src = "../assets/products/" + file.name;
   const removeBtn = document.createElement("button");
   removeBtn.classList.add("remove-image-btn");
   removeBtn.innerHTML = `x`;
@@ -459,7 +458,6 @@ function uploadImageForColor(colorId, file, uploadInputImg) {
     uploadInputImg.value = "";
     uploadInputImg.disabled = false;
     previewImg.src = "../assets/Add Image.svg";
-    URL.revokeObjectURL(blobUrl);
     const index = colorImages.findIndex((img) => img.colorId === colorId);
     if (index !== -1) {
       colorImages.splice(index, 1);

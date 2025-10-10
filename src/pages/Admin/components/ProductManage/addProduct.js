@@ -64,24 +64,8 @@ export function loadAddProduct() {
   setUpAddProduct();
 }
 
-function readFileAsDataURL(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      resolve(e.target.result);
-    };
-
-    reader.onerror = (e) => {
-      reject(e.target.error);
-    };
-
-    // Bắt đầu đọc file
-    reader.readAsDataURL(file);
-  });
-}
 const errors = [];
-async function handleClickCreateProduct(productStatus) {
+function handleClickCreateProduct(productStatus) {
   const productName = document.getElementById("name").value;
   const productDescription = document.querySelector(".description").value;
   const colorIds = variationState.selectedOptions.colors;
@@ -94,13 +78,11 @@ async function handleClickCreateProduct(productStatus) {
   }
 
   let base64Images = [];
-  let base64Thumbnail = "";
+  let base64Thumbnail = thumbnailFile.fileName;
   if (uploadedFiles && uploadedFiles.length > 0) {
-    const readFilesPromises = uploadedFiles.map((selectedFile) =>
-      readFileAsDataURL(selectedFile.file)
-    );
-    base64Images = await Promise.all(readFilesPromises);
-    base64Thumbnail = await readFileAsDataURL(thumbnailFile.file);
+    uploadedFiles.forEach((imgFile) => {
+      base64Images.push(imgFile.fileName);
+    });
   }
   const categoryId =
     savedSelectedCategories[savedSelectedCategories.length - 1].cateId;
@@ -108,18 +90,17 @@ async function handleClickCreateProduct(productStatus) {
 
   const variations = [];
   if (colorIds.length > 0) {
-    const promiseArray = colorIds.map(async (colorId) => {
+    const variationOptions = colorIds.map((colorId) => {
       let colorImage = colorImages.find((ci) => ci.colorId === colorId);
-      const image = await readFileAsDataURL(colorImage.selectedFile);
+      const image = colorImage.fileName;
       return {
         id: colorId,
         image: image ? image : "",
       };
     });
-    const resolvedVariationOptions = await Promise.all(promiseArray);
     variations.push({
       name: "Màu sắc",
-      variationOptions: resolvedVariationOptions,
+      variationOptions: variationOptions,
     });
   }
   if (sizeIds.length > 0) {
@@ -176,6 +157,7 @@ async function handleClickCreateProduct(productStatus) {
       });
     });
   });
+  console.log("newProduct", newProduct);
   //addProduct(newProduct);
   alert("Thêm sản phẩm thành công");
 }

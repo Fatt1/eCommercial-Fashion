@@ -23,29 +23,29 @@
   height: 60px;
 }
 .order-tabs {
-    display: flex;
-    margin-left: auto; 
+  display: flex;
+  margin-left: auto;
 }
 
 .order-tabs a {
-    text-decoration: none; 
-    color: #000000; 
-    padding: 10px 15px;
-    margin: 0 5px;
-    font-weight: 400;
-    font-size: 20px;
-    cursor: pointer;
-    transition: color 0.2s;
-    border-bottom: 2px solid transparent;
+  text-decoration: none;
+  color: #000000;
+  padding: 10px 15px;
+  margin: 0 5px;
+  font-weight: 400;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+  border-bottom: 2px solid transparent;
 }
 .order-tabs a.active {
-    color: #A63A00; 
-    font-weight: 600;
-    border-bottom: 2px solid #A63A00; 
+  color: #a63a00;
+  font-weight: 600;
+  border-bottom: 2px solid #a63a00;
 }
 
 .order-tabs a:hover {
-    color:  #A63A00; 
+  color: #a63a00;
 }
 /* --- Đơn hàng --- */
 .order {
@@ -102,7 +102,6 @@
   font-weight: bold;
   font: georgia;
   font-size: 20px;
-  
 }
 .status {
   color: #777;
@@ -121,7 +120,7 @@
   position: relative;
   right: 290px;
   font-size: 22px;
-  
+
   margin-bottom: 5px;
 }
 
@@ -145,6 +144,11 @@
 .btn:hover {
   background: #eee;
 }
+.btn.primary:hover {
+  background: #000;
+  opacity: 0.8;
+}
+
 .controls {
   display: flex;
   gap: 8px; /* Thêm khoảng cách giữa các nút */

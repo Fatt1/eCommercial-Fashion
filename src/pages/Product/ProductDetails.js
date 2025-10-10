@@ -53,7 +53,7 @@ function renderProductDetailHtml(productId) {
                   data-product-id="${productId}" data-index-color-sku="${variationColorIndex++}">
                     <img
                       class="variation-value__img"
-                      src="${option.image}"
+                      src="../assets/products/${option.image}"
                     />
                     
                     <span class="variation-value__value-name">${
@@ -105,14 +105,14 @@ function renderProductDetailHtml(productId) {
           
             <img
               class="image-section__large-img"
-              src="${product.thumbnail}"
+              src="../assets/products/${product.thumbnail}"
             />
             <div class="small-images-section">
               ${product.images
                 .map(
                   (img) => `<img
                 class="small-images-section__small"
-                src="${img}"
+                src="../assets/products/${img}"
               />`
                 )
                 .join(" ")}
