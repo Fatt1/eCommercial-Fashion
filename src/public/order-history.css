@@ -1,0 +1,151 @@
+.inform-bar {
+  background-color: #ffffff;
+  margin-bottom: 50px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0px 2px 1px rgb(186, 183, 183);
+}
+
+.inform-bar-icon {
+  padding-left: 20px;
+  width: 150px;
+  position: relative;
+  bottom: -10px;
+}
+.inform-bar-text {
+  font-size: 20px;
+  font-family: "Geologica", sans-serif;
+}
+.vertical-line {
+  border-right: 2px solid black;
+  height: 60px;
+}
+.order-tabs {
+    display: flex;
+    margin-left: auto; 
+}
+
+.order-tabs a {
+    text-decoration: none; 
+    color: #000000; 
+    padding: 10px 15px;
+    margin: 0 5px;
+    font-weight: 400;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+}
+.order-tabs a.active {
+    color: #A63A00; 
+    font-weight: 600;
+    border-bottom: 2px solid #A63A00; 
+}
+
+.order-tabs a:hover {
+    color:  #A63A00; 
+}
+/* --- Đơn hàng --- */
+.order {
+  background: #fff;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 15px;
+}
+.order-header {
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+.order-body {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+.order-body img {
+  width: 80px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 20px;
+}
+.order-body .info {
+  flex: 1;
+  line-height: 2;
+}
+.name {
+  font-weight: bold;
+  font-size: 18px;
+}
+.order-body .price {
+  text-align: right;
+}
+.price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-right: 250px;
+  font-size: 20px;
+}
+.price-old {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 13px;
+}
+.price {
+  color: #000;
+  font-weight: bold;
+  font: georgia;
+  font-size: 20px;
+  
+}
+.status {
+  color: #777;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.order-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 10px;
+  gap: 12px;
+}
+
+.order-footer > span {
+  position: relative;
+  right: 290px;
+  font-size: 22px;
+  
+  margin-bottom: 5px;
+}
+
+.order-footer .total {
+  color: #d2691e;
+}
+.btn {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  color: black;
+  font-weight: 600;
+}
+.btn.primary {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+.btn:hover {
+  background: #eee;
+}
+.controls {
+  display: flex;
+  gap: 8px; /* Thêm khoảng cách giữa các nút */
+}
