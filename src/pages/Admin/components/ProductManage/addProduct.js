@@ -157,8 +157,7 @@ function handleClickCreateProduct(productStatus) {
       });
     });
   });
-  console.log("newProduct", newProduct);
-  //addProduct(newProduct);
+  addProduct(newProduct);
   alert("Thêm sản phẩm thành công");
 }
 function validationProduct({ productName, productDescription }) {
