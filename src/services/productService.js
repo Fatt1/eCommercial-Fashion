@@ -44,7 +44,7 @@ function searchProducts(
     priceTo,
     colors,
     sizes,
-    sortBy = "createAt",
+    sortBy = "createdAt",
     order,
     brandIds,
     searchKey,
@@ -157,7 +157,6 @@ function applyFilter(
   });
 
   filteredProducts.sort((a, b) => {
-    // ... logic sắp xếp như cũ ...
     if (sortBy === "createdAt") {
       return new Date(a.createdAt) - new Date(b.createdAt);
     }
@@ -223,7 +222,7 @@ function filterProducts(
     priceTo,
     colors,
     sizes,
-    sortBy = "createAt",
+    sortBy = "createdAt",
     order,
     brandIds,
   },
