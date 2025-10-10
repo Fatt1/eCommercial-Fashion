@@ -146,6 +146,14 @@ function applyFilter(
     // lọc theo brand
     const isMatchingBrand =
       !brandIds || brandIds.size == 0 || brandIds.has(p.brandId);
+    const salePercentage = getSalePercentage(
+      p.priceInfo.originalPrice,
+      p.priceInfo.currentlyPrice
+    );
+    if (salePercentage > 0) {
+      p.salePercentage = salePercentage;
+      p.isSale = true;
+    }
     return (
       isMatchingColor &&
       isMatchingPrice &&
@@ -195,14 +203,6 @@ function applyFilter(
     }
     brandGroupFilter.add(p.brandId);
     categoryGroupFilter.add(p.categoryId);
-    const salePercentage = getSalePercentage(
-      p.priceInfo.originalPrice,
-      p.priceInfo.currentlyPrice
-    );
-    if (salePercentage > 0) {
-      p.salePercentage = salePercentage;
-      p.isSale = true;
-    }
   });
   return {
     categoryGroupFilter,
