@@ -158,7 +158,7 @@ function applyFilter(
 
   filteredProducts.sort((a, b) => {
     if (sortBy === "createdAt") {
-      return new Date(a.createdAt) - new Date(b.createdAt);
+      return -(new Date(a.createdAt) - new Date(b.createdAt));
     }
     if (sortBy === "price") {
       if (order === ORDER_BY.ascending) {
