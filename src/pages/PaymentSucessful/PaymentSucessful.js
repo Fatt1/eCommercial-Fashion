@@ -12,7 +12,7 @@ function renderPaymentSuccessfulHtml() {
     <div class="main-content">
       <div class="payment-successful-box">
          <h2 class="payment-successful-text">Bạn đã đặt hàng thành công!</h2>
-         <p class="order-link">Quay lại trang chủ</p>
+         <p class="order-link">Bấm vào đây để xem đơn hàng vừa mới đặt</p>
       </div>
     </div>   
   </div>
