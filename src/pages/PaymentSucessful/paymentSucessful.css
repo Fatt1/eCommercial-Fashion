@@ -1,0 +1,21 @@
+.payment-successful {
+  padding-top: 150px;
+}
+.payment-successful-container {
+  text-align: center;
+}
+.payment-successful-text {
+  font-size: 24px;
+  color: rgb(245, 246, 245);
+  padding: 20px;
+  font-weight: bold;
+  border-radius: 4px;
+  background-color: rgba(2, 103, 2, 0.652);
+  text-align: center;
+}
+.order-link {
+  color: rgb(7, 7, 170);
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}

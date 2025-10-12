@@ -31,7 +31,8 @@ export default class Order {
     this.createdAt = new Date();
     this.updatedAt = new Date();
     this.status = status;
-    (this.fullName = fullName), (this.phoneNumber = phoneNumber);
+    this.fullName = fullName;
+    this.phoneNumber = phoneNumber;
   }
 }
 

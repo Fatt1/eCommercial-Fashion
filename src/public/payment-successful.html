@@ -3,20 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../components/Header/header.css" />
+    <link rel="stylesheet" href="../components/Nav/nav.css" />
+    <link rel="stylesheet" href="../pages/Home/Home.css" />
+    <link rel="stylesheet" href="../components/Carousel/carousel.css" />
+    <link rel="stylesheet" href="../components/Footer/Footer.css" />
+    <link rel="stylesheet" href="../components/ProductCard/productCard.css" />
+    <link rel="stylesheet" href="../css/detailProduct.css" />
+    <link rel="stylesheet" href="../components/BreadCrumb/breadcrumb.css" />
+    <link rel="stylesheet" href="../pages/Product/productSection.css" />
+    <link rel="stylesheet" href="../css/loginRegister.css" />
+    <link rel="stylesheet" href="../pages/OrderHistory/order-history.css" />
+    <link
+      rel="stylesheet"
+      href="../pages/PaymentSucessful/paymentSucessful.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../components/PromotionSection/promotion.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <!-- fonts -->
+    <!-- Geologica -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Luxurious Roman -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&family=Luxurious+Roman&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Jacquarda+Bastarda+9&family=Luxurious+Roman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
-    <h1>THANH TOÁN THÀNH CÔNG RỒI</h1>
+    <div id="root"></div>
+    <div class="scroll-to-top-container">
+      <div class="scroll-to-top-container__content">LÊN</div>
+      <div class="scroll-to-top-container__triangle"></div>
+    </div>
+
+    <div id="register-login"></div>
+    <div class="overlay"></div>
   </body>
-  <script type="module">
-    import { ORDER_STATUS } from "../constant/Constant.js";
-    import { updateStatusOrder } from "../services/orderService.js";
-    const tempOrder = JSON.parse(localStorage.getItem("temp_order"));
-    updateStatusOrder(tempOrder.id, ORDER_STATUS.PROCESSING);
-    localStorage.removeItem("temp_order");
-    // còn 1 phần là sẽ xóa đi các sản phẩm đã mua trong cart;
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    const newCart = cart.filter((c) => c.tick === false);
-    localStorage.setItem("cart", JSON.stringify(newCart));
-  </script>
+  <script
+    type="module"
+    src="../pages/PaymentSucessful/PaymentSucessful.js"
+  ></script>
 </html>
