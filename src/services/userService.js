@@ -49,10 +49,14 @@ function getDefaultAddress(userId) {
   const address = user.addresses.find((ad) => ad.isDefault === true);
   return address;
 }
-
+function getLoggedUser() {
+  const user = JSON.parse(localStorage.getItem("user-info"));
+  return user;
+}
 export {
   getUserById,
   checkAvailableAddressUser,
   getDefaultAddress,
   addNewAddress,
+  getLoggedUser,
 };

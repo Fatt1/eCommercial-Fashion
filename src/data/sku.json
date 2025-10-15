@@ -4,7 +4,6 @@
       "id": "sku-001",
       "productId": "prod-001",
       "stock": 120,
-      "originalPrice": 150000,
       "tierIndexes": [0, 0],
       "createdAt": "2025-09-14T12:00:00Z",
       "updatedAt": "2025-09-14T12:00:00Z"

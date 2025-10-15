@@ -8,7 +8,6 @@ export default class Product {
     weight,
     images,
     attributes,
-    priceInfo,
     variations,
     categoryId,
     status
@@ -21,12 +20,20 @@ export default class Product {
     this.attributes = attributes;
     this.variations = variations;
     this.categoryId = categoryId;
-    this.priceInfo = priceInfo;
+    this.priceInfo = {
+      currentlyPrice: 100000,
+      originalPrice: 200000,
+      importPrice: 0,
+    };
     this.brandId = brandId;
     this.weight = weight;
     this.status = status;
     this.createdAt = new Date();
     this.updatedAt = new Date();
+    this.skus = [];
+  }
+  addSku(sku) {
+    this.skus.push(sku);
   }
 }
 
@@ -47,6 +54,8 @@ export default class Product {
   brandId: "123",
   weight: "0.5" (tính theo kg),
   priceInfo: {
+    importPrice: 0
+    
     originalPrice: 799.000,
     currentlyPrice: 120.000 // nếu mà không có khuyến mãi thì currentlyPrice với originalPrice sẽ bằng nhau
   }

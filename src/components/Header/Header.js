@@ -5,13 +5,10 @@ import {
 import { logout, isLogin } from "../../services/authenticateService.js";
 import { loadProductPage } from "../../pages/Product/Product.js";
 
-import {
-  updateCartQuantity,
-  updateCartQuantityStraight,
-} from "../../services/cartService.js";
+import { updateCartQuantityStraight } from "../../services/cartService.js";
 import { Login, setUpLoginForm } from "../Login/Login.js";
 import Register, { setupRegisterForm } from "../Register/Register.js";
-
+import { loadOrderHistory } from "../../pages/OrderHistory/OrderHistory.js";
 export default function Header(selectedTab) {
   return ` <header>
         <div class="container">
@@ -122,6 +119,9 @@ export function handleClickHeader() {
       return;
     });
   });
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  document.querySelector(".header-cart .cart-quantity").textContent =
+    cart.length;
   handleClickCartIcon();
   handleSearching();
   checkLoggedUser();
@@ -197,6 +197,7 @@ export function setupDropdownAfterLogin(email) {
   ).innerHTML = ` <div class="dropdown">
                           <span class="header__user-name">${email}</span>
                           <ul style="top: 15px" class="dropdown-menu">
+                              <li class="dropdown-item order-history-btn">Đơn hàng</li>
                               <li class="dropdown-item logout-btn">Đăng xuất</li>
                             </ul>
                         </div>`;
@@ -213,6 +214,9 @@ export function setupDropdownAfterLogin(email) {
 
   document.querySelector(".logout-btn").addEventListener("click", () => {
     handleLogoutClick();
+  });
+  document.querySelector(".order-history-btn").addEventListener("click", () => {
+    loadOrderHistory();
   });
 }
 

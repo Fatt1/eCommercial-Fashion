@@ -84,11 +84,9 @@ async function placeOrder(
       price: checkout.item.currentlyPrice,
     };
   });
-  //call API thanh toán tiền gì đó
 
   const paymentMethod = getPaymentMethodById(paymentMethodId);
-  console.log(paymentMethod);
-  const order = await createOrder({
+  const order = createOrder({
     customerId,
     street,
     city,

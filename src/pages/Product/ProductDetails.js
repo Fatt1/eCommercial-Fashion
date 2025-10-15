@@ -53,7 +53,7 @@ function renderProductDetailHtml(productId) {
                   data-product-id="${productId}" data-index-color-sku="${variationColorIndex++}">
                     <img
                       class="variation-value__img"
-                      src="../assets/${option.image}"
+                      src="../assets/products/${option.image}"
                     />
                     
                     <span class="variation-value__value-name">${
@@ -105,14 +105,14 @@ function renderProductDetailHtml(productId) {
           
             <img
               class="image-section__large-img"
-              src="../assets/${product.thumbnail}"
+              src="../assets/products/${product.thumbnail}"
             />
             <div class="small-images-section">
               ${product.images
                 .map(
                   (img) => `<img
                 class="small-images-section__small"
-                src="../assets/${img}"
+                src="../assets/products/${img}"
               />`
                 )
                 .join(" ")}
@@ -181,7 +181,7 @@ function renderProductDetailHtml(productId) {
                   <input value="1" class="quantity-input number-input product-quantity__input" type="text" >
                   <button class="increase-quantity product-quantity__plus">+</button>
               </div>
-              <span class="available-quantity">499 sản phẩm có sẵn</span>
+              <span class="available-quantity">0 sản phẩm có sẵn</span>
               </div>
               <div class="product-actions">
                 <button data-product-id="${productId}" class="add-to-cart-btn"> 
@@ -212,6 +212,7 @@ function renderProductDetailHtml(productId) {
             </div>
           </div>
         </div>
+
             <div class="bottom-section">
                   <ul class="extra-information__tabs">
                       <li class="extra-information__tab active" data-target="desc-content">
@@ -246,24 +247,32 @@ function renderProductDetailHtml(productId) {
     ${Footer()}
   `;
 }
+
 export function loadProductDetail(productId) {
   document.getElementById("root").innerHTML =
     renderProductDetailHtml(productId);
-  console.log("chay");
   window.scrollTo(0, 0);
   handleClickHeader();
   handClickProductList();
-
+  handleClickTabInformationProduct();
   // addedMessageAfterClickButton();
 
   handleClickVariation();
   handleClickSelectedVariation();
-  handleClickTabInformationProduct();
+
   plusMinusBtn();
   addToCartBtn();
   updateCartQuantityStraight();
   preventInputTextForNumberInput();
 }
+export {
+  handleClickVariation,
+  handleClickSelectedVariation,
+  plusMinusBtn,
+  addToCartBtn,
+  updateCartQuantityStraight,
+  preventInputTextForNumberInput,
+};
 function handleClickSelectedVariation() {
   document
     .querySelectorAll(".variation-value")

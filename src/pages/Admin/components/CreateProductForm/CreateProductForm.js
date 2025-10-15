@@ -1,4 +1,6 @@
+import { getAttributeByCategoryId } from "../../../../services/attributeService.js";
 import { getAllCategoriesByLevel } from "../../../../services/categoryService.js";
+import { renderCreateProductDetailAttribute } from "../CreateProductDetail/CreateProductDetail.js";
 
 export function CreateProductForm() {
   return `
@@ -77,57 +79,103 @@ export function CreateProductForm() {
   
   `;
 }
-let uploadedFiles = [];
-let thumbnailFile = null;
+export let uploadedFiles = [];
+export let thumbnailFile = null;
 let draggedItem = null;
-let savedSelectedCategories = [];
+export let savedSelectedCategories = [];
+
+const DOM = {
+  categoryBtn: null,
+  categorySelectorWrapper: null,
+  categorySelectedList: null,
+  cancelBtn: null,
+  agreeBtn: null,
+  init() {
+    this.categoryBtn = document.querySelector(".create-product__category-btn");
+    this.categorySelectorWrapper = document.querySelector(
+      ".category-selector-wrapper"
+    );
+    this.categorySelectedList = document.querySelector(
+      ".category-selected-list"
+    );
+    this.cancelBtn = document.querySelector(
+      ".footer-category-action__cancel-btn"
+    );
+    this.agreeBtn = document.querySelector(
+      ".footer-category-action__agree-btn"
+    );
+  },
+  getMenuByLevel(level) {
+    return document.querySelector(`.category-list-menu[data-level='${level}']`);
+  },
+  getAllMenus() {
+    return document.querySelectorAll(".category-list-menu[data-level]");
+  },
+  getSelectedCategories() {
+    return document.querySelectorAll(".category-item.selected");
+  },
+};
+
 export function setUpCreateProductForm() {
+  uploadedFiles = [];
+  thumbnailFile = null;
+  savedSelectedCategories = [];
   handleUploadImg();
-  const categoriesLevel0 = getAllCategoriesByLevel();
+  DOM.init();
+  renderCategoriesByLevel(0);
+  setupEventListeners();
+}
+// Setup tất cả event listeners
+function setupEventListeners() {
+  // Mở category selector
+  DOM.categoryBtn.addEventListener("click", handleOpenSelector);
 
-  const cateMenu = document.querySelector(
-    ".category-list-menu[data-level='0']"
-  );
-  categoriesLevel0.forEach((cate) => {
+  // Hủy selection
+  DOM.cancelBtn.addEventListener("click", handleCancelSelection);
+
+  // Xác nhận selection
+  DOM.agreeBtn.addEventListener("click", handleConfirmSelection);
+}
+
+// Handlers
+function handleOpenSelector() {
+  restoreSavedCategories();
+  DOM.categorySelectorWrapper.classList.add("show");
+}
+
+function handleCancelSelection() {
+  clearAllMenus();
+  DOM.categorySelectorWrapper.classList.remove("show");
+}
+
+function handleConfirmSelection() {
+  saveSelectedCategories();
+  updateCategoryButtonText();
+  const finalCategory =
+    savedSelectedCategories[savedSelectedCategories.length - 1];
+  const attributes = getAttributeByCategoryId(finalCategory.cateId);
+  renderCreateProductDetailAttribute(attributes, finalCategory.cateId);
+
+  DOM.categorySelectorWrapper.classList.remove("show");
+}
+
+function renderCategoriesByLevel(level, parentId = null) {
+  const menu = DOM.getMenuByLevel(level);
+  if (!menu) return;
+  const categories = parentId
+    ? getAllCategoriesByLevel(level).filter(
+        (cate) => cate.parentId === parentId
+      )
+    : getAllCategoriesByLevel(level);
+  // Reset menu trước
+  menu.innerHTML = "";
+  // Cái này mới, nó sẽ tạo ra 1 Node nhẹ hơn và giúp tối ưu hiệu suất
+  const documentFragment = document.createDocumentFragment();
+  categories.forEach((cate) => {
     const liElem = createCategoryItem(cate);
-    cateMenu.appendChild(liElem);
+    documentFragment.appendChild(liElem);
   });
-
-  //Handle khi mà nhấn chọn category
-  document
-    .querySelector(".wrapper-create-product-category-btn")
-    .addEventListener("click", () => {
-      restoreSavedCategories();
-      document
-        .querySelector(".category-selector-wrapper")
-        .classList.add("show");
-    });
-
-  //Handle khi mà nhấn nút cancel không chọn category nào hết
-  document
-    .querySelector(".footer-category-action__cancel-btn")
-    .addEventListener("click", () => {
-      //Xóa đi các menu category đã chọn
-      clearAllMenus();
-
-      document
-        .querySelector(".category-selector-wrapper")
-        .classList.remove("show");
-    });
-  document
-    .querySelector(".footer-category-action__agree-btn")
-    .addEventListener("click", () => {
-      saveSelectedCategories();
-      let selectedCategory = "";
-      document.querySelectorAll(".category-item.selected").forEach((cate) => {
-        selectedCategory += `${cate.textContent} > `;
-      });
-      document.querySelector(".create-product__category-btn").textContent =
-        selectedCategory;
-      document
-        .querySelector(".category-selector-wrapper")
-        .classList.remove("show");
-    });
+  menu.appendChild(documentFragment);
 }
 
 // Hàm tạo category item element (tái sử dụng)
@@ -148,84 +196,27 @@ function createCategoryItem(cate) {
 
   return liElem;
 }
-// Khôi phục lại các category đã được lưu
-function restoreSavedCategories() {
-  if (savedSelectedCategories.length === 0) {
-    document.querySelector(".category-selected-list").innerHTML = "";
-    return;
-  }
-
-  // Xóa tất cả selected hiện tại
-  document
-    .querySelectorAll(".category-item.selected")
-    .forEach((cate) => cate.classList.remove("selected"));
-
-  // Khôi phục lại từng category theo thứ tự level
-  savedSelectedCategories.forEach((savedCate, index) => {
-    const categoryItem = document.querySelector(
-      `.category-list-menu[data-level='${savedCate.level}'] .category-item[data-cate-id='${savedCate.cateId}']`
-    );
-
-    if (categoryItem) {
-      categoryItem.classList.add("selected");
-
-      // Nếu category có children và không phải là category cuối cùng
-      // thì load các con của nó cho level tiếp theo
-      if (savedCate.hasChildren && index < savedSelectedCategories.length - 1) {
-        const nextLevel = savedCate.level + 1;
-        const categoryByLevel = getAllCategoriesByLevel(nextLevel).filter(
-          (cate) => cate.parentId === savedCate.cateId
-        );
-
-        const nextMenu = document.querySelector(
-          `.category-list-menu[data-level='${nextLevel}']`
-        );
-        nextMenu.innerHTML = "";
-
-        categoryByLevel.forEach((cate) => {
-          const liElem = createCategoryItem(cate);
-          nextMenu.appendChild(liElem);
-        });
-      }
-    }
-  });
-
-  updateFooterCategory();
+function toggleCategorySelection(menu, selectedCategory) {
+  const previousSelected = menu.querySelector(".category-item.selected");
+  if (previousSelected) previousSelected.classList.remove("selected");
+  selectedCategory.classList.add("selected");
 }
-
 function handleCategoryClick(event) {
-  const category = event.target;
+  const category = event.target.closest(".category-item");
+  if (!category) return;
+
   const hasChildren = category.dataset.hasChildren === "true";
   const cateId = category.dataset.cateId;
   const currentMenu = category.closest(".category-list-menu");
   const level = Number(currentMenu.dataset.level);
 
   // Xóa class selected của category trước đó ở cùng level
-  const selectedCategoryBefore = currentMenu.querySelector(
-    ".category-item.selected"
-  );
-  if (selectedCategoryBefore) {
-    selectedCategoryBefore.classList.remove("selected");
-  }
+  toggleCategorySelection(currentMenu, category);
 
-  // Thêm class selected cho category hiện tại
-  category.classList.add("selected");
-
-  // Nếu category được chọn mà có children thì sẽ hiện thị các con của nó
+  // Render children hoặc clear menus
   if (hasChildren) {
-    const categoryByLevel = getAllCategoriesByLevel(level + 1).filter(
-      (cate) => cate.parentId === cateId
-    );
-    document.querySelector(
-      `.category-list-menu[data-level='${level + 1}']`
-    ).innerHTML = "";
-    categoryByLevel.forEach((cate) => {
-      const liElem = createCategoryItem(cate);
-      document
-        .querySelector(`.category-list-menu[data-level='${level + 1}']`)
-        .appendChild(liElem);
-      clearHigherLevelMenus(level + 1);
-    });
+    renderCategoriesByLevel(level + 1, cateId);
+    clearHigherLevelMenus(level + 1);
   } else {
     clearHigherLevelMenus(level);
   }
@@ -233,17 +224,56 @@ function handleCategoryClick(event) {
   updateFooterCategory();
 }
 
-// Update các category đã đc chọn
-function updateFooterCategory() {
-  const footerSelectedCategoryList = document.querySelector(
-    ".category-selected-list"
+// Khôi phục lại các category đã được lưu
+function restoreSavedCategories() {
+  if (savedSelectedCategories.length === 0) {
+    DOM.categorySelectedList.innerHTML = "";
+    return;
+  }
+
+  // Xóa tất cả selected hiện tại
+  DOM.getSelectedCategories().forEach((cate) =>
+    cate.classList.remove("selected")
   );
-  let content = ``;
-  document.querySelectorAll(".category-item.selected").forEach((cate) => {
-    content += `<span class="category-selected">${cate.textContent} > </span>`;
+
+  // Khôi phục lại từng category theo thứ tự level
+  savedSelectedCategories.forEach((savedCate, index) => {
+    const menu = DOM.getMenuByLevel(index);
+    const categoryItem = menu?.querySelector(
+      `.category-item[data-cate-id='${savedCate.cateId}']`
+    );
+
+    if (categoryItem) {
+      categoryItem.classList.add("selected");
+
+      // Nếu category có children và không phải là category cuối cùng
+      // thì load các con của nó cho level tiếp theo
+      // Load children cho level tiếp theo nếu cần
+      const isNotLastCategory = index < savedSelectedCategories.length - 1;
+      if (savedCate.hasChildren && isNotLastCategory) {
+        const nextLevel = savedCate.level + 1;
+        renderCategoriesByLevel(nextLevel, savedCate.cateId);
+      }
+    }
   });
 
-  footerSelectedCategoryList.innerHTML = content;
+  updateFooterCategory();
+}
+
+// Update các category đã đc chọn
+function updateFooterCategory() {
+  const selectedCategories = DOM.getSelectedCategories();
+  if (selectedCategories.length === 0) {
+    DOM.categorySelectedList.innerHTML = "";
+    return;
+  }
+  const content = Array.from(selectedCategories)
+    .map(
+      (cate) => `<span class="category-selected">${cate.textContent} </span>`
+    )
+    .join(" > ");
+
+  DOM.categorySelectedList.innerHTML = content;
 }
 //Xóa hết mấy menu mà có mức cao hơn
 function clearHigherLevelMenus(currentLevel) {
@@ -267,6 +297,18 @@ function clearAllMenus() {
       }
     });
 }
+function updateCategoryButtonText() {
+  const selectedCategories = DOM.getSelectedCategories();
+  if (selectedCategories.length === 0) {
+    DOM.categoryBtn.textContent = "Chọn danh mục";
+    return;
+  }
+  const text = Array.from(selectedCategories)
+    .map((cate) => cate.textContent)
+    .join(" > ");
+
+  DOM.categoryBtn.textContent = text;
+}
 function saveSelectedCategories() {
   savedSelectedCategories = [];
   document.querySelectorAll(".category-item.selected").forEach((cate) => {
@@ -279,7 +321,8 @@ function saveSelectedCategories() {
 }
 function uploadThumbnail(file) {
   thumbnailFile = file;
-  document.querySelector(".thumbnail-preview").src = file.blobUrl;
+  document.querySelector(".thumbnail-preview").src =
+    "../assets/products/" + file.fileName;
 }
 
 function handleUploadImg() {
@@ -296,15 +339,14 @@ function handleUploadImg() {
           return;
         }
 
-        // tạo BLOB URL
-        const blobUrl = URL.createObjectURL(file);
+        const fileName = file.name;
         uploadedFiles.push({
           id: fileId,
           file: file,
-          blobUrl: blobUrl,
+          fileName,
         });
 
-        createPreviewElement(blobUrl, fileId);
+        createPreviewElement(fileId, fileName);
       }
       if (uploadedFiles.length === 1) {
         updateThumbnailOnReorder();
@@ -314,16 +356,13 @@ function handleUploadImg() {
 function deleteUploadImg(elementToRemove, fileId) {
   const arrayIndex = uploadedFiles.findIndex((item) => item.id === fileId);
   if (arrayIndex !== -1) {
-    const fileObject = uploadedFiles[arrayIndex];
-    // Giải phóng Blob URL để tránh rỏ rỉ bộ nhớ
-    URL.revokeObjectURL(fileObject.blobUrl);
     uploadedFiles.splice(arrayIndex, 1);
   }
   elementToRemove.remove();
   updateThumbnailOnReorder();
   updateTotalUploadedFile();
 }
-function createPreviewElement(dataUrl, fileId) {
+function createPreviewElement(fileId, fileName) {
   const previewContainer = document.querySelector(".preview-container");
   const itemDiv = document.createElement("div");
   itemDiv.classList.add("image-item");
@@ -336,7 +375,7 @@ function createPreviewElement(dataUrl, fileId) {
   itemDiv.addEventListener("dragend", handleDragEnd);
   // 2. Tạo thẻ <img>
   const img = document.createElement("img");
-  img.src = dataUrl; // Gán Blob URL vào src
+  img.src = `../assets/products/${fileName}`; // Gán Blob URL vào src
   img.alt = `Xem trước ảnh ${fileId}`;
 
   // 3. Tạo nút xóa

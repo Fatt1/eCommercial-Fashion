@@ -37,6 +37,22 @@ function getAllCategoriesByLevel(level = null) {
   });
   return categoriesByLevel;
 }
+function getAllParentCategory(categoryId) {
+  const dbContext = getDbContextFromLocalStorage();
+  const category = dbContext.categories.find((cate) => cate.id === categoryId);
+  const parentCategories = [];
+  function getParent(parentId) {
+    const parent = dbContext.categories.find((cate) => cate.id === parentId);
+
+    if (parent) {
+      parentCategories.push(parent);
+      getParent(parent.parentId);
+    }
+  }
+  getParent(category.parentId);
+  return { ...category, parentCategories };
+}
+
 function getCategoryLevel(categoryId, categories) {
   const category = categories.find((c) => c.id === categoryId);
   if (!category || category.parentId === null) return 0;
@@ -116,4 +132,5 @@ export {
   getSubCategory,
   getSubCategoryIds,
   getAllCategoriesByLevel,
+  getAllParentCategory,
 };

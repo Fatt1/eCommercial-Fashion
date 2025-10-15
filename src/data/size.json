@@ -2,27 +2,27 @@
   "sizes": [
     {
       "id": "s",
-      "name": "Small",
+      "name": "S",
       "shortName": "S"
     },
     {
       "id": "m",
-      "name": "Medium",
+      "name": "M",
       "shortName": "M"
     },
     {
       "id": "l",
-      "name": "Large",
+      "name": "L",
       "shortName": "L"
     },
     {
       "id": "xl",
-      "name": "Extra Large",
+      "name": "XL",
       "shortName": "Xl"
     },
     {
       "id": "xxl",
-      "name": "Double Extra Large",
+      "name": "XXL",
       "shortName": "XXL"
     },
     {
