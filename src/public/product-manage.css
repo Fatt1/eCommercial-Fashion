@@ -477,4 +477,214 @@
 
 /*  */
 
-/* Thêm hoặc cập nhật các CSS class sau vào file CSS của bạn */
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+
+.admin {
+  display: flex;
+  font-family: "Inter", sans-serif;
+  height: 100%;
+}
+.main-content__admin {
+  width: 95%;
+  margin: auto auto;
+}
+.admin__main {
+  background-color: rgb(224, 233, 232);
+  width: 100%;
+}
+
+.product-manage {
+  background-color: rgb(224, 233, 232);
+}
+.product-manage__head {
+  background-color: white;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.product-manage__head-left {
+  display: flex;
+  justify-content: start;
+}
+.product-manage__head-left a {
+  margin: 5px;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+.product-manage__head-left a.selected {
+  color: orange;
+  border-bottom: 3px solid orange;
+  font-weight: bold;
+}
+.product-manage__head-right button,
+.add-product-btn {
+  padding: 8px 20px;
+  font-weight: bold;
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+
+.product-manage-main {
+  background-color: white;
+  padding: 20px;
+}
+.product-manage-main-search {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.product-manage-main-search input {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+.product-manage-main-search__button {
+  padding: 8px 20px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+.product-manage-main-search__button1 {
+  color: white;
+  background-color: black;
+}
+.product-manage-main-result__top {
+  padding: 10px 0;
+  font-weight: bold;
+}
+
+.cart.product-result {
+  font-family: "Geologica", sans-serif;
+  border: 1px solid #ddd;
+}
+.cart-info,
+.cart-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.cart-info {
+  font-weight: bold;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 10px;
+}
+.cart-item {
+  padding: 15px 10px;
+  font-size: 13px;
+}
+
+.product-status,
+.product-price,
+.product-quantity,
+.product-action {
+  flex-basis: 15%;
+  text-align: center;
+}
+.product-main {
+  flex-basis: 40%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.product-main__img {
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+}
+.product-main__img-sku {
+  height: 50px;
+  width: 50px;
+}
+
+.product-status span {
+  font-weight: bold;
+}
+.status-public span {
+  color: #28a745;
+}
+.status-private span {
+  color: #dc3545;
+}
+.product-action .update-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.product-action .delete-link {
+  color: #f63d14;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link-see-more {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+.link-see-more a.show-sku-btn {
+  color: orange;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+.skus {
+  background-color: #f8f8f8;
+}
+.sku .cart-item {
+  padding-left: 20px;
+}
+.product-item-container {
+  border-bottom: 1px solid #ddd;
+}
+.product-item-container:last-child {
+  border-bottom: none;
+}
+
+.name-sku {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.name-sku div {
+  font-weight: normal;
+  color: #555;
+  padding-top: 5px;
+}
+
+.product-manage-main-result__end {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-top: 30px;
+  gap: 20px;
+}
+.pagination {
+  display: flex;
+  gap: 5px;
+}
+.page-index-track {
+  padding: 8px 12px;
+  background-color: black;
+  color: white;
+}
+.noti-message {
+  color: gray;
+  margin-right: auto;
+}
+.product-main__img {
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+  background-color: #f0f0f0;
+}
