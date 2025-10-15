@@ -6,7 +6,10 @@ import { searchProducts } from "../../../../services/productService.js";
 import { formatNumber } from "../../../../helper/formatNumber.js";
 import { getSkusByProductId } from "../../../../services/productService.js";
 import { getSkuBySkuId } from "../../../../models/Sku.js";
-import { getDetailOneSku } from "../../../../services/productService.js";
+import {
+  getDetailOneSku,
+  getAllProductForAdmin,
+} from "../../../../services/productService.js";
 import {
   getProductById,
   getAllProducts,
@@ -34,11 +37,6 @@ function ProductSearch() {
                         size="50"
                         placeholder="Tìm kiếm sản phẩm..."
                         class='product-manage-main-search__text'
-                      />
-                      <input
-                        type="text"
-                        size="50"
-                        placeholder="Chọn ngành hàng"
                       />
                       <button
                         class="product-manage-main-search__button product-manage-main-search__button1"
@@ -185,7 +183,40 @@ function ProductItem() {
                           </div>
   `;
 }
-function ProductList() {
+function ProductItem1(p) {
+  return `
+        <div class="product-block" data-product-id="${p.id}">
+          <div class="cart-item product-result-item__product">
+            
+            <div class="product-main">
+            ${
+              p.status === "public"
+                ? `<span class="status-public">${p.status}</span>`
+                : `<span class="status-private">${p.status}</span>`
+            }
+              <img class="product-main__img" src="../assets/large-img-detail.png" />
+              <span>${p.name}</span>
+            </div>
+            <div class="product-price">
+              <span class="product-price__current-price">${formatNumber(
+                p.priceInfo.currentlyPrice
+              )}đ</span>
+            </div>
+            <div class="product-quantity">
+              <span class="product-quantity__input product-quantity__input-${
+                p.id
+              }">${calculateStock(p.id)}</span>
+            </div>
+          </div>
+          <button class="show-sku-btn" data-product-id="${
+            p.id
+          }">Xem tất cả SKU</button>
+          <div class="sku-container" id="sku-container-${p.id}"></div>
+        </div>
+    `;
+}
+
+function ProductList(products) {
   return `
                         <div class="cart product-result">
                           <div class="cart-info product-result-info">
@@ -195,7 +226,13 @@ function ProductList() {
                             <div class="product-price product-result-info__price">Giá</div>
                             <div class="product-quantity product-result-info__stock">Kho hàng</div>
                           </div>
-                            ${ProductItem()}
+                        <div class="cart-item-container product-result-item">
+                            ${products
+                              .map((p) => {
+                                return ProductItem1(p);
+                              })
+                              .join("")}
+                          </div>
                         </div>
   `;
 }
@@ -217,7 +254,7 @@ export function renderProductAdminHtml() {
                         >
                       </div>
                       <div class="product-manage-main-result__bot">
-                       ${ProductList()}
+                       ${ProductList(getAllProductForAdmin({}).items)}
                       </div>
                       <div class="product-manage-main-result__end">
                         <div class="noti-message">
@@ -252,6 +289,14 @@ export function renderProductAdminHtml() {
   `;
 }
 
+function calculateStock(productId) {
+  let stockSum = 0;
+  const skus = getSkusByProductId(productId);
+  skus.forEach((sku) => {
+    stockSum += sku.stock;
+  });
+  return stockSum;
+}
 function setUpProductAdmin() {
   setUpAdminNav();
   document.querySelector(".add-product-btn").addEventListener("click", () => {
@@ -324,14 +369,6 @@ export function setUpProductManagePlayable() {
       .join("");
 
     //calculate stock
-    function calculateStock(productId) {
-      let stockSum = 0;
-      const skus = getSkusByProductId(productId);
-      skus.forEach((sku) => {
-        stockSum += sku.stock;
-      });
-      return stockSum;
-    }
 
     //render skuList
     function renderSkuList(skus) {
@@ -378,9 +415,7 @@ export function setUpProductManagePlayable() {
                 )}đ</span>
               </div>
               <div class="product-quantity">
-                <span class="product-quantity__input">${
-                  sku.stock || 0
-                } trong kho</span>
+                <span class="product-quantity__input">${sku.stock || 0} </span>
               </div>
             </div>
           </div>
@@ -390,7 +425,7 @@ export function setUpProductManagePlayable() {
       }
       document.querySelector(
         `.product-quantity__input-${productId}`
-      ).textContent = `${stockSum} trong kho`;
+      ).textContent = `${stockSum} `;
 
       let html = `
       <div class="skus product-result-item__skus">
@@ -426,17 +461,17 @@ export function setUpProductManagePlayable() {
     });
   }
 
-  function renderFirstTime() {
-    const keyword = " ";
-    const { items, totalPages } = searchProducts({
-      searchKey: keyword,
-      pageSize: 5,
-      pageNumber: 1,
-    });
-    console.log("result:", items);
-    renderSearchResults(items);
-  }
-  renderFirstTime();
+  // function renderFirstTime() {
+  //   const keyword = " ";
+  //   const { items, totalPages } = searchProducts({
+  //     searchKey: keyword,
+  //     pageSize: 5,
+  //     pageNumber: 1,
+  //   });
+  //   console.log("result:", items);
+  //   renderSearchResults(items);
+  // }
+  // renderFirstTime();
 
   clearBtn.addEventListener("click", () => {
     document.querySelector(".product-manage-main-search__text").value = "";
