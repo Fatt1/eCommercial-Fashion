@@ -431,9 +431,9 @@
   color: black;
 }
 
-.next-btn {
+/* .next-btn {
   transform: rotate(180deg);
-}
+} */
 
 .next-btn img,
 .prev-btn img {

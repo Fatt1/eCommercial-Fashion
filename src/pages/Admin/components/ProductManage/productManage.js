@@ -122,7 +122,14 @@ function renderProductList(products) {
             <div class="product-quantity"><span>${calculateStock(
               p.id
             )}</span></div>
-            <div class="product-action"><a href="#!" class="update-link">Cập nhật</a></div>
+            <div class="product-action">
+            
+            <a href="#!" class="update-link">Cập nhật</a>
+            <br/>
+            <br/>
+            <a href="#!" class="delete-link">Xóa</a>
+            
+            </div>
           </div>
           ${
             totalSkus > 0
@@ -257,7 +264,7 @@ export function setUpProductManagePlayable() {
 
     let statusFilter = null;
     if (currentTab === 1) statusFilter = "public";
-    if (currentTab === 2) statusFilter = "private";
+    if (currentTab === 2) statusFilter = "draft";
 
     const result = filterProductsForAdmin({
       searchKey: currentKeyword,
