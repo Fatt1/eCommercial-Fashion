@@ -28,8 +28,59 @@ function addProduct(product) {
   return product;
 }
 function updatePriceProductById(productId) {}
+
 // Lấy danh sách thông tin sản phẩm
-function getAllProductListForAdmin({ pageSize = 5, pageNumber = 1 }) {}
+function getAllProductForAdmin({ pageSize = 5, pageNumber = 1 }) {
+  const dbContext = getDbContextFromLocalStorage();
+  const products = dbContext.products.map((p) => {
+    return {
+      id: p.id,
+      name: p.name,
+      categoryId: p.categoryId,
+      thumbnail: p.thumbnail,
+      status: p.status,
+      createdAt: p.createdAt,
+      priceInfo: p.priceInfo,
+      desc: p.desc,
+    };
+  });
+  products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return createPagination(products, pageSize, pageNumber);
+}
+
+function filterProductsForAdmin({
+  searchKey,
+  pageSize = 5,
+  pageNumber = 1,
+  status,
+}) {
+  const dbContext = getDbContextFromLocalStorage();
+  let filterProducts = [];
+
+  filterProducts = dbContext.products
+    .filter((p) => {
+      let isMatchingStatus = !status || p.status === status;
+      let isMatchingSearchKey =
+        !searchKey ||
+        p.name.toLowerCase().includes(searchKey.toLowerCase()) ||
+        p.desc.toLowerCase().includes(searchKey.toLowerCase());
+      return isMatchingStatus && isMatchingSearchKey;
+    })
+    .map((p) => {
+      return {
+        id: p.id,
+        name: p.name,
+        categoryId: p.categoryId,
+        thumbnail: p.thumbnail,
+        status: p.status,
+        createdAt: p.createdAt,
+        priceInfo: p.priceInfo,
+        desc: p.desc,
+      };
+    });
+  filterProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return createPagination(filterProducts, pageSize, pageNumber);
+}
 
 function getAllProducts({ pageSize = 5, pageNumber = 1 }) {
   const dbContext = getDbContextFromLocalStorage();
@@ -308,20 +359,20 @@ function getSalePercentage(originalPrice, currentlyPrice) {
 }
 function deleteProductById(id) {
   const dbContext = getDbContextFromLocalStorage();
-  const product = dbContext.products.find((p) => p.id === id);
-  if (!product) return false;
+  const index = dbContext.products.indexOf((p) => p.id === id);
+  if (index === -1) return false;
   // xóa sản phẩm thành công
-  const updatedProducts = products.filter((p) => p.id !== idToRemove);
-  dbContext.products = updatedProducts;
-  dbContext.saveChanges();
+  dbContext.products.splice(index, 1);
+  saveDbContextToLocalStorage(dbContext);
   return true;
 }
+
 function updateProductById(id, updateProduct) {
   const dbContext = getDbContextFromLocalStorage();
   const product = dbContext.products.find((p) => p.id === id);
   if (!product) return false;
   product = updateProduct;
-  dbContext.saveChanges();
+  saveDbContextToLocalStorage(dbContext);
   return true;
 }
 function getSkusByProductId(productId) {
@@ -398,6 +449,8 @@ function getBestSellerWith3Categories() {
   return result;
 }
 export {
+  filterProductsForAdmin,
+  getAllProductForAdmin,
   getAllProducts,
   getProductById,
   filterProducts,

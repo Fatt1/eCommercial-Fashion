@@ -12,7 +12,6 @@ export const ORDER_STATUS = {
 
   // 2. Trạng thái Xử lý (Processing States)
   PROCESSING: "PROCESSING", // Đang chuẩn bị hàng / Đã xác nhận
-  CONFIRMED: "CONFIRMED", // Đã xác nhận đơn hàng
 
   // 3. Trạng thái Vận chuyển (Shipping States)
   READY_FOR_PICKUP: "READY_FOR_PICKUP", // Sẵn sàng giao cho đơn vị vận chuyển
