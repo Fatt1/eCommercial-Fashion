@@ -1,16 +1,13 @@
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
 import { loadAddProduct } from "./addProduct.js";
 
-// Import services
 import {
   getSkusByProductId,
   getDetailOneSku,
   getProductById,
-  filterProductsForAdmin, // Sử dụng hàm này để có cả tìm kiếm và lọc trạng thái
+  filterProductsForAdmin,
 } from "../../../../services/productService.js";
 import { formatNumber } from "../../../../helper/formatNumber.js";
-
-// === CÁC HÀM TẠO HTML TĨNH ===
 
 function ProductManageHead() {
   return `
@@ -71,9 +68,7 @@ export function renderProductAdminHtml() {
                 </div>
                 <div class="product-manage-main-result__end">
                   <div class="noti-message">Mỗi trang tối đa 5 sản phẩm</div>
-                  <div class="pagination">
-                    {/* Pagination controls will be rendered here */}
-                  </div>
+                  <div class="pagination"></div>
                   <div class="page-index-track">Trang 0/0</div>
                 </div>
               </div>
@@ -84,8 +79,6 @@ export function renderProductAdminHtml() {
     </div> 
   `;
 }
-
-// === LOGIC VÀ SỰ KIỆN ===
 
 function calculateStock(productId) {
   let stockSum = 0;
@@ -146,14 +139,11 @@ function renderProductList(products) {
     .join("");
 
   resultContainer.innerHTML = productItemsHtml;
-
-  // Re-attach event listeners for dynamically created elements
   attachSkuToggleListeners();
 }
 
 function attachSkuToggleListeners() {
   document.querySelectorAll(".show-sku-btn").forEach((btn) => {
-    // Prevent adding duplicate listeners
     if (btn.dataset.listenerAttached) return;
     btn.dataset.listenerAttached = true;
 
@@ -213,7 +203,6 @@ function renderSkuList(skus) {
     .join("")}</div>`;
 }
 
-// Hàm gắn tất cả sự kiện cho trang
 export function setUpProductManagePlayable() {
   const searchInput = document.querySelector(
     ".product-manage-main-search__text"
@@ -225,11 +214,10 @@ export function setUpProductManagePlayable() {
     ".product-manage-main-search__button2"
   );
 
-  // State management for pagination
   let currentPage = 1;
   let totalPages = 1;
   let currentKeyword = "";
-  let currentTab = 0; // 0: All, 1: Active, 2: Hidden
+  let currentTab = 0;
 
   function renderPagination(pageNumber, totalPages) {
     const paginationContainer = document.querySelector(".pagination");
@@ -238,20 +226,19 @@ export function setUpProductManagePlayable() {
     pageTrack.textContent = `Trang ${pageNumber}/${totalPages}`;
 
     let paginationHtml = `
-            <button class="pagination-btn prev-btn" ${
-              pageNumber === 1 ? "disabled" : ""
-            }>
-                &lt;
-            </button>
-            <button class="pagination-btn next-btn" ${
-              pageNumber === totalPages ? "disabled" : ""
-            }>
-                &gt;
-            </button>
+          <button class="pagination-btn prev-btn" ${
+            pageNumber === 1 ? "disabled" : ""
+          }>
+              &lt;
+          </button>
+          <button class="pagination-btn next-btn" ${
+            pageNumber === totalPages ? "disabled" : ""
+          }>
+              &gt;
+          </button>
         `;
     paginationContainer.innerHTML = paginationHtml;
 
-    // Add event listeners after rendering
     document.querySelector(".prev-btn").addEventListener("click", () => {
       if (currentPage > 1) {
         fetchAndRenderProducts(currentPage - 1);
@@ -270,7 +257,7 @@ export function setUpProductManagePlayable() {
 
     let statusFilter = null;
     if (currentTab === 1) statusFilter = "public";
-    if (currentTab === 2) statusFilter = "private"; // Giả sử 'private' cho sản phẩm ẩn
+    if (currentTab === 2) statusFilter = "private";
 
     const result = filterProductsForAdmin({
       searchKey: currentKeyword,
@@ -291,7 +278,7 @@ export function setUpProductManagePlayable() {
 
   function handleSearch() {
     currentKeyword = searchInput.value.trim();
-    fetchAndRenderProducts(1); // Reset to page 1 on new search
+    fetchAndRenderProducts(1);
   }
 
   searchBtn.addEventListener("click", handleSearch);
@@ -310,11 +297,10 @@ export function setUpProductManagePlayable() {
       tabLinks.forEach((link) => link.classList.remove("selected"));
       tab.classList.add("selected");
       currentTab = parseInt(tab.dataset.tabIndex, 10);
-      fetchAndRenderProducts(1); // Reset to page 1 on tab change
+      fetchAndRenderProducts(1);
     });
   });
 
-  // Initial load
   fetchAndRenderProducts(1);
 }
 
