@@ -1,6 +1,17 @@
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
 import { loadAddProduct } from "./addProduct.js";
 
+//tét
+import { searchProducts } from "../../../../services/productService.js";
+import { formatNumber } from "../../../../helper/formatNumber.js";
+import { getSkusByProductId } from "../../../../services/productService.js";
+import { getSkuBySkuId } from "../../../../models/Sku.js";
+import { getDetailOneSku } from "../../../../services/productService.js";
+import {
+  getProductById,
+  getAllProducts,
+} from "../../../../services/productService.js";
+
 function ProductManageHead() {
   return `
     <div class="product-manage__head">
@@ -22,6 +33,7 @@ function ProductSearch() {
                         type="text"
                         size="50"
                         placeholder="Tìm kiếm sản phẩm..."
+                        class='product-manage-main-search__text'
                       />
                       <input
                         type="text"
@@ -245,21 +257,15 @@ function setUpProductAdmin() {
   document.querySelector(".add-product-btn").addEventListener("click", () => {
     loadAddProduct();
   });
+  setUpProductManagePlayable();
 }
+
 export function loadProductAdmin() {
   renderProductAdminHtml();
   setUpProductAdmin();
 }
 
-//tét
-import { searchProducts } from "../../../../services/productService.js";
-import { formatNumber } from "../../../../helper/formatNumber.js";
-import { getSkusByProductId } from "../../../../services/productService.js";
-import { getSkuBySkuId } from "../../../../models/Sku.js";
-import { getDetailOneSku } from "../../../../services/productService.js";
-import { getProductById } from "../../../../services/productService.js";
-
-document.addEventListener("DOMContentLoaded", () => {
+export function setUpProductManagePlayable() {
   const searchInput = document.querySelector(
     ".product-manage-main-search__text"
   );
@@ -303,9 +309,9 @@ document.addEventListener("DOMContentLoaded", () => {
               )}đ</span>
             </div>
             <div class="product-quantity">
-              <span class="product-quantity__input">Kho: ${
-                p.stock || 1000
-              }</span>
+              <span class="product-quantity__input product-quantity__input-${
+                p.id
+              }">${calculateStock(p.id)}</span>
             </div>
           </div>
           <button class="show-sku-btn" data-product-id="${
@@ -317,9 +323,22 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .join("");
 
+    //calculate stock
+    function calculateStock(productId) {
+      let stockSum = 0;
+      const skus = getSkusByProductId(productId);
+      skus.forEach((sku) => {
+        stockSum += sku.stock;
+      });
+      return stockSum;
+    }
+
     //render skuList
     function renderSkuList(skus) {
       let htmlSku = "";
+      let productId;
+      let stockSum = 0;
+
       console.log(skus);
       if (!skus || skus.length === 0) {
         htmlSku += `<div class="sku-empty">Không có SKU nào</div>`;
@@ -329,6 +348,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const detail = getDetailOneSku(sku, sku.productId);
           const p = getProductById(sku.productId);
 
+          productId = sku.productId;
+          stockSum += sku.stock;
           console.log("detail" + detail);
           console.log(detail);
           //check xem sku co đủ vơi hợp lệ k ( đủ name và tierIndex[] 2 phần tử)
@@ -339,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="product-main product-main-sku">
                 <img class="product-main__img product-main__img-sku" src="../assets/large-img-detail.png" />
                 <div class="name-sku">
-
+                
                   <span>${
                     p.name ||
                     sku.name ||
@@ -367,6 +388,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
       }
+      document.querySelector(
+        `.product-quantity__input-${productId}`
+      ).textContent = `${stockSum} trong kho`;
 
       let html = `
       <div class="skus product-result-item__skus">
@@ -401,6 +425,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  function renderFirstTime() {
+    const keyword = " ";
+    const { items, totalPages } = searchProducts({
+      searchKey: keyword,
+      pageSize: 5,
+      pageNumber: 1,
+    });
+    console.log("result:", items);
+    renderSearchResults(items);
+  }
+  renderFirstTime();
 
   clearBtn.addEventListener("click", () => {
     document.querySelector(".product-manage-main-search__text").value = "";
@@ -461,4 +497,4 @@ document.addEventListener("DOMContentLoaded", () => {
       renderSearchResults(filtered);
     });
   });
-});
+}

@@ -2,6 +2,7 @@ import { loadAdminHome } from "../AdminHome/AdminHome.js";
 import {
   loadProductAdmin,
   renderProductAdminHtml,
+  setUpProductManagePlayable,
 } from "../ProductManage/productManage.js";
 
 export function AdminNav() {

@@ -347,26 +347,6 @@ export function renderCartItemContainer() {
   }
 
   calculateTotalCheckBox();
-  function calculateTotalMoneyFinal() {
-    let sumTotalMoney = 0;
-    let sumTotalSaveMoney = 0;
-    cart.forEach((cartItem) => {
-      const skuId = cartItem.skuId;
-      const matchingProduct = getProductById(cartItem.productId);
-      sumTotalMoney +=
-        matchingProduct.priceInfo.currentlyPrice * cartItem.quantity;
-      sumTotalSaveMoney +=
-        (matchingProduct.priceInfo.originalPrice -
-          matchingProduct.priceInfo.currentlyPrice) *
-        cartItem.quantity;
-    });
-    sumTotalMoney;
-
-    document.querySelector(".total__bot--money-left-total-number").textContent =
-      formatNumber(sumTotalMoney);
-    document.querySelector(".total__bot--money-left-save-number").textContent =
-      formatNumber(sumTotalSaveMoney);
-  }
 
   function calculateTotalMoney(skuId) {
     const price = Number(
