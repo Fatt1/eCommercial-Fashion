@@ -359,10 +359,10 @@ function getSalePercentage(originalPrice, currentlyPrice) {
 }
 function deleteProductById(id) {
   const dbContext = getDbContextFromLocalStorage();
-  const index = dbContext.products.indexOf((p) => p.id === id);
-  if (index === -1) return false;
+  const product = dbContext.products.find((p) => p.id === id);
+  if (product === null) return false;
   // xóa sản phẩm thành công
-  dbContext.products.splice(index, 1);
+  product.status = "deleted";
   saveDbContextToLocalStorage(dbContext);
   return true;
 }
