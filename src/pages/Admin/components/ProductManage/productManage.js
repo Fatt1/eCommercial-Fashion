@@ -314,8 +314,7 @@ export function setUpProductManagePlayable() {
 function setUpProductAdmin() {
   setUpAdminNav();
   document.querySelector(".add-product-btn").addEventListener("click", () => {
-    loadAddProduct();
-    loadAddOrUpdateProductProduct();
+    loadAddOrUpdateProduct();
   });
   setUpProductManagePlayable();
 }
