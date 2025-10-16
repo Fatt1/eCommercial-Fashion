@@ -1,5 +1,5 @@
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
-import { loadAddProduct } from "./addProduct.js";
+import { loadAddOrUpdateProductProduct } from "./addProduct.js";
 
 function ProductManageHead() {
   return `
@@ -243,7 +243,7 @@ export function renderProductAdminHtml() {
 function setUpProductAdmin() {
   setUpAdminNav();
   document.querySelector(".add-product-btn").addEventListener("click", () => {
-    loadAddProduct();
+    loadAddOrUpdateProductProduct();
   });
 }
 export function loadProductAdmin() {
