@@ -14,8 +14,6 @@ await loadDataToLocalStorage();
 
 function addProduct(product) {
   const dbContext = getDbContextFromLocalStorage();
-  const id = generateUniqueId();
-  product.id = id;
   let skus = product.skus;
   skus.forEach((sku) => {
     sku.id = generateUniqueId();
