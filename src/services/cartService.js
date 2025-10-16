@@ -20,11 +20,7 @@ export function getTotalQuantity() {
   return cartQuantity;
 }
 
-export function addToCart(skuId, productId) {
-  let quantity = 1;
-  if (document.querySelector(`.product-quantity__input`) !== null) {
-    quantity = Number(document.querySelector(`.product-quantity__input`).value);
-  }
+export function addToCart(skuId, productId, quantity) {
   const tick = false;
   // const quantity = Number(
   //   document.querySelector(`.js-quantity-selector-${skuId}`).value

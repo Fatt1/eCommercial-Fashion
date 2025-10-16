@@ -18,6 +18,8 @@ import { getSkuByProductId } from "../../models/Sku.js";
 import {
   getAllProducts,
   getProductById,
+  minusStockSku,
+  updateStockSku,
 } from "../../services/productService.js";
 
 import { preventInputTextForNumberInput } from "../../helper/helper.js";
@@ -102,18 +104,26 @@ function renderProductDetailHtml(productId) {
           ${BreadCrumb()}
         <div class="detail-product">
           <div class="image-section">
-          
-            <img
-              class="image-section__large-img"
-              src="../assets/products/${product.thumbnail}"
-            />
+            <div class='image-section__large-img-container'>  
+              <img
+                class="image-section__large-img"
+                src="../assets/products/${product.thumbnail}"
+              />
+            </div>
             <div class="small-images-section">
               ${product.images
                 .map(
-                  (img) => `<img
+                  (img) => `
+                  <button class='small-images-section__small--button'
+                  data-src-img="../assets/products/${img}"
+                  data-product-id="${productId}">
+                  <img
                 class="small-images-section__small"
                 src="../assets/products/${img}"
-              />`
+              /> 
+                 </button>
+                 
+              `
                 )
                 .join(" ")}
             </div>
@@ -264,6 +274,7 @@ export function loadProductDetail(productId) {
   addToCartBtn();
   updateCartQuantityStraight();
   preventInputTextForNumberInput();
+  handleClickSmallImage();
 }
 export {
   handleClickVariation,
@@ -395,13 +406,19 @@ function handleClickVariationSize() {
       console.log(tierIndexes);
       console.log(getSkuByProductId(btn.dataset.productId, tierIndexes));
 
-      document.querySelector(".available-quantity").innerHTML = `${
-        getSkuByProductId(btn.dataset.productId, tierIndexes).stock
-      } sản phẩm có sẵn`;
+      // document.querySelector(".available-quantity").innerHTML = `${
+      //   getSkuByProductId(btn.dataset.productId, tierIndexes).stock
+      // } sản phẩm có sẵn`;
+      updateSkuStock(btn.dataset.productId, tierIndexes);
 
       checkEnableAddToCart();
     });
   });
+}
+function updateSkuStock(productId, tierIndexes) {
+  document.querySelector(".available-quantity").innerHTML = `${
+    getSkuByProductId(productId, tierIndexes).stock
+  } sản phẩm có sẵn`;
 }
 
 function checkEnableAddToCart() {
@@ -435,7 +452,19 @@ function addToCartBtn() {
         const productId = button.dataset.productId;
         const sku = getSkuByProductId(productId, tierIndexes);
 
-        addToCart(sku.id, productId);
+        let quantity = 1;
+        if (document.querySelector(`.product-quantity__input`) !== null) {
+          quantity = Number(
+            document.querySelector(`.product-quantity__input`).value
+          );
+        }
+        if (minusStockSku(sku, quantity) === false) {
+          alert("Không đủ stock");
+          return;
+        }
+        updateSkuStock(sku.productId, sku.tierIndexes);
+        console.log(sku);
+        addToCart(sku.id, productId, quantity);
         updateCartQuantity("cart-quantity");
         console.log(cart);
 
@@ -466,3 +495,17 @@ function plusMinusBtn() {
 //     document.querySelector(".add-to-cart-btn").dataset.productId;
 //   console.log(productId);
 // });
+function handleClickSmallImage() {
+  document
+    .querySelectorAll(".small-images-section__small--button")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelector(
+          ".image-section__large-img-container"
+        ).innerHTML = `     <img
+                class="image-section__large-img"
+                src=${button.dataset.srcImg}
+              />`;
+      });
+    });
+}
