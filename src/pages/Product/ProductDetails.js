@@ -290,6 +290,8 @@ export {
   addToCartBtn,
   updateCartQuantityStraight,
   preventInputTextForNumberInput,
+  handleClickSmallImage,
+  handleBuyNowBtn,
 };
 function handleClickSelectedVariation() {
   document
@@ -484,6 +486,7 @@ function addToCartBtn() {
 function handleBuyNowBtn() {
   document.querySelectorAll(".buy-now-btn").forEach((button) => {
     button.addEventListener("click", () => {
+      console.log("clicked");
       if (checkTierIndexes()) {
         if (!isLogin()) {
           document.getElementById("register-login").innerHTML = Login();

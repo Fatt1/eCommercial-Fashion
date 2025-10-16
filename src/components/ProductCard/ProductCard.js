@@ -1,4 +1,8 @@
-import { loadProductDetail } from "../../pages/Product/ProductDetails.js";
+import {
+  handleBuyNowBtn,
+  handleClickSmallImage,
+  loadProductDetail,
+} from "../../pages/Product/ProductDetails.js";
 import { getProductById } from "../../services/productService.js";
 import { preventInputTextForNumberInput } from "../../helper/helper.js";
 import { formatNumber } from "../../helper/formatNumber.js";
@@ -212,7 +216,7 @@ function renderProductDetailOverLay(productId) {
                 <button data-product-id="${productId}" class="add-to-cart-btn"> 
                   <img class="cart-img" src="../assets/shopping-cart.png"> Thêm vào giỏ hàng
                 </button>
-                <button class="buy-now-btn">Mua ngay</button>
+                <button data-product-id="${productId}" class="buy-now-btn">Mua ngay</button>
               </div>
 
 
@@ -247,6 +251,8 @@ function renderProductDetailOverLay(productId) {
   addToCartBtn();
   updateCartQuantityStraight();
   preventInputTextForNumberInput();
+  handleClickSmallImage();
+  handleBuyNowBtn();
   document.querySelector(".close-detail-btn").addEventListener("click", () => {
     document.querySelector(".overlay").classList.remove("show");
     document.querySelector(".overlay-content").remove();

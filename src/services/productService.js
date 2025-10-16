@@ -391,6 +391,7 @@ export function minusStockSku(sku, quantity) {
 }
 export function checkMinusStockSku(sku, quantity) {
   const dbContext = getDbContextFromLocalStorage();
+  console.log(sku);
   const skuLocal = dbContext.skus.find((sku1) => sku1.id === sku.id);
   if (skuLocal.stock - quantity < 0) return false;
   return true;
