@@ -28,8 +28,10 @@ export function addToCart(skuId, productId, quantity, tick = false) {
   cart.forEach((cartItem) => {
     if (cartItem.skuId === skuId) matchingItem = cartItem;
   });
-  if (matchingItem) matchingItem.quantity += quantity;
-  else
+  if (matchingItem) {
+    matchingItem.quantity += quantity;
+    if (tick === true) matchingItem.tick = true;
+  } else
     cart.push({
       skuId,
       productId,
@@ -41,6 +43,15 @@ export function addToCart(skuId, productId, quantity, tick = false) {
 export function unTickAllCartItems() {
   cart.forEach((cartItem) => {
     cartItem.tick = false;
+  });
+}
+export function tickCartItemSkuBySkuId(id) {
+  cart.forEach((cartItem) => {
+    if (cartItem.skuId === id) {
+      cartItem.tick = true;
+      console.log(cartItem);
+      console.log(cart);
+    }
   });
 }
 export function removeFromCart(skuId) {

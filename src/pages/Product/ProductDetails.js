@@ -14,8 +14,10 @@ import {
   updateCartQuantity,
   updateCartQuantityStraight,
   unTickAllCartItems,
+  tickCartItemSkuBySkuId,
 } from "../../services/cartService.js";
 import { getSkuByProductId } from "../../models/Sku.js";
+import { formatNumber } from "../../helper/formatNumber.js";
 import {
   checkMinusStockSku,
   getAllProducts,
@@ -143,12 +145,14 @@ function renderProductDetailHtml(productId) {
             </div>
             <div class="detail-product-price">
                 
-              <span class="detail-product-price__sale">${
+              <span class="detail-product-price__sale">${formatNumber(
                 product.priceInfo.currentlyPrice
-              }đ</span>
+              )}đ</span>
               ${
                 product.salePercentage !== 0
-                  ? ` <span class="detail-product-price__origin">${product.priceInfo.originalPrice}đ</span>`
+                  ? ` <span class="detail-product-price__origin">${formatNumber(
+                      product.priceInfo.originalPrice
+                    )}đ</span>`
                   : ""
               }
              
@@ -510,6 +514,7 @@ function handleBuyNowBtn() {
 
         addMessage();
         window.location.href = "cart.html";
+        tickCartItemSkuBySkuId(sku.id);
       }
     });
   });
