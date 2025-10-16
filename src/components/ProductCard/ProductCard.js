@@ -1,6 +1,7 @@
 import { loadProductDetail } from "../../pages/Product/ProductDetails.js";
 import { getProductById } from "../../services/productService.js";
 import { preventInputTextForNumberInput } from "../../helper/helper.js";
+import { formatNumber } from "../../helper/formatNumber.js";
 import {
   plusMinusBtn,
   addToCartBtn,
@@ -34,12 +35,14 @@ export default function ProductCard({
                   >${name}</a
                 >
                 <div class="product-card-price">
-                  <span class="product-card-price__sale">${
+                  <span class="product-card-price__sale">${formatNumber(
                     priceInfo.currentlyPrice
-                  }đ</span>
+                  )}đ</span>
                   ${
                     salePercentage
-                      ? `<span class="product-card-price__origin">${priceInfo.originalPrice}đ</span>`
+                      ? `<span class="product-card-price__origin">${formatNumber(
+                          priceInfo.originalPrice
+                        )}đ</span>`
                       : ""
                   }
                   

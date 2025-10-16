@@ -389,6 +389,12 @@ export function minusStockSku(sku, quantity) {
   saveDbContextToLocalStorage(dbContext);
   return true;
 }
+export function checkMinusStockSku(sku, quantity) {
+  const dbContext = getDbContextFromLocalStorage();
+  const skuLocal = dbContext.skus.find((sku1) => sku1.id === sku.id);
+  if (skuLocal.stock - quantity < 0) return false;
+  return true;
+}
 
 function updateProductById(id, updateProduct) {
   const dbContext = getDbContextFromLocalStorage();

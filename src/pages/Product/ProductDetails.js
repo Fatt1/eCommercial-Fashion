@@ -13,9 +13,11 @@ import {
   addToCart,
   updateCartQuantity,
   updateCartQuantityStraight,
+  unTickAllCartItems,
 } from "../../services/cartService.js";
 import { getSkuByProductId } from "../../models/Sku.js";
 import {
+  checkMinusStockSku,
   getAllProducts,
   getProductById,
   minusStockSku,
@@ -197,7 +199,7 @@ function renderProductDetailHtml(productId) {
                 <button data-product-id="${productId}" class="add-to-cart-btn"> 
                   <img class="cart-img" src="../assets/shopping-cart.png"> Thêm vào giỏ hàng
                 </button>
-                <button class="buy-now-btn">Mua ngay</button>
+                <button data-product-id="${productId}" class="buy-now-btn">Mua ngay</button>
               </div>
 
 
@@ -275,6 +277,7 @@ export function loadProductDetail(productId) {
   updateCartQuantityStraight();
   preventInputTextForNumberInput();
   handleClickSmallImage();
+  handleBuyNowBtn();
 }
 export {
   handleClickVariation,
@@ -458,17 +461,55 @@ function addToCartBtn() {
             document.querySelector(`.product-quantity__input`).value
           );
         }
-        if (minusStockSku(sku, quantity) === false) {
+        if (checkMinusStockSku(sku, quantity) === false) {
           alert("Không đủ stock");
           return;
         }
-        updateSkuStock(sku.productId, sku.tierIndexes);
+        // updateSkuStock(sku.productId, sku.tierIndexes);
         console.log(sku);
         addToCart(sku.id, productId, quantity);
         updateCartQuantity("cart-quantity");
         console.log(cart);
 
         addMessage();
+      }
+    });
+  });
+}
+
+function handleBuyNowBtn() {
+  document.querySelectorAll(".buy-now-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (checkTierIndexes()) {
+        if (!isLogin()) {
+          document.getElementById("register-login").innerHTML = Login();
+          setUpLoginForm();
+          renderOverlay();
+          return;
+        }
+        const productId = button.dataset.productId;
+        const sku = getSkuByProductId(productId, tierIndexes);
+
+        let quantity = 1;
+        if (document.querySelector(`.product-quantity__input`) !== null) {
+          quantity = Number(
+            document.querySelector(`.product-quantity__input`).value
+          );
+        }
+        if (checkMinusStockSku(sku, quantity) === false) {
+          alert("Không đủ stock");
+          return;
+        }
+        // updateSkuStock(sku.productId, sku.tierIndexes);
+        console.log(sku);
+        unTickAllCartItems();
+        addToCart(sku.id, productId, quantity, true);
+
+        updateCartQuantity("cart-quantity");
+        console.log(cart);
+
+        addMessage();
+        window.location.href = "cart.html";
       }
     });
   });
