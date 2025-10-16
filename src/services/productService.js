@@ -28,7 +28,8 @@ function addProduct(product) {
   return product;
 }
 function updatePriceProductById(productId) {}
-
+const dbContext = getDbContextFromLocalStorage();
+console.log(JSON.stringify(dbContext.skus));
 // Lấy danh sách thông tin sản phẩm
 function getAllProductForAdmin({ pageSize = 5, pageNumber = 1 }) {
   const dbContext = getDbContextFromLocalStorage();

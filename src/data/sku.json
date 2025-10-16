@@ -115,6 +115,22 @@
       "tierIndexes": [0, 0],
       "createdAt": "2025-09-14T12:09:00Z",
       "updatedAt": "2025-09-14T12:09:00Z"
+    },
+    {
+      "id": "mgkzw1qg-aZuIz7",
+      "productId": "mgkzw1qf-CGkrEZ",
+      "stock": 0,
+      "tierIndexes": [0, 0],
+      "createdAt": "2025-10-10T15:22:12.807Z",
+      "updatedAt": "2025-10-10T15:22:12.807Z"
+    },
+    {
+      "id": "mgkzw1qg-8HnNnn",
+      "productId": "mgkzw1qf-CGkrEZ",
+      "stock": 0,
+      "tierIndexes": [0, 1],
+      "createdAt": "2025-10-10T15:22:12.807Z",
+      "updatedAt": "2025-10-10T15:22:12.807Z"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
-import { loadAddOrUpdateProductProduct } from "./addProduct.js";
+import { loadAddOrUpdateProduct } from "./addProduct.js";
 
 import {
   getSkusByProductId,
