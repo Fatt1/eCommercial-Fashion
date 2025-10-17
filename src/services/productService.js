@@ -97,6 +97,7 @@ function searchProducts(
     order,
     brandIds,
     searchKey,
+    status = "public",
   },
   isGetGroupsFilter = false
 ) {
@@ -114,6 +115,7 @@ function searchProducts(
       categoryIds,
       sortBy,
       order,
+      status,
     },
     isGetGroupsFilter
   );
@@ -148,6 +150,7 @@ function applyFilter(
     categoryIds,
     sortBy,
     order,
+    status,
   },
   isGetGroupsFilter = false
 ) {
@@ -157,7 +160,7 @@ function applyFilter(
     else {
       isMatchingCategoryId = categoryIds.has(p.categoryId);
     }
-
+    let isMatchingStatus = p.status === status;
     // Lọc theo searchKey
     const isMatchingSearchKey =
       !searchKey ||
@@ -209,7 +212,8 @@ function applyFilter(
       isMatchingSize &&
       isMatchingSearchKey &&
       isMatchingCategoryId &&
-      isMatchingBrand
+      isMatchingBrand &&
+      isMatchingStatus
     );
   });
 
@@ -274,6 +278,7 @@ function filterProducts(
     sortBy = "createdAt",
     order,
     brandIds,
+    status = "public",
   },
   isGetGroupsFilter = false
 ) {
@@ -295,6 +300,7 @@ function filterProducts(
       searchKey,
       sortBy,
       order,
+      status,
     },
     isGetGroupsFilter
   );
