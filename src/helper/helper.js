@@ -35,6 +35,7 @@ export function createPagination(data, pageSize, pageNumber) {
     isNext,
     isPrev,
     pageNumber,
+    totalItems: count,
   };
 }
 export function convertStringToKebabCase(value) {

@@ -59,7 +59,7 @@ function setUpAddProduct() {
       handleClickCreateProduct("public");
     });
 }
-export function loadAddProduct() {
+export function loadAddOrUpdateProduct() {
   renderAddProductHtml();
   setUpAddProduct();
 }

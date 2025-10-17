@@ -1,5 +1,5 @@
 import { ORDER_STATUS } from "../constant/Constant.js";
-import { generateOrderId } from "../helper/helper.js";
+import { createPagination, generateOrderId } from "../helper/helper.js";
 import {
   getDbContextFromLocalStorage,
   loadDataToLocalStorage,
@@ -53,7 +53,21 @@ function updateStatusOrder(orderId, status) {
   order.status = status;
   saveDbContextToLocalStorage(dbContext);
 }
-
+// Lọc đơn hàng theo các tiêu chí
+function filterOrdersByAdmin({
+  pageSize,
+  pageNumber,
+  status,
+  searchKey,
+  startDate,
+  endDate,
+}) {
+  const dbContext = getDbContextFromLocalStorage();
+}
+// Lấy chi tiết đơn hàng theo id
+function getOrderDetailById(orderId) {
+  const dbContext = getDbContextFromLocalStorage();
+}
 // Lấy tất cả đơn hàng của một user
 function getAllOrdersByUserId(userId) {
   // Nhớ sắp xếp theo thời gian giảm dần

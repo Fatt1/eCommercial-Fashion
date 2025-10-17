@@ -119,7 +119,7 @@ export function handleClickHeader() {
       return;
     });
   });
-  const cart = JSON.parse(localStorage.getItem("cart"));
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
   document.querySelector(".header-cart .cart-quantity").textContent =
     cart.length;
   handleClickCartIcon();
