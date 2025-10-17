@@ -99,7 +99,7 @@ function filterOrdersByAdmin({
   return createPagination(filteredOrders, pageSize, pageNumber);
 }
 // Lấy chi tiết đơn hàng theo id
-function getOrderDetailById(orderId) {
+function getOrderById(orderId) {
   const dbContext = getDbContextFromLocalStorage();
   return dbContext.orders.find((o) => o.id === orderId);
 }
@@ -135,5 +135,5 @@ export {
   getAllOrdersByUserId,
   getOrdersUserIdByStatus,
   filterOrdersByAdmin,
-  getOrderDetailById,
+  getOrderById,
 };

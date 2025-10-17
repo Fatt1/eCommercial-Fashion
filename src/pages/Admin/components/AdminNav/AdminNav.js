@@ -1,9 +1,6 @@
 import { loadAdminHome } from "../AdminHome/AdminHome.js";
-import {
-  loadProductAdmin,
-  renderProductAdminHtml,
-  setUpProductManagePlayable,
-} from "../ProductManage/productManage.js";
+import { loadOrderPage } from "../OrderManage/orderManage.js";
+import { loadProductAdmin } from "../ProductManage/productManage.js";
 
 export function AdminNav() {
   return `
@@ -70,5 +67,10 @@ export function setUpAdminNav() {
     .querySelector(".admin__category--1")
     .addEventListener("click", () => {
       loadAdminHome();
+    });
+  document
+    .querySelector(".admin__category--7")
+    .addEventListener("click", () => {
+      loadOrderPage();
     });
 }

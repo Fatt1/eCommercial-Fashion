@@ -107,32 +107,9 @@ td {
 }
 
 /* =================== MODAL STYLES =================== */
-
-/* Lớp phủ mờ */
-#modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 99;
+#details-modal {
+  width: 700px;
 }
-
-/* Kiểu chung cho các modal */
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-  width: 600px;
-  max-width: 90%;
-}
-
 .modal-header {
   padding: 15px 20px;
   border-bottom: 1px solid #eeeeee;
@@ -140,7 +117,7 @@ td {
 
 .modal-header h2 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 600;
 }
 
@@ -171,19 +148,19 @@ td {
   font-size: medium;
 }
 
-.modal-button.save-btn{
-    background-color: #333333; /* Màu đen/xám đậm */
+.modal-button.save-btn {
+  background-color: #333333; /* Màu đen/xám đậm */
   color: #ffffff;
   font-size: medium;
 }
 
-.modal-button.save-btn:hover{
+.modal-button.save-btn:hover {
   background-color: #fbe70c; /* Màu vàng */
   color: #000000; /* Màu chữ đen */
   font-size: medium;
 }
 
-.modal-button.close-btn:hover{
+.modal-button.close-btn:hover {
   background-color: #fbe70c; /* Màu vàng */
   color: #000000; /* Màu chữ đen */
   font-size: medium;
@@ -234,4 +211,9 @@ td {
 .update-form input:disabled {
   background-color: #e9ecef;
   cursor: not-allowed;
+}
+
+.order-detail__variation {
+  font-size: 1.2rem;
+  color: grey;
 }

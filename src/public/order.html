@@ -74,6 +74,7 @@
             </button>
           </ul>
         </div>
+        <!--  -->
         <div class="admin__main">
           <div class="main-content__admin">
             <div class="admin__header" style="margin: 30px 0px">
@@ -81,7 +82,11 @@
                 <h1 class="admin__homepage--text">Quản Lý Đơn Hàng</h1>
                 <div class="vertical-line"></div>
                 <div class="admin__search-bar">
-                  <input type="text" placeholder="Tìm kiếm" class="search-bar" />
+                  <input
+                    type="text"
+                    placeholder="Tìm kiếm"
+                    class="search-bar"
+                  />
                   <button>SEARCH</button>
                 </div>
               </div>
@@ -203,7 +208,7 @@
                   </tr>
                   <tr>
                     <td>DH-007</td>
-                    <td>Vũ Thị
+                    <td>Vũ Thị</td>
                     <td>21:10:00 15/05/2025</td>
                     <td>600.000đ</td>
                     <td>600.000đ</td>
@@ -229,80 +234,80 @@
       </div>
     </div>
 
-    <div id="modal-overlay" class="hidden"></div>
+    <div class="order-detail">
+      <div id="details-modal" class="modal">
+        <div class="modal-header">
+          <h2>Chi tiết đơn hàng</h2>
+        </div>
+        <div class="modal-body">
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Ghi chú</th>
+                <th>Thành tiền</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Airmax</td>
+                <td>1</td>
+                <td>500.000đ</td>
+                <td>Không có</td>
+                <td>500.000đ</td>
+              </tr>
+              <tr>
+                <td>Airforce</td>
+                <td>1</td>
+                <td>300.000đ</td>
+                <td>Giao nhanh</td>
+                <td>300.000đ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-button close-btn">Đóng</button>
+        </div>
+      </div>
 
-    <div id="details-modal" class="modal hidden">
-      <div class="modal-header">
-        <h2>Chi tiết đơn hàng</h2>
-      </div>
-      <div class="modal-body">
-        <table class="modal-table">
-          <thead>
-            <tr>
-              <th>Sản phẩm</th>
-              <th>Số lượng</th>
-              <th>Đơn giá</th>
-              <th>Ghi chú</th>
-              <th>Thành tiền</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Airmax</td>
-              <td>1</td>
-              <td>500.000đ</td>
-              <td>Không có</td>
-              <td>500.000đ</td>
-            </tr>
-            <tr>
-              <td>Airforce</td>
-              <td>1</td>
-              <td>300.000đ</td>
-              <td>Giao nhanh</td>
-              <td>300.000đ</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button class="modal-button close-btn">Đóng</button>
-      </div>
-    </div>
-
-    <div id="update-modal" class="modal hidden">
-      <div class="modal-header">
-        <h2>Cập nhật đơn hàng</h2>
-      </div>
-      <div class="modal-body">
-        <form class="update-form">
-          <div class="form-group">
-            <label for="order-id">Mã đơn hàng</label>
-            <input type="text" id="order-id" value="abcxxyz" disabled />
-          </div>
-          <div class="form-group">
-            <label for="customer-name">Khách hàng</label>
-            <input
-              type="text"
-              id="customer-name"
-              value="Phan Việt Huy"
-              disabled
-            />
-          </div>
-          <div class="form-group">
-            <label for="order-status-select">Trạng thái</label>
-            <select id="order-status-select">
-              <option value="pending">Chờ xác nhận</option>
-              <option value="preparing">Đang chuẩn bị</option>
-              <option value="shipped">Đã giao</option>
-              <option value="completed">Đã hoàn thành</option>
-              <option value="cancelled">Đã Hủy</option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="modal-button close-btn">Đóng</button>
-        <button class="modal-button save-btn">Lưu</button>
+      <div id="update-modal" class="modal">
+        <div class="modal-header">
+          <h2>Cập nhật đơn hàng</h2>
+        </div>
+        <div class="modal-body">
+          <form class="update-form">
+            <div class="form-group">
+              <label for="order-id">Mã đơn hàng</label>
+              <input type="text" id="order-id" value="abcxxyz" disabled />
+            </div>
+            <div class="form-group">
+              <label for="customer-name">Khách hàng</label>
+              <input
+                type="text"
+                id="customer-name"
+                value="Phan Việt Huy"
+                disabled
+              />
+            </div>
+            <div class="form-group">
+              <label for="order-status-select">Trạng thái</label>
+              <select id="order-status-select">
+                <option value="pending">Chờ xác nhận</option>
+                <option value="preparing">Đang chuẩn bị</option>
+                <option value="shipped">Đã giao</option>
+                <option value="completed">Đã hoàn thành</option>
+                <option value="cancelled">Đã Hủy</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-button close-btn">Đóng</button>
+          <button class="modal-button save-btn">Lưu</button>
+        </div>
       </div>
     </div>
     <script src="order.js" defer></script>
