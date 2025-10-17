@@ -12,7 +12,7 @@ function getUserById(userId) {
   return user;
 }
 function checkAvailableAddressUser() {
-  const loggedUser = JSON.parse(localStorage.getItem("user-info"));
+  const loggedUser = JSON.parse(localStorage.getItem("user_info"));
   if (loggedUser.addresses.length === 0) return false;
   return true;
 }
@@ -50,7 +50,7 @@ function getDefaultAddress(userId) {
   return address;
 }
 function getLoggedUser() {
-  const user = JSON.parse(localStorage.getItem("user-info"));
+  const user = JSON.parse(localStorage.getItem("user_info"));
   return user;
 }
 export {

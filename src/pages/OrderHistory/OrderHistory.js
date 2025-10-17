@@ -34,11 +34,21 @@ function renderOrderHistoryHtml() {
           </div>
           <div class="order-tabs">
             <a href="#" data-status="ALL" class="order-tab active">Tất cả</a>
-            <a href="#" data-status="${ORDER_STATUS.PENDING}" class="order-tab">Chờ xác nhận</a>
-            <a href="#" data-status="${ORDER_STATUS.SHIPPING}" class="order-tab">Vận chuyển</a>
-            <a href="#" data-status="${ORDER_STATUS.DELIVERED}" class="order-tab">Đã giao</a>
-            <a href="#" data-status="${ORDER_STATUS.COMPLETED}" class="order-tab">Hoàn thành</a>
-            <a href="#" data-status="${ORDER_STATUS.CANCELED}" class="order-tab">Đã hủy</a>
+            <a href="#" data-status="${
+              ORDER_STATUS.PENDING
+            }" class="order-tab">Chờ xác nhận</a>
+            <a href="#" data-status="${
+              ORDER_STATUS.SHIPPING
+            }" class="order-tab">Vận chuyển</a>
+            <a href="#" data-status="${
+              ORDER_STATUS.DELIVERED
+            }" class="order-tab">Đã giao</a>
+            <a href="#" data-status="${
+              ORDER_STATUS.COMPLETED
+            }" class="order-tab">Hoàn thành</a>
+            <a href="#" data-status="${
+              ORDER_STATUS.CANCELED
+            }" class="order-tab">Đã hủy</a>
           </div>
         </div>
         <div class="order-list-container">
@@ -88,9 +98,7 @@ function renderSingleOrder(order) {
         <span>Trạng thái: <b>${order.status}</b></span>
       </div>
       <div class="order-body">
-        <img src="../assets/products/${
-          product.thumbnail
-        }" alt="sản phẩm" />
+        <img src="../assets/products/${product.thumbnail}" alt="sản phẩm" />
         <div class="info">
           <p class="name">${firstItem.name}</p>
           <p>Phân loại hàng: ${firstItem.sku.name}</p>

@@ -85,7 +85,9 @@ function filterOrdersByAdmin({
   if (startDate) {
     const start = new Date(startDate);
     start.setHours(0, 0, 0, 0);
-    filteredOrders = filteredOrders.filter((o) => new Date(o.createdAt) >= start);
+    filteredOrders = filteredOrders.filter(
+      (o) => new Date(o.createdAt) >= start
+    );
   }
   if (endDate) {
     const end = new Date(endDate);
@@ -114,9 +116,15 @@ function getOrdersUserIdByStatus(userId, status) {
   // Sử dụng ORDER_STATUS để xem trạng thái phù hợp với giao diện
   // Ví dụ: Đang chờ xác nhận -> PENDING
   const dbContext = getDbContextFromLocalStorage();
-  const orders = dbContext.orders.filter(
-    (o) => o.customerId === userId && o.status === status
-  );
+
+  let orders = null;
+  if (!status) {
+    orders = dbContext.orders.filter((o) => o.customerId === userId);
+  } else {
+    orders = dbContext.orders.filter(
+      (o) => o.customerId === userId && o.status === status
+    );
+  }
   orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   return orders;
 }
