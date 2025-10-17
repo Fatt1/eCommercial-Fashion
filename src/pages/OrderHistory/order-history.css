@@ -127,7 +127,7 @@
 .order-footer .total {
   color: #d2691e;
 }
-.btn {
+.order-list-container .btn {
   border: 1px solid #ccc;
   background: #fff;
   padding: 6px 10px;
@@ -136,12 +136,12 @@
   color: black;
   font-weight: 600;
 }
-.btn.primary {
+.order-list-container .btn.primary {
   background: #000;
   color: #fff;
   border: none;
 }
-.btn:hover {
+.order-list-container .btn:hover {
   background: #eee;
 }
 .btn.primary:hover {
