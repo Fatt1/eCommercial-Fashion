@@ -122,7 +122,10 @@ function getSubCategoryIds(categoryId) {
   findChildren(categoryId);
   return subCategories;
 }
-
+function isHasChildren(categoryId) {
+  const dbContext = getDbContextFromLocalStorage();
+  return dbContext.categories.some((cate) => cate.parentId === categoryId);
+}
 export {
   addCategory,
   getAllCategory,
@@ -133,4 +136,5 @@ export {
   getSubCategoryIds,
   getAllCategoriesByLevel,
   getAllParentCategory,
+  isHasChildren,
 };

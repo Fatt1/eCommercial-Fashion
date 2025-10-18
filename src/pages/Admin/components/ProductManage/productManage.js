@@ -1,6 +1,6 @@
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
 import { loadAddOrUpdateProduct } from "./addProduct.js";
-
+import { loadUpdateProductPage } from "./updateProductPage.js";
 import {
   getSkusByProductId,
   getDetailOneSku,
@@ -124,10 +124,12 @@ function renderProductList(products) {
             )}</span></div>
             <div class="product-action">
             
-            <a href="#!" class="update-link">Cập nhật</a>
+            <a href="#!" class="update-link" data-product-id="${
+              p.id
+            }">Cập nhật</a>
             <br/>
             <br/>
-            <a href="#!" class="delete-link">Xóa</a>
+            <a href="#!" class="delete-link" data-product-id="${p.id}">Xóa</a>
             
             </div>
           </div>
@@ -312,11 +314,18 @@ export function setUpProductManagePlayable() {
 }
 
 function setUpProductAdmin() {
+  setUpProductManagePlayable();
   setUpAdminNav();
   document.querySelector(".add-product-btn").addEventListener("click", () => {
     loadAddOrUpdateProduct();
   });
-  setUpProductManagePlayable();
+  document.querySelectorAll(".update-link").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const productId = e.target.dataset.productId;
+      loadUpdateProductPage(productId);
+    });
+  });
 }
 
 export function loadProductAdmin() {
