@@ -68,7 +68,7 @@
   text-align: center;
 }
 #order-list-table th,
-td {
+#order-list-table td {
   border: none;
 }
 
@@ -78,7 +78,7 @@ td {
 }
 
 #order-list-table tr,
-td {
+#order-list-table td {
   padding: 15px;
   border-bottom: 1px solid black;
   vertical-align: middle;
