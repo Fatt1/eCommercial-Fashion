@@ -1,4 +1,4 @@
-import { AdminNav } from "../AdminNav/AdminNav.js";
+import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
 import {
   filterOrdersByAdmin,
   getOrderById,
@@ -9,8 +9,22 @@ import { formatNumber } from "../../../../helper/formatNumber.js";
 import { ORDER_STATUS } from "../../../../constant/Constant.js";
 const overlay = document.querySelector(".overlay");
 const overlayContent = document.querySelector(".overlay-content");
+const orderStatusTranslation = {
+  PENDING: "Chờ xác nhận",
+  WAITING_FOR_PAYMENT: "Chờ thanh toán",
+  PROCESSING: "Đang chuẩn bị",
+  READY_FOR_PICKUP: "Sẵn sàng giao",
+  SHIPPING: "Đang vận chuyển",
+  DELIVERED: "Đã giao",
+  COMPLETED: "Đã hoàn thành",
+  CANCELED: "Đã hủy",
+  FAILED: "Thất bại",
+  REFUNDED: "Đã hoàn tiền",
+  RETURNED: "Đã trả lại",
+};
+let filter = { pageNumber: 1, pageSize: 5 };
 function renderOrderManage() {
-  const result = filterOrdersByAdmin({});
+  const result = filterOrdersByAdmin({ pageSize: filter.pageSize });
   const allOrders = result.items;
   const root = document.getElementById("root");
   root.innerHTML = `
@@ -27,9 +41,9 @@ function renderOrderManage() {
                   <input
                     type="text"
                     placeholder="Tìm kiếm"
-                    class="search-bar"
+                    class="search-bar order-search-bar"
                   />
-                  <button>SEARCH</button>
+                  <button class="order-search-btn">SEARCH</button>
                 </div>
               </div>
               <div class="admin__header--right">
@@ -42,19 +56,25 @@ function renderOrderManage() {
           <!-- OrderStatus -->
           <div class="order-status">
               <div class="order-status-btns">
-                <button>Tất cả</button>
-                <button>Chờ xác nhận</button>
-                <button>Đang chuẩn bị</button>
-                <button>Đã giao</button>
-                <button>Đã Hủy</button>
-                <button>Đơn hàng đã hoàn thành</button>
+                <button class="active" data-status="all">Tất cả</button>
+                <button data-status="${
+                  ORDER_STATUS.PENDING
+                }">Chờ xác nhận</button>
+                <button data-status="${
+                  ORDER_STATUS.PROCESSING
+                }">Đang chuẩn bị</button>
+                <button data-status="${ORDER_STATUS.DELIVERED}">Đã giao</button>
+                <button data-status="${ORDER_STATUS.CANCELED}>Đã Hủy</button>
+                <button data-status="${
+                  ORDER_STATUS.COMPLETED
+                }">Đơn hàng đã hoàn thành</button>
               </div>
               <div class="order-date-filter">
                 <span>Từ</span>
                 <input placeholder="mm/dd/yy" type="date" />
                 <span>Đến</span>
                 <input placeholder="mm/dd/yy" type="date" />
-                <button>Lọc</button>
+                <button class="filter-by-date-btn">Lọc</button>
               </div>
             </div>
           <!-- OrderTable -->
@@ -66,6 +86,10 @@ function renderOrderManage() {
       </div>
     </div>
   `;
+
+  document
+    .querySelector(".order-table-container")
+    .appendChild(renderPagination(result.totalPages, filter.pageNumber));
 }
 
 function OrderItem(orderItem) {
@@ -78,7 +102,7 @@ function OrderItem(orderItem) {
     <td>${formatNumber(orderItem.totalPrice)}đ</td>
     <td>${formatNumber(orderItem.totalCheckout)}đ</td>
     <td>${paymentMethod.name}</td>
-    <td>${orderItem.status}</td>
+    <td>${orderStatusTranslation[orderItem.status]}</td>
     <td>
       <p class="order-details-link" data-order-id="${
         orderItem.id
@@ -149,23 +173,20 @@ function OrderTable(orderItems) {
             ${orderItems.map((item) => OrderItem(item)).join("")}
           </tbody>
         </table>
-        <div class="pagination">
-          <span>&lt;</span>
-          <span class="page-item active">1</span>
-          <span class="page-item">2</span>
-          <span class="page-item">3</span>
-          <span>&gt;</span>
-        </div>
+      
 `;
 }
 
 export function loadOrderPage() {
+  filter = { pageNumber: 1, pageSize: 5 };
   renderOrderManage();
   setUpOrderTableEventListeners();
-  setUpOrderManageEventListeners();
-}
 
-function setUpOrderManageEventListeners() {}
+  handleClickFilterByStatus();
+  handleClickFilterByDate();
+  setUpAdminNav();
+  handleClickSearchOrder();
+}
 
 function formatDate(date) {
   const d = new Date(date);
@@ -181,6 +202,36 @@ function formatDate(date) {
 
   // 3. Ghép các thành phần lại theo định dạng mong muốn
   return `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
+}
+function renderPagination(totalPages, pageNumber) {
+  let paginationDiv = document.createElement("div");
+  paginationDiv.classList.add("pagination");
+  // Logic để tạo các nút phân trang dựa trên filter.pageNumber và filter.pageSize
+  const fragment = document.createDocumentFragment();
+  for (let i = 1; i <= totalPages; i++) {
+    const pageSpan = document.createElement("span");
+    pageSpan.classList.add("page-item");
+    if (i === pageNumber) {
+      pageSpan.classList.add("active");
+    }
+    pageSpan.textContent = i;
+    pageSpan.addEventListener("click", () => {
+      const result = filterOrdersByAdmin({
+        ...filter,
+        pageNumber: i,
+      });
+      const allOrders = result.items;
+      document.querySelector(".order-table-container").innerHTML =
+        OrderTable(allOrders);
+      setUpOrderTableEventListeners();
+      document
+        .querySelector(".order-table-container")
+        .appendChild(renderPagination(result.totalPages, i));
+    });
+    fragment.appendChild(pageSpan);
+  }
+  paginationDiv.appendChild(fragment);
+  return paginationDiv;
 }
 
 function setUpOrderTableEventListeners() {
@@ -304,5 +355,60 @@ function setUpUpdateOrderModalEventListeners() {
     closeOverlay();
     // Tải lại trang quản lý đơn hàng để hiển thị trạng thái mới
     loadOrderPage();
+  });
+}
+
+function handleClickFilterByStatus() {
+  document.querySelectorAll(".order-status-btns button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const status = button.getAttribute("data-status");
+      document
+        .querySelector(".order-status-btns button.active")
+        .classList.remove("active");
+      button.classList.add("active");
+      filter["status"] = status === "all" ? null : status;
+      const result = filterOrdersByAdmin(filter);
+      const allOrders = result.items;
+      document.querySelector(".order-table-container").innerHTML =
+        OrderTable(allOrders);
+      setUpOrderTableEventListeners();
+      document
+        .querySelector(".order-table-container")
+        .appendChild(renderPagination(result.totalPages, filter.pageNumber));
+    });
+  });
+}
+
+function handleClickFilterByDate() {
+  document
+    .querySelector(".filter-by-date-btn")
+    .addEventListener("click", () => {
+      const dateInputs = document.querySelectorAll(".order-date-filter input");
+      const startDate = dateInputs[0].value;
+      const endDate = dateInputs[1].value;
+      filter["startDate"] = startDate ? startDate : null;
+      filter["endDate"] = endDate ? endDate : null;
+      const result = filterOrdersByAdmin(filter);
+      const allOrders = result.items;
+      document.querySelector(".order-table-container").innerHTML =
+        OrderTable(allOrders);
+      setUpOrderTableEventListeners();
+      document
+        .querySelector(".order-table-container")
+        .appendChild(renderPagination(result.totalPages, filter.pageNumber));
+    });
+}
+function handleClickSearchOrder() {
+  document.querySelector(".order-search-btn").addEventListener("click", () => {
+    const searchInput = document.querySelector(".order-search-bar").value;
+    filter["searchKey"] = searchInput ? searchInput : null;
+    const result = filterOrdersByAdmin(filter);
+    const allOrders = result.items;
+    document.querySelector(".order-table-container").innerHTML =
+      OrderTable(allOrders);
+    setUpOrderTableEventListeners();
+    document
+      .querySelector(".order-table-container")
+      .appendChild(renderPagination(result.totalPages, filter.pageNumber));
   });
 }
