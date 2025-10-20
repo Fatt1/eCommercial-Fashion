@@ -80,7 +80,7 @@ export function CreateProductForm() {
   `;
 }
 export let uploadedFiles = [];
-export let thumbnailFile = null;
+export let thumbnailFile = {};
 let draggedItem = null;
 export let savedSelectedCategories = [];
 
@@ -118,7 +118,7 @@ const DOM = {
 
 export function setUpCreateProductForm() {
   uploadedFiles = [];
-  thumbnailFile = null;
+  thumbnailFile = {};
   savedSelectedCategories = [];
   handleUploadImg();
   DOM.init();
@@ -135,6 +135,22 @@ function setupEventListeners() {
 
   // Xác nhận selection
   DOM.agreeBtn.addEventListener("click", handleConfirmSelection);
+
+  const previewContainer = document.querySelector(".preview-container");
+  const allImg = previewContainer.querySelectorAll(".image-item");
+  if (allImg.length > 0) {
+    allImg.forEach((itemDiv) => {
+      itemDiv.addEventListener("dragstart", handleDragStart);
+      itemDiv.addEventListener("dragover", handleDragOver);
+      itemDiv.addEventListener("dragleave", handleDragLeave);
+      itemDiv.addEventListener("drop", handleDrop);
+      itemDiv.addEventListener("dragend", handleDragEnd);
+      const fileId = itemDiv.dataset.id;
+      itemDiv.lastElementChild.addEventListener("click", function () {
+        deleteUploadImg(itemDiv, fileId);
+      });
+    });
+  }
 }
 
 // Handlers
@@ -342,7 +358,6 @@ function handleUploadImg() {
         const fileName = file.name;
         uploadedFiles.push({
           id: fileId,
-          file: file,
           fileName,
         });
 
@@ -364,6 +379,16 @@ function deleteUploadImg(elementToRemove, fileId) {
 }
 function createPreviewElement(fileId, fileName) {
   const previewContainer = document.querySelector(".preview-container");
+  const allImg = previewContainer.querySelectorAll(".image-item");
+  if (allImg.length > 0) {
+    allImg.forEach((itemDiv) => {
+      itemDiv.addEventListener("dragstart", handleDragStart);
+      itemDiv.addEventListener("dragover", handleDragOver);
+      itemDiv.addEventListener("dragleave", handleDragLeave);
+      itemDiv.addEventListener("drop", handleDrop);
+      itemDiv.addEventListener("dragend", handleDragEnd);
+    });
+  }
   const itemDiv = document.createElement("div");
   itemDiv.classList.add("image-item");
   itemDiv.setAttribute("data-id", fileId);

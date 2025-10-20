@@ -98,17 +98,18 @@ function InputMultiDropDown(att) {
 }
 // lưu lại để mốt khi mà nhấn lưu sản phẩm thì sẽ lấy từ trong biến này ra
 export let selectedAttributeValues = {};
-function setUpEventListener(attributes) {
+export function setUpEventListener(attributes) {
   selectedAttributeValues = {};
+  selectedAttributeValues["brand"] = [""];
   // khởi tạo các attribute
   attributes.forEach((att) => {
     const attributeKey = att.id;
     if (att.inputType === INPUT_TYPE.MULTI_DROP_DOWN) {
       selectedAttributeValues[attributeKey] = []; // Array cho multi
     } else if (att.inputType === INPUT_TYPE.SINGLE_DROP_DOWN) {
-      selectedAttributeValues[attributeKey] = null; // Single value
+      selectedAttributeValues[attributeKey] = []; // Single value
     } else {
-      selectedAttributeValues[attributeKey] = ""; // String cho free text
+      selectedAttributeValues[attributeKey] = []; // String cho free text
     }
   });
 
@@ -145,7 +146,7 @@ function setUpEventListener(attributes) {
   document.querySelectorAll(".input-free-text").forEach((input) => {
     input.addEventListener("input", () => {
       const attributeName = input.dataset.attributeName;
-      selectedAttributeValues[attributeName] = input.value;
+      selectedAttributeValues[attributeName][0] = input.value;
     });
   });
 }
@@ -160,7 +161,7 @@ function handleSingleDropdown(item, dropdownBtn, attributeName, value) {
   if (selectedValueItem) selectedValueItem.classList.remove("selected");
   item.classList.add("selected");
   selectedValuesSpan.textContent = value;
-  selectedAttributeValues[attributeName] = value;
+  selectedAttributeValues[attributeName][0] = value;
 }
 
 // Xử lí cho multi dropdown

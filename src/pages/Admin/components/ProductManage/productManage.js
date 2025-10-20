@@ -111,9 +111,9 @@ function renderProductList(products) {
           <div class="cart-item product-result-item__product">
             <div class="product-status ${statusClass}"><span>${statusText}</span></div>
             <div class="product-main">
-              <img class="product-main__img" src="../assets/large-img-detail.png" alt="${
-                p.name
-              }" />
+              <img class="product-main__img" src="../assets/${
+                p.thumbnail
+              }" alt="${p.name}" />
               <span>${p.name}</span>
             </div>
             <div class="product-price"><span class="product-price__current-price">${formatNumber(

@@ -319,6 +319,11 @@ function filterProducts(
   };
 }
 
+function getSkuById(skuId) {
+  const dbContext = getDbContextFromLocalStorage();
+  return dbContext.skus.find((sku) => sku.id === skuId);
+}
+
 function getProductById(id) {
   const dbContext = getDbContextFromLocalStorage();
   const product = dbContext.products.find((p) => p.id === id);
@@ -371,14 +376,35 @@ function deleteProductById(id) {
   return true;
 }
 
-function updateProductById(id, updateProduct) {
+function updateProductById(updateProduct) {
   const dbContext = getDbContextFromLocalStorage();
-  const product = dbContext.products.find((p) => p.id === id);
+  let product = getProductById(updateProduct.id);
   if (!product) return false;
-  product = updateProduct;
+
+  product.skus.forEach((sku) => {
+    const existingSku = updateProduct.skus.find(
+      (updateSku) => updateSku.id === sku.id
+    );
+    if (!existingSku) {
+      const deleteSkuIndex = dbContext.skus.indexOf(sku.id);
+      dbContext.skus.splice(deleteSkuIndex, 1);
+    }
+  });
+  // update
+  updateProduct.skus.forEach((updatedSku) => {
+    const sku = dbContext.skus.find((s) => s.id === updatedSku.id);
+    if (sku) {
+      Object.assign(sku, updatedSku);
+    } else {
+      dbContext.skus.push(updatedSku);
+    }
+  });
+  const p = dbContext.products.find((p) => p.id === updateProduct.id);
+  Object.assign(p, updateProduct);
   saveDbContextToLocalStorage(dbContext);
   return true;
 }
+
 function getSkusByProductId(productId) {
   const dbContext = getDbContextFromLocalStorage();
   const skusVariation = dbContext.skus.filter(
@@ -466,4 +492,5 @@ export {
   searchProducts,
   getDetailOneSku,
   getBestSellerWith3Categories,
+  getSkuById,
 };
