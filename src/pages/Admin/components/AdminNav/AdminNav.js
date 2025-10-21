@@ -1,9 +1,9 @@
 import { loadAdminHome } from "../AdminHome/AdminHome.js";
-import {
-  loadProductAdmin,
-  renderProductAdminHtml,
-  setUpProductManagePlayable,
-} from "../ProductManage/productManage.js";
+import { loadCategoryManagePage } from "../CategoryManage/categoryManage.js";
+import { loadOrderPage } from "../OrderManage/orderManage.js";
+import { loadPriceManagePage } from "../PriceMange/priceMange.js";
+import { loadProductAdmin } from "../ProductManage/productManage.js";
+import { loadUserManagePage } from "../UserManage/userManage.js";
 
 export function AdminNav() {
   return `
@@ -27,14 +27,12 @@ export function AdminNav() {
             </button>
             <button>
               <li class="admin__category--3">
-                <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Nhãn
-                Hàng
+                <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Danh Mục
               </li>
             </button>
             <button>
               <li class="admin__category--4">
-                <img class="icon" src="../assets/admin-icon4.png" />Quản Lý
-                Thuộc Tính
+                <img class="icon" src="../assets/admin-icon4.png" />Quản lí Giá Bán
               </li>
             </button>
             <button>
@@ -70,5 +68,26 @@ export function setUpAdminNav() {
     .querySelector(".admin__category--1")
     .addEventListener("click", () => {
       loadAdminHome();
+    });
+  document
+    .querySelector(".admin__category--7")
+    .addEventListener("click", () => {
+      loadOrderPage();
+    });
+  document
+    .querySelector(".admin__category--3")
+    .addEventListener("click", () => {
+      loadCategoryManagePage();
+    });
+  document
+    .querySelector(".admin__category--4")
+    .addEventListener("click", () => {
+      loadPriceManagePage();
+    });
+
+  document
+    .querySelector(".admin__category--5")
+    .addEventListener("click", () => {
+      loadUserManagePage();
     });
 }

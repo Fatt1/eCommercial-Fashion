@@ -37,8 +37,8 @@
       "ward": "Phường Bến Nghé",
       "district": "Quận 1",
       "feeShipping": 30000,
-      "paymentMethodId": "PM001",
-      "status": "Đã đặt hàng",
+      "paymentMethodId": "2",
+      "status": "COMPLETED",
       "createdAt": "2024-09-25T10:00:00.000Z",
       "updatedAt": "2024-09-25T10:00:00.000Z"
     },

@@ -1,6 +1,7 @@
 import {
   getAllColors,
   getColorByCode,
+  getColorByName,
 } from "../../../../services/colorService.js";
 import { getAllSizes, getSizeById } from "../../../../services/sizeService.js";
 export function CreateProductVariation() {
@@ -136,7 +137,10 @@ export const variationState = new VariationState();
 /**
  * Khởi tạo event listeners và UI cho product variation
  */
-export function setUpEventListenerCreateProductVariation() {
+export function setUpEventListenerCreateProductVariation(
+  isInitialTable = true
+) {
+  colorImages.length = 0;
   const allColors = getAllColors();
   const allSizes = getAllSizes();
   variationState.selectedOptions.colors = [];
@@ -144,8 +148,7 @@ export function setUpEventListenerCreateProductVariation() {
   // Tạo initial dropdown cho color và size
   appendVariationOption(SELECTORS.colorItems, allColors, VARIATION_TYPES.COLOR);
   appendVariationOption(SELECTORS.sizeItems, allSizes, VARIATION_TYPES.SIZE);
-
-  initializeVariationTable();
+  if (isInitialTable) initializeVariationTable();
 }
 /**
  * Thêm variation option vào container
@@ -196,7 +199,7 @@ function createVariationOptionElement(items, type) {
 
   return elem;
 }
-function attachDropdownEvents(elem, type, items) {
+export function attachDropdownEvents(elem, type, items) {
   const dropdownBtn = elem.querySelector(SELECTORS.dropdownBtn);
   const dropdownItems = elem.querySelectorAll(SELECTORS.dropdownItem);
 
@@ -297,7 +300,7 @@ function createNewVariationOption(type, items) {
 /**
  * Gắn event handler cho nút xóa
  */
-function attachDeleteEvent(elem, type) {
+export function attachDeleteEvent(elem, type) {
   const deleteBtn = elem.querySelector(SELECTORS.deleteBtn);
 
   deleteBtn.addEventListener("click", () => {
@@ -305,7 +308,19 @@ function attachDeleteEvent(elem, type) {
 
     const index = getVariationIndex(elem, type);
     const removedId = variationState.remove(type, index);
-
+    const nameColor =
+      deleteBtn.previousElementSibling.querySelector("span").textContent;
+    if (type === VARIATION_TYPES.COLOR) {
+      const color = getColorByName(nameColor);
+      if (color) {
+        const colorImgIndex = colorImages.findIndex(
+          (img) => img.colorId === color.id
+        );
+        if (colorImgIndex !== -1) {
+          colorImages.splice(colorImgIndex, 1);
+        }
+      }
+    }
     enableDropdownItem(removedId);
     removeTableRows(removedId, type);
     elem.remove();
@@ -326,7 +341,7 @@ function enableDropdownItem(id) {
 /**
  * Cập nhật trạng thái disable cho tất cả dropdown items
  */
-function updateAllDisabledItems(type) {
+export function updateAllDisabledItems(type) {
   const selectedIds = variationState.getAll(type);
   selectedIds.forEach((id) => {
     document
@@ -340,11 +355,11 @@ function updateAllDisabledItems(type) {
  * Khởi tạo bảng variation với row mặc định
  */
 
-function initializeVariationTable() {
+function initializeVariationTable(isInitial = true) {
   const tableBody = document.querySelector(SELECTORS.tableBody);
   if (!tableBody) return;
 
-  tableBody.innerHTML = createDefaultTableRow();
+  if (isInitial) tableBody.innerHTML = createDefaultTableRow();
 }
 function createDefaultTableRow() {
   return `
@@ -444,7 +459,7 @@ function createColorRowsFragment(colorId, colorName, sizes) {
 
   return fragment;
 }
-function uploadImageForColor(colorId, file, uploadInputImg) {
+export function uploadImageForColor(colorId, file, uploadInputImg) {
   colorImages.push({ colorId, fileName: file.name });
   uploadInputImg.disabled = true;
   const previewImg = document.querySelector(
@@ -489,19 +504,20 @@ function createColorRow(colorId, size, colorName, rowSpan, isFirstRow) {
       </td>
       ${createCommonRowCells(size.name)}
     `;
+    const labelDefault = row.querySelector("label");
+    labelDefault.setAttribute("for", `load-image-input-${colorId}`);
+    const inputDefault = row.querySelector("input");
+    inputDefault.setAttribute("id", `load-image-input-${colorId}`);
+    inputDefault.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        uploadImageForColor(colorId, file, inputDefault);
+      }
+    });
   } else {
     row.innerHTML = createCommonRowCells(size.name);
   }
-  const labelDefault = row.querySelector("label");
-  labelDefault.setAttribute("for", `load-image-input-${colorId}`);
-  const inputDefault = row.querySelector("input");
-  inputDefault.setAttribute("id", `load-image-input-${colorId}`);
-  inputDefault.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      uploadImageForColor(colorId, file, inputDefault);
-    }
-  });
+
   return row;
 }
 /**

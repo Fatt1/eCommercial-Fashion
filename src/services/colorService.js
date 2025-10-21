@@ -13,5 +13,10 @@ function getColorByCode(code) {
   const color = dbContext.colors.find((c) => c.id === code);
   return color;
 }
+function getColorByName(name) {
+  const dbContext = getDbContextFromLocalStorage();
+  const color = dbContext.colors.find((c) => c.name === name);
+  return color;
+}
 
-export { getAllColors, getColorByCode };
+export { getAllColors, getColorByCode, getColorByName };

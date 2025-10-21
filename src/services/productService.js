@@ -51,6 +51,7 @@ function filterProductsForAdmin({
   pageSize = 5,
   pageNumber = 1,
   status,
+  isDeleted = false,
 }) {
   const dbContext = getDbContextFromLocalStorage();
   let filterProducts = [];
@@ -58,11 +59,14 @@ function filterProductsForAdmin({
   filterProducts = dbContext.products
     .filter((p) => {
       let isMatchingStatus = !status || p.status === status;
+
       let isMatchingSearchKey =
         !searchKey ||
         p.name.toLowerCase().includes(searchKey.toLowerCase()) ||
         p.desc.toLowerCase().includes(searchKey.toLowerCase());
-      return isMatchingStatus && isMatchingSearchKey;
+      return (
+        isMatchingStatus && isMatchingSearchKey && p.isDeleted === isDeleted
+      );
     })
     .map((p) => {
       return {
@@ -97,6 +101,7 @@ function searchProducts(
     order,
     brandIds,
     searchKey,
+    status = "public",
   },
   isGetGroupsFilter = false
 ) {
@@ -114,6 +119,7 @@ function searchProducts(
       categoryIds,
       sortBy,
       order,
+      status,
     },
     isGetGroupsFilter
   );
@@ -148,6 +154,8 @@ function applyFilter(
     categoryIds,
     sortBy,
     order,
+    status,
+    isDeleted = false,
   },
   isGetGroupsFilter = false
 ) {
@@ -157,7 +165,7 @@ function applyFilter(
     else {
       isMatchingCategoryId = categoryIds.has(p.categoryId);
     }
-
+    let isMatchingStatus = p.status === status && p.isDeleted === isDeleted;
     // Lọc theo searchKey
     const isMatchingSearchKey =
       !searchKey ||
@@ -209,7 +217,8 @@ function applyFilter(
       isMatchingSize &&
       isMatchingSearchKey &&
       isMatchingCategoryId &&
-      isMatchingBrand
+      isMatchingBrand &&
+      isMatchingStatus
     );
   });
 
@@ -274,6 +283,7 @@ function filterProducts(
     sortBy = "createdAt",
     order,
     brandIds,
+    status = "public",
   },
   isGetGroupsFilter = false
 ) {
@@ -295,6 +305,7 @@ function filterProducts(
       searchKey,
       sortBy,
       order,
+      status,
     },
     isGetGroupsFilter
   );
@@ -311,6 +322,11 @@ function filterProducts(
     sizeGroupFilter: result.sizeGroupFilter,
     brandGroupFilter: result.brandGroupFilter,
   };
+}
+
+function getSkuById(skuId) {
+  const dbContext = getDbContextFromLocalStorage();
+  return dbContext.skus.find((sku) => sku.id === skuId);
 }
 
 function getProductById(id) {
@@ -360,7 +376,7 @@ function deleteProductById(id) {
   const product = dbContext.products.find((p) => p.id === id);
   if (product === null) return false;
   // xóa sản phẩm thành công
-  product.status = "deleted";
+  product.isDeleted = true;
   saveDbContextToLocalStorage(dbContext);
   return true;
 }
@@ -397,14 +413,35 @@ export function checkMinusStockSku(sku, quantity) {
   return true;
 }
 
-function updateProductById(id, updateProduct) {
+function updateProductById(updateProduct) {
   const dbContext = getDbContextFromLocalStorage();
-  const product = dbContext.products.find((p) => p.id === id);
+  let product = getProductById(updateProduct.id);
   if (!product) return false;
-  product = updateProduct;
+
+  product.skus.forEach((sku) => {
+    const existingSku = updateProduct.skus.find(
+      (updateSku) => updateSku.id === sku.id
+    );
+    if (!existingSku) {
+      const deleteSkuIndex = dbContext.skus.indexOf(sku.id);
+      dbContext.skus.splice(deleteSkuIndex, 1);
+    }
+  });
+  // update
+  updateProduct.skus.forEach((updatedSku) => {
+    const sku = dbContext.skus.find((s) => s.id === updatedSku.id);
+    if (sku) {
+      Object.assign(sku, updatedSku);
+    } else {
+      dbContext.skus.push(updatedSku);
+    }
+  });
+  const p = dbContext.products.find((p) => p.id === updateProduct.id);
+  Object.assign(p, updateProduct);
   saveDbContextToLocalStorage(dbContext);
   return true;
 }
+
 function getSkusByProductId(productId) {
   const dbContext = getDbContextFromLocalStorage();
   const skusVariation = dbContext.skus.filter(
@@ -492,4 +529,5 @@ export {
   searchProducts,
   getDetailOneSku,
   getBestSellerWith3Categories,
+  getSkuById,
 };

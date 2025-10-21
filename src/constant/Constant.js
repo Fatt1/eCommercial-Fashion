@@ -35,6 +35,11 @@ export const INPUT_TYPE = {
   // Loại 4: Cho phép chọn nhiều giá trị từ danh sách (Không cho phép nhập mới)
   MULTI_DROP_DOWN: 3,
 };
+
+export const USER_STATUS = {
+  ACTIVE: "active",
+  BLOCKED: "blocked",
+};
 export const PAY_CLIENT_ID =
   "AWX03Hr4m9SF6hKtpRlcfF2oG1l_CFxXYqhvYHyanxTDVAce9znVExv43NY_hxShcUGJftk2hAyrbA33";
 export const PAY_SECRET =

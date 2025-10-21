@@ -1,0 +1,226 @@
+.order-status {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* === KHU VỰC ĐÃ SỬA === */
+.order-status-btns {
+  display: flex; /* Biến thành flex container */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  gap: 10px; /* Tạo khoảng cách đều giữa các nút */
+  margin: 10px 5px 10px 5px;
+  padding: 5px;
+}
+
+.order-status-btns button {
+  padding: 5px;
+}
+.order-status-btns button.active {
+  background-color: #fbe70c;
+  color: black 1px;
+  font-weight: bold;
+  border: 1px solid grey;
+}
+.order-date {
+  font-weight: bold 2px;
+}
+
+.order-date-filter input {
+  margin-right: 40px;
+}
+
+.order-date-filter button {
+  background-color: #565dbd;
+  color: #ffffff;
+  width: 60px;
+  border: none;
+  padding: 5px;
+}
+
+.order-date-filter button:hover {
+  color: black;
+}
+
+.order-status-btns button:hover {
+  background-color: #fbe70c;
+  color: black 1px;
+  font-weight: bold;
+  border: 1px solid grey;
+}
+
+.order-status-btns button:active {
+  background-color: #fbe70c;
+  color: black 1px;
+  font-weight: bold;
+  border: 1px solid grey;
+}
+
+#order-list-table {
+  width: 100%;
+  margin-top: 30px;
+  background-color: #ffffff;
+  font-weight: bold;
+  border: none;
+  text-align: center;
+}
+#order-list-table th,
+#order-list-table td {
+  border: none;
+}
+
+#order-list-table th {
+  border-bottom: 1px solid black;
+  padding: 15px 0px;
+}
+
+#order-list-table tr,
+#order-list-table td {
+  padding: 15px;
+  border-bottom: 1px solid black;
+  vertical-align: middle;
+}
+
+.order-details-link,
+.update-status-link {
+  cursor: pointer;
+}
+
+.update-status-link {
+  margin-top: 25px;
+  color: #194fff;
+}
+
+.order-table-container {
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.pagination {
+  vertical-align: middle;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+}
+.page-item {
+  cursor: pointer;
+}
+.page-item.active {
+  color: grey;
+  font-weight: bold;
+}
+
+/* =================== MODAL STYLES =================== */
+#details-modal {
+  width: 700px;
+}
+.modal-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #eeeeee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.modal-button.close-btn {
+  background-color: #333333; /* Màu đen/xám đậm */
+  color: #ffffff;
+  font-size: medium;
+}
+
+.modal-button.save-btn {
+  background-color: #333333; /* Màu đen/xám đậm */
+  color: #ffffff;
+  font-size: medium;
+}
+
+.modal-button.save-btn:hover {
+  background-color: #fbe70c; /* Màu vàng */
+  color: #000000; /* Màu chữ đen */
+  font-size: medium;
+}
+
+.modal-button.close-btn:hover {
+  background-color: #fbe70c; /* Màu vàng */
+  color: #000000; /* Màu chữ đen */
+  font-size: medium;
+}
+
+/* Tiện ích ẩn/hiện */
+.hidden {
+  display: none;
+}
+
+/* Kiểu cho bảng trong modal chi tiết */
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-table th,
+.modal-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.modal-table th {
+  background-color: #f8f8f8;
+}
+
+/* Kiểu cho form trong modal cập nhật */
+.update-form .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.update-form label {
+  width: 120px; /* Cố định chiều rộng của label */
+  font-weight: bold;
+}
+
+.update-form input,
+.update-form select {
+  flex-grow: 1; /* Cho input/select chiếm hết phần còn lại */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.update-form input:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.order-detail__variation {
+  font-size: 1.2rem;
+  color: grey;
+}
