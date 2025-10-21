@@ -57,3 +57,32 @@
   margin-left: 0;
   width: 100%;
 }
+.add-category-popup .preview-img {
+  display: flex;
+  align-items: center;
+}
+.category-preview-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.add-category-action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.add-category-action-buttons button {
+  padding: 10px 15px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-cancel-add-category {
+  background-color: #dc3545;
+}
+.btn-confirm-add-category {
+  background-color: #28a745;
+}

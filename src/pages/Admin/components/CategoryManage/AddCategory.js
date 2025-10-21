@@ -1,14 +1,12 @@
-import { getAllCategoriesByLevel } from "../../../../services/categoryService.js";
-
-// =================================================================
-// CÁC HÀM TÁI SỬ DỤNG TỪ CREATEPRODUCTFORM.JS
-// =================================================================
+import {
+  addCategory,
+  getAllCategoriesByLevel,
+} from "../../../../services/categoryService.js";
 
 // Biến cục bộ để lưu các category đã chọn
 let savedSelectedCategories = [];
-
-// 1. DOM object
-// (Giữ nguyên vì HTML của bạn dùng lại y hệt các class)
+let category = {};
+// 1. Đối tượng DOM
 const DOM = {
   categoryBtn: null,
   categorySelectorWrapper: null,
@@ -18,29 +16,34 @@ const DOM = {
   init() {
     // Các selector này sẽ tìm thấy element bên trong popup
     // vì hàm init() được gọi sau khi renderAddCategoryHtml()
-    this.categoryBtn = document.querySelector(".create-product__category-btn");
+    this.categoryBtn = document.querySelector(
+      ".add-category-popup .create-product__category-btn"
+    );
     this.categorySelectorWrapper = document.querySelector(
-      ".category-selector-wrapper"
+      ".add-category-popup .category-selector-wrapper"
     );
     this.categorySelectedList = document.querySelector(
-      ".category-selected-list"
+      ".add-category-popup .category-selected-list"
     );
     this.cancelBtn = document.querySelector(
-      ".footer-category-action__cancel-btn"
+      ".add-category-popup .footer-category-action__cancel-btn"
     );
     this.agreeBtn = document.querySelector(
-      ".footer-category-action__agree-btn"
+      ".add-category-popup .footer-category-action__agree-btn"
     );
   },
   getMenuByLevel(level) {
-    return document.querySelector(`.category-list-menu[data-level='${level}']`);
+    return document.querySelector(
+      `.add-category-popup .category-list-menu[data-level='${level}']`
+    );
   },
   getSelectedCategories() {
-    return document.querySelectorAll(".category-item.selected");
+    return document.querySelectorAll(
+      ".add-category-popup .category-item.selected"
+    );
   },
 };
 
-// 2. Hàm render (Copy y hệt)
 export function renderCategoriesByLevel(level, parentId = null) {
   const menu = DOM.getMenuByLevel(level);
   if (!menu) return;
@@ -59,7 +62,7 @@ export function renderCategoriesByLevel(level, parentId = null) {
   menu.appendChild(documentFragment);
 }
 
-// 3. Hàm tạo <li> (Copy y hệt)
+// 3. Hàm tạo <li>
 function createCategoryItem(cate) {
   const liElem = document.createElement("li");
   liElem.classList.add("category-item");
@@ -78,7 +81,7 @@ function createCategoryItem(cate) {
   return liElem;
 }
 
-// 4. Hàm xử lý click (Copy y hệt)
+// 4. Hàm xử lý click
 function handleCategoryClick(event) {
   const category = event.target.closest(".category-item");
   if (!category) return;
@@ -100,7 +103,7 @@ function handleCategoryClick(event) {
   updateFooterCategory();
 }
 
-// 5. Các hàm helpers (Copy y hệt)
+// 5. Các hàm helpers
 function toggleCategorySelection(menu, selectedCategory) {
   const previousSelected = menu.querySelector(".category-item.selected");
   if (previousSelected) previousSelected.classList.remove("selected");
@@ -109,7 +112,7 @@ function toggleCategorySelection(menu, selectedCategory) {
 
 function clearHigherLevelMenus(currentLevel) {
   document
-    .querySelectorAll(`.category-list-menu[data-level]`)
+    .querySelectorAll(`.add-category-popup .category-list-menu[data-level]`)
     .forEach((menu) => {
       const menuLevel = Number(menu.dataset.level);
       if (menuLevel > currentLevel) {
@@ -120,7 +123,7 @@ function clearHigherLevelMenus(currentLevel) {
 
 function clearAllMenus() {
   document
-    .querySelectorAll(`.category-list-menu[data-level]`)
+    .querySelectorAll(`.add-category-popup .category-list-menu[data-level]`)
     .forEach((menu) => {
       const menuLevel = Number(menu.dataset.level);
       if (menuLevel > 0) {
@@ -175,13 +178,15 @@ function restoreSavedCategories() {
 
 function saveSelectedCategories() {
   savedSelectedCategories = [];
-  document.querySelectorAll(".category-item.selected").forEach((cate) => {
-    savedSelectedCategories.push({
-      cateId: cate.dataset.cateId,
-      level: Number(cate.closest(".category-list-menu").dataset.level),
-      hasChildren: cate.dataset.hasChildren === "true",
+  document
+    .querySelectorAll(".add-category-popup .category-item.selected")
+    .forEach((cate) => {
+      savedSelectedCategories.push({
+        cateId: cate.dataset.cateId,
+        level: Number(cate.closest(".category-list-menu").dataset.level),
+        hasChildren: cate.dataset.hasChildren === "true",
+      });
     });
-  });
 }
 
 function updateCategoryButtonText() {
@@ -267,13 +272,19 @@ function renderAddCategoryHtml() {
             <input type="text" id="category-name" name="category-name" />
           </div class="form-group">
           <div class="preview-img">
-            <label for="category-image">Ảnh danh mục:</label>
-            <input type="file" id="category-image" name="category-image" accept="image/*" />
-            <div class="preview-image-container"></div>
+            <span>*Ảnh danh mục</span>
+            <label for="category-image">
+              <img class="category-preview-img" src="../assets/Add Image.svg" alt="Upload" />
+            </label>
+            <input type="file" id="category-image" name="category-image" accept="image/*" hidden />
+          </div>
+          <div class="add-category-action-buttons">
+            <button class="btn-cancel-add-category">Hủy</button>
+            <button class="btn-confirm-add-category">Thêm danh mục</button>
           </div>
       </div> 
     </div>
-  `; // <- Bạn bị thiếu 2 thẻ </div> ở đây, tôi đã thêm vào
+  `;
 }
 
 /**
@@ -291,10 +302,73 @@ function setUpRenderAddCategory() {
 
   // 4. Gán các sự kiện click cho button "Chọn ngành hàng", "Hủy", "Xác nhận"
   setupEventListeners();
+  // 5. Gán sự kiện cho input upload ảnh
+  handleClickUploadCategoryImage();
+  handleCancelAddCategory();
+  handleAddCategory();
 }
 
 export function loadAddCategoryPopup() {
   document.querySelector(".overlay").classList.add("show");
   renderAddCategoryHtml();
   setUpRenderAddCategory();
+}
+
+function handleClickUploadCategoryImage() {
+  document
+    .getElementById("category-image")
+    .addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        document.querySelector(".category-preview-img").src =
+          "../assets/categories/" + file.name;
+        category.image = file.name;
+      }
+    });
+}
+// Xử lý thêm danh mục mới
+function handleAddCategory() {
+  document
+    .querySelector(".btn-confirm-add-category")
+    .addEventListener("click", () => {
+      // Không cho phép quá 4 danh mục cấp con
+      if (savedSelectedCategories.length >= 3) {
+        alert("Chỉ được phép thêm danh mục con tối đa 3 cấp.");
+        return;
+      }
+      const categoryNameInput = document.getElementById("category-name");
+      const categoryName = categoryNameInput.value.trim();
+      if (!categoryName) {
+        alert("Vui lòng nhập tên danh mục.");
+        return;
+      }
+      if (!category.image) {
+        alert("Vui lòng chọn ảnh danh mục.");
+        return;
+      }
+      category.name = categoryName;
+      category.image = category.image || "default-category.png";
+      if (savedSelectedCategories.length === 0) {
+        category.parentId = null;
+        category.attributeIds = ["A004", "A014", "A016", "A019"];
+      } else {
+        category.parentId =
+          savedSelectedCategories[savedSelectedCategories.length - 1].cateId;
+        category.attributeIds = [];
+        const cate = addCategory(category);
+        console.log("Đã thêm danh mục:", cate);
+        alert("Thêm danh mục thành công!");
+      }
+    });
+}
+
+function handleCancelAddCategory() {
+  document
+    .querySelector(".btn-cancel-add-category")
+    .addEventListener("click", () => {
+      category = {};
+      document.querySelector(".overlay").classList.remove("show");
+      document.querySelector(".overlay-content").innerHTML = "";
+      document.querySelector(".overlay-content").hidden = true;
+    });
 }
