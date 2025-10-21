@@ -718,3 +718,40 @@
   opacity: 0.5;
   background-color: #f9f9f9;
 }
+
+/* Modal Delete Product */
+.modal-delete-product h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.modal-delete-product__desc {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+}
+.delete-action-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.confirm-delete-button,
+.cancel-delete-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.confirm-delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+.cancel-delete-button {
+  background-color: #6c757d;
+  color: white;
+}
+.confirm-delete-button:hover,
+.cancel-delete-button:hover {
+  opacity: 0.8;
+}

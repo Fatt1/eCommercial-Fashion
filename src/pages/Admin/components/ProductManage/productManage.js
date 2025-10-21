@@ -6,6 +6,7 @@ import {
   getDetailOneSku,
   getProductById,
   filterProductsForAdmin,
+  deleteProductById,
 } from "../../../../services/productService.js";
 import { formatNumber } from "../../../../helper/formatNumber.js";
 
@@ -326,9 +327,60 @@ function setUpProductAdmin() {
       loadUpdateProductPage(productId);
     });
   });
+  document.querySelectorAll(".delete-link").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const productId = e.target.dataset.productId;
+      document.querySelector(".overlay").classList.add("show");
+      document.querySelector(".overlay-content").hidden = false;
+      document
+        .querySelector(".overlay-content")
+        .appendChild(ModalDeleteProduct(productId));
+    });
+  });
 }
 
 export function loadProductAdmin() {
   renderProductAdminHtml();
   setUpProductAdmin();
+}
+
+function ModalDeleteProduct(productId) {
+  const product = getProductById(productId);
+  // Implement modal delete product functionality here
+  const modalDiv = document.createElement("div");
+  modalDiv.classList.add("modal-delete-product");
+  modalDiv.innerHTML = `
+    <div class="modal-content">
+      <h2>Xóa Sản Phẩm</h2>
+      <p class="modal-delete-product__desc">Bạn có chắc chắn muốn xóa sản phẩm <bold style="font-weight: bold;">${product.name}</bold> không?</p>
+      <div class="delete-action-buttons">
+        <button class="confirm-delete-button">Xóa</button>
+        <button class="cancel-delete-button">Hủy</button>
+      </div>
+    </div>
+      `;
+  modalDiv
+    .querySelector(".cancel-delete-button")
+    .addEventListener("click", () => {
+      document.querySelector(".overlay").classList.remove("show");
+      document.querySelector(".overlay-content").hidden = true;
+      document.querySelector(".overlay-content").innerHTML = "";
+    });
+
+  modalDiv
+    .querySelector(".confirm-delete-button")
+    .addEventListener("click", () => {
+      // Call delete service
+      const success = deleteProductById(productId);
+      if (success) {
+        alert("Xóa sản phẩm thành công!");
+        document.querySelector(".overlay").classList.remove("show");
+        document.querySelector(".overlay-content").hidden = true;
+        document.querySelector(".overlay-content").innerHTML = "";
+        loadProductAdmin();
+      }
+    });
+
+  return modalDiv;
 }

@@ -51,6 +51,7 @@ function filterProductsForAdmin({
   pageSize = 5,
   pageNumber = 1,
   status,
+  isDeleted = false,
 }) {
   const dbContext = getDbContextFromLocalStorage();
   let filterProducts = [];
@@ -58,11 +59,14 @@ function filterProductsForAdmin({
   filterProducts = dbContext.products
     .filter((p) => {
       let isMatchingStatus = !status || p.status === status;
+
       let isMatchingSearchKey =
         !searchKey ||
         p.name.toLowerCase().includes(searchKey.toLowerCase()) ||
         p.desc.toLowerCase().includes(searchKey.toLowerCase());
-      return isMatchingStatus && isMatchingSearchKey;
+      return (
+        isMatchingStatus && isMatchingSearchKey && p.isDeleted === isDeleted
+      );
     })
     .map((p) => {
       return {
@@ -151,6 +155,7 @@ function applyFilter(
     sortBy,
     order,
     status,
+    isDeleted = false,
   },
   isGetGroupsFilter = false
 ) {
@@ -160,7 +165,7 @@ function applyFilter(
     else {
       isMatchingCategoryId = categoryIds.has(p.categoryId);
     }
-    let isMatchingStatus = p.status === status;
+    let isMatchingStatus = p.status === status && p.isDeleted === isDeleted;
     // Lọc theo searchKey
     const isMatchingSearchKey =
       !searchKey ||
@@ -371,7 +376,7 @@ function deleteProductById(id) {
   const product = dbContext.products.find((p) => p.id === id);
   if (product === null) return false;
   // xóa sản phẩm thành công
-  product.status = "deleted";
+  product.isDeleted = true;
   saveDbContextToLocalStorage(dbContext);
   return true;
 }

@@ -34,7 +34,8 @@
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z",
       "salePercentage": 38,
-      "isSale": true
+      "isSale": true,
+      "isDeleted": false
     },
     {
       "id": "prod-002",
@@ -67,7 +68,8 @@
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z",
       "salePercentage": 17,
-      "isSale": true
+      "isSale": true,
+      "isDeleted": false
     },
     {
       "id": "prod-003",
@@ -100,7 +102,8 @@
       "categoryId": "cate-001",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
-      "updatedAt": "2025-09-14T08:22:00.000Z"
+      "updatedAt": "2025-09-14T08:22:00.000Z",
+      "isDeleted": false
     },
     {
       "id": "prod-004",
@@ -116,7 +119,8 @@
       "categoryId": "cate-002",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
-      "updatedAt": "2025-09-14T08:22:00.000Z"
+      "updatedAt": "2025-09-14T08:22:00.000Z",
+      "isDeleted": false
     },
     {
       "id": "prod-005",
@@ -140,7 +144,8 @@
       "categoryId": "cate-002",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
-      "updatedAt": "2025-09-14T08:22:00.000Z"
+      "updatedAt": "2025-09-14T08:22:00.000Z",
+      "isDeleted": false
     },
     {
       "id": "prod-006",
@@ -166,7 +171,8 @@
       "createdAt": "2025-09-14T08:22:00.000Z",
       "updatedAt": "2025-09-14T08:22:00.000Z",
       "salePercentage": 14,
-      "isSale": true
+      "isSale": true,
+      "isDeleted": false
     },
     {
       "id": "prod-007",
@@ -201,7 +207,8 @@
       "categoryId": "cate-001",
       "status": "public",
       "createdAt": "2025-09-14T08:22:00.000Z",
-      "updatedAt": "2025-09-14T08:22:00.000Z"
+      "updatedAt": "2025-09-14T08:22:00.000Z",
+      "isDeleted": false
     },
     {
       "id": "mgkzw1qf-CGkrEZ",
@@ -273,7 +280,8 @@
       "weight": 1,
       "status": "public",
       "createdAt": "2025-10-10T15:22:12.807Z",
-      "updatedAt": "2025-10-10T15:22:12.807Z"
+      "updatedAt": "2025-10-10T15:22:12.807Z",
+      "isDeleted": false
     }
   ]
 }

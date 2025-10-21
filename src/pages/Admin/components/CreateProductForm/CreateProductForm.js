@@ -154,17 +154,17 @@ function setupEventListeners() {
 }
 
 // Handlers
-function handleOpenSelector() {
+export function handleOpenSelector() {
   restoreSavedCategories();
   DOM.categorySelectorWrapper.classList.add("show");
 }
 
-function handleCancelSelection() {
+export function handleCancelSelection() {
   clearAllMenus();
   DOM.categorySelectorWrapper.classList.remove("show");
 }
 
-function handleConfirmSelection() {
+export function handleConfirmSelection() {
   saveSelectedCategories();
   updateCategoryButtonText();
   const finalCategory =
@@ -175,7 +175,7 @@ function handleConfirmSelection() {
   DOM.categorySelectorWrapper.classList.remove("show");
 }
 
-function renderCategoriesByLevel(level, parentId = null) {
+export function renderCategoriesByLevel(level, parentId = null) {
   const menu = DOM.getMenuByLevel(level);
   if (!menu) return;
   const categories = parentId

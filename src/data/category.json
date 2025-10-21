@@ -5,7 +5,7 @@
       "name": "Thời trang nam",
       "parentId": null,
       "createdAt": "2025-09-16T15:13:23.000Z",
-
+      "image": "",
       "attributeIds": ["A008", "A009", "A019", "A020"]
     },
     {
@@ -13,7 +13,7 @@
       "name": "Thời trang nữ",
       "parentId": null,
       "createdAt": "2025-09-16T15:13:23.000Z",
-
+      "image": "",
       "attributeIds": ["A008", "A009", "A019", "A020"]
     },
     {
@@ -21,7 +21,7 @@
       "name": "Phụ kiện",
       "parentId": "cate-001",
       "createdAt": "2025-09-16T15:13:23.000Z",
-
+      "image": "",
       "attributeIds": ["A005", "A017"]
     },
     {
@@ -29,7 +29,7 @@
       "name": "Đồng hồ nam",
       "parentId": "cate-001",
       "createdAt": "2025-09-16T15:13:23.000Z",
-
+      "image": "",
       "attributeIds": ["A017"]
     },
     {
@@ -37,7 +37,7 @@
       "name": "Túi xách nữ",
       "parentId": "cate-002",
       "createdAt": "2025-09-16T15:13:23.000Z",
-
+      "image": "",
       "attributeIds": ["A004", "A005"]
     },
     {
@@ -45,7 +45,7 @@
       "name": "Nước hoa nữ",
       "parentId": "cate-002",
       "createdAt": "2025-09-16T15:13:23.000Z",
-
+      "image": "",
       "attributeIds": []
     },
     {
@@ -53,6 +53,7 @@
       "name": "Áo",
       "parentId": "cate-001",
       "createdAt": "2025-09-16T15:13:23.000Z",
+      "image": "",
       "attributeIds": [
         "A004",
         "A005",
@@ -72,6 +73,7 @@
       "name": "Áo ba lỗ",
       "parentId": "cate-007",
       "createdAt": "2025-09-16T15:13:23.000Z",
+      "image": "",
       "attributeIds": []
     }
   ]
