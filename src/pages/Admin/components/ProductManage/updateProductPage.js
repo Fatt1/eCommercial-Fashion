@@ -358,7 +358,7 @@ function setUpUpdateProduct(product) {
   variationColor.variationOptions.forEach((option) => {
     colorImages.push({
       colorId: option.id,
-      image: option.image,
+      fileName: option.image,
     });
   });
 
