@@ -9,6 +9,8 @@ import { updateCartQuantityStraight } from "../../services/cartService.js";
 import { Login, setUpLoginForm } from "../Login/Login.js";
 import Register, { setupRegisterForm } from "../Register/Register.js";
 import { loadOrderHistory } from "../../pages/OrderHistory/OrderHistory.js";
+import { renderUserInfo, setupUserInfoForm } from "../UserInfo/UserInfo.js";
+
 export default function Header(selectedTab) {
   return ` <header>
         <div class="container">
@@ -199,6 +201,7 @@ export function setupDropdownAfterLogin(email) {
                           <ul style="top: 15px" class="dropdown-menu">
                               <li class="dropdown-item order-history-btn">Đơn hàng</li>
                               <li class="dropdown-item logout-btn">Đăng xuất</li>
+                              <li class="dropdown-item user-info-btn">Xem thông tin tài khoản</li>
                             </ul>
                         </div>`;
   // Thiết lập event hover cho dropdown nếu user đã đăng nhập
@@ -217,6 +220,13 @@ export function setupDropdownAfterLogin(email) {
   });
   document.querySelector(".order-history-btn").addEventListener("click", () => {
     loadOrderHistory();
+  });
+  document.querySelector(".user-info-btn").addEventListener("click", () => {
+    document.getElementById("register-login").innerHTML = renderUserInfo();
+    // 2. Gắn logic JS cho form
+    setupUserInfoForm();
+    // 3. Hiển thị modal (sử dụng lại hàm có sẵn của bạn)
+    renderOverlay();
   });
 }
 
