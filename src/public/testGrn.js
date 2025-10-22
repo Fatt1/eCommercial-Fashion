@@ -1,4 +1,3 @@
-// Import các service cần thiết
 import {
   getAllProductForAdmin,
   searchProducts,
@@ -8,24 +7,16 @@ import {
 } from "../services/productService.js";
 import { getAllGRNs, addGRN } from "../services/gRnService.js";
 
-// --- State cục bộ cho module ---
-let currentStagingItems = []; // Lưu các chi tiết SP cho phiếu nhập tạm thời
-let selectedProductId = null; // Chỉ cho phép chọn 1 sản phẩm
+let currentStagingItems = [];
+let selectedProductId = null;
 const rootElement = document.getElementById("root");
 
-// --- Hàm Format (Helper) ---
-// Tạo hàm formatNumber vì nó không có trong helper.js
 function formatNumber(num) {
   return new Intl.NumberFormat("vi-VN").format(num);
 }
-// Lấy ngày hôm nay theo format YYYY-MM-DD
 function getTodayDate() {
   return new Date().toISOString().split("T")[0];
 }
-
-// ===================================================================
-// VIEW 1: DANH SÁCH PHIẾU NHẬP (Hình 2)
-// ===================================================================
 
 export function loadGoodsReceivedNoteList() {
   rootElement.innerHTML = renderGRNListPage();
@@ -34,7 +25,6 @@ export function loadGoodsReceivedNoteList() {
 
 function renderGRNListPage() {
   const grns = getAllGRNs();
-
   return `
     <div class="grn-list-container">
       <div class="product-manage__head">
@@ -91,17 +81,11 @@ function renderGRNItem(grn) {
 
 function setUpGRNListPage() {
   document.getElementById("add-grn-btn").addEventListener("click", () => {
-    loadAddGoodsReceivedNote(); // Chuyển sang màn hình Thêm
+    loadAddGoodsReceivedNote();
   });
-  // (Thêm sự kiện cho search/filter sau)
 }
 
-// ===================================================================
-// VIEW 2: THÊM PHIẾU NHẬP (Hình 1)
-// ===================================================================
-
 export function loadAddGoodsReceivedNote() {
-  // Reset state khi vào trang
   currentStagingItems = [];
   selectedProductId = null;
   rootElement.innerHTML = renderAddGRNPage();
@@ -144,9 +128,7 @@ function renderAddGRNPage() {
                 <th>Thao tác</th>
               </tr>
             </thead>
-            <tbody id="staging-table-body">
-              <!-- Các chi tiết phiếu nhập sẽ được render vào đây -->
-            </tbody>
+            <tbody id="staging-table-body"></tbody>
           </table>
         </div>
         <div class="middle--right">
@@ -154,9 +136,7 @@ function renderAddGRNPage() {
             <input type="text" id="product-search-input" placeholder="Tìm kiếm theo tên sản phẩm" />
             <button class="blue__button" id="product-search-btn">SEARCH</button>
           </div>
-          <div class="product-list-selector" id="product-list-selector">
-            <!-- Danh sách sản phẩm sẽ được render vào đây -->
-          </div>
+          <div class="product-list-selector" id="product-list-selector"></div>
         </div>
       </div>
 
@@ -168,8 +148,6 @@ function renderAddGRNPage() {
   `;
 }
 
-// --- Logic cho Trang Thêm Phiếu Nhập ---
-
 function setUpAddGRNPage() {
   const productSearchInput = document.getElementById("product-search-input");
   const productSearchBtn = document.getElementById("product-search-btn");
@@ -178,11 +156,9 @@ function setUpAddGRNPage() {
   const saveGRNBtn = document.getElementById("save-grn-btn");
   const cancelGRNBtn = document.getElementById("cancel-grn-btn");
 
-  // Tải danh sách sản phẩm ban đầu
   const allProducts = getAllProductForAdmin({ pageSize: 1000 }).items;
   renderProductSelector(allProducts);
 
-  // Gắn sự kiện Search
   productSearchBtn.addEventListener("click", () => {
     const keyword = productSearchInput.value.trim();
     const searchResult = searchProducts({
@@ -195,13 +171,8 @@ function setUpAddGRNPage() {
     if (e.key === "Enter") productSearchBtn.click();
   });
 
-  // Gắn sự kiện nút "Lưu (Thêm SP)" (Bên trái)
   addItemBtn.addEventListener("click", handleAddItemToStage);
-
-  // Gắn sự kiện nút "Lưu Thay Đổi" (Dưới cùng)
   saveGRNBtn.addEventListener("click", handleSaveGRN);
-
-  // Gắn sự kiện nút "Quay lại"
   cancelGRNBtn.addEventListener("click", () => {
     if (
       confirm("Bạn có chắc muốn hủy phiếu nhập này? Mọi thay đổi sẽ bị mất.")
@@ -211,12 +182,10 @@ function setUpAddGRNPage() {
   });
 }
 
-// Render danh sách sản phẩm (bên phải)
 function renderProductSelector(products) {
   const container = document.getElementById("product-list-selector");
   container.innerHTML = products.map(renderProductSelectorItem).join("");
 
-  // Gắn sự kiện cho các nút "Xem thêm SKU"
   container.querySelectorAll(".view-more__sku").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const productId = e.target.dataset.productId;
@@ -232,13 +201,10 @@ function renderProductSelector(products) {
         skuContainer.innerHTML = skus.map(renderSKUSelectorItem).join("");
         skuContainer.classList.add("open");
         e.target.textContent = "Thu gọn";
-        // Gắn sự kiện cho các checkbox SKU
         attachSKUCheckboxListeners(productId);
       }
     });
   });
-
-  // Gắn sự kiện cho các checkbox Product (Master)
   attachProductCheckboxListeners();
 }
 
@@ -256,12 +222,8 @@ function renderProductSelectorItem(product) {
       </div>
       <button class="black-yellow__button view-more__sku" data-product-id="${
         product.id
-      }">
-        Xem thêm SKU
-      </button>
-      <div class="sku-selector-list" id="sku-list-${product.id}">
-        <!-- SKU items render ở đây -->
-      </div>
+      }">Xem thêm SKU</button>
+      <div class="sku-selector-list" id="sku-list-${product.id}"></div>
     </div>
   `;
 }
@@ -277,22 +239,17 @@ function renderSKUSelectorItem(sku) {
   `;
 }
 
-// Logic Checkbox (Phần phức tạp)
 function attachProductCheckboxListeners() {
   document.querySelectorAll(".product-master-check").forEach((chk) => {
     chk.addEventListener("change", (e) => {
       const productId = e.target.dataset.productId;
       const isChecked = e.target.checked;
-
-      // Logic "chỉ 1 product được chọn"
       if (isChecked) {
         if (selectedProductId && selectedProductId !== productId) {
-          // Bỏ tick master cũ
           const oldMaster = document.querySelector(
             `.product-master-check[data-product-id="${selectedProductId}"]`
           );
           if (oldMaster) oldMaster.checked = false;
-          // Bỏ tick tất cả SKU con của master cũ
           document
             .querySelectorAll(
               `.sku-check[data-product-id="${selectedProductId}"]`
@@ -303,8 +260,6 @@ function attachProductCheckboxListeners() {
       } else {
         selectedProductId = null;
       }
-
-      // Tick tất cả SKU con
       document
         .querySelectorAll(`.sku-check[data-product-id="${productId}"]`)
         .forEach((skuChk) => {
@@ -325,17 +280,12 @@ function attachSKUCheckboxListeners(productId) {
   skuCheckboxes.forEach((chk) => {
     chk.addEventListener("change", (e) => {
       const isChecked = e.target.checked;
-
-      // Logic "chỉ 1 product được chọn"
       if (isChecked) {
         if (selectedProductId && selectedProductId !== productId) {
-          // Nếu user tick vào SKU của 1 product MỚI,
-          // Bỏ tick master cũ
           const oldMaster = document.querySelector(
             `.product-master-check[data-product-id="${selectedProductId}"]`
           );
           if (oldMaster) oldMaster.checked = false;
-          // Bỏ tick tất cả SKU con của master cũ
           document
             .querySelectorAll(
               `.sku-check[data-product-id="${selectedProductId}"]`
@@ -343,10 +293,8 @@ function attachSKUCheckboxListeners(productId) {
             .forEach((oldSku) => (oldSku.checked = false));
         }
         selectedProductId = productId;
-        masterCheckbox.checked = true; // Tick master hiện tại
+        masterCheckbox.checked = true;
       }
-
-      // Kiểm tra xem có nên untick master không
       const allSkus = Array.from(skuCheckboxes);
       if (allSkus.every((sku) => !sku.checked)) {
         masterCheckbox.checked = false;
@@ -356,7 +304,6 @@ function attachSKUCheckboxListeners(productId) {
   });
 }
 
-// Logic Thêm SP vào Bảng Tạm (Bên trái)
 function handleAddItemToStage() {
   const costPrice = parseFloat(document.getElementById("grn-cost-price").value);
   const quantity = parseInt(document.getElementById("grn-quantity").value);
@@ -385,7 +332,6 @@ function handleAddItemToStage() {
 
   tickedSkuCheckboxes.forEach((chk) => {
     const skuId = chk.dataset.skuId;
-    // Tránh thêm trùng lặp
     if (!currentStagingItems.some((item) => item.skuId === skuId)) {
       const product = getProductById(selectedProductId);
       const sku = getSkusByProductId(selectedProductId).find(
@@ -393,7 +339,6 @@ function handleAddItemToStage() {
       );
       const detail = getDetailOneSku(sku, selectedProductId);
       const skuName = detail.selectedDetails.map((d) => d.name).join(", ");
-
       currentStagingItems.push({
         skuId: skuId,
         productId: selectedProductId,
@@ -406,12 +351,10 @@ function handleAddItemToStage() {
   });
 
   renderStagingTable();
-  // Reset input
   document.getElementById("grn-cost-price").value = "";
   document.getElementById("grn-quantity").value = "";
 }
 
-// Vẽ lại bảng tạm (bên trái)
 function renderStagingTable() {
   const tableBody = document.getElementById("staging-table-body");
   tableBody.innerHTML = currentStagingItems
@@ -428,17 +371,15 @@ function renderStagingTable() {
     )
     .join("");
 
-  // Gắn sự kiện Xóa cho các item
   document.querySelectorAll(".delete-stage-item").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const index = parseInt(e.target.dataset.index, 10);
-      currentStagingItems.splice(index, 1); // Xóa item khỏi mảng
-      renderStagingTable(); // Vẽ lại bảng
+      currentStagingItems.splice(index, 1);
+      renderStagingTable();
     });
   });
 }
 
-// Logic Lưu Toàn Bộ Phiếu Nhập
 function handleSaveGRN() {
   if (currentStagingItems.length === 0) {
     alert("Bạn chưa thêm sản phẩm nào vào phiếu nhập.");
@@ -458,11 +399,10 @@ function handleSaveGRN() {
     createdAt: createdAt,
     totalPrice: totalPrice,
     totalQuantity: totalQuantity,
-    items: currentStagingItems, // Mảng chi tiết
+    items: currentStagingItems,
   };
 
-  addGRN(grnData); // Lưu vào service
-
+  addGRN(grnData);
   alert("Đã tạo phiếu nhập hàng thành công!");
-  loadGoodsReceivedNoteList(); // Quay về trang danh sách
+  loadGoodsReceivedNoteList();
 }
