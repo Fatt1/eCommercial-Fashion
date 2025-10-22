@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kiểm Tra Nhập Hàng</title>
-    <!-- Nạp font -->
+    
     <link
       href="https://fonts.googleapis.com/css2?family=Geologica&family=Roboto&display=swap"
       rel="stylesheet"
@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
     <style>
-      /* --- CSS Reset & Fonts --- */
+      
       body,
       html {
         margin: 0;
@@ -30,7 +30,7 @@
         cursor: pointer;
       }
 
-      /* --- Admin Layout (Simplified for testing) --- */
+      
       .admin__main {
         width: 100%;
         background-color: rgb(224, 233, 232);
@@ -38,7 +38,7 @@
         height: 100vh;
       }
 
-      /* --- Giao diện THÊM PHIẾU NHẬP --- */
+      
       .add-grn-container {
         background-color: white;
         margin: 30px;
@@ -212,7 +212,7 @@
         flex-shrink: 0;
       }
 
-      /* --- Nút Bấm Chung --- */
+      
       .black-yellow__button {
         background-color: black;
         color: white;
@@ -235,7 +235,7 @@
         border-radius: 4px;
       }
 
-      /* --- Giao diện DANH SÁCH PHIẾU NHẬP --- */
+      
       .grn-list-container {
         padding: 30px;
       }
@@ -336,13 +336,12 @@
   </head>
   <body>
     <div id="root">
-      <!-- Nội dung sẽ được render bởi JavaScript -->
+      
     </div>
 
     <script type="module">
-      // --- Bắt đầu phần JavaScript ---
 
-      // --- Helper Functions (Giả lập hoặc copy từ helper.js) ---
+
       function generateUniqueId(randomLength = 6) {
         const characters =
           "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -381,9 +380,8 @@
         return `${year}-${month}-${day}`;
       }
 
-      // --- Simulated Product Data Management (Copy từ productService.js) ---
-      // IMPORTANT: This assumes data exists in localStorage or is loaded correctly.
-      // You might need to manually put 'dbContext' in localStorage or add initial data here.
+
+
       let dbContext = {
         products: [],
         skus: [],
@@ -410,8 +408,7 @@
         localStorage.setItem("dbContext", JSON.stringify(db));
       }
 
-      // --- Copy các hàm cần thiết từ productService.js ---
-      // Lưu ý: Chỉ copy các hàm bạn thực sự dùng trong module này
+
       function getAllProductForAdmin({ pageSize = 1000, pageNumber = 1 }) {
         const dbContext = getDbContextFromLocalStorage();
         const products = dbContext.products
@@ -466,7 +463,7 @@
         const dbContext = getDbContextFromLocalStorage();
         const product = dbContext.products.find((p) => p.id === productId);
         if (!product || !sku || !sku.tierIndexes || !product.variations) {
-          // Trả về một cấu trúc mặc định hoặc null/undefined để tránh lỗi
+
           console.error(
             `Không tìm thấy sản phẩm hoặc thông tin SKU không hợp lệ cho productId: ${productId}, skuId: ${sku?.id}`
           );
@@ -495,16 +492,15 @@
               variation.variationOptions[variationOptionIndex];
             let detailName = `Option ${variationOptionIndex + 1}`; // Tên mặc định
 
-            // Cố gắng lấy tên thật (giả sử có hàm lấy color/size)
             if (variation.name === "Màu sắc") {
-              // Giả sử có hàm getColorById(id)
-              // const color = getColorById(variationOption.id);
-              // if (color) detailName = color.name; else detailName = variationOption.id; // Fallback
+
+
+
               detailName = variationOption.id; // Dùng ID nếu chưa có hàm get
             } else if (variation.name === "Kích thước") {
-              // Giả sử có hàm getSizeById(id)
-              // const size = getSizeById(variationOption.id);
-              // if (size) detailName = size.name; else detailName = variationOption.id; // Fallback
+
+
+
               detailName = variationOption.id; // Dùng ID nếu chưa có hàm get
             } else {
               detailName = variationOption.name || variationOption.id; // Lấy tên nếu có, không thì ID
@@ -512,7 +508,6 @@
             selectedDetails.push({ name: detailName });
           });
 
-          // Đảm bảo luôn có 2 phần tử (có thể là N/A nếu product chỉ có 1 variation)
           while (selectedDetails.length < 2) {
             selectedDetails.push({ name: "N/A" });
           }
@@ -525,14 +520,13 @@
             "SKU:",
             sku
           );
-          // Trả về giá trị mặc định khi có lỗi nghiêm trọng
+
           return { selectedDetails: [{ name: "Lỗi" }, { name: "Lỗi" }] };
         }
 
         return { selectedDetails: selectedDetails.slice(0, 2) }; // Chỉ lấy 2 cái đầu
       }
 
-      // --- GoodsReceivedNote Service (Copy từ goodsReceivedNoteService.js) ---
       let grns = [];
       function loadGRNs() {
         const grnsFromStorage = localStorage.getItem("goodsReceivedNotes");
@@ -570,12 +564,10 @@
         return `GRN-${y}${m}${d}-${randomPart}`;
       }
 
-      // --- Logic Chính (Copy và chỉnh sửa từ goodsReceivedNote.js) ---
       let currentStagingItems = [];
       let selectedProductId = null;
       const rootElement = document.getElementById("root");
 
-      // VIEW 1: DANH SÁCH PHIẾU NHẬP
       function loadGoodsReceivedNoteList() {
         rootElement.innerHTML = renderGRNListPage();
         setUpGRNListPage();
@@ -583,7 +575,7 @@
       function renderGRNListPage() {
         const currentGrns = getAllGRNs();
         return `
-                <div class="admin__main"> {/* Thêm class bao ngoài */}
+                <div class="admin__main"> {}
                     <div class="grn-list-container">
                         <div class="product-manage__head">
                             <div class="product-manage__head-left"><a>Danh sách phiếu nhập</a></div>
@@ -638,7 +630,6 @@
         });
       }
 
-      // VIEW 2: THÊM PHIẾU NHẬP
       function loadAddGoodsReceivedNote() {
         currentStagingItems = [];
         selectedProductId = null;
@@ -647,7 +638,7 @@
       }
       function renderAddGRNPage() {
         return `
-                <div class="admin__main"> {/* Thêm class bao ngoài */}
+                <div class="admin__main"> {}
                     <div class="add-grn-container">
                         <div class="admin__main--top">
                             <div class="admin__main--title">Thông Tin Phiếu Nhập</div>
@@ -700,7 +691,6 @@
         const saveGRNBtn = document.getElementById("save-grn-btn");
         const cancelGRNBtn = document.getElementById("cancel-grn-btn");
 
-        // Tải sản phẩm
         const { items: allProducts } = getAllProductForAdmin({}); // Lấy items từ kết quả pagination
         renderProductSelector(allProducts);
 
@@ -767,7 +757,7 @@
           skuContainer.innerHTML = skus.map(renderSKUSelectorItem).join("");
           skuContainer.classList.add("open");
           e.target.textContent = "Thu gọn";
-          // Đồng bộ trạng thái SKU với master
+
           const isMasterChecked = masterCheckbox
             ? masterCheckbox.checked
             : false;
@@ -788,7 +778,7 @@
       }
       function attachProductCheckboxListeners() {
         document.querySelectorAll(".product-master-check").forEach((chk) => {
-          // Remove old listener before adding new one
+
           const newChk = chk.cloneNode(true);
           chk.parentNode.replaceChild(newChk, chk);
 
@@ -811,7 +801,7 @@
               selectedProductId = productId;
             } else {
               if (selectedProductId === productId) {
-                // Chỉ reset nếu master đang được chọn bị bỏ chọn
+
                 selectedProductId = null;
               }
             }
@@ -833,7 +823,7 @@
         );
 
         skuCheckboxes.forEach((chk) => {
-          // Remove old listener before adding new one
+
           const newChk = chk.cloneNode(true);
           chk.parentNode.replaceChild(newChk, chk);
 
@@ -859,7 +849,7 @@
               selectedProductId = currentSkuProductId; // Cập nhật selectedProductId
               if (masterCheckbox) masterCheckbox.checked = true; // Luôn tick master khi tick SKU con
             } else {
-              // Kiểm tra nếu tất cả SKU con bị bỏ tick thì mới bỏ tick master
+
               const allSkusForProduct = Array.from(
                 document.querySelectorAll(
                   `.sku-check[data-product-id="${currentSkuProductId}"]`
@@ -867,7 +857,7 @@
               );
               if (allSkusForProduct.every((sku) => !sku.checked)) {
                 if (masterCheckbox) masterCheckbox.checked = false;
-                // Chỉ reset selectedProductId nếu master tương ứng bị bỏ chọn
+
                 if (selectedProductId === currentSkuProductId) {
                   selectedProductId = null;
                 }
@@ -924,7 +914,7 @@
               quantity,
             });
           } else {
-            // Optional: Update existing item quantity/price? Or just alert?
+
             alert(`SKU ${skuId} đã được thêm vào phiếu.`);
           }
         });
@@ -981,9 +971,8 @@
         loadGoodsReceivedNoteList();
       }
 
-      // --- Khởi chạy ứng dụng ---
-      // (Optional: Load initial product data if needed)
-      // await loadDataToLocalStorage(); // Make sure product data is ready
+
+
       loadGoodsReceivedNoteList(); // Bắt đầu với trang danh sách
     </script>
   </body>
