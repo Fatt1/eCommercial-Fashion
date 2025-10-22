@@ -10,6 +10,7 @@ import { Login, setUpLoginForm } from "../Login/Login.js";
 import Register, { setupRegisterForm } from "../Register/Register.js";
 import { loadOrderHistory } from "../../pages/OrderHistory/OrderHistory.js";
 import { renderUserInfo, setupUserInfoForm } from "../UserInfo/UserInfo.js";
+import { getUserByEmail } from "../../services/userService.js";
 
 export default function Header(selectedTab) {
   return ` <header>
@@ -133,7 +134,7 @@ function checkLoggedUser() {
   const user = localStorage.getItem("user_info");
 
   if (user) {
-    setupDropdownAfterLogin(JSON.parse(user).email);
+    setupDropdownAfterLogin(JSON.parse(user).email, user.id);
   } else {
     handleLoginLink();
     handleRegisterLink();
@@ -192,7 +193,7 @@ export function handleLoginLink() {
     renderOverlay();
   });
 }
-export function setupDropdownAfterLogin(email) {
+export function setupDropdownAfterLogin(email, id) {
   document.querySelector(".avatar-user").style.display = "inline";
   document.querySelector(
     ".login-register-link"
@@ -201,7 +202,7 @@ export function setupDropdownAfterLogin(email) {
                           <ul style="top: 15px" class="dropdown-menu">
                               <li class="dropdown-item order-history-btn">Đơn hàng</li>
                               <li class="dropdown-item logout-btn">Đăng xuất</li>
-                              <li class="dropdown-item user-info-btn">Xem thông tin tài khoản</li>
+                              <li class="dropdown-item user-info-btn">Xem thông tin tài khoản ${id}</li>
                             </ul>
                         </div>`;
   // Thiết lập event hover cho dropdown nếu user đã đăng nhập
@@ -223,10 +224,11 @@ export function setupDropdownAfterLogin(email) {
   });
   document.querySelector(".user-info-btn").addEventListener("click", () => {
     document.getElementById("register-login").innerHTML = renderUserInfo();
-    // 2. Gắn logic JS cho form
+
     setupUserInfoForm();
-    // 3. Hiển thị modal (sử dụng lại hàm có sẵn của bạn)
+
     renderOverlay();
+    console.log(getUserByEmail(email));
   });
 }
 

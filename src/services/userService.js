@@ -11,6 +11,11 @@ function getUserById(userId) {
   const user = dbContext.users.find((u) => u.id === userId);
   return user;
 }
+export function getUserByEmail(userEmail) {
+  const dbContext = getDbContextFromLocalStorage();
+  const user = dbContext.users.find((u) => u.email === userEmail);
+  return user;
+}
 function checkAvailableAddressUser() {
   const loggedUser = JSON.parse(localStorage.getItem("user_info"));
   if (loggedUser.addresses.length === 0) return false;
