@@ -10,7 +10,8 @@ export default class Product {
     attributes,
     variations,
     categoryId,
-    status
+    status,
+    isDeleted = false
   ) {
     this.id = id;
     this.name = name;
@@ -25,6 +26,7 @@ export default class Product {
       originalPrice: 200000,
       importPrice: 0,
     };
+    this.isDeleted = isDeleted;
     this.brandId = brandId;
     this.weight = weight;
     this.status = status;

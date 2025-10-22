@@ -19,7 +19,12 @@
 .order-status-btns button {
   padding: 5px;
 }
-
+.order-status-btns button.active {
+  background-color: #fbe70c;
+  color: black 1px;
+  font-weight: bold;
+  border: 1px solid grey;
+}
 .order-date {
   font-weight: bold 2px;
 }
@@ -63,7 +68,7 @@
   text-align: center;
 }
 #order-list-table th,
-td {
+#order-list-table td {
   border: none;
 }
 
@@ -73,7 +78,7 @@ td {
 }
 
 #order-list-table tr,
-td {
+#order-list-table td {
   padding: 15px;
   border-bottom: 1px solid black;
   vertical-align: middle;
@@ -100,7 +105,9 @@ td {
   padding: 20px;
   gap: 10px;
 }
-
+.page-item {
+  cursor: pointer;
+}
 .page-item.active {
   color: grey;
   font-weight: bold;

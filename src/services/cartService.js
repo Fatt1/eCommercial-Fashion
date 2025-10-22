@@ -20,12 +20,7 @@ export function getTotalQuantity() {
   return cartQuantity;
 }
 
-export function addToCart(skuId, productId) {
-  let quantity = 1;
-  if (document.querySelector(`.product-quantity__input`) !== null) {
-    quantity = Number(document.querySelector(`.product-quantity__input`).value);
-  }
-  const tick = false;
+export function addToCart(skuId, productId, quantity, tick = false) {
   // const quantity = Number(
   //   document.querySelector(`.js-quantity-selector-${skuId}`).value
   // );
@@ -33,8 +28,10 @@ export function addToCart(skuId, productId) {
   cart.forEach((cartItem) => {
     if (cartItem.skuId === skuId) matchingItem = cartItem;
   });
-  if (matchingItem) matchingItem.quantity += quantity;
-  else
+  if (matchingItem) {
+    matchingItem.quantity += quantity;
+    if (tick === true) matchingItem.tick = true;
+  } else
     cart.push({
       skuId,
       productId,
@@ -43,7 +40,20 @@ export function addToCart(skuId, productId) {
     });
   saveCart();
 }
-
+export function unTickAllCartItems() {
+  cart.forEach((cartItem) => {
+    cartItem.tick = false;
+  });
+}
+export function tickCartItemSkuBySkuId(id) {
+  cart.forEach((cartItem) => {
+    if (cartItem.skuId === id) {
+      cartItem.tick = true;
+      console.log(cartItem);
+      console.log(cart);
+    }
+  });
+}
 export function removeFromCart(skuId) {
   cart = cart.filter((item) => item.skuId !== skuId);
   saveCart();
@@ -59,7 +69,7 @@ export function updateCartQuantity(classIdToChange) {
 export function updateCartQuantityStraight() {
   let cartQuantity = 0;
   cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
+    cartQuantity += 1;
   });
   document.querySelector(`.cart-quantity`).innerHTML = cartQuantity;
 }

@@ -25,9 +25,28 @@ export default class ImportInvoice {
           color: "Đen",
           importPrice: 200000,
           quantity: 10
-        }
+        },
+        status: "PENDING"
       ]
-    }
+    },
+
+    {
+      id: 'PN001',
+      importDate: '2023-10-01',
+      totalPrice: 1000000,
+      quantity: 50,
+      items: [
+        {
+          skuId: "Sku001",
+          productName: "Áo thun nam",
+          size: "M",
+          color: "Đen",
+          importPrice: 200000,
+          quantity: 10
+        },
+        status: "COMPLETED"
+      ]
+    },
   ]
 }
 */

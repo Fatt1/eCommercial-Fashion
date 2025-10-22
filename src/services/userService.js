@@ -53,6 +53,12 @@ function getLoggedUser() {
   const user = JSON.parse(localStorage.getItem("user_info"));
   return user;
 }
+
+function restPasswordUser(userId, newPassword) {}
+function blockUser(userId) {
+  // lấy user status ở file Constant.js
+}
+function unBlockUser(userId) {}
 export {
   getUserById,
   checkAvailableAddressUser,

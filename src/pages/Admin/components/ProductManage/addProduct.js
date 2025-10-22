@@ -21,6 +21,7 @@ import { generateUniqueId } from "../../../../helper/helper.js";
 import Product from "../../../../models/Product.js";
 import { getBrandByName } from "../../../../services/brandService.js";
 import { addProduct } from "../../../../services/productService.js";
+import { loadProductAdmin } from "./productManage.js";
 function renderAddProductHtml() {
   document.getElementById("root").innerHTML = `
     <div class="admin">
@@ -56,7 +57,12 @@ function setUpAddProduct() {
     .querySelector(".create-product-action-btn__hide")
     .addEventListener("click", () => {
       // Test truoc boi vi chua co quan li gia tien va kho nen chua mua hang dc
-      handleClickCreateProduct("public");
+      handleClickCreateProduct("draft");
+    });
+  document
+    .querySelector(".create-product-action-btn__cancel")
+    .addEventListener("click", () => {
+      loadProductAdmin();
     });
 }
 export function loadAddOrUpdateProduct() {
@@ -70,7 +76,10 @@ function handleClickCreateProduct(productStatus) {
   const productDescription = document.querySelector(".description").value;
   const colorIds = variationState.selectedOptions.colors;
   const sizeIds = variationState.selectedOptions.sizes;
-  const isValid = validationProduct({ productName, productDescription });
+  const isValid = validationProduct(
+    { productName, productDescription },
+    errors
+  );
   if (!isValid) {
     alert(errors.map((err) => err.message).join("\n"));
     errors.length = 0;
@@ -113,23 +122,13 @@ function handleClickCreateProduct(productStatus) {
     .map((key) => {
       if (key === "brand") return;
       let attribute = { attributeId: "", attributeValues: [] };
-      if (
-        selectedAttributeValues[key] instanceof Array &&
-        selectedAttributeValues[key].length > 0
-      ) {
-        attribute["attributeId"] = key;
-        attribute["attributeValues"] = selectedAttributeValues[key];
-      } else if (selectedAttributeValues[key] instanceof Array === false) {
-        if (selectedAttributeValues[key]) {
-          attribute["attributeId"] = key;
-          attribute.attributeValues.push(selectedAttributeValues[key]);
-        }
-      }
+      attribute["attributeId"] = key;
+      attribute["attributeValues"] = selectedAttributeValues[key];
       return attribute;
     })
-    .filter((attr) => attr !== undefined && attr.attributeId !== "");
+    .filter((attr) => attr !== undefined && attr.attributeValues.length > 0);
   const productId = generateUniqueId();
-  const brandId = getBrandByName(selectedAttributeValues["brand"]).id;
+  const brandId = getBrandByName(selectedAttributeValues["brand"][0]).id;
 
   const newProduct = new Product(
     productId,
@@ -159,8 +158,9 @@ function handleClickCreateProduct(productStatus) {
   });
   addProduct(newProduct);
   alert("Thêm sản phẩm thành công");
+  loadProductAdmin();
 }
-function validationProduct({ productName, productDescription }) {
+export function validationProduct({ productName, productDescription }, errors) {
   let isValid = true;
   if (!productName || productName.trim() === "") {
     isValid = false;
@@ -197,6 +197,7 @@ function validationProduct({ productName, productDescription }) {
     isValid = false;
     errors.push({ field: "sizes", message: "Vui lòng chọn kích thước" });
   }
+  console.log(variationState.selectedOptions.colors.length, colorImages.length);
   if (variationState.selectedOptions.colors.length !== colorImages.length) {
     isValid = false;
     errors.push({

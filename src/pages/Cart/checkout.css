@@ -167,6 +167,11 @@
   align-items: center;
   justify-content: center;
 }
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .dropdown-button {
   background-color: transparent;

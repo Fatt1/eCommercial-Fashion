@@ -2,15 +2,14 @@
   "users": [
     {
       "id": "1",
-      "email": "123123@gmail.com",
-      "password": "123123",
+      "email": "admin@gmail.com",
+      "password": "admin123",
       "addresses": [],
       "role": "admin",
       "status": "active"
     },
     {
       "id": "2",
-
       "email": "viethuy@gmail.com",
       "password": "test123",
       "addresses": [

@@ -2,14 +2,27 @@ import { generateUniqueId } from "../helper/helper.js";
 import {
   getDbContextFromLocalStorage,
   loadDataToLocalStorage,
+  saveDbContextToLocalStorage,
 } from "../helper/initialData.js";
+import Brand from "../models/Brand.js";
+import Category from "../models/Category.js";
 await loadDataToLocalStorage();
 function addCategory(category) {
   const dbContext = getDbContextFromLocalStorage();
   const id = generateUniqueId();
-  category.id = id;
-  dbContext.categories.push(category);
-  return category;
+  const newCategory = new Category(
+    id,
+    category.name,
+    category.image,
+    category.parentId,
+    category.attributeIds
+  );
+  // Fix cứng brand cho category, sau này nếu có quản lí brand thì sửa lại
+  const brand = new Brand(generateUniqueId(), "No Brand", newCategory.id);
+  dbContext.brands.push(brand);
+  dbContext.categories.push(newCategory);
+  saveDbContextToLocalStorage(dbContext);
+  return newCategory;
 }
 function getAllCategory() {
   const dbContext = getDbContextFromLocalStorage();
@@ -122,7 +135,10 @@ function getSubCategoryIds(categoryId) {
   findChildren(categoryId);
   return subCategories;
 }
-
+function isHasChildren(categoryId) {
+  const dbContext = getDbContextFromLocalStorage();
+  return dbContext.categories.some((cate) => cate.parentId === categoryId);
+}
 export {
   addCategory,
   getAllCategory,
@@ -133,4 +149,5 @@ export {
   getSubCategoryIds,
   getAllCategoriesByLevel,
   getAllParentCategory,
+  isHasChildren,
 };
