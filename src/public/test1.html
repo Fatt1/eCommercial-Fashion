@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../public/test1.css" />
+  </head>
+  <body>
+    <div class="admin">
+      <div class="admin__nav">
+        <div class="admin__info">
+          <div><img src="../assets/defaut-avatar.png" /></div>
+          <div>Admin</div>
+          <div>admin@gmail.com</div>
+        </div>
+
+        <ul class="admin__category">
+          <button>
+            <li class="admin__category--1">
+              <img class="icon" src="../assets/admin-icon1.png" />Trang Chủ
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--2">
+              <img class="icon" src="../assets/admin-icon2.png" />Sản Phẩm
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--3">
+              <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Nhãn
+              Hàng
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--4">
+              <img class="icon" src="../assets/admin-icon4.png" />Quản Lý Thuộc
+              Tính
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--5">
+              <img class="icon" src="../assets/admin-icon5.png" />Quản Lý Người
+              Dùng
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--6">
+              <img class="icon" src="../assets/admin-icon6.png" />Quản Lý Thống
+              Kê
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--7">
+              <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Đơn
+              Hàng
+            </li>
+          </button>
+        </ul>
+      </div>
+      <div class="admin__main">
+        <div class="admin__main--container">
+          <div class="admin__main--top">
+            <div class="blank"></div>
+            <div class="admin__main--title">Thông Tin Phiếu Nhập</div>
+            <div class="date-flexbox">
+              <div for="bdate">Ngày nhập</div>
+              <input type="date" id="bdate" />
+            </div>
+          </div>
+          <div class="admin__main--middle">
+            <div class="middle--left">
+              <div class="inputs-flexbox">
+                <div class="inputs">
+                  <div for="price">Giá nhập</div>
+                  <input type="text" id="price" />
+                </div>
+                <div class="inputs">
+                  <div for="quantity">Số lượng</div>
+                  <input type="text" id="quantity" />
+                </div>
+              </div>
+              <button class="black-yellow__button save-button">Lưu</button>
+              <table class="sku__container">
+                <tr>
+                  <th>Mã SKU</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Giá nhập</th>
+                  <th>Số lượng</th>
+                  <th>Thao tác</th>
+                </tr>
+                <tr>
+                  <td>123123123</td>
+                  <td>123123123</td>
+                  <td>250.000đ</td>
+                  <td>120</td>
+                  <td><button>Xóa</button></td>
+                </tr>
+              </table>
+            </div>
+            <div class="middle--right">
+              <div class="search-bar">
+                <input placeholder=" Tìm kiếm theo tên sản phẩm" />
+                <button class="blue__button search__button">SEARCH</button>
+              </div>
+              <div class="product--columns">
+                <div class="import-products">
+                  <input type="checkbox" />
+                  <img src="../assets/sample-image.jpg" />
+                  <div>ÁO SƠ MI</div>
+                </div>
+                <button class="black-yellow__button view-more__sku">
+                  Xem thêm SKU
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

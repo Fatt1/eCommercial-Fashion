@@ -16,14 +16,14 @@ export function Login() {
         <div class="login-response"></div>
           <div class="form-group">
           <label for="email">Email*</label>
-          <input name="email" type="text" id="email" placeholder="aovgamer@gmail.com" required>
+          <input name="email" type="text" id="email" placeholder="admin@gmail.com" required>
           <div class="error-message error-email"></div>
               </div>
           
           <div class="form-group">
           <label for="password">Mật Khẩu*</label>         
          <div class="input-password-container">
-            <input name="password" type="password" id="password" placeholder="Nhập mật khẩu" required>
+            <input name="password" type="password" id="password" placeholder="admin123" required>
             <span class="toggle-eye-btn">
                 <i class="fa-solid fa-eye-slash"></i>
             </span>

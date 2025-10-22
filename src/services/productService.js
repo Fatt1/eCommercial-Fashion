@@ -380,6 +380,38 @@ function deleteProductById(id) {
   saveDbContextToLocalStorage(dbContext);
   return true;
 }
+function updateStockProductById(id, quantity) {
+  const dbContext = getDbContextFromLocalStorage();
+  const product = dbContext.products.find((p) => p.id === id);
+  if (product === null) return false;
+  // xóa sản phẩm thành công
+  product.stock;
+  saveDbContextToLocalStorage(dbContext);
+  return true;
+}
+export function updateStockSku(sku, quantity) {
+  if (quantity < 0) {
+    if ((sku.stock += quantity < 0)) return false;
+  }
+  sku.stock += quantity;
+  return true;
+}
+export function minusStockSku(sku, quantity) {
+  const dbContext = getDbContextFromLocalStorage();
+  const skuLocal = dbContext.skus.find((sku1) => sku1.id === sku.id);
+  console.log(skuLocal);
+  if (skuLocal.stock - quantity < 0) return false;
+  skuLocal.stock -= quantity;
+  saveDbContextToLocalStorage(dbContext);
+  return true;
+}
+export function checkMinusStockSku(sku, quantity) {
+  const dbContext = getDbContextFromLocalStorage();
+  console.log(sku);
+  const skuLocal = dbContext.skus.find((sku1) => sku1.id === sku.id);
+  if (skuLocal.stock - quantity < 0) return false;
+  return true;
+}
 
 function updateProductById(updateProduct) {
   const dbContext = getDbContextFromLocalStorage();
