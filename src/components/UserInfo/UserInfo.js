@@ -1,17 +1,9 @@
-// File: UserInfo.js
-
-/**
- * Trả về chuỗi HTML và CSS cho modal thông tin người dùng.
- */
 export function renderUserInfo() {
   return `
     <style>
-      /* Các style này được gói gọn trong component
-        để đảm bảo nó chỉ ảnh hưởng đến modal này.
-      */
       .profile-container {
-        position: relative; /* CHỈNH SỬA: Thêm để định vị nút X */
-        z-index: 101;     /* CHỈNH SỬA: Đảm bảo modal nổi trên overlay */
+        position: relative;
+        z-index: 101;
         background-color: #ffffff;
         width: 800px; 
         padding: 30px 40px;
@@ -22,15 +14,14 @@ export function renderUserInfo() {
         box-sizing: border-box;
       }
       
-      /* THÊM MỚI: Style cho nút X */
       .profile-close-btn {
         position: absolute;
         top: 10px;
         right: 15px;
         background: none;
         border: none;
-        font-size: 3rem; /* Làm cho chữ X to, rõ */
-        color: #ff0000;  /* Màu đỏ */
+        font-size: 3rem;
+        color: #ff0000;
         cursor: pointer;
         line-height: 1;
         font-weight: 300;
@@ -39,7 +30,6 @@ export function renderUserInfo() {
       .profile-close-btn:hover {
         opacity: 1;
       }
-      /* Kết thúc THÊM MỚI */
 
       .profile-header {
         margin-bottom: 20px;
@@ -206,9 +196,9 @@ export function renderUserInfo() {
           <div class="form-row">
             <label class="form-label">Ngày sinh</label>
             <div class="form-control dob-options">
-              <select id="day"></select>
-              <select id="month"></select>
-              <select id="year"></select>
+              <select id="profile-day"></select>
+              <select id="profile-month"></select>
+              <select id="profile-year"></select>
             </div>
           </div>
 
@@ -224,49 +214,43 @@ export function renderUserInfo() {
   `;
 }
 
-/**
- * Gắn các trình xử lý sự kiện và logic cho form thông tin.
- * Phải được gọi SAU KHI renderUserInfo() đã được chèn vào DOM.
- */
 export function setupUserInfoForm() {
-  const daySelect = document.getElementById("day");
-  const monthSelect = document.getElementById("month");
-  const yearSelect = document.getElementById("year");
+  const daySelect = document.getElementById("profile-day");
+  const monthSelect = document.getElementById("profile-month");
+  const yearSelect = document.getElementById("profile-year");
   const profileForm = document.getElementById("profile-form");
-
-  // THÊM MỚI: Tìm nút X
   const closeButton = document.getElementById("profile-close-btn");
+  const registerLoginContainer = document.getElementById("register-login");
 
-  // THÊM MỚI: Hàm đóng modal
+  if (registerLoginContainer) {
+    registerLoginContainer.style.zIndex = "1001";
+  }
+
   const closeModal = () => {
     const overlay = document.querySelector(".overlay");
     if (overlay) {
       overlay.classList.remove("show");
     }
     document.body.style.overflow = "auto";
-    const registerLoginContainer = document.getElementById("register-login");
     if (registerLoginContainer) {
       registerLoginContainer.innerHTML = "";
+      registerLoginContainer.style.zIndex = "auto";
     }
   };
 
-  // THÊM MỚI: Gắn sự kiện click cho nút X
   if (closeButton) {
     closeButton.addEventListener("click", closeModal);
   }
 
-  // Kiểm tra nếu các phần tử không tồn tại (để phòng lỗi)
   if (!daySelect || !monthSelect || !yearSelect || !profileForm) {
     console.error("Không tìm thấy các thành phần DOM của form hồ sơ.");
     return;
   }
 
-  // Xóa các option cũ để tránh bị lặp lại khi mở modal nhiều lần
   daySelect.innerHTML = '<option value="">Ngày</option>';
   monthSelect.innerHTML = '<option value="">Tháng</option>';
   yearSelect.innerHTML = '<option value="">Năm</option>';
 
-  // --- Logic để tạo ngày/tháng/năm ---
   for (let i = 1; i <= 31; i++) {
     const option = document.createElement("option");
     option.value = i;
@@ -288,9 +272,7 @@ export function setupUserInfoForm() {
     option.textContent = i;
     yearSelect.appendChild(option);
   }
-  // --- Hết logic ngày/tháng/năm ---
 
-  // Gắn sự kiện submit cho form
   profileForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -315,7 +297,6 @@ export function setupUserInfoForm() {
     console.log("Thông tin đã lưu:", updatedProfile);
     alert("Đã lưu thông tin thành công!");
 
-    // THÊM MỚI: Tự động đóng modal sau khi lưu thành công
     closeModal();
   });
 }
