@@ -2,8 +2,8 @@ import { loadAdminHome } from "../AdminHome/AdminHome.js";
 import { loadCategoryManagePage } from "../CategoryManage/categoryManage.js";
 import { loadOrderPage } from "../OrderManage/orderManage.js";
 import { loadPriceManagePage } from "../PriceMange/priceMange.js";
-import { loadProductAdmin } from "../ProductManage/productManage.js";
-import { loadUserManagePage } from "../UserManage/userManage.js";
+import { loadProductAdmin } from "../ProductManage/productManage.js"; 
+import { loadUserManagePage } from "../UserManage/userManage.js"; 
 
 export function AdminNav() {
   return `

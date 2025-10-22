@@ -17,6 +17,14 @@ function login(email, password) {
       message: "Email hoặc mật khẩu không đúng",
       data: null,
     };
+  // Kiểm tra xem tài khoản có bị khóa không
+  if (user.status === "blocked") {
+    return {
+      successful: false,
+      message: "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên.",
+      data: null,
+    };
+  }
   return { successful: true, message: "Đăng nhập thành công!", data: user };
 }
 function register(email, password) {
