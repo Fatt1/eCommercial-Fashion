@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiểm Tra Nhập Hàng</title>
+    <!-- Nạp font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* --- CSS Reset & Fonts --- */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Inter", sans-serif;
+        background-color: rgb(224, 233, 232);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      button {
+        cursor: pointer;
+      }
+
+      /* --- Admin Layout (Simplified for testing) --- */
+      .admin__main {
+        width: 100%;
+        background-color: rgb(224, 233, 232);
+        overflow-y: auto;
+        height: 100vh;
+      }
+
+      /* --- Giao diện THÊM PHIẾU NHẬP --- */
+      .add-grn-container {
+        background-color: white;
+        margin: 30px;
+        height: calc(100vh - 60px);
+        display: flex;
+        flex-direction: column;
+      }
+      .admin__main--top {
+        display: flex;
+        align-items: center;
+        padding: 20px 30px;
+        border-bottom: 1px solid #eee;
+        flex-shrink: 0;
+      }
+      .admin__main--title {
+        font-size: 22px;
+        font-weight: 600;
+        text-align: center;
+        flex-grow: 1;
+      }
+      .date-flexbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+      }
+      #grn-date {
+        font-weight: normal;
+        color: #333;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        padding: 5px 8px;
+        border-radius: 4px;
+      }
+      .admin__main--middle {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        flex-grow: 1;
+        overflow: hidden;
+      }
+      .middle--left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 55%;
+        flex-shrink: 0;
+      }
+      .inputs-flexbox {
+        display: flex;
+        gap: 20px;
+      }
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+      }
+      .inputs label {
+        font-weight: bold;
+        font-size: 15px;
+      }
+      .inputs input {
+        background-color: #f5f5f5;
+        width: 100%;
+        border: 1px solid gray;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+      }
+      .save-button-container {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .sku__container {
+        border: 1px solid black;
+        margin: 0;
+        width: 100%;
+        border-collapse: collapse;
+        flex-grow: 1;
+        display: block;
+        overflow-y: auto;
+      }
+      .sku__container th,
+      .sku__container td {
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      .sku__container th {
+        background-color: #f9f9f9;
+        position: sticky;
+        top: 0;
+      }
+      .sku__container td button {
+        background: none;
+        border: none;
+        color: red;
+        font-weight: bold;
+      }
+      .middle--right {
+        width: 45%;
+        border: 1px solid black;
+        margin-right: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .search-bar {
+        display: flex;
+        gap: 5px;
+        border-bottom: 1px solid black;
+        padding: 15px;
+        flex-shrink: 0;
+      }
+      .search-bar input {
+        width: 100%;
+        background-color: #f5f5f5;
+        border: 1px solid grey;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .product-list-selector {
+        overflow-y: auto;
+        flex-grow: 1;
+      }
+      .product--columns {
+        border-bottom: 1px solid black;
+        padding: 15px;
+      }
+      .import-products {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px 0;
+      }
+      .import-products img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border: 1px solid #eee;
+      }
+      .import-products-name {
+        font-weight: bold;
+        flex-grow: 1;
+      }
+      .view-more__sku {
+        display: block;
+        margin: 10px 0 0 auto;
+      }
+      .sku-selector-list {
+        padding-left: 40px;
+        background-color: #f9f9f9;
+      }
+      .sku-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+      }
+      .sku-item-name {
+        font-size: 14px;
+        color: #333;
+      }
+      .admin__main--bottom {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        padding: 20px 30px;
+        border-top: 1px solid #eee;
+        flex-shrink: 0;
+      }
+
+      /* --- Nút Bấm Chung --- */
+      .black-yellow__button {
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        border-radius: 4px;
+        font-size: 15px;
+        transition: opacity 0.2s;
+      }
+      .black-yellow__button:hover {
+        opacity: 0.8;
+      }
+      .blue__button {
+        color: white;
+        background-color: rgba(86, 93, 189, 1);
+        border: none;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 4px;
+      }
+
+      /* --- Giao diện DANH SÁCH PHIẾU NHẬP --- */
+      .grn-list-container {
+        padding: 30px;
+      }
+      .product-manage__head {
+        background-color: white;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-radius: 4px;
+      }
+      .product-manage__head-left a {
+        color: orange;
+        font-weight: bold;
+        font-size: 20px;
+        text-decoration: none;
+      }
+      .product-manage__head-right button {
+        padding: 10px 20px;
+      }
+      .product-manage-main {
+        background-color: white;
+        padding: 20px;
+        border-radius: 4px;
+      }
+      .product-manage-main-search {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .product-manage-main-search input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 300px;
+      }
+      .product-manage-main-search__button {
+        padding: 10px 20px;
+        font-weight: bold;
+        border: 1px solid gray;
+        border-radius: 4px;
+      }
+      .cart.product-result {
+        font-family: "Geologica", sans-serif;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .cart-info {
+        display: flex;
+        font-weight: bold;
+        background-color: #f9f9f9;
+        border-bottom: 1px solid #ddd;
+      }
+      .cart-item {
+        display: flex;
+        border-bottom: 1px solid #eee;
+      }
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+      .cart-info div,
+      .cart-item div {
+        padding: 15px 10px;
+        text-align: left;
+        box-sizing: border-box;
+      }
+      .grn-status {
+        flex-basis: 15%;
+      }
+      .grn-id {
+        flex-basis: 20%;
+        font-family: monospace;
+      }
+      .grn-date {
+        flex-basis: 15%;
+      }
+      .grn-total-price {
+        flex-basis: 20%;
+        text-align: right !important;
+      }
+      .grn-total-quantity {
+        flex-basis: 15%;
+        text-align: right !important;
+      }
+      .grn-action {
+        flex-basis: 15%;
+        text-align: center !important;
+      }
+      .grn-action button {
+        background: none;
+        border: none;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Nội dung sẽ được render bởi JavaScript -->
+    </div>
+
+    <script type="module">
+      // --- Bắt đầu phần JavaScript ---
+
+      // --- Helper Functions (Giả lập hoặc copy từ helper.js) ---
+      function generateUniqueId(randomLength = 6) {
+        const characters =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        const timestamp = Date.now().toString(36);
+        let randomString = "";
+        for (let i = 0; i < randomLength; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          randomString += characters[randomIndex];
+        }
+        return `${timestamp}-${randomString}`;
+      }
+
+      function createPagination(data, pageSize, pageNumber) {
+        const count = data.length;
+        const totalPages = Math.ceil(count / pageSize) || 1; // Ensure totalPages is at least 1
+        const startIndex = (pageNumber - 1) * pageSize;
+        const items = data.slice(startIndex, startIndex + pageSize);
+        return {
+          totalPages,
+          items,
+          pageNumber,
+          totalItems: count,
+        };
+      }
+
+      function formatNumber(num) {
+        if (isNaN(num)) return "0";
+        return new Intl.NumberFormat("vi-VN").format(num);
+      }
+
+      function getTodayDate() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const day = String(today.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      }
+
+      // --- Simulated Product Data Management (Copy từ productService.js) ---
+      // IMPORTANT: This assumes data exists in localStorage or is loaded correctly.
+      // You might need to manually put 'dbContext' in localStorage or add initial data here.
+      let dbContext = {
+        products: [],
+        skus: [],
+        categories: [],
+        colors: [],
+        sizes: [],
+        attributes: [],
+      }; // Default empty
+
+      function getDbContextFromLocalStorage() {
+        const db = localStorage.getItem("dbContext");
+        return db
+          ? JSON.parse(db)
+          : {
+              products: [],
+              skus: [],
+              categories: [],
+              colors: [],
+              sizes: [],
+              attributes: [],
+            };
+      }
+      function saveDbContextToLocalStorage(db) {
+        localStorage.setItem("dbContext", JSON.stringify(db));
+      }
+
+      // --- Copy các hàm cần thiết từ productService.js ---
+      // Lưu ý: Chỉ copy các hàm bạn thực sự dùng trong module này
+      function getAllProductForAdmin({ pageSize = 1000, pageNumber = 1 }) {
+        const dbContext = getDbContextFromLocalStorage();
+        const products = dbContext.products
+          .filter((p) => !p.isDeleted) // Lọc sản phẩm chưa xóa
+          .map((p) => ({
+            id: p.id,
+            name: p.name,
+            categoryId: p.categoryId,
+            thumbnail: p.thumbnail,
+            status: p.status,
+            createdAt: p.createdAt,
+            priceInfo: p.priceInfo,
+            desc: p.desc,
+          }));
+        products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        return createPagination(products, pageSize, pageNumber);
+      }
+
+      function searchProducts({
+        searchKey,
+        pageSize = 1000,
+        pageNumber = 1,
+        status = "public",
+      }) {
+        const dbContext = getDbContextFromLocalStorage();
+        let filtered = dbContext.products.filter(
+          (p) => !p.isDeleted && p.status === status
+        );
+        if (searchKey) {
+          const lowerSearchKey = searchKey.toLowerCase();
+          filtered = filtered.filter(
+            (p) =>
+              p.name.toLowerCase().includes(lowerSearchKey) ||
+              p.desc.toLowerCase().includes(lowerSearchKey)
+          );
+        }
+        filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        return createPagination(filtered, pageSize, pageNumber);
+      }
+
+      function getSkusByProductId(productId) {
+        const dbContext = getDbContextFromLocalStorage();
+        return dbContext.skus.filter((sku) => sku.productId === productId);
+      }
+
+      function getProductById(id) {
+        const dbContext = getDbContextFromLocalStorage();
+        return dbContext.products.find((p) => p.id === id);
+      }
+
+      function getDetailOneSku(sku, productId) {
+        const dbContext = getDbContextFromLocalStorage();
+        const product = dbContext.products.find((p) => p.id === productId);
+        if (!product || !sku || !sku.tierIndexes || !product.variations) {
+          // Trả về một cấu trúc mặc định hoặc null/undefined để tránh lỗi
+          console.error(
+            `Không tìm thấy sản phẩm hoặc thông tin SKU không hợp lệ cho productId: ${productId}, skuId: ${sku?.id}`
+          );
+          return { selectedDetails: [{ name: "N/A" }, { name: "N/A" }] }; // Ví dụ: Trả về mặc định
+        }
+
+        const tierIndexes = sku.tierIndexes;
+        const selectedDetails = [];
+
+        try {
+          product.variations.forEach((variation, variationIndex) => {
+            const variationOptionIndex = tierIndexes[variationIndex];
+            if (
+              variationOptionIndex === undefined ||
+              !variation.variationOptions ||
+              variationOptionIndex >= variation.variationOptions.length
+            ) {
+              console.error(
+                `Index không hợp lệ hoặc thiếu variationOptions cho variation ${variationIndex} của sản phẩm ${productId}`
+              );
+              selectedDetails.push({ name: "Lỗi Dữ Liệu" }); // Thêm giá trị lỗi
+              return; // Bỏ qua variation này
+            }
+
+            const variationOption =
+              variation.variationOptions[variationOptionIndex];
+            let detailName = `Option ${variationOptionIndex + 1}`; // Tên mặc định
+
+            // Cố gắng lấy tên thật (giả sử có hàm lấy color/size)
+            if (variation.name === "Màu sắc") {
+              // Giả sử có hàm getColorById(id)
+              // const color = getColorById(variationOption.id);
+              // if (color) detailName = color.name; else detailName = variationOption.id; // Fallback
+              detailName = variationOption.id; // Dùng ID nếu chưa có hàm get
+            } else if (variation.name === "Kích thước") {
+              // Giả sử có hàm getSizeById(id)
+              // const size = getSizeById(variationOption.id);
+              // if (size) detailName = size.name; else detailName = variationOption.id; // Fallback
+              detailName = variationOption.id; // Dùng ID nếu chưa có hàm get
+            } else {
+              detailName = variationOption.name || variationOption.id; // Lấy tên nếu có, không thì ID
+            }
+            selectedDetails.push({ name: detailName });
+          });
+
+          // Đảm bảo luôn có 2 phần tử (có thể là N/A nếu product chỉ có 1 variation)
+          while (selectedDetails.length < 2) {
+            selectedDetails.push({ name: "N/A" });
+          }
+        } catch (error) {
+          console.error(
+            "Lỗi khi xử lý getDetailOneSku:",
+            error,
+            "Product:",
+            product,
+            "SKU:",
+            sku
+          );
+          // Trả về giá trị mặc định khi có lỗi nghiêm trọng
+          return { selectedDetails: [{ name: "Lỗi" }, { name: "Lỗi" }] };
+        }
+
+        return { selectedDetails: selectedDetails.slice(0, 2) }; // Chỉ lấy 2 cái đầu
+      }
+
+      // --- GoodsReceivedNote Service (Copy từ goodsReceivedNoteService.js) ---
+      let grns = [];
+      function loadGRNs() {
+        const grnsFromStorage = localStorage.getItem("goodsReceivedNotes");
+        grns = grnsFromStorage ? JSON.parse(grnsFromStorage) : [];
+      }
+      function saveGRNs() {
+        localStorage.setItem("goodsReceivedNotes", JSON.stringify(grns));
+      }
+      function getAllGRNs() {
+        loadGRNs();
+        return grns;
+      }
+      function addGRN(grnData) {
+        loadGRNs();
+        const newGRN = {
+          id: generateGRNId(),
+          createdAt: grnData.createdAt,
+          totalPrice: grnData.totalPrice,
+          totalQuantity: grnData.totalQuantity,
+          items: grnData.items,
+          status: "Đã hoàn thành",
+        };
+        grns.push(newGRN);
+        saveGRNs();
+      }
+      function generateGRNId() {
+        const date = new Date();
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        const randomPart = Math.random()
+          .toString(36)
+          .substring(2, 6)
+          .toUpperCase();
+        return `GRN-${y}${m}${d}-${randomPart}`;
+      }
+
+      // --- Logic Chính (Copy và chỉnh sửa từ goodsReceivedNote.js) ---
+      let currentStagingItems = [];
+      let selectedProductId = null;
+      const rootElement = document.getElementById("root");
+
+      // VIEW 1: DANH SÁCH PHIẾU NHẬP
+      function loadGoodsReceivedNoteList() {
+        rootElement.innerHTML = renderGRNListPage();
+        setUpGRNListPage();
+      }
+      function renderGRNListPage() {
+        const currentGrns = getAllGRNs();
+        return `
+                <div class="admin__main"> {/* Thêm class bao ngoài */}
+                    <div class="grn-list-container">
+                        <div class="product-manage__head">
+                            <div class="product-manage__head-left"><a>Danh sách phiếu nhập</a></div>
+                            <div class="product-manage__head-right">
+                                <button class="black-yellow__button" id="add-grn-btn">Thêm phiếu hàng</button>
+                            </div>
+                        </div>
+                        <div class="product-manage-main">
+                            <div class="product-manage-main-search">
+                                <input type="text" placeholder="Tìm kiếm mã phiếu..." />
+                                <button class="product-manage-main-search__button blue__button">SEARCH</button>
+                            </div>
+                            <div class="cart product-result">
+                                <div class="cart-info">
+                                    <div class="grn-status">Trạng thái</div><div class="grn-id">Mã phiếu</div>
+                                    <div class="grn-date">Ngày nhập</div><div class="grn-total-price">Giá nhập</div>
+                                    <div class="grn-total-quantity">Số Lượng</div><div class="grn-action">Hành động</div>
+                                </div>
+                                <div class="grn-list-item-container">
+                                    ${
+                                      currentGrns.length === 0
+                                        ? `<p style="padding: 20px; text-align: center;">Chưa có phiếu nhập nào.</p>`
+                                        : ""
+                                    }
+                                    ${currentGrns.map(renderGRNItem).join("")}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>`;
+      }
+      function renderGRNItem(grn) {
+        return `
+                <div class="cart-item">
+                    <div class="grn-status">${
+                      grn.status
+                    }</div><div class="grn-id">${grn.id}</div>
+                    <div class="grn-date">${
+                      grn.createdAt
+                    }</div><div class="grn-total-price">${formatNumber(
+          grn.totalPrice
+        )}đ</div>
+                    <div class="grn-total-quantity">${formatNumber(
+                      grn.totalQuantity
+                    )}</div>
+                    <div class="grn-action"><button title="Xem">👁️</button><button title="Sửa">✏️</button></div>
+                </div>`;
+      }
+      function setUpGRNListPage() {
+        document.getElementById("add-grn-btn").addEventListener("click", () => {
+          loadAddGoodsReceivedNote();
+        });
+      }
+
+      // VIEW 2: THÊM PHIẾU NHẬP
+      function loadAddGoodsReceivedNote() {
+        currentStagingItems = [];
+        selectedProductId = null;
+        rootElement.innerHTML = renderAddGRNPage();
+        setUpAddGRNPage();
+      }
+      function renderAddGRNPage() {
+        return `
+                <div class="admin__main"> {/* Thêm class bao ngoài */}
+                    <div class="add-grn-container">
+                        <div class="admin__main--top">
+                            <div class="admin__main--title">Thông Tin Phiếu Nhập</div>
+                            <div class="date-flexbox">
+                                <label for="grn-date">Ngày nhập</label>
+                                <input type="date" id="grn-date" value="${getTodayDate()}" readonly />
+                            </div>
+                        </div>
+                        <div class="admin__main--middle">
+                            <div class="middle--left">
+                                <div class="inputs-flexbox">
+                                    <div class="inputs">
+                                        <label for="grn-cost-price">Giá nhập</label>
+                                        <input type="number" id="grn-cost-price" placeholder="0" />
+                                    </div>
+                                    <div class="inputs">
+                                        <label for="grn-quantity">Số lượng</label>
+                                        <input type="number" id="grn-quantity" placeholder="0" />
+                                    </div>
+                                </div>
+                                <div class="save-button-container">
+                                    <button class="black-yellow__button" id="add-item-btn">Lưu (Thêm SP)</button>
+                                </div>
+                                <table class="sku__container">
+                                    <thead><tr><th>Mã SKU</th><th>Tên sản phẩm</th><th>Giá nhập</th><th>Số lượng</th><th>Thao tác</th></tr></thead>
+                                    <tbody id="staging-table-body"></tbody>
+                                </table>
+                            </div>
+                            <div class="middle--right">
+                                <div class="search-bar">
+                                    <input type="text" id="product-search-input" placeholder="Tìm kiếm theo tên sản phẩm" />
+                                    <button class="blue__button" id="product-search-btn">SEARCH</button>
+                                </div>
+                                <div class="product-list-selector" id="product-list-selector"></div>
+                            </div>
+                        </div>
+                        <div class="admin__main--bottom">
+                            <button class="black-yellow__button" id="cancel-grn-btn" style="background-color: #6c757d">Quay lại</button>
+                            <button class="black-yellow__button" id="save-grn-btn">Lưu Thay Đổi</button>
+                        </div>
+                    </div>
+                </div>`;
+      }
+      function setUpAddGRNPage() {
+        const productSearchInput = document.getElementById(
+          "product-search-input"
+        );
+        const productSearchBtn = document.getElementById("product-search-btn");
+        const addItemBtn = document.getElementById("add-item-btn");
+        const saveGRNBtn = document.getElementById("save-grn-btn");
+        const cancelGRNBtn = document.getElementById("cancel-grn-btn");
+
+        // Tải sản phẩm
+        const { items: allProducts } = getAllProductForAdmin({}); // Lấy items từ kết quả pagination
+        renderProductSelector(allProducts);
+
+        productSearchBtn.addEventListener("click", () => {
+          const keyword = productSearchInput.value.trim();
+          const { items: searchResult } = searchProducts({
+            searchKey: keyword,
+          });
+          renderProductSelector(searchResult);
+        });
+        productSearchInput.addEventListener("keyup", (e) => {
+          if (e.key === "Enter") productSearchBtn.click();
+        });
+        addItemBtn.addEventListener("click", handleAddItemToStage);
+        saveGRNBtn.addEventListener("click", handleSaveGRN);
+        cancelGRNBtn.addEventListener("click", () => {
+          if (confirm("Bạn có chắc muốn hủy phiếu nhập này?")) {
+            loadGoodsReceivedNoteList();
+          }
+        });
+      }
+      function renderProductSelector(products) {
+        const container = document.getElementById("product-list-selector");
+        container.innerHTML = products.map(renderProductSelectorItem).join("");
+        attachProductCheckboxListeners(); // Gắn lại listener cho product checkbox
+        container.querySelectorAll(".view-more__sku").forEach((btn) => {
+          btn.addEventListener("click", handleToggleSKUList);
+        });
+      }
+      function renderProductSelectorItem(product) {
+        return `
+                <div class="product--columns">
+                    <div class="import-products">
+                        <input type="checkbox" class="product-master-check" data-product-id="${
+                          product.id
+                        }" />
+                        <img src="../assets/${
+                          product.thumbnail || "sample-image.jpg"
+                        }" alt="${product.name}" />
+                        <div class="import-products-name">${product.name}</div>
+                    </div>
+                    <button class="black-yellow__button view-more__sku" data-product-id="${
+                      product.id
+                    }">Xem thêm SKU</button>
+                    <div class="sku-selector-list" id="sku-list-${
+                      product.id
+                    }"></div>
+                </div>`;
+      }
+      function handleToggleSKUList(e) {
+        const productId = e.target.dataset.productId;
+        const skuListId = `sku-list-${productId}`;
+        const skuContainer = document.getElementById(skuListId);
+        const masterCheckbox = document.querySelector(
+          `.product-master-check[data-product-id="${productId}"]`
+        );
+
+        if (skuContainer.classList.contains("open")) {
+          skuContainer.innerHTML = "";
+          skuContainer.classList.remove("open");
+          e.target.textContent = "Xem thêm SKU";
+        } else {
+          const skus = getSkusByProductId(productId);
+          skuContainer.innerHTML = skus.map(renderSKUSelectorItem).join("");
+          skuContainer.classList.add("open");
+          e.target.textContent = "Thu gọn";
+          // Đồng bộ trạng thái SKU với master
+          const isMasterChecked = masterCheckbox
+            ? masterCheckbox.checked
+            : false;
+          skuContainer.querySelectorAll(".sku-check").forEach((chk) => {
+            chk.checked = isMasterChecked;
+          });
+          attachSKUCheckboxListeners(productId);
+        }
+      }
+      function renderSKUSelectorItem(sku) {
+        const detail = getDetailOneSku(sku, sku.productId);
+        const skuName = detail.selectedDetails.map((d) => d.name).join(", ");
+        return `
+                <div class="sku-item">
+                    <input type="checkbox" class="sku-check" data-sku-id="${sku.id}" data-product-id="${sku.productId}" />
+                    <span class="sku-item-name">${skuName} (Tồn: ${sku.stock})</span>
+                </div>`;
+      }
+      function attachProductCheckboxListeners() {
+        document.querySelectorAll(".product-master-check").forEach((chk) => {
+          // Remove old listener before adding new one
+          const newChk = chk.cloneNode(true);
+          chk.parentNode.replaceChild(newChk, chk);
+
+          newChk.addEventListener("change", (e) => {
+            const productId = e.target.dataset.productId;
+            const isChecked = e.target.checked;
+
+            if (isChecked) {
+              if (selectedProductId && selectedProductId !== productId) {
+                const oldMaster = document.querySelector(
+                  `.product-master-check[data-product-id="${selectedProductId}"]`
+                );
+                if (oldMaster) oldMaster.checked = false;
+                document
+                  .querySelectorAll(
+                    `.sku-check[data-product-id="${selectedProductId}"]`
+                  )
+                  .forEach((oldSku) => (oldSku.checked = false));
+              }
+              selectedProductId = productId;
+            } else {
+              if (selectedProductId === productId) {
+                // Chỉ reset nếu master đang được chọn bị bỏ chọn
+                selectedProductId = null;
+              }
+            }
+
+            document
+              .querySelectorAll(`.sku-check[data-product-id="${productId}"]`)
+              .forEach((skuChk) => {
+                skuChk.checked = isChecked;
+              });
+          });
+        });
+      }
+      function attachSKUCheckboxListeners(productId) {
+        const skuCheckboxes = document.querySelectorAll(
+          `.sku-check[data-product-id="${productId}"]`
+        );
+        const masterCheckbox = document.querySelector(
+          `.product-master-check[data-product-id="${productId}"]`
+        );
+
+        skuCheckboxes.forEach((chk) => {
+          // Remove old listener before adding new one
+          const newChk = chk.cloneNode(true);
+          chk.parentNode.replaceChild(newChk, chk);
+
+          newChk.addEventListener("change", (e) => {
+            const isChecked = e.target.checked;
+            const currentSkuProductId = e.target.dataset.productId; // Lấy productId từ SKU được click
+
+            if (isChecked) {
+              if (
+                selectedProductId &&
+                selectedProductId !== currentSkuProductId
+              ) {
+                const oldMaster = document.querySelector(
+                  `.product-master-check[data-product-id="${selectedProductId}"]`
+                );
+                if (oldMaster) oldMaster.checked = false;
+                document
+                  .querySelectorAll(
+                    `.sku-check[data-product-id="${selectedProductId}"]`
+                  )
+                  .forEach((oldSku) => (oldSku.checked = false));
+              }
+              selectedProductId = currentSkuProductId; // Cập nhật selectedProductId
+              if (masterCheckbox) masterCheckbox.checked = true; // Luôn tick master khi tick SKU con
+            } else {
+              // Kiểm tra nếu tất cả SKU con bị bỏ tick thì mới bỏ tick master
+              const allSkusForProduct = Array.from(
+                document.querySelectorAll(
+                  `.sku-check[data-product-id="${currentSkuProductId}"]`
+                )
+              );
+              if (allSkusForProduct.every((sku) => !sku.checked)) {
+                if (masterCheckbox) masterCheckbox.checked = false;
+                // Chỉ reset selectedProductId nếu master tương ứng bị bỏ chọn
+                if (selectedProductId === currentSkuProductId) {
+                  selectedProductId = null;
+                }
+              }
+            }
+          });
+        });
+      }
+
+      function handleAddItemToStage() {
+        const costPriceInput = document.getElementById("grn-cost-price");
+        const quantityInput = document.getElementById("grn-quantity");
+        const costPrice = parseFloat(costPriceInput.value);
+        const quantity = parseInt(quantityInput.value);
+
+        if (isNaN(costPrice) || costPrice <= 0) {
+          alert("Vui lòng nhập giá nhập hợp lệ.");
+          return;
+        }
+        if (isNaN(quantity) || quantity <= 0) {
+          alert("Vui lòng nhập số lượng hợp lệ.");
+          return;
+        }
+        if (!selectedProductId) {
+          alert("Vui lòng chọn ít nhất 1 sản phẩm hoặc SKU.");
+          return;
+        }
+
+        const tickedSkuCheckboxes = document.querySelectorAll(
+          `.sku-check[data-product-id="${selectedProductId}"]:checked`
+        );
+        if (tickedSkuCheckboxes.length === 0) {
+          alert("Vui lòng chọn ít nhất 1 SKU của sản phẩm đã chọn.");
+          return;
+        }
+
+        tickedSkuCheckboxes.forEach((chk) => {
+          const skuId = chk.dataset.skuId;
+          if (!currentStagingItems.some((item) => item.skuId === skuId)) {
+            const product = getProductById(selectedProductId);
+            const sku = getSkusByProductId(selectedProductId).find(
+              (s) => s.id === skuId
+            );
+            const detail = getDetailOneSku(sku, selectedProductId);
+            const skuName = detail.selectedDetails
+              .map((d) => d.name)
+              .join(", ");
+            currentStagingItems.push({
+              skuId,
+              productId: selectedProductId,
+              productName: product.name,
+              skuName,
+              costPrice,
+              quantity,
+            });
+          } else {
+            // Optional: Update existing item quantity/price? Or just alert?
+            alert(`SKU ${skuId} đã được thêm vào phiếu.`);
+          }
+        });
+
+        renderStagingTable();
+        costPriceInput.value = "";
+        quantityInput.value = "";
+      }
+      function renderStagingTable() {
+        const tableBody = document.getElementById("staging-table-body");
+        tableBody.innerHTML = currentStagingItems
+          .map(
+            (item, index) => `
+                <tr>
+                    <td>${item.skuId}</td><td>${item.productName} (${
+              item.skuName
+            })</td>
+                    <td>${formatNumber(item.costPrice)}đ</td><td>${
+              item.quantity
+            }</td>
+                    <td><button class="delete-stage-item" data-index="${index}">Xóa</button></td>
+                </tr>`
+          )
+          .join("");
+
+        document.querySelectorAll(".delete-stage-item").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const index = parseInt(e.target.dataset.index, 10);
+            currentStagingItems.splice(index, 1);
+            renderStagingTable();
+          });
+        });
+      }
+      function handleSaveGRN() {
+        if (currentStagingItems.length === 0) {
+          alert("Bạn chưa thêm sản phẩm nào vào phiếu nhập.");
+          return;
+        }
+        const createdAt = document.getElementById("grn-date").value;
+        let totalPrice = 0;
+        let totalQuantity = 0;
+        currentStagingItems.forEach((item) => {
+          totalPrice += item.costPrice * item.quantity;
+          totalQuantity += item.quantity;
+        });
+        const grnData = {
+          createdAt,
+          totalPrice,
+          totalQuantity,
+          items: currentStagingItems,
+        };
+        addGRN(grnData);
+        alert("Đã tạo phiếu nhập hàng thành công!");
+        loadGoodsReceivedNoteList();
+      }
+
+      // --- Khởi chạy ứng dụng ---
+      // (Optional: Load initial product data if needed)
+      // await loadDataToLocalStorage(); // Make sure product data is ready
+      loadGoodsReceivedNoteList(); // Bắt đầu với trang danh sách
+    </script>
+  </body>
+</html>
