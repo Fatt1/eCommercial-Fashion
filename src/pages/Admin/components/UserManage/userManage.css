@@ -1,0 +1,182 @@
+.user-manage {
+  padding-top: 30px;
+}
+
+.user-manage-header {
+  color: orange;
+  font-weight: bold; /* Chữ đậm */
+  border-bottom: 3px solid orange;
+  padding: 10px;
+}
+
+.user-manage__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.user-manage-main {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.user-manage-search {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-manage-search input,
+.user-manage-search select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1.4rem;
+}
+
+.user-manage-search input {
+  width: 400px;
+}
+
+.user-manage-search button {
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid gray;
+}
+
+.user-manage-search__button-search {
+  background-color: black;
+  color: white;
+}
+
+.user-manage-search__button-reset {
+  background-color: #f0f0f0;
+  color: black;
+  margin-left: auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.4rem;
+}
+
+.user-table th,
+.user-table td {
+  padding: 15px 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+.user-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.user-info-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info-cell img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info-cell__name {
+  font-weight: 600;
+}
+
+.user-info-cell__email {
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.role-tag {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+}
+
+.role-admin {
+  background-color: #007bff;
+}
+
+.role-user {
+  background-color: #6c757d;
+}
+
+.status-active {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.status-locked {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.user-actions a {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.user-actions a:hover {
+  text-decoration: underline;
+}
+
+.user-actions a.lock-action {
+  color: #dc3545;
+}
+
+.product-stt {
+  width: 5%;
+  text-align: center;
+}
+
+/* Styles to mimic product-manage.css */
+.user-list-container .product-main {
+  width: 35%;
+  justify-content: center;
+}
+.user-list-container .product-price {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.toggle-password-visibility {
+  cursor: pointer;
+  color: #555;
+}
+.product-result-info .product-stt {
+  padding-left: 10px;
+}
+
+.product-action a.unlock-action {
+  color: #28a745; 
+}
+
+.product-action .reset-password-link {
+  color: #007bff; 
+  text-decoration: none;
+}
