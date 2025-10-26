@@ -1,0 +1,93 @@
+.priceManage_header {
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceManage_header a {
+  color: orange;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.priceManage_header a::after {
+  content: ""; 
+  position: absolute; 
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  height: 2px;
+  background-color: orange;
+}
+
+.add_product_btn {
+  border: 2px solid black;
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.add_product_btn:hover {
+  background-color: black;
+  color: yellow;
+}
+.priceMange_main_container{
+  width: 100%;
+  background-color: #ffffff;
+  height: 100%;
+}
+.priceMange_main_content_header {
+
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.price-filter{
+    width: 25%;
+}
+
+.catergory-filter{
+    width: 25%;
+}
+.right_object button{
+  border: 2px solid black;
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.right_object button:hover{
+  background-color: black;
+  color: yellow;
+}
+.main_content_header table{
+  width: 100%;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: none;
+}
+
+.priceManage_container .table_header th{
+  width: 100px;
+  border: none;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.priceManage_container .table_body td{
+  padding-top: 10px;
+  width: 100px;
+  border: none;
+  text-align: center;
+}
+
+.table_body tr,td {
+  border: none;
+}

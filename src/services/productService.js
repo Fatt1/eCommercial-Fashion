@@ -25,7 +25,9 @@ function addProduct(product) {
   saveDbContextToLocalStorage(dbContext);
   return product;
 }
-function updatePriceProductById(productId) {}
+function updatePriceProductById(productId,priceInfo) {
+  
+}
 
 // Lấy danh sách thông tin sản phẩm
 function getAllProductForAdmin({ pageSize = 5, pageNumber = 1 }) {

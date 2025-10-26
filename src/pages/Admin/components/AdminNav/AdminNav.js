@@ -83,7 +83,7 @@ export function setUpAdminNav() {
     .querySelector(".admin__category--4")
     .addEventListener("click", () => {
       loadPriceManagePage();
-    });
+        });
 
   document
     .querySelector(".admin__category--5")
