@@ -22,8 +22,8 @@ export default class Product {
     this.variations = variations;
     this.categoryId = categoryId;
     this.priceInfo = {
-      currentlyPrice: 100000,
-      originalPrice: 200000,
+      currentlyPrice: 0,
+      originalPrice: 0,
       importPrice: 0,
     };
     this.isDeleted = isDeleted;

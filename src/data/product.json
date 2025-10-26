@@ -12,7 +12,11 @@
         { "attributeId": "A005", "attributeValues": ["Nike"] },
         { "attributeId": "A004", "attributeValues": ["Cotton"] }
       ],
-      "priceInfo": { "originalPrice": 400000, "currentlyPrice": 250000 },
+      "priceInfo": {
+        "importPrice": 200000,
+        "originalPrice": 400000,
+        "currentlyPrice": 250000
+      },
       "variations": [
         {
           "name": "Màu sắc",
@@ -46,7 +50,11 @@
       "weight": 0.65,
       "images": ["image-2a.jpg", "image-2b.jpg"],
       "attributes": [{ "attributeId": "A004", "attributeValues": ["Adidas"] }],
-      "priceInfo": { "originalPrice": 599000, "currentlyPrice": 499000 },
+      "priceInfo": {
+        "importPrice": 200000,
+        "originalPrice": 599000,
+        "currentlyPrice": 499000
+      },
       "variations": [
         {
           "name": "Màu sắc",
@@ -82,7 +90,11 @@
       "attributes": [
         { "attributeId": "A005", "attributeValues": ["Đường phố", "Hàn Quốc"] }
       ],
-      "priceInfo": { "originalPrice": 1200000, "currentlyPrice": 1200000 },
+      "priceInfo": {
+        "importPrice": 50000,
+        "originalPrice": 1200000,
+        "currentlyPrice": 1200000
+      },
       "variations": [
         {
           "name": "Màu sắc",
@@ -114,7 +126,11 @@
       "weight": 1.5,
       "images": ["image-4a.jpg", "image-4b.jpg"],
       "attributes": [{ "attributeId": "A004", "attributeValues": ["Nike"] }],
-      "priceInfo": { "originalPrice": 25000000, "currentlyPrice": 22500000 },
+      "priceInfo": {
+        "importPrice": 200000,
+        "originalPrice": 25000000,
+        "currentlyPrice": 22500000
+      },
       "variations": [],
       "categoryId": "cate-002",
       "status": "public",
@@ -131,7 +147,11 @@
       "weight": 0.1,
       "images": ["image-5a.jpg", "image-5b.jpg"],
       "attributes": [{ "attributeId": "A004", "attributeValues": ["Zara"] }],
-      "priceInfo": { "originalPrice": 850000, "currentlyPrice": 850000 },
+      "priceInfo": {
+        "importPrice": 200000,
+        "originalPrice": 850000,
+        "currentlyPrice": 850000
+      },
       "variations": [
         {
           "name": "Màu sắc",
@@ -156,7 +176,11 @@
       "weight": 15,
       "images": ["image-6a.jpg", "image-6b.jpg"],
       "attributes": [{ "attributeId": "A004", "attributeValues": ["Nike"] }],
-      "priceInfo": { "originalPrice": 3500000, "currentlyPrice": 3000000 },
+      "priceInfo": {
+        "importPrice": 200000,
+        "originalPrice": 3500000,
+        "currentlyPrice": 3000000
+      },
       "variations": [
         {
           "name": "Màu sắc",
@@ -186,7 +210,11 @@
         { "attributeId": "A005", "attributeValues": ["Nike"] },
         { "attributeId": "A004", "attributeValues": ["Cotton"] }
       ],
-      "priceInfo": { "originalPrice": 250000, "currentlyPrice": 250000 },
+      "priceInfo": {
+        "importPrice": 200000,
+        "originalPrice": 250000,
+        "currentlyPrice": 250000
+      },
       "variations": [
         {
           "name": "Màu sắc",

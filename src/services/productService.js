@@ -25,8 +25,13 @@ function addProduct(product) {
   saveDbContextToLocalStorage(dbContext);
   return product;
 }
-function updatePriceProductById(productId,priceInfo) {
-  
+function updatePriceProductById(productId, priceInfo) {
+  const dbContext = getDbContextFromLocalStorage();
+  const product = dbContext.products.find((p) => p.id === productId);
+  if (product === null) return false;
+  product.priceInfo = priceInfo;
+  saveDbContextToLocalStorage(dbContext);
+  return true;
 }
 
 // Lấy danh sách thông tin sản phẩm
@@ -357,12 +362,15 @@ function getProductById(id) {
       });
     }
   });
-  if (product.priceInfo.originalPrice === 0) return 0;
   // kiểm tra xem giá có phải hay không và tính toán phần trăm giảm giá
-  let salePercentage = Math.round(
-    (1 - product.priceInfo.currentlyPrice / product.priceInfo.originalPrice) *
-      100
-  );
+
+  let salePercentage = 0;
+  if (product.priceInfo.originalPrice !== 0) {
+    salePercentage = getSalePercentage(
+      product.priceInfo.originalPrice,
+      product.priceInfo.currentlyPrice
+    );
+  }
 
   product.salePercentage = salePercentage;
   return {
@@ -425,7 +433,8 @@ function updateProductById(updateProduct) {
       (updateSku) => updateSku.id === sku.id
     );
     if (!existingSku) {
-      const deleteSkuIndex = dbContext.skus.indexOf(sku.id);
+      const deleteSku = dbContext.skus.find((s) => s.id === sku.id);
+      const deleteSkuIndex = dbContext.skus.indexOf(deleteSku);
       dbContext.skus.splice(deleteSkuIndex, 1);
     }
   });
@@ -532,4 +541,5 @@ export {
   getDetailOneSku,
   getBestSellerWith3Categories,
   getSkuById,
+  updatePriceProductById,
 };

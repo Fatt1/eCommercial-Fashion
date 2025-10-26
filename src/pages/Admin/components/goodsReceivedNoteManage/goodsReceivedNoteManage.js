@@ -1,4 +1,4 @@
-import { AdminNav } from "../AdminNav/AdminNav.js";
+import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
 import {
   getAllProductForAdmin,
   searchProducts,
@@ -40,7 +40,7 @@ function renderGRNListPageContent() {
         </div>
       </div>
       <div class="product-manage-main">
-        <div class="product-manage-main-search">
+        <div class="product-manage-main-search ">
           <input type="text" placeholder="Tìm kiếm mã phiếu..." id="grn-search-input" />
           <button class="product-manage-main-search__button blue__button" id="grn-search-btn">SEARCH</button>
         </div>
@@ -78,6 +78,7 @@ function renderGRNItem(grn) {
 }
 
 function setUpGRNListPage() {
+  setUpAdminNav();
   document.getElementById("add-grn-btn").addEventListener("click", () => {
     loadAddGoodsReceivedNote();
   });
