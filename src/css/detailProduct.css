@@ -343,3 +343,6 @@
   overflow: hidden;
   padding-bottom: 50px;
 }
+.small-images-section__small--button {
+  border: none;
+}

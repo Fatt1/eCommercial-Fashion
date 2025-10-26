@@ -127,3 +127,10 @@ export function convertVndToUsd(value) {
   // Làm tròn đến 2 chữ số thập phân (chuẩn cho tiền tệ)
   return parseFloat(usdValue.toFixed(2));
 }
+export function getTodayDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // tháng bắt đầu từ 0
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}

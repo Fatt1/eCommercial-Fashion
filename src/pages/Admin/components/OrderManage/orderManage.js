@@ -157,17 +157,18 @@ function OrderItemDetailTable(items) {
 }
 function OrderTable(orderItems) {
   return `
-
         <table id="order-list-table">
           <thead>
-            <th>Mã đơn hàng</th>
-            <th>Khách hàng</th>
-            <th>Thời gian tạo đơn</th>
-            <th>Tổng tiền</th>
-            <th>Tổng tiền thanh toán</th>
-            <th>Phương thức thanh toán</th>
-            <th>Trạng thái</th>
-            <th>Thao tác</th>
+           <tr>
+              <th>Mã đơn hàng</th>
+              <th>Khách hàng</th>
+              <th>Thời gian tạo đơn</th>
+              <th>Tổng tiền</th>
+              <th>Tổng tiền thanh toán</th>
+              <th>Phương thức thanh toán</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+           </tr>
           </thead>
           <tbody>
             ${orderItems.map((item) => OrderItem(item)).join("")}

@@ -17,6 +17,7 @@ function ProductManageHead() {
         <a data-tab-index="0" class="selected">Danh sách sản phẩm</a>
         <a data-tab-index="1">Đang hoạt động</a>
         <a data-tab-index="2">Đang ẩn</a>
+        <a data-tab-index="3">Đã xóa</a>
       </div>
       <div class="product-manage__head-right">
         <button class="add-product-btn">Thêm sản phẩm</button>
@@ -90,7 +91,7 @@ function calculateStock(productId) {
   return stockSum;
 }
 
-function renderProductList(products) {
+function renderProductList(products, containDeleted = false) {
   const resultContainer = document.querySelector(".product-list-container");
   resultContainer.innerHTML = "";
 
@@ -103,7 +104,19 @@ function renderProductList(products) {
     .map((p) => {
       const skus = getSkusByProductId(p.id);
       const totalSkus = skus.length;
-      const statusText = p.status === "public" ? "Đang hoạt động" : "Đã ẩn";
+      // const statusText = p.status === "public" ? "Đang hoạt động" : "Đã ẩn";
+      let statusText;
+      if (p.status === "public") {
+        statusText = "Đang hoạt động";
+      } else if (p.status === "deleted") {
+        statusText = "Đã xóa";
+      } else {
+        statusText = "Đã ẩn";
+      }
+      if (p.status === "deleted" && containDeleted === false) {
+        return;
+      }
+
       const statusClass =
         p.status === "public" ? "status-public" : "status-private";
 
@@ -262,12 +275,13 @@ export function setUpProductManagePlayable() {
     });
   }
 
-  async function fetchAndRenderProducts(page = 1) {
+  async function fetchAndRenderProducts(page = 1, containDeleted = false) {
     currentPage = page;
 
     let statusFilter = null;
     if (currentTab === 1) statusFilter = "public";
     if (currentTab === 2) statusFilter = "draft";
+    if (currentTab === 3) statusFilter = "deleted";
 
     const result = filterProductsForAdmin({
       searchKey: currentKeyword,
@@ -282,7 +296,7 @@ export function setUpProductManagePlayable() {
       ".product-manage-main-result__top--quantity"
     ).textContent = `${result.totalItems} Sản Phẩm`;
 
-    renderProductList(result.items);
+    renderProductList(result.items, containDeleted);
     renderPagination(currentPage, totalPages);
   }
 
@@ -307,7 +321,8 @@ export function setUpProductManagePlayable() {
       tabLinks.forEach((link) => link.classList.remove("selected"));
       tab.classList.add("selected");
       currentTab = parseInt(tab.dataset.tabIndex, 10);
-      fetchAndRenderProducts(1);
+      if (currentTab === 1 || currentTab === 2) fetchAndRenderProducts(1);
+      else if (currentTab === 3) fetchAndRenderProducts(1, true);
     });
   });
 

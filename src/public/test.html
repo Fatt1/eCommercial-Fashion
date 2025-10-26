@@ -4,655 +4,95 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../public/test.css" />
   </head>
   <body>
-    <div class="main-content__admin">
-      <div class="create-product__header">
-        <ul class="create-product-tabs">
-          <li class="create-product-tab active">Thông tin cơ bản</li>
-          <li class="create-product-tab">Thông tin chi tiết</li>
-          <li class="create-product-tab">Thông tin bán hàng</li>
+    <div class="admin">
+      <div class="admin__nav">
+        <div class="admin__info">
+          <div><img src="../assets/defaut-avatar.png" /></div>
+          <div>Admin</div>
+          <div>admin@gmail.com</div>
+        </div>
+
+        <ul class="admin__category">
+          <button>
+            <li class="admin__category--1">
+              <img class="icon" src="../assets/admin-icon1.png" />Trang Chủ
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--2">
+              <img class="icon" src="../assets/admin-icon2.png" />Sản Phẩm
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--3">
+              <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Nhãn
+              Hàng
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--4">
+              <img class="icon" src="../assets/admin-icon4.png" />Quản Lý Thuộc
+              Tính
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--5">
+              <img class="icon" src="../assets/admin-icon5.png" />Quản Lý Người
+              Dùng
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--6">
+              <img class="icon" src="../assets/admin-icon6.png" />Quản Lý Thống
+              Kê
+            </li>
+          </button>
+          <button>
+            <li class="admin__category--7">
+              <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Đơn
+              Hàng
+            </li>
+          </button>
         </ul>
       </div>
-
-      <div id="create-product-form">
-        <div class="create-product-image">
-          <span class="create-product-image__header-text"
-            >Hình ảnh sản phẩm</span
-          >
-          <span class="create-product__ratio">Hình ảnh tỷ lệ 3:4</span>
-          <div>
-            <div class="selected-images-list">
-              <label for="input-images">
-                <div class="label-image-input">
-                  <img class="image-input-icon" src="../assets/Add Image.svg" />
-                  <p class="add-image-text">
-                    Thêm hình ảnh (<span class="current-total-image">1</span>/7)
-                  </p>
-                </div>
-              </label>
-              <div class="preview-container">
-                <div
-                  class="image-item"
-                  data-id="large-img-detail.png-263937-1757734223170"
-                  draggable="true"
-                >
-                  <img
-                    src="../assets/products/large-img-detail.png"
-                    alt="Xem trước ảnh large-img-detail.png-263937-1757734223170"
-                  /><button class="image-item__delete-btn">x</button>
-                </div>
-              </div>
-
-              <input id="input-images" type="file" hidden="" accept="image/*" />
-            </div>
-          </div>
-        </div>
-        <div class="create-product-thumbnail">
-          <span class="create-product-thumbnail__header-text">*Ảnh bìa</span>
-          <div class="label-image-input">
-            <img
-              class="image-input-icon thumbnail-preview"
-              src="../assets/products/large-img-detail.png"
-            />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="name">*Tên sản phẩm</label>
-          <input
-            name="name"
-            type="text"
-            id="name"
-            placeholder="Tên sản phẩm + Thương hiệu + kích cỡ + màu"
-            required=""
-          />
-          <div class="error-message error-name"></div>
-        </div>
-
-        <div class="form-group category-input">
-          <label>*Ngành hàng</label>
-          <div class="wrapper-create-product-category-btn">
-            <button class="create-product__category-btn">
-              Thời trang nam &gt; Phụ kiện
-            </button>
-            <img src="../assets/Pencil.svg" alt="" />
-          </div>
-          <div class="error-message error-category"></div>
-          <div class="category-selector-wrapper">
-            <div class="category-list">
-              <ul class="category-list-menu" data-level="0">
-                <li
-                  class="category-item selected"
-                  data-has-children="true"
-                  data-cate-id="cate-001"
-                >
-                  Thời trang nam<img
-                    src="../assets/Forward.svg"
-                    class="category-item-right"
-                  />
-                </li>
-                <li
-                  class="category-item"
-                  data-has-children="true"
-                  data-cate-id="cate-002"
-                >
-                  Thời trang nữ<img
-                    src="../assets/Forward.svg"
-                    class="category-item-right"
-                  />
-                </li>
-              </ul>
-              <ul class="category-list-menu" data-level="1"></ul>
-              <ul class="category-list-menu" data-level="2"></ul>
-            </div>
-            <div class="footer-category">
-              <div class="footer-category-left">
-                <span>Đã chọn: </span>
-                <div class="category-selected-list">
-                  <span class="category-selected">Thời trang nam </span> &gt;
-                  <span class="category-selected">Phụ kiện </span>
-                </div>
-              </div>
-              <div class="footer-category-action">
-                <button class="footer-category-action__cancel-btn">Hủy</button>
-                <button class="footer-category-action__agree-btn btn-admin">
-                  Xác nhận
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label style="display: block" for="category">*Mô tả sản phẩm</label>
-          <textarea
-            style="width: 80%; margin-left: 120px"
-            class="description"
-            rows="10"
-          ></textarea>
-          <div class="error-message error-category"></div>
-        </div>
-      </div>
-
-      <div class="create-detail-product">
-        <h3 class="create-detail-product__header">Thông tin chi tiết</h3>
-        <div class="attribute-list">
-          <div class="attribute-container required-attribute">
-            <span class="attribute-name">Thương hiệu</span>
-            <div class="dropdown brand-dropdown">
-              <button
-                class="brand-dropdown-btn dropdown-btn"
-                data-attribute-name="brand"
-              >
-                <span class="selected-values placeholder">Calvin Klein</span>
-                <img src="../assets/dropdown-icon.svg" />
-              </button>
-              <ul style="top: 56px" class="dropdown-menu">
-                <li class="dropdown-item selected">Calvin Klein</li>
-              </ul>
-            </div>
-            <div class="error-message-required"></div>
-          </div>
-
-          <div class="attribute-container">
-            <span class="attribute-name">Phong cách</span>
-
-            <div class="dropdown brand-dropdown">
-              <button
-                class="brand-dropdown-btn dropdown-btn"
-                data-attribute-name="A005"
-              >
-                <span class="selected-values placeholder"
-                  >Đường phố, Hàn Quốc</span
-                >
-                <img src="../assets/dropdown-icon.svg" />
-              </button>
-              <ul style="top: 56px" class="dropdown-menu">
-                <li
-                  class="dropdown-item multi-dropdown selected"
-                  data-value="A005"
-                >
-                  <div class="checkbox"></div>
-                  <span>Đường phố</span>
-                </li>
-
-                <li
-                  class="dropdown-item multi-dropdown selected"
-                  data-value="A005"
-                >
-                  <div class="checkbox"></div>
-                  <span>Hàn Quốc</span>
-                </li>
-
-                <li class="dropdown-item multi-dropdown" data-value="A005">
-                  <div class="checkbox"></div>
-                  <span>Vintage</span>
-                </li>
-
-                <li class="dropdown-item multi-dropdown" data-value="A005">
-                  <div class="checkbox"></div>
-                  <span>Công sở</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="attribute-container">
-            <span class="attribute-name">Tính năng</span>
-
-            <div class="dropdown brand-dropdown">
-              <button
-                class="brand-dropdown-btn dropdown-btn"
-                data-attribute-name="A017"
-              >
-                <span class="selected-values placeholder"
-                  >Chống thấm, Thoáng khí</span
-                >
-                <img src="../assets/dropdown-icon.svg" />
-              </button>
-              <ul style="top: 56px" class="dropdown-menu">
-                <li
-                  class="dropdown-item multi-dropdown selected"
-                  data-value="A017"
-                >
-                  <div class="checkbox"></div>
-                  <span>Chống thấm</span>
-                </li>
-
-                <li
-                  class="dropdown-item multi-dropdown selected"
-                  data-value="A017"
-                >
-                  <div class="checkbox"></div>
-                  <span>Thoáng khí</span>
-                </li>
-
-                <li class="dropdown-item multi-dropdown" data-value="A017">
-                  <div class="checkbox"></div>
-                  <span>Chống tia UV</span>
-                </li>
-
-                <li class="dropdown-item multi-dropdown" data-value="A017">
-                  <div class="checkbox"></div>
-                  <span>Khô nhanh</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="attribute-container">
-            <span class="attribute-name">Đối tượng</span>
-
-            <div class="dropdown brand-dropdown">
-              <button
-                class="brand-dropdown-btn dropdown-btn"
-                data-attribute-name="A008"
-              >
-                <span class="selected-values placeholder">Nam</span>
-                <img src="../assets/dropdown-icon.svg" />
-              </button>
-              <ul style="top: 56px" class="dropdown-menu">
-                <li class="dropdown-item selected">Nam</li>
-                <li class="dropdown-item">Nữ</li>
-                <li class="dropdown-item">Unisex</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="attribute-container">
-            <span class="attribute-name">Xuất xứ</span>
-
-            <div class="dropdown brand-dropdown">
-              <button
-                class="brand-dropdown-btn dropdown-btn"
-                data-attribute-name="A009"
-              >
-                <span class="selected-values placeholder">Việt Nam</span>
-                <img src="../assets/dropdown-icon.svg" />
-              </button>
-              <ul style="top: 56px" class="dropdown-menu">
-                <li class="dropdown-item selected">Việt Nam</li>
-                <li class="dropdown-item">Trung Quốc</li>
-                <li class="dropdown-item">Thái Lan</li>
-                <li class="dropdown-item">Hàn Quốc</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="attribute-container">
-            <span class="attribute-name">Tên nhà thiết kế</span>
-
+      <div class="admin__main">
+        <div class="admin__header"><p>Danh sách phiếu nhập</p></div>
+        <div class="admin__main--operate">
+          <div class="admin__main--top">
             <input
-              class="input-free-text"
-              data-attribute-name="A019"
+              class="warehouse-receipt"
               type="text"
-              placeholder="Vui lòng nhập"
+              placeholder="Tìm kiếm mã phiếu..."
             />
+            <button class="add-button__receipt">Thêm phiếu hàng</button>
           </div>
-
-          <div class="attribute-container">
-            <span class="attribute-name">Loại sản phẩm</span>
-
-            <div class="dropdown brand-dropdown">
-              <button
-                class="brand-dropdown-btn dropdown-btn"
-                data-attribute-name="A020"
-              >
-                <span class="selected-values placeholder">Áo</span>
-                <img src="../assets/dropdown-icon.svg" />
-              </button>
-              <ul style="top: 56px" class="dropdown-menu">
-                <li class="dropdown-item selected">Áo</li>
-                <li class="dropdown-item">Quần</li>
-                <li class="dropdown-item">Váy</li>
-                <li class="dropdown-item">Giày</li>
-                <li class="dropdown-item">Phụ kiện</li>
-              </ul>
-            </div>
-          </div>
+          <table class="admin__main--bot">
+            <tr>
+              <th>Trạng thái</th>
+              <th>Mã phiếu</th>
+              <th>Ngày nhập</th>
+              <th>Giá nhập</th>
+              <th>Số lượng</th>
+              <th>Hành động</th>
+            </tr>
+            <tr>
+              <td>Đã hoàn thành</td>
+              <td>BHADSBDBAHDS</td>
+              <td>14/05/2025</td>
+              <td>125.000.000đ</td>
+              <td>2000</td>
+              <td>
+                <button></button>
+                <button></button>
+              </td>
+            </tr>
+          </table>
         </div>
-      </div>
-
-      <div class="create-product-variation">
-        <h3 class="create-product-variation__header">Thông tin bán hàng</h3>
-        <!-- product-variation-options -->
-        <div class="product-variation">
-          <h3 class="product-variation__left">*Phân loại hàng</h3>
-          <div class="product-variation-container">
-            <div class="product-variation-color product-variation-option">
-              <p class="product-variation__header">Màu</p>
-              <div
-                class="product-variation-color-items product-variation-items"
-              >
-                <div
-                  class="product-variation-color-item product-variation-item"
-                >
-                  <div class="dropdown brand-dropdown">
-                    <button
-                      style="
-                        width: 434px;
-                        background-color: white;
-                        margin-top: 0px;
-                      "
-                      class="brand-dropdown-btn dropdown-btn"
-                      data-name="color"
-                    >
-                      <span class="selected-values placeholder">Cam</span>
-                      <img src="../assets/dropdown-icon.svg" />
-                    </button>
-                    <ul style="top: 56px" class="dropdown-menu">
-                      <li class="dropdown-item disable" data-id="#FF5733">
-                        Cam
-                      </li>
-                      <li class="dropdown-item disable" data-id="#33FF57">
-                        Xanh lá cây
-                      </li>
-                      <li class="dropdown-item" data-id="#3357FF">
-                        Xanh dương
-                      </li>
-                      <li class="dropdown-item" data-id="#F1C40F">Vàng</li>
-                      <li class="dropdown-item" data-id="#8E44AD">Tím</li>
-                      <li class="dropdown-item" data-id="#2ECC71">Xanh ngọc</li>
-                      <li class="dropdown-item" data-id="#D35400">Nâu đỏ</li>
-                      <li class="dropdown-item" data-id="#C0392B">Đỏ sẫm</li>
-                      <li class="dropdown-item" data-id="#2980B9">
-                        Xanh da trời
-                      </li>
-                      <li class="dropdown-item" data-id="#1ABC9C">Xanh lam</li>
-                    </ul>
-                  </div>
-
-                  <button class="delete-variation-btn">
-                    <img src="../assets/Garbage can.svg" alt="delete" />
-                  </button>
-                </div>
-                <div
-                  class="product-variation-color-item product-variation-item"
-                >
-                  <div class="dropdown brand-dropdown">
-                    <button
-                      style="
-                        width: 434px;
-                        background-color: white;
-                        margin-top: 0px;
-                      "
-                      class="brand-dropdown-btn dropdown-btn"
-                      data-name="color"
-                    >
-                      <span class="selected-values placeholder"
-                        >Xanh lá cây</span
-                      >
-                      <img src="../assets/dropdown-icon.svg" />
-                    </button>
-                    <ul style="top: 56px" class="dropdown-menu">
-                      <li class="dropdown-item disable" data-id="#FF5733">
-                        Cam
-                      </li>
-                      <li class="dropdown-item disable" data-id="#33FF57">
-                        Xanh lá cây
-                      </li>
-                      <li class="dropdown-item" data-id="#3357FF">
-                        Xanh dương
-                      </li>
-                      <li class="dropdown-item" data-id="#F1C40F">Vàng</li>
-                      <li class="dropdown-item" data-id="#8E44AD">Tím</li>
-                      <li class="dropdown-item" data-id="#2ECC71">Xanh ngọc</li>
-                      <li class="dropdown-item" data-id="#D35400">Nâu đỏ</li>
-                      <li class="dropdown-item" data-id="#C0392B">Đỏ sẫm</li>
-                      <li class="dropdown-item" data-id="#2980B9">
-                        Xanh da trời
-                      </li>
-                      <li class="dropdown-item" data-id="#1ABC9C">Xanh lam</li>
-                    </ul>
-                  </div>
-
-                  <button class="delete-variation-btn">
-                    <img src="../assets/Garbage can.svg" alt="delete" />
-                  </button>
-                </div>
-                <div
-                  class="product-variation-color-item product-variation-item no-value"
-                >
-                  <div class="dropdown brand-dropdown">
-                    <button
-                      style="
-                        width: 434px;
-                        background-color: white;
-                        margin-top: 0px;
-                      "
-                      class="brand-dropdown-btn dropdown-btn"
-                      data-name="color"
-                    >
-                      <span class="selected-values placeholder"
-                        >Vui lòng chọn</span
-                      >
-                      <img src="../assets/dropdown-icon.svg" />
-                    </button>
-                    <ul style="top: 56px" class="dropdown-menu">
-                      <li class="dropdown-item disable" data-id="#FF5733">
-                        Cam
-                      </li>
-                      <li class="dropdown-item disable" data-id="#33FF57">
-                        Xanh lá cây
-                      </li>
-                      <li class="dropdown-item" data-id="#3357FF">
-                        Xanh dương
-                      </li>
-                      <li class="dropdown-item" data-id="#F1C40F">Vàng</li>
-                      <li class="dropdown-item" data-id="#8E44AD">Tím</li>
-                      <li class="dropdown-item" data-id="#2ECC71">Xanh ngọc</li>
-                      <li class="dropdown-item" data-id="#D35400">Nâu đỏ</li>
-                      <li class="dropdown-item" data-id="#C0392B">Đỏ sẫm</li>
-                      <li class="dropdown-item" data-id="#2980B9">
-                        Xanh da trời
-                      </li>
-                      <li class="dropdown-item" data-id="#1ABC9C">Xanh lam</li>
-                    </ul>
-                  </div>
-
-                  <button class="delete-variation-btn">
-                    <img src="../assets/Garbage can.svg" alt="delete" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-variation-size product-variation-option">
-              <p class="product-variation__header">Kích thước</p>
-              <div class="product-variation-size-items product-variation-items">
-                <div class="product-variation-size-item product-variation-item">
-                  <div class="dropdown brand-dropdown">
-                    <button
-                      style="
-                        width: 434px;
-                        background-color: white;
-                        margin-top: 0px;
-                      "
-                      class="brand-dropdown-btn dropdown-btn"
-                      data-name="size"
-                    >
-                      <span class="selected-values placeholder">M</span>
-                      <img src="../assets/dropdown-icon.svg" />
-                    </button>
-                    <ul style="top: 56px" class="dropdown-menu">
-                      <li class="dropdown-item" data-id="s">S</li>
-                      <li class="dropdown-item disable" data-id="m">M</li>
-                      <li class="dropdown-item" data-id="l">L</li>
-                      <li class="dropdown-item disable" data-id="xl">XL</li>
-                      <li class="dropdown-item" data-id="xxl">XXL</li>
-                      <li class="dropdown-item" data-id="32">Size 32</li>
-                      <li class="dropdown-item" data-id="34">Size 34</li>
-                      <li class="dropdown-item" data-id="36">Size 36</li>
-                      <li class="dropdown-item" data-id="one_size">
-                        One Size Fits All
-                      </li>
-                    </ul>
-                  </div>
-
-                  <button class="delete-variation-btn">
-                    <img src="../assets/Garbage can.svg" alt="delete" />
-                  </button>
-                </div>
-                <div class="product-variation-size-item product-variation-item">
-                  <div class="dropdown brand-dropdown">
-                    <button
-                      style="
-                        width: 434px;
-                        background-color: white;
-                        margin-top: 0px;
-                      "
-                      class="brand-dropdown-btn dropdown-btn"
-                      data-name="size"
-                    >
-                      <span class="selected-values placeholder">XL</span>
-                      <img src="../assets/dropdown-icon.svg" />
-                    </button>
-                    <ul style="top: 56px" class="dropdown-menu">
-                      <li class="dropdown-item" data-id="s">S</li>
-                      <li class="dropdown-item disable" data-id="m">M</li>
-                      <li class="dropdown-item" data-id="l">L</li>
-                      <li class="dropdown-item disable" data-id="xl">XL</li>
-                      <li class="dropdown-item" data-id="xxl">XXL</li>
-                      <li class="dropdown-item" data-id="32">Size 32</li>
-                      <li class="dropdown-item" data-id="34">Size 34</li>
-                      <li class="dropdown-item" data-id="36">Size 36</li>
-                      <li class="dropdown-item" data-id="one_size">
-                        One Size Fits All
-                      </li>
-                    </ul>
-                  </div>
-
-                  <button class="delete-variation-btn">
-                    <img src="../assets/Garbage can.svg" alt="delete" />
-                  </button>
-                </div>
-                <div
-                  class="product-variation-size-item product-variation-item no-value"
-                >
-                  <div class="dropdown brand-dropdown">
-                    <button
-                      style="
-                        width: 434px;
-                        background-color: white;
-                        margin-top: 0px;
-                      "
-                      class="brand-dropdown-btn dropdown-btn"
-                      data-name="size"
-                    >
-                      <span class="selected-values placeholder"
-                        >Vui lòng chọn</span
-                      >
-                      <img src="../assets/dropdown-icon.svg" />
-                    </button>
-                    <ul style="top: 56px" class="dropdown-menu">
-                      <li class="dropdown-item" data-id="s">S</li>
-                      <li class="dropdown-item disable" data-id="m">M</li>
-                      <li class="dropdown-item" data-id="l">L</li>
-                      <li class="dropdown-item disable" data-id="xl">XL</li>
-                      <li class="dropdown-item" data-id="xxl">XXL</li>
-                      <li class="dropdown-item" data-id="32">Size 32</li>
-                      <li class="dropdown-item" data-id="34">Size 34</li>
-                      <li class="dropdown-item" data-id="36">Size 36</li>
-                      <li class="dropdown-item" data-id="one_size">
-                        One Size Fits All
-                      </li>
-                    </ul>
-                  </div>
-
-                  <button class="delete-variation-btn">
-                    <img src="../assets/Garbage can.svg" alt="delete" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- product-variation-value -->
-        <div class="product-variation-value">
-          <h3 class="product-variation-value-left">Danh sách phân loại hàng</h3>
-          <div class="product-variation-value-right">
-            <div class="product-variation-value-right__top"></div>
-            <table id="product-variation-table">
-              <thead>
-                <tr>
-                  <th style="width: 150px">Màu</th>
-                  <th style="width: 170px">Kích thước</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr data-group="true" data-color-id="#FF5733" data-size-id="m">
-                  <td class="color-data" rowspan="2">
-                    <p class="color-name">Cam</p>
-                    <label
-                      for="load-image-input-#FF5733"
-                      class="load-image-input-label"
-                    >
-                      <div class="preview-img-variation">
-                        <img
-                          class="color-variation-value__img"
-                          src="../assets/Add Image.svg"
-                          alt="add image"
-                        />
-                      </div>
-                    </label>
-                    <input
-                      style="display: none"
-                      id="load-image-input-#FF5733"
-                      type="file"
-                      accept="image/*"
-                    />
-                  </td>
-                  <td class="size-data">M</td>
-                </tr>
-                <tr data-color-id="#FF5733" data-size-id="xl">
-                  <td class="size-data">XL</td>
-                </tr>
-                <tr data-color-id="#33FF57" data-size-id="m" data-group="true">
-                  <td rowspan="2" class="color-data">
-                    <p class="color-name">Xanh lá cây</p>
-                    <label
-                      for="load-image-input-#33FF57"
-                      class="load-image-input-label"
-                    >
-                      <div class="preview-img-variation">
-                        <img
-                          class="color-variation-value__img"
-                          src="../assets/Add Image.svg"
-                          alt="add image"
-                        />
-                      </div>
-                    </label>
-                    <input
-                      style="display: none"
-                      id="load-image-input-#33FF57"
-                      type="file"
-                      accept="image/*"
-                    />
-                  </td>
-
-                  <td class="size-data">M</td>
-                </tr>
-                <tr data-color-id="#33FF57" data-size-id="xl">
-                  <td class="size-data">XL</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="create-product-action">
-        <button
-          class="create-product-action-btn create-product-action-btn__cancel"
-        >
-          Hủy
-        </button>
-        <button
-          class="create-product-action-btn create-product-action-btn__hide"
-        >
-          Lưu và ẩn
-        </button>
       </div>
     </div>
   </body>

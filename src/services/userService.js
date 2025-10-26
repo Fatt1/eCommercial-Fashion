@@ -11,6 +11,11 @@ function getUserById(userId) {
   const user = dbContext.users.find((u) => u.id === userId);
   return user;
 }
+export function getUserByEmail(userEmail) {
+  const dbContext = getDbContextFromLocalStorage();
+  const user = dbContext.users.find((u) => u.email === userEmail);
+  return user;
+}
 function checkAvailableAddressUser() {
   const loggedUser = JSON.parse(localStorage.getItem("user_info"));
   if (loggedUser.addresses.length === 0) return false;
@@ -54,15 +59,48 @@ function getLoggedUser() {
   return user;
 }
 
-function restPasswordUser(userId, newPassword) {}
-function blockUser(userId) {
-  // lấy user status ở file Constant.js
+function resetPasswordUser(userId) {
+  const dbContext = getDbContextFromLocalStorage();
+  const user = dbContext.users.find((u) => u.id === userId);
+  if (user) {
+    user.password = "123456"; // Mật khẩu mặc định mới
+    saveDbContextToLocalStorage(dbContext);
+    return true;
+  }
+  return false;
 }
-function unBlockUser(userId) {}
+function blockUser(userId) {
+  const dbContext = getDbContextFromLocalStorage();
+  const user = dbContext.users.find((u) => u.id === userId);
+  if (user) {
+    user.status = "blocked";
+    saveDbContextToLocalStorage(dbContext);
+    return true;
+  }
+  return false;
+}
+function unBlockUser(userId) {
+  const dbContext = getDbContextFromLocalStorage();
+  const user = dbContext.users.find((u) => u.id === userId);
+  if (user) {
+    user.status = "active";
+    saveDbContextToLocalStorage(dbContext);
+    return true;
+  }
+  return false;
+}
+function getAllUsers() {
+  const dbContext = getDbContextFromLocalStorage();
+  return dbContext.users;
+}
 export {
   getUserById,
   checkAvailableAddressUser,
   getDefaultAddress,
   addNewAddress,
   getLoggedUser,
+  getAllUsers,
+  blockUser,
+  unBlockUser,
+  resetPasswordUser,
 };
