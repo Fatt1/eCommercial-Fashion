@@ -11,6 +11,20 @@ import { ORDER_STATUS } from "../../constant/Constant.js";
 import { formatNumber } from "../../helper/formatNumber.js";
 import { getProductById } from "../../services/productService.js";
 
+const orderStatusTranslation = {
+  [ORDER_STATUS.PENDING]: "Chờ xác nhận",
+  [ORDER_STATUS.WAITING_FOR_PAYMENT]: "Chờ thanh toán",
+  [ORDER_STATUS.PROCESSING]: "Đang chuẩn bị",
+  [ORDER_STATUS.READY_FOR_PICKUP]: "Sẵn sàng giao",
+  [ORDER_STATUS.SHIPPING]: "Đang vận chuyển",
+  [ORDER_STATUS.DELIVERED]: "Đã giao",
+  [ORDER_STATUS.COMPLETED]: "Đã hoàn thành",
+  [ORDER_STATUS.CANCELED]: "Đã hủy",
+  [ORDER_STATUS.FAILED]: "Thất bại",
+  [ORDER_STATUS.REFUNDED]: "Đã hoàn tiền",
+  [ORDER_STATUS.RETURNED]: "Đã trả lại",
+};
+
 let state = {
   orders: [],
   activeTab: "ALL",
@@ -95,7 +109,7 @@ function renderSingleOrder(order) {
   return `
     <section class="order" data-order-id="${order.id}">
       <div class="order-header">
-        <span>Trạng thái: <b>${order.status}</b></span>
+        <span>Trạng thái: <b>${orderStatusTranslation[order.status]}</b></span>
       </div>
       <div class="order-body">
         <img src="../assets/products/${product.thumbnail}" alt="sản phẩm" />
@@ -128,6 +142,12 @@ function renderSingleOrder(order) {
         )}đ</b></span>
         <div class="controls">
           <button class="btn primary">Mua lại</button>
+          ${
+            order.status === ORDER_STATUS.PENDING ||
+            order.status === ORDER_STATUS.PROCESSING
+              ? `<button class="btn cancel-order-btn" data-order-id="${order.id}">Hủy đơn</button>`
+              : ""
+          }
           <button class="btn">Xem chi tiết</button>
         </div>
       </div>
@@ -155,6 +175,21 @@ function setUpOrderHistory() {
       document.querySelector(".order-list-container").innerHTML = renderOrders(
         state.orders
       );
+    });
+  });
+
+  document.querySelectorAll(".cancel-order-btn").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const orderId = e.target.dataset.orderId;
+      const isConfirmed = confirm(
+        "Bạn có chắc chắn muốn hủy đơn hàng này không?"
+      );
+      if (isConfirmed) {
+        updateStatusOrder(orderId, ORDER_STATUS.CANCELED);
+        // Tải lại trang để cập nhật trạng thái
+        loadOrderHistory();
+        alert("Đã hủy đơn hàng thành công!");
+      }
     });
   });
 }
