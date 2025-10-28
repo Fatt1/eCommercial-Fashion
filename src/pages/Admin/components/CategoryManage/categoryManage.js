@@ -1,6 +1,12 @@
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
-import { getAllCategoriesByLevel } from "../../../../services/categoryService.js";
-import { loadAddCategoryPopup } from "./AddCategory.js";
+import {
+  getAllCategoriesByLevel,
+  getCategoryById,
+} from "../../../../services/categoryService.js";
+import {
+  loadAddCategoryPopup,
+  loadUpdateCategoryPopup,
+} from "./addCategory.js";
 function renderCategoryManageHtml() {
   document.getElementById("root").innerHTML = `
     <div class="admin">
@@ -152,6 +158,17 @@ function setUpRenderCategoryManage() {
 
   document.querySelector(".btn-add-category").addEventListener("click", () => {
     loadAddCategoryPopup();
+  });
+  document.querySelector(".btn-edit-category").addEventListener("click", () => {
+    const selectedCategoriesElements = document.querySelectorAll(
+      ".category-item.selected"
+    );
+
+    const lastSelectedCate =
+      selectedCategoriesElements[selectedCategoriesElements.length - 1];
+    const cateId = lastSelectedCate.dataset.cateId;
+    const categoryToUpdate = getCategoryById(cateId);
+    loadUpdateCategoryPopup(categoryToUpdate.category);
   });
 }
 

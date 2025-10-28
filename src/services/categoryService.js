@@ -73,21 +73,23 @@ function getCategoryLevel(categoryId, categories) {
 }
 function deleteCategoryById(categoryId) {
   const dbContext = getDbContextFromLocalStorage();
-  const category = dbContext.categories.find((c) => c.id === categoryId);
-  if (!category) return false;
-  const newCategories = dbContext.categories.filter((c) => c.id !== categoryId);
-  dbContext.categories = newCategories;
-  dbContext.saveChanges();
+  const categoryIndex = dbContext.categories.findIndex(
+    (c) => c.id === categoryId
+  );
+  if (categoryIndex === -1) return false;
+  dbContext.categories.splice(categoryIndex, 1);
+  saveDbContextToLocalStorage(dbContext);
   return true;
 }
+
 function updateCategoryById(updatedCategory) {
   const dbContext = getDbContextFromLocalStorage();
   const category = dbContext.categories.find(
     (c) => c.id === updatedCategory.id
   );
   if (!category) return false;
-  category = updatedCategory;
-  dbContext.saveChanges();
+  Object.assign(category, updatedCategory);
+  saveDbContextToLocalStorage(dbContext);
   return true;
 }
 function getCategoryById(categoryId) {

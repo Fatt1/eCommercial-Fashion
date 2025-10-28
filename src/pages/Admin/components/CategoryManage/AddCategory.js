@@ -1,7 +1,12 @@
 import {
+  updateCategoryById,
   addCategory,
   getAllCategoriesByLevel,
+  deleteCategoryById,
+  getSubCategory,
 } from "../../../../services/categoryService.js";
+import { getProductsByCategoryId } from "../../../../services/productService.js";
+import { loadCategoryManagePage } from "./categoryManage.js";
 
 // Biến cục bộ để lưu các category đã chọn
 let savedSelectedCategories = [];
@@ -232,55 +237,69 @@ function setupEventListeners() {
   DOM.agreeBtn.addEventListener("click", handleConfirmSelection);
 }
 
-function renderAddCategoryHtml() {
+// Thay thế hàm renderAddCategoryHtml cũ bằng hàm này
+function renderAddCategoryHtml(mode = "add", categoryData = {}) {
+  const isUpdate = mode === "update";
+  const title = isUpdate ? "Cập nhật danh mục" : "Thêm danh mục mới";
+  const buttonText = isUpdate ? "Cập nhật" : "Thêm danh mục";
+  const nameValue = categoryData.name || "";
+  const imageSrc = categoryData.image
+    ? `../assets/categories/${categoryData.image}`
+    : "../assets/Add Image.svg";
+
   document.querySelector(".overlay-content").hidden = false;
   document.querySelector(".overlay-content").innerHTML = `
     <div class="add-category-popup">
-      <h2>Thêm danh mục mới</h2>
+      <h2>${title}</h2>
       <div class="add-category-form">
           <div class="form-group category-input ">
               
-              <label>Ngành hàng cha</label>
+              <label>Ngành hàng cha (Nếu thay đổi)</label>
               <div class="wrapper-create-product-category-btn">
                   <button class="create-product__category-btn">Chọn ngành hàng</button>
                   <img src="../assets/Pencil.svg" alt="">
               </div>
               <div class"error-message error-category"></div>
-               <div class="category-selector-wrapper">
-               <div class="category-list">
-                 <ul class="category-list-menu" data-level="0">
-                 </ul>
-                 <ul class="category-list-menu" data-level="1">
-                   
-                 </ul>
-                 <ul class="category-list-menu" data-level="2">
-                   
-                 </ul>
-               </div>
-               <div class="footer-category">
-                 <div class="footer-category-left"><span>Đã chọn: </span> <div class="category-selected-list"></div></div>
-                 <div class="footer-category-action">
-                   <button class="footer-category-action__cancel-btn ">Hủy</button>
-                   <button class="footer-category-action__agree-btn btn-admin">Xác nhận</button>
-                 </div>
-               </div>
-               </div>
-               </div>
-         </div>
+              <div class="category-selector-wrapper">
+              <div class="category-list">
+                <ul class="category-list-menu" data-level="0">
+                </ul>
+                <ul class="category-list-menu" data-level="1">
+                    
+                </ul>
+                <ul class="category-list-menu" data-level="2">
+                    
+                </ul>
+              </div>
+              <div class="footer-category">
+                <div class="footer-category-left"><span>Đã chọn: </span> <div class="category-selected-list"></div></div>
+                <div class="footer-category-action">
+                  <button class="footer-category-action__cancel-btn ">Hủy</button>
+                  <button class="footer-category-action__agree-btn btn-admin">Xác nhận</button>
+                </div>
+              </div>
+              </div>
+              </div>
+      </div>
           <div class="form-group">
             <label for="category-name">Tên danh mục:</label>
-            <input type="text" id="category-name" name="category-name" />
+            <input type="text" id="category-name" name="category-name" value="${nameValue}" />
           </div class="form-group">
           <div class="preview-img">
             <span>*Ảnh danh mục</span>
             <label for="category-image">
-              <img class="category-preview-img" src="../assets/Add Image.svg" alt="Upload" />
+              <img class="category-preview-img" src="${imageSrc}" alt="Upload" />
             </label>
             <input type="file" id="category-image" name="category-image" accept="image/*" hidden />
           </div>
           <div class="add-category-action-buttons">
             <button class="btn-cancel-add-category">Hủy</button>
-            <button class="btn-confirm-add-category">Thêm danh mục</button>
+            ${
+              !isUpdate
+                ? ""
+                : '<button class="btn-delete-category">Xóa</button>'
+            }
+            <button class="btn-confirm-add-category">${buttonText}</button>
           </div>
       </div> 
     </div>
@@ -290,7 +309,8 @@ function renderAddCategoryHtml() {
 /**
  * Hàm setup chính cho popup
  */
-function setUpRenderAddCategory() {
+// Thay thế hàm setUpRenderAddCategory cũ bằng hàm này
+function setUpRenderAddCategory(mode = "add", categoryData = {}) {
   // 1. Khởi tạo lại biến state
   savedSelectedCategories = [];
 
@@ -302,16 +322,42 @@ function setUpRenderAddCategory() {
 
   // 4. Gán các sự kiện click cho button "Chọn ngành hàng", "Hủy", "Xác nhận"
   setupEventListeners();
+
   // 5. Gán sự kiện cho input upload ảnh
   handleClickUploadCategoryImage();
   handleCancelAddCategory();
-  handleAddCategory();
+
+  // 6. Gán sự kiện Thêm hoặc Cập nhật
+  if (mode === "add") {
+    handleAddCategory();
+  } else {
+    handleUpdateCategory(categoryData); // Truyền category gốc vào
+    handleDeleteCategory(categoryData); // Truyền category gốc vào
+  }
 }
 
+// Thay thế hàm loadAddCategoryPopup cũ bằng hàm này
 export function loadAddCategoryPopup() {
   document.querySelector(".overlay").classList.add("show");
-  renderAddCategoryHtml();
-  setUpRenderAddCategory();
+  category = {}; // Reset global category
+  renderAddCategoryHtml("add", {});
+  setUpRenderAddCategory("add", {});
+}
+
+// Thêm hàm mới này
+export function loadUpdateCategoryPopup(categoryToUpdate) {
+  if (!categoryToUpdate) {
+    console.error("Không có danh mục nào được cung cấp để cập nhật.");
+    return;
+  }
+  document.querySelector(".overlay").classList.add("show");
+
+  // Điền trước dữ liệu vào biến global 'category'
+  // để trình xử lý upload ảnh có thể sử dụng
+  category = { ...categoryToUpdate };
+
+  renderAddCategoryHtml("update", categoryToUpdate);
+  setUpRenderAddCategory("update", categoryToUpdate);
 }
 
 function handleClickUploadCategoryImage() {
@@ -355,10 +401,12 @@ function handleAddCategory() {
         category.parentId =
           savedSelectedCategories[savedSelectedCategories.length - 1].cateId;
         category.attributeIds = [];
-        const cate = addCategory(category);
-        console.log("Đã thêm danh mục:", cate);
-        alert("Thêm danh mục thành công!");
       }
+      // thêm sản phẩm mới
+      const cate = addCategory(category);
+
+      alert("Thêm danh mục thành công!");
+      restCategoryPopup();
     });
 }
 
@@ -371,4 +419,118 @@ function handleCancelAddCategory() {
       document.querySelector(".overlay-content").innerHTML = "";
       document.querySelector(".overlay-content").hidden = true;
     });
+}
+
+// Thêm hàm mới này (thường đặt sau hàm handleAddCategory)
+function handleUpdateCategory(originalCategory) {
+  document
+    .querySelector(".btn-confirm-add-category") // Vẫn dùng chung class
+    .addEventListener("click", () => {
+      // Không cho phép quá 4 danh mục cấp con
+      if (savedSelectedCategories.length >= 3) {
+        alert("Chỉ được phép thêm danh mục con tối đa 3 cấp.");
+        return;
+      }
+
+      const categoryNameInput = document.getElementById("category-name");
+      const categoryName = categoryNameInput.value.trim();
+      if (!categoryName) {
+        alert("Vui lòng nhập tên danh mục.");
+        return;
+      }
+
+      // Chuẩn bị dữ liệu để cập nhật
+      const dataToUpdate = {
+        id: originalCategory.id, // Giữ ID gốc
+      };
+
+      // Lấy tên mới
+      dataToUpdate.name = categoryName;
+
+      // Lấy ảnh (ảnh mới từ global 'category.image' nếu có,
+      // hoặc ảnh gốc nếu không thay đổi)
+      dataToUpdate.image = category.image || originalCategory.image;
+
+      // Kiểm tra xem người dùng có CHỌN MỚI ngành hàng cha không
+      if (savedSelectedCategories.length > 0) {
+        if (originalCategory.parentId === null) {
+          alert(
+            "Danh mục gốc là danh mục cấp cao nhất, không thể thay đổi ngành hàng cha."
+          );
+          return;
+        }
+        if (
+          originalCategory.id ===
+          savedSelectedCategories[savedSelectedCategories.length - 1].cateId
+        ) {
+          alert("Không thể chọn chính danh mục này làm ngành hàng cha.");
+          return;
+        }
+        dataToUpdate.parentId =
+          savedSelectedCategories[savedSelectedCategories.length - 1].cateId;
+      } else {
+        // Nếu không chọn mới, giữ nguyên parentId cũ
+        dataToUpdate.parentId = originalCategory.parentId;
+      }
+
+      // *** Gọi hàm service updateCategory (Giả định) ***
+      const result = updateCategoryById(dataToUpdate);
+      // Bạn cần đảm bảo hàm updateCategory(data) tồn tại trong service
+
+      alert("Cập nhật danh mục thành công!");
+
+      restCategoryPopup();
+    });
+}
+
+function handleDeleteCategory(category) {
+  document
+    .querySelector(".btn-delete-category")
+    .addEventListener("click", () => {
+      const confirmDelete = confirm(
+        `Bạn có chắc chắn muốn xóa danh mục ${category.name} này không?`
+      );
+      if (!confirmDelete) return;
+
+      // Kiểm tra xem danh mục này có bất kì sản phẩm nào không
+      const productInCategory = getProductsByCategoryId(category.id);
+      if (productInCategory.length > 0) {
+        const productNames = productInCategory
+          .map((prod) => prod.name)
+          .join(", ");
+        alert(
+          `Không thể xóa danh mục này vì có sản phẩm liên quan: ${productNames}`
+        );
+        return;
+      }
+
+      // Kiểm tra xem danh mục này có danh mục con không
+
+      const childCategories = getSubCategory(category.id, 1);
+      if (childCategories.length > 0) {
+        const childCategoryNames = childCategories
+          .map((cate) => cate.name)
+          .join(", ");
+        alert(
+          `Không thể xóa danh mục này vì có danh mục con liên quan: ${childCategoryNames}`
+        );
+        return;
+      }
+
+      // Gọi hàm xóa danh mục từ service
+      const result = deleteCategoryById(category.id);
+      if (result) {
+        alert("Xóa danh mục thành công!");
+        // Đóng popup và reset
+        restCategoryPopup();
+      }
+    });
+}
+
+function restCategoryPopup() {
+  category = {};
+  document.querySelector(".overlay").classList.remove("show");
+  document.querySelector(".overlay-content").innerHTML = "";
+  document.querySelector(".overlay-content").hidden = true;
+  loadCategoryManagePage(); // Tải lại trang quản lý danh mục để thấy thay đổi
 }
