@@ -6,24 +6,11 @@ export const DISCOUNT_TYPE = {
   PERCENTAGE: "PERCENTAGE",
 };
 export const ORDER_STATUS = {
-  // 1. Trạng thái Ban đầu (Initial States)
-  PENDING: "PENDING", // Đang chờ xử lý / Đang chờ xác nhận (Mới đặt)
-  WAITING_FOR_PAYMENT: "WAITING_FOR_PAYMENT", // Đang chờ thanh toán (Nếu thanh toán sau)
-
-  // 2. Trạng thái Xử lý (Processing States)
-  PROCESSING: "PROCESSING", // Đang chuẩn bị hàng / Đã xác nhận
-
-  // 3. Trạng thái Vận chuyển (Shipping States)
-  READY_FOR_PICKUP: "READY_FOR_PICKUP", // Sẵn sàng giao cho đơn vị vận chuyển
+  PENDING: "PENDING", // Chờ xác nhận
   SHIPPING: "SHIPPING", // Đang vận chuyển
-  DELIVERED: "DELIVERED", // Đã giao hàng thành công
-
-  // 4. Trạng thái Hoàn tất và Thất bại (Completion & Failure States)
-  COMPLETED: "COMPLETED", // Đơn hàng đã hoàn thành (Sau DELIVERED và thanh toán xong)
-  CANCELED: "CANCELED", // Đã hủy bởi khách hàng hoặc người bán
-  FAILED: "FAILED", // Thất bại (Ví dụ: Thanh toán không thành công)
-  REFUNDED: "REFUNDED", // Đã hoàn tiền (Nếu có)
-  RETURNED: "RETURNED", // Đã bị trả lại
+  DELIVERED: "DELIVERED", // Chờ giao hàng
+  COMPLETED: "COMPLETED", // Hoàn thành
+  CANCELED: "CANCELED", // Đã hủy
 };
 export const INPUT_TYPE = {
   // Loại 1: Chỉ chọn một giá trị từ danh sách (Không cho phép nhập mới)

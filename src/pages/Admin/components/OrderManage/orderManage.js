@@ -11,16 +11,10 @@ const overlay = document.querySelector(".overlay");
 const overlayContent = document.querySelector(".overlay-content");
 const orderStatusTranslation = {
   PENDING: "Chờ xác nhận",
-  WAITING_FOR_PAYMENT: "Chờ thanh toán",
-  PROCESSING: "Đang chuẩn bị",
-  READY_FOR_PICKUP: "Sẵn sàng giao",
   SHIPPING: "Đang vận chuyển",
-  DELIVERED: "Đã giao",
-  COMPLETED: "Đã hoàn thành",
+  DELIVERED: "Chờ giao hàng",
+  COMPLETED: "Hoàn thành",
   CANCELED: "Đã hủy",
-  FAILED: "Thất bại",
-  REFUNDED: "Đã hoàn tiền",
-  RETURNED: "Đã trả lại",
 };
 let filter = { pageNumber: 1, pageSize: 5 };
 function renderOrderManage() {
@@ -60,14 +54,11 @@ function renderOrderManage() {
                 <button data-status="${
                   ORDER_STATUS.PENDING
                 }">Chờ xác nhận</button>
+                <button data-status="${ORDER_STATUS.SHIPPING}">Vận chuyển</button>
                 <button data-status="${
-                  ORDER_STATUS.PROCESSING
-                }">Đang chuẩn bị</button>
-                <button data-status="${ORDER_STATUS.DELIVERED}">Đã giao</button>
-                <button data-status="${ORDER_STATUS.CANCELED}>Đã Hủy</button>
-                <button data-status="${
-                  ORDER_STATUS.COMPLETED
-                }">Đơn hàng đã hoàn thành</button>
+                  ORDER_STATUS.DELIVERED
+                }">Chờ giao hàng</button>
+                <button data-status="${ORDER_STATUS.COMPLETED}">Hoàn thành</button>
               </div>
               <div class="order-date-filter">
                 <span>Từ</span>
@@ -303,28 +294,28 @@ function UpdateStatusOrderModal(order) {
             Chờ xác nhận
           </option>
           <option 
-            value="${ORDER_STATUS.PROCESSING}" 
-            ${order.status === ORDER_STATUS.PROCESSING ? "selected" : ""}
+            value="${ORDER_STATUS.SHIPPING}" 
+            ${order.status === ORDER_STATUS.SHIPPING ? "selected" : ""}
           >
-            Đang chuẩn bị
+            Vận chuyển
           </option>
           <option 
             value="${ORDER_STATUS.DELIVERED}" 
             ${order.status === ORDER_STATUS.DELIVERED ? "selected" : ""}
           >
-            Đã giao
+            Chờ giao hàng
           </option>
           <option 
             value="${ORDER_STATUS.COMPLETED}" 
             ${order.status === ORDER_STATUS.COMPLETED ? "selected" : ""}
           >
-            Đã hoàn thành
+            Hoàn thành
           </option>
           <option 
             value="${ORDER_STATUS.CANCELED}" 
             ${order.status === ORDER_STATUS.CANCELED ? "selected" : ""}
           >
-            Đã Hủy
+            Đã hủy
           </option>
               </select>
             </div>

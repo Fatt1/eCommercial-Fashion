@@ -14,16 +14,10 @@ import { getPaymentMethodById } from "../../services/paymentMethodService.js";
 
 const orderStatusTranslation = {
   [ORDER_STATUS.PENDING]: "Chờ xác nhận",
-  [ORDER_STATUS.WAITING_FOR_PAYMENT]: "Chờ thanh toán",
-  [ORDER_STATUS.PROCESSING]: "Đang chuẩn bị",
-  [ORDER_STATUS.READY_FOR_PICKUP]: "Sẵn sàng giao",
   [ORDER_STATUS.SHIPPING]: "Đang vận chuyển",
-  [ORDER_STATUS.DELIVERED]: "Đã giao",
-  [ORDER_STATUS.COMPLETED]: "Đã hoàn thành",
+  [ORDER_STATUS.DELIVERED]: "Chờ giao hàng",
+  [ORDER_STATUS.COMPLETED]: "Hoàn thành",
   [ORDER_STATUS.CANCELED]: "Đã hủy",
-  [ORDER_STATUS.FAILED]: "Thất bại",
-  [ORDER_STATUS.REFUNDED]: "Đã hoàn tiền",
-  [ORDER_STATUS.RETURNED]: "Đã trả lại",
 };
 
 let state = {
@@ -55,11 +49,9 @@ function renderOrderHistoryHtml() {
             <a href="#" data-status="${
               ORDER_STATUS.SHIPPING
             }" class="order-tab">Vận chuyển</a>
+            <a href="#" data-status="DELIVERED" class="order-tab">Chờ giao hàng</a>
             <a href="#" data-status="${
               ORDER_STATUS.DELIVERED
-            }" class="order-tab">Đã giao</a>
-            <a href="#" data-status="${
-              ORDER_STATUS.COMPLETED
             }" class="order-tab">Hoàn thành</a>
             <a href="#" data-status="${
               ORDER_STATUS.CANCELED
@@ -145,8 +137,7 @@ function renderSingleOrder(order) {
         <div class="controls">
           <button class="btn primary">Mua lại</button>
           ${
-            order.status === ORDER_STATUS.PENDING ||
-            order.status === ORDER_STATUS.PROCESSING
+            order.status === ORDER_STATUS.PENDING
               ? `<button class="btn cancel-order-btn" data-order-id="${order.id}">Hủy đơn</button>`
               : ""
           }
