@@ -16,46 +16,46 @@ export function AdminNav() {
           </div>
 
           <ul class="admin__category">
-            <button>
-              <li class="admin__category--1">
+            <button class="admin__category--1">
+              <li >
                 <img class="icon" src="../assets/admin-icon1.png" />Trang Chủ
               </li>
             </button>
-            <button>
-              <li class="admin__category--2">
+            <button class="admin__category--2">
+              <li>
                 <img class="icon" src="../assets/admin-icon2.png" />Sản Phẩm
               </li>
             </button>
-            <button>
-              <li class="admin__category--3">
+            <button class="admin__category--3">
+              <li >
                 <img class="icon" src="../assets/admin-icon3.png" />Quản Lý Danh Mục
               </li>
             </button>
-            <button>
-              <li class="admin__category--4">
+            <button class="admin__category--4">
+              <li >
                 <img class="icon" src="../assets/admin-icon4.png" />Quản lí Giá Bán
               </li>
             </button>
-            <button>
-              <li class="admin__category--5">
+            <button class="admin__category--5">
+              <li >
                 <img class="icon" src="../assets/admin-icon5.png" />Quản Lý
                 Người Dùng
               </li>
             </button>
-            <button>
-              <li class="admin__category--6">
+            <button class="admin__category--6">
+              <li >
                 <img class="icon" src="../assets/admin-icon6.png" />Quản Lý
                 Thống Kê
               </li>
             </button>
-            <button>
-              <li class="admin__category--7">
+            <button class="admin__category--7">
+              <li >
                 <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Đơn
                 Hàng
               </li>
             </button>
-            <button>
-              <li class="admin__category--8">
+            <button class="admin__category--8">
+              <li >
                 <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Phiếu Nhập
               </li>
             </button>
@@ -89,7 +89,7 @@ export function setUpAdminNav() {
     .querySelector(".admin__category--4")
     .addEventListener("click", () => {
       loadPriceManagePage();
-        });
+    });
 
   document
     .querySelector(".admin__category--5")
