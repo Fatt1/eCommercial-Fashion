@@ -5,7 +5,7 @@ export function AdminHeader() {
               <h1 class="admin__homepage--text">Trang chủ</h1>
               <div class="vertical-line"></div>
               <div class="admin__search-bar">
-                <input type="text" placeholder="Tìm kiếm" class="search-bar" />
+                <input type="text" placeholder="Tìm kiếm" class="search-bar-inadmin" />
                 <button>SEARCH</button>
               </div>
             </div>
