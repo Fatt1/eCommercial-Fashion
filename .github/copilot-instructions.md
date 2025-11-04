@@ -149,8 +149,9 @@ export function renderComponent(data) {
 
 ### Form Validation
 
-- Use the validation service in `src/services/validation.js`
-- Form validation logic in `src/services/formValidator.js`
+- Use the `Validation` class from `src/services/validation.js` for field-level validation rules
+- Use the `FormValidator` class from `src/services/formValidator.js` for form-level validation
+- `FormValidator` uses `Validation` internally to validate individual fields
 - Display validation errors inline with form fields
 
 ## Common Patterns to Follow
