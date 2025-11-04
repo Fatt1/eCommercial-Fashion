@@ -151,7 +151,7 @@
 
 .controls {
   display: flex;
-  gap: 8px; /* Thêm khoảng cách giữa các nút */
+  gap: 8px; 
 }
 .empty-order {
   display: flex;
@@ -178,4 +178,171 @@
   font-size: 2.1rem; 
   color: #555;
   font-weight: 500;
+}
+
+/* --- Popup Chi Tiết Đơn Hàng --- */
+#order-detail-popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  z-index: 1001;
+  display: none;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#order-detail-popup-container.show {
+  display: block;
+}
+
+.order-detail-popup {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  width: 700px;
+  max-width: 90vw;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  
+}
+
+/* --- Header --- */
+
+.order-detail-popup__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.order-detail-popup__header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.close-popup-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #888;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.close-popup-btn:hover {
+  color: #333;
+}
+
+/* --- Body --- */
+.order-detail-popup__body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- Sections --- */
+.order-top-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.order-info-section,
+.address-section,
+.payment-summary-section,
+.payment-method-section,
+.items-section {
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.address-section h4,
+.payment-summary-section h4,
+.payment-method-section h4,
+.items-section h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.items-section h4 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-info-section p,
+.address-section p,
+.payment-method-section p {
+  margin: 4px 0;
+  font-size: 1.5rem;
+}
+
+/* --- Items --- */
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.item-info {
+  flex-grow: 1;
+}
+
+.item-name {
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: #222;
+}
+.item-sku,
+.item-quantity {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.item-price {
+  font-weight: 500;
+}
+
+/* --- Summary --- */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.summary-row.total {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-top: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
 }
