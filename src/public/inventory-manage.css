@@ -1,0 +1,234 @@
+/* ===================================
+   INVENTORY MANAGEMENT STYLES
+   =================================== */
+
+/* Main Container */
+.inventory-manage {
+  font-family: "Inter", sans-serif;
+  padding-top: 0;
+}
+
+/* Filter Section */
+.inventory-manage__filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 20px 30px;
+  margin: 0 30px 20px 30px;
+  gap: 20px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-select {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  outline: none;
+  min-width: 200px;
+}
+
+.filter-dates {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.filter-dates span {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.date-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  min-width: 120px;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  background-color: #565dbd;
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  background-color: #4a51a3;
+}
+
+
+
+/* Table Section */
+.inventory-manage__table {
+  background-color: white;
+  padding: 20px 30px;
+  margin: 0 30px;
+  overflow-x: auto;
+}
+
+.inventory-manage__table .cart {
+  min-width: 1000px;
+}
+
+/* Override cart-info and cart-item for inventory table alignment */
+.inventory-manage .cart-info,
+.inventory-manage .cart-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  border-bottom: 1px solid rgb(199, 199, 199);
+  gap: 0;
+  padding: 15px 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.inventory-manage .cart-info {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgb(150, 150, 150);
+}
+
+/* Column widths and alignment for inventory table */
+.inventory-manage .product-stt {
+  flex: 0 0 60px;
+  min-width: 60px;
+  text-align: center;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.inventory-manage .product-status {
+  flex: 0 0 130px;
+  min-width: 130px;
+  text-align: center;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.inventory-manage .product-main {
+  flex: 0 0 280px;
+  min-width: 280px;
+  text-align: left;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.inventory-manage .product-stock-in,
+.inventory-manage .product-stock-current,
+.inventory-manage .product-stock-sold {
+  flex: 0 0 160px;
+  min-width: 160px;
+  text-align: center;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+/* Product info alignment */
+.inventory-manage .product-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.inventory-manage .product-main__img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.inventory-manage .product-name {
+  flex: 1;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Status Badge - Custom styles for inventory */
+.inventory-manage .product-status .status-out {
+  color: #d32f2f;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.inventory-manage .product-status .status-warning {
+  color: #f57c00;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.inventory-manage .product-status .status-normal {
+  color: #388e3c;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Center align content in status, stock columns */
+.inventory-manage .product-status span,
+.inventory-manage .product-stock-in span,
+.inventory-manage .product-stock-current span,
+.inventory-manage .product-stock-sold span,
+.inventory-manage .product-stt span {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Remove extra padding from product item container */
+.inventory-manage .product-item-container {
+  margin: 0;
+  padding: 0;
+}
+
+.inventory-manage .product-result-item__product {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure consistent spacing */
+.inventory-manage .cart-item {
+  margin: 0;
+}
+
+/* Pagination - Using shared styles from product-manage.css */
+.inventory-manage .product-manage-main-result__end {
+  background-color: white;
+  padding: 20px 30px;
+  margin: 20px 30px 0 30px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .inventory-manage__filter {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .filter-dates {
+    flex-wrap: wrap;
+  }
+}

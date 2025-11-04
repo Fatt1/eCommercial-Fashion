@@ -5,6 +5,7 @@ import { loadPriceManagePage } from "../PriceMange/priceMange.js";
 import { loadProductAdmin } from "../ProductManage/productManage.js";
 import { loadUserManagePage } from "../UserManage/userManage.js";
 import { loadGoodsReceivedNoteList } from "../goodsReceivedNoteManage/goodsReceivedNoteManage.js";
+import { loadInventoryManagePage } from "../InventoryManage/inventoryManage.js";
 
 export function AdminNav() {
   return `
@@ -59,6 +60,11 @@ export function AdminNav() {
                 <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Phiếu Nhập
               </li>
             </button>
+            <button class="admin__category--9">
+              <li >
+                <img class="icon" src="../assets/admin-icon6.png" />Quản Lý Tồn Kho
+              </li>
+            </button>
           </ul>
         </div>
   `;
@@ -100,5 +106,10 @@ export function setUpAdminNav() {
     .querySelector(".admin__category--8")
     .addEventListener("click", () => {
       loadGoodsReceivedNoteList();
+    });
+  document
+    .querySelector(".admin__category--9")
+    .addEventListener("click", () => {
+      loadInventoryManagePage();
     });
 }
