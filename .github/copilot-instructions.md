@@ -158,12 +158,14 @@ export function renderComponent(data) {
 ### 1. Pagination
 Use `createPagination()` from helper functions:
 ```javascript
-const paginatedData = createPagination(data, page, perPage);
+import { createPagination } from '../helper/helper.js';
+const paginatedData = createPagination(data, pageSize, pageNumber);
 ```
 
 ### 2. Unique IDs
 Always use `generateUniqueId()` for new entities:
 ```javascript
+import { generateUniqueId } from '../helper/helper.js';
 const newProduct = {
   id: generateUniqueId(),
   name: productName,
@@ -174,14 +176,14 @@ const newProduct = {
 ### 3. Price Formatting
 Use `formatNumber()` from helper functions:
 ```javascript
-import { formatNumber } from './helper/formatNumber.js';
+import { formatNumber } from '../helper/formatNumber.js';
 const formattedPrice = formatNumber(price);
 ```
 
 ### 4. Order Status
 Use constants from `src/constant/Constant.js`:
 ```javascript
-import { ORDER_STATUS } from './constant/Constant.js';
+import { ORDER_STATUS } from '../constant/Constant.js';
 const order = {
   status: ORDER_STATUS.PENDING,
   // ...
