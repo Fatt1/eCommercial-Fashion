@@ -268,14 +268,14 @@ function showGRNDetail(grnId) {
     .getElementById("close-detail-modal")
     .addEventListener("click", () => {
       overlay.classList.remove("show");
-      overlayContent.hidden = false;
+      overlayContent.hidden = true;
       overlayContent.innerHTML = "";
     });
 
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       overlay.classList.remove("show");
-      overlayContent.hidden = false;
+      overlayContent.hidden = true;
       overlayContent.innerHTML = "";
     }
   });
