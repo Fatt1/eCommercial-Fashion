@@ -200,10 +200,10 @@ export function setupDropdownAfterLogin(email, id) {
     ".login-register-link"
   ).innerHTML = ` <div class="dropdown">
                           <span class="header__user-name">${email}</span>
-                          <ul style="top: 15px" class="dropdown-menu">
-                              <li class="dropdown-item order-history-btn">Đơn hàng</li>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown-item user-info-btn">Thông tin tài khoản</li>
+                              <li class="dropdown-item order-history-btn">Đơn hàng của tôi</li>
                               <li class="dropdown-item logout-btn">Đăng xuất</li>
-                              <li class="dropdown-item user-info-btn">Xem thông tin tài khoản ${id}</li>
                             </ul>
                         </div>`;
   // Thiết lập event hover cho dropdown nếu user đã đăng nhập
@@ -225,11 +225,8 @@ export function setupDropdownAfterLogin(email, id) {
   });
   document.querySelector(".user-info-btn").addEventListener("click", () => {
     document.getElementById("register-login").innerHTML = renderUserInfo();
-
     setupUserInfoForm();
-
     renderOverlay();
-    console.log(getUserByEmail(email));
   });
 }
 

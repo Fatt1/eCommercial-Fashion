@@ -159,23 +159,4 @@
   border-radius: 100%;
 }
 
-.add-to-cart-message {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  margin-top: 15px;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-left: 10px;
-  color: white;
-}
 
-.add-to-cart-message-on {
-  color: green;
-}
-
-.add-to-cart-btn {
-  color: gray;
-  /* background-color: ; */
-  cursor: not-allowed;
-}

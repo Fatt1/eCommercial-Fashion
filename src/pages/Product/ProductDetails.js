@@ -205,17 +205,6 @@ function renderProductDetailHtml(productId) {
                 </button>
                 <button data-product-id="${productId}" class="buy-now-btn">Mua ngay</button>
               </div>
-
-
-
-              <div class="add-to-cart-message">
-                 
-                 <!--  <img class="add-to-cart-tick" src="../assets/circle-check-solid-full.svg"> -->
-                 Added to cart
-              </div>
-
-
-
             </div>
             <div class="share-section">
               <p class="share-section__name">Chia sẻ</p>
@@ -348,12 +337,36 @@ function generateAttributeContent(product) {
   return content;
 }
 
-function addMessage() {
-  const msg = document.querySelector(".add-to-cart-message");
-  msg.classList.add("add-to-cart-message-on");
+function showToast(message, type = 'success') {
+  // Tạo toast element
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <div class="toast-icon">
+      ${type === 'success' ? '✓' : '✕'}
+    </div>
+    <div class="toast-message">${message}</div>
+  `;
+  
+  // Thêm vào body
+  document.body.appendChild(toast);
+  
+  // Trigger animation
   setTimeout(() => {
-    msg.classList.remove("add-to-cart-message-on");
-  }, 1000);
+    toast.classList.add('toast-show');
+  }, 10);
+  
+  // Xóa sau 3 giây
+  setTimeout(() => {
+    toast.classList.remove('toast-show');
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 300);
+  }, 3000);
+}
+
+function addMessage() {
+  showToast('✅ Đã thêm vào giỏ hàng thành công!', 'success');
 }
 
 // function addedMessageAfterClickButton() {

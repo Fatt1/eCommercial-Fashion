@@ -218,17 +218,6 @@ function renderProductDetailOverLay(productId) {
                 </button>
                 <button data-product-id="${productId}" class="buy-now-btn">Mua ngay</button>
               </div>
-
-
-
-              <div class="add-to-cart-message">
-                 
-                 <!--  <img class="add-to-cart-tick" src="../assets/circle-check-solid-full.svg"> -->
-                 Added to cart
-              </div>
-
-
-
             </div>
             <div class="share-section">
               <p class="share-section__name">Chia sẻ</p>

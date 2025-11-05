@@ -419,11 +419,42 @@ export function renderCartItemContainer() {
 
   handleClickMenuSizeColor();
   function handleClickMenuSizeColor() {
-    //add toggle on/off menu khi click vào btn size&color
+    // Xử lý hover cho dropdown size và color
+    const dropdownCarts = document.querySelectorAll(".dropdown-cart");
+    
+    dropdownCarts.forEach((dropdown) => {
+      let hideTimeout;
+      
+      dropdown.addEventListener("mouseenter", () => {
+        clearTimeout(hideTimeout);
+        const menu = dropdown.querySelector(".dropdown-menu-cart");
+        if (menu) {
+          // Đóng tất cả menu khác
+          document.querySelectorAll(".dropdown-menu-cart.show").forEach((otherMenu) => {
+            if (otherMenu !== menu) {
+              otherMenu.classList.remove("show");
+            }
+          });
+          menu.classList.add("show");
+        }
+      });
+      
+      dropdown.addEventListener("mouseleave", () => {
+        const menu = dropdown.querySelector(".dropdown-menu-cart");
+        if (menu) {
+          hideTimeout = setTimeout(() => {
+            menu.classList.remove("show");
+          }, 200);
+        }
+      });
+    });
+
+    //add toggle on/off menu khi click vào btn size&color (giữ lại cho mobile)
     const btnSizes = document.querySelectorAll(".dropdown-button__size");
 
     btnSizes.forEach((btnSize) => {
-      btnSize.addEventListener("click", () => {
+      btnSize.addEventListener("click", (e) => {
+        e.stopPropagation();
         const skuId = btnSize.dataset.skuId;
         const menuSize = document.querySelector(
           `.dropdown-menu__size-${skuId}`
@@ -440,11 +471,12 @@ export function renderCartItemContainer() {
       });
     });
 
-    //add toggle on/off menu khi click vào btn size&color
+    //add toggle on/off menu khi click vào btn size&color (giữ lại cho mobile)
     const btnColors = document.querySelectorAll(".dropdown-button__color");
 
     btnColors.forEach((btnColor) => {
-      btnColor.addEventListener("click", () => {
+      btnColor.addEventListener("click", (e) => {
+        e.stopPropagation();
         const skuId = btnColor.dataset.skuId;
         const menuColor = document.querySelector(
           `.dropdown-menu__color-${skuId}`
