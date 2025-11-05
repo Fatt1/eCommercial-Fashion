@@ -1,6 +1,3 @@
-import { loadDataToLocalStorage } from "./helper/initialData.js";
-import { DB_CONTEXT_KEY } from "./constant/Constant.js";
-
 window.addEventListener("scroll", (event) => {
   const pageY = 100;
 

@@ -1,22 +1,26 @@
 import ProductList from "../../../components/ProductList/ProductList.js";
+import { getAllCategoriesByLevel } from "../../../services/categoryService.js";
 import { loadProductPage } from "../../Product/Product.js";
 
 export default function BestSeller({ result }) {
+  const categories = getAllCategoriesByLevel(0);
+  const bestSellerCategories = categories.slice(0, 3);
   let defaultTab = true;
   return `<div class="best-seller">
     <div class="main-content">
       <h2 class="header-text">BÁN CHẠY NHẤT</h2>
       <ul class="category-best-seller">
-        <li data-target="cate-001" class="category-best-seller-item active">
-          <a>MEN</a>
+        ${bestSellerCategories
+          .map((cate, index) => {
+            return `
+           <li data-target="${cate.id}" class="category-best-seller-item ${
+              index === 0 ? "active" : ""
+            }">
+          <a>${cate.name}</a>
         </li>
-          <li data-target="cate-002" class="category-best-seller-item">
-          <a>WOMEN</a>
-        </li>
-        <li data-target="cate-003" class="category-best-seller-item">
-          <a>ACCESSORIES</a>
-        </li>
-      
+          `;
+          })
+          .join(" ")}
       </ul>
      <div style="display: flex;">
         <a

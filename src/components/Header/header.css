@@ -163,7 +163,7 @@ header a:hover {
 }
 /* Categories box */
 .category-box {
-  min-width: 500px;
+  min-width: 850px;
   display: flex;
   background-color: rgb(32, 28, 28);
   padding: 30px;

@@ -1,4 +1,5 @@
 import {
+  getAllCategoriesByLevel,
   getAllCategory,
   getSubCategory,
 } from "../../services/categoryService.js";
@@ -10,7 +11,6 @@ import { Login, setUpLoginForm } from "../Login/Login.js";
 import Register, { setupRegisterForm } from "../Register/Register.js";
 import { loadOrderHistory } from "../../pages/OrderHistory/OrderHistory.js";
 import { renderUserInfo, setupUserInfoForm } from "../UserInfo/UserInfo.js";
-import { getUserByEmail } from "../../services/userService.js";
 
 export default function Header(selectedTab) {
   return ` <header>
@@ -109,7 +109,8 @@ export function handleClickHeader() {
     liHeader.addEventListener("click", (event) => {
       const tabSelected = liHeader.dataset.tab;
       if (tabSelected === "san-pham") {
-        loadProductPage("cate-001");
+        const categories = getAllCategoriesByLevel(0);
+        loadProductPage(categories[0].id);
         return;
       }
     });
