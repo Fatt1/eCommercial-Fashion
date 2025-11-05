@@ -14,6 +14,7 @@ import { getUserByEmail } from "../../services/userService.js";
 
 export default function Header(selectedTab) {
   return ` <header>
+        <div class="overlay"></div>
         <div class="container">
           <div class="main-content">
             <div class="header-top">

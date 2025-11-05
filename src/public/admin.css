@@ -91,23 +91,36 @@ body {
 .admin__homepage--text {
   font-weight: bold;
   font-size: large;
+  white-space: nowrap;
 }
 
-.search-bar {
+.admin__search-bar {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+
+.search-bar-inadmin {
   background-color: rgb(215, 215, 215);
   width: 300px;
   border: 1px solid rgb(43, 43, 43);
   border-right: none;
+  padding: 0 5px;
 }
 
 .admin__search-bar button {
   white-space: nowrap;
   background-color: rgba(86, 93, 189, 1);
   color: white;
-  position: absolute;
   border: 1px solid rgb(43, 43, 43);
   border-left: none;
   font-family: "Inter", sans-serif;
+  cursor: pointer;
+  padding: 0 12px;
+}
+
+.admin__search-bar button:hover {
+  background-color: rgba(70, 76, 150, 1);
 }
 
 .admin__header--right {

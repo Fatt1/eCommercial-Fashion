@@ -11,16 +11,10 @@ const overlay = document.querySelector(".overlay");
 const overlayContent = document.querySelector(".overlay-content");
 const orderStatusTranslation = {
   PENDING: "Chờ xác nhận",
-  WAITING_FOR_PAYMENT: "Chờ thanh toán",
-  PROCESSING: "Đang chuẩn bị",
-  READY_FOR_PICKUP: "Sẵn sàng giao",
   SHIPPING: "Đang vận chuyển",
-  DELIVERED: "Đã giao",
-  COMPLETED: "Đã hoàn thành",
+  DELIVERED: "Chờ giao hàng",
+  COMPLETED: "Hoàn thành",
   CANCELED: "Đã hủy",
-  FAILED: "Thất bại",
-  REFUNDED: "Đã hoàn tiền",
-  RETURNED: "Đã trả lại",
 };
 let filter = { pageNumber: 1, pageSize: 5 };
 function renderOrderManage() {
@@ -61,13 +55,14 @@ function renderOrderManage() {
                   ORDER_STATUS.PENDING
                 }">Chờ xác nhận</button>
                 <button data-status="${
-                  ORDER_STATUS.PROCESSING
-                }">Đang chuẩn bị</button>
-                <button data-status="${ORDER_STATUS.DELIVERED}">Đã giao</button>
-                <button data-status="${ORDER_STATUS.CANCELED}>Đã Hủy</button>
+                  ORDER_STATUS.SHIPPING
+                }">Vận chuyển</button>
+                <button data-status="${
+                  ORDER_STATUS.DELIVERED
+                }">Chờ giao hàng</button>
                 <button data-status="${
                   ORDER_STATUS.COMPLETED
-                }">Đơn hàng đã hoàn thành</button>
+                }">Hoàn thành</button>
               </div>
               <div class="order-date-filter">
                 <span>Từ</span>
@@ -94,6 +89,10 @@ function renderOrderManage() {
 
 function OrderItem(orderItem) {
   const paymentMethod = getPaymentMethodById(orderItem.paymentMethodId);
+  const isOrderFinished =
+    orderItem.status === ORDER_STATUS.COMPLETED ||
+    orderItem.status === ORDER_STATUS.CANCELED;
+
   return `
   <tr>
     <td>${orderItem.id}</td>
@@ -107,9 +106,11 @@ function OrderItem(orderItem) {
       <p class="order-details-link" data-order-id="${
         orderItem.id
       }">Xem chi tiết</p>
-      <p class="update-status-link" data-order-id="${
-        orderItem.id
-      }">Cập nhật trạng thái</p>
+      <p class="update-status-link ${
+        isOrderFinished ? "disabled" : ""
+      }" data-order-id="${orderItem.id}" ${
+    isOrderFinished ? 'style="opacity: 0.5; cursor: not-allowed;"' : ""
+  }>Cập nhật trạng thái</p>
     </td>
   </tr>
   `;
@@ -157,17 +158,18 @@ function OrderItemDetailTable(items) {
 }
 function OrderTable(orderItems) {
   return `
-
         <table id="order-list-table">
           <thead>
-            <th>Mã đơn hàng</th>
-            <th>Khách hàng</th>
-            <th>Thời gian tạo đơn</th>
-            <th>Tổng tiền</th>
-            <th>Tổng tiền thanh toán</th>
-            <th>Phương thức thanh toán</th>
-            <th>Trạng thái</th>
-            <th>Thao tác</th>
+           <tr>
+              <th>Mã đơn hàng</th>
+              <th>Khách hàng</th>
+              <th>Thời gian tạo đơn</th>
+              <th>Tổng tiền</th>
+              <th>Tổng tiền thanh toán</th>
+              <th>Phương thức thanh toán</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+           </tr>
           </thead>
           <tbody>
             ${orderItems.map((item) => OrderItem(item)).join("")}
@@ -249,6 +251,11 @@ function setUpOrderTableEventListeners() {
 
   document.querySelectorAll(".update-status-link").forEach((link) => {
     link.addEventListener("click", () => {
+      // Kiểm tra nếu link bị disabled thì không làm gì
+      if (link.classList.contains("disabled")) {
+        return;
+      }
+
       const orderId = link.getAttribute("data-order-id");
       const order = getOrderById(orderId);
       overlayContent.innerHTML = UpdateStatusOrderModal(order);
@@ -258,7 +265,6 @@ function setUpOrderTableEventListeners() {
     });
   });
 }
-
 function setUpOrderDetailModalEventListeners() {
   const closeBtn = document.querySelector(".close-btn");
   closeBtn.addEventListener("click", () => {
@@ -302,28 +308,28 @@ function UpdateStatusOrderModal(order) {
             Chờ xác nhận
           </option>
           <option 
-            value="${ORDER_STATUS.PROCESSING}" 
-            ${order.status === ORDER_STATUS.PROCESSING ? "selected" : ""}
+            value="${ORDER_STATUS.SHIPPING}" 
+            ${order.status === ORDER_STATUS.SHIPPING ? "selected" : ""}
           >
-            Đang chuẩn bị
+            Vận chuyển
           </option>
           <option 
             value="${ORDER_STATUS.DELIVERED}" 
             ${order.status === ORDER_STATUS.DELIVERED ? "selected" : ""}
           >
-            Đã giao
+            Chờ giao hàng
           </option>
           <option 
             value="${ORDER_STATUS.COMPLETED}" 
             ${order.status === ORDER_STATUS.COMPLETED ? "selected" : ""}
           >
-            Đã hoàn thành
+            Hoàn thành
           </option>
           <option 
             value="${ORDER_STATUS.CANCELED}" 
             ${order.status === ORDER_STATUS.CANCELED ? "selected" : ""}
           >
-            Đã Hủy
+            Đã hủy
           </option>
               </select>
             </div>
