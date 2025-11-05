@@ -3,47 +3,47 @@
     {
       "id": "1",
       "name": "Nike",
-      "categoryId": "cate-001"
+      "categoryId": "mhm3n8rr-EFUAVk"
     },
     {
       "id": "2",
       "name": "Pula",
-      "categoryId": "cate-001"
+      "categoryId": "mhm3n8rr-EFUAVk"
     },
     {
       "id": "3",
       "name": "NY",
-      "categoryId": "cate-002"
+      "categoryId": "mhm3n022-6Ywmio"
     },
     {
       "id": "4",
       "name": "Calvin Klein",
-      "categoryId": "cate-003"
+      "categoryId": "mhm3mqjw-V9N6W6"
     },
     {
       "id": "5",
       "name": "Adidas",
-      "categoryId": "cate-001"
+      "categoryId": "mhm3n8rr-EFUAVk"
     },
     {
       "id": "6",
       "name": "Zara Man",
-      "categoryId": "cate-001"
+      "categoryId": "mhm3n8rr-EFUAVk"
     },
     {
       "id": "7",
       "name": "Chanel",
-      "categoryId": "cate-002"
+      "categoryId": "mhm3mqjw-V9N6W6"
     },
     {
       "id": "8",
       "name": "Gucci",
-      "categoryId": "cate-002"
+      "categoryId": "mhm3mqjw-V9N6W6"
     },
     {
       "id": "9",
       "name": "Casio",
-      "categoryId": "cate-004"
+      "categoryId": "mhm3n022-6Ywmio"
     },
     {
       "id": "10",
@@ -53,7 +53,7 @@
     {
       "id": "11",
       "name": "Dior",
-      "categoryId": "cate-005"
+      "categoryId": "mhm3mqjw-V9N6W6"
     },
     {
       "id": "12",
@@ -63,12 +63,27 @@
     {
       "id": "13",
       "name": "H&M",
-      "categoryId": "cate-007"
+      "categoryId": "mhm3n022-6Ywmio"
     },
     {
       "id": "14",
       "name": "Uniqlo",
-      "categoryId": "cate-007"
+      "categoryId": "mhm3n022-6Ywmio"
+    },
+    {
+      "id": "15",
+      "name": "Fossil",
+      "categoryId": "mhm3ni6i-4J2HJe"
+    },
+    {
+      "id": "16",
+      "name": "Ray-Ban",
+      "categoryId": "mhm3ni6i-4J2HJe"
+    },
+    {
+      "id": "17",
+      "name": "Armani",
+      "categoryId": "mhm3ni6i-4J2HJe"
     }
   ]
 }
