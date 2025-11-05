@@ -204,7 +204,7 @@ function renderSkuList(skus) {
                   <div class="product-status"></div>
                   <div class="product-main product-main-sku">
                     <img class="product-main__img product-main__img-sku" src="../assets/products/${
-                      detail.image
+                      detail.selectedDetails[0].image
                     }" />
                     <div class="name-sku">
                       <span>${p.name}</span> 
