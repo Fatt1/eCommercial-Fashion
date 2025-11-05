@@ -12,6 +12,12 @@ export const ORDER_STATUS = {
   COMPLETED: "COMPLETED", // Hoàn thành
   CANCELED: "CANCELED", // Đã hủy
 };
+
+export const IMPORT_INVOICE_STATUS = {
+  PENDING: "PENDING", // Chờ xác nhận
+  COMPLETED: "COMPLETED", // Đã hoàn thành
+  CANCELED: "CANCELED", // Đã hủy
+};
 export const INPUT_TYPE = {
   // Loại 1: Chỉ chọn một giá trị từ danh sách (Không cho phép nhập mới)
   SINGLE_DROP_DOWN: 1,

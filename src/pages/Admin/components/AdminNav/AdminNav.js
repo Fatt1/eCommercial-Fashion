@@ -43,12 +43,6 @@ export function AdminNav() {
                 Người Dùng
               </li>
             </button>
-            <button class="admin__category--6">
-              <li >
-                <img class="icon" src="../assets/admin-icon6.png" />Quản Lý
-                Thống Kê
-              </li>
-            </button>
             <button class="admin__category--7">
               <li >
                 <img class="icon" src="../assets/admin-icon7.png" />Quản Lý Đơn

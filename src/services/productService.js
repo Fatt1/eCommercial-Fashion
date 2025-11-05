@@ -526,6 +526,109 @@ function getBestSellerWith3Categories() {
   });
   return result;
 }
+
+function updateProductImportPrice(productId, newImportPrice) {
+  const dbContext = getDbContextFromLocalStorage();
+  const productIndex = dbContext.products.findIndex(
+    (product) => product.id === productId
+  );
+
+  if (productIndex === -1) {
+    return {
+      successful: false,
+      message: "Không tìm thấy sản phẩm",
+    };
+  }
+
+  dbContext.products[productIndex].priceInfo.importPrice = newImportPrice;
+  dbContext.products[productIndex].updatedAt = new Date().toISOString();
+
+  saveDbContextToLocalStorage(dbContext);
+
+  return {
+    successful: true,
+    message: "Cập nhật giá nhập thành công",
+  };
+}
+
+/**
+ * Cập nhật stock cho SKU (tăng số lượng khi nhập hàng)
+ * @param {string} skuId - ID của SKU
+ * @param {number} quantity - Số lượng cần thêm vào stock
+ * @returns {Object} - Kết quả cập nhật
+ */
+function updateSkuStock(skuId, quantity) {
+  const dbContext = getDbContextFromLocalStorage();
+  const skuIndex = dbContext.skus.findIndex((sku) => sku.id === skuId);
+
+  if (skuIndex === -1) {
+    return {
+      successful: false,
+      message: "Không tìm thấy SKU",
+    };
+  }
+
+  const currentStock = dbContext.skus[skuIndex].stock || 0;
+  const newStock = currentStock + quantity;
+
+  dbContext.skus[skuIndex].stock = newStock;
+  dbContext.skus[skuIndex].updatedAt = new Date().toISOString();
+
+  saveDbContextToLocalStorage(dbContext);
+
+  return {
+    successful: true,
+    message: "Cập nhật stock thành công",
+    newStock: newStock,
+    previousStock: currentStock,
+    quantityAdded: quantity,
+  };
+}
+
+/**
+ * Giảm stock cho SKU (khi bán hàng)
+ * @param {string} skuId - ID của SKU
+ * @param {number} quantity - Số lượng cần giảm
+ * @returns {Object} - Kết quả cập nhật
+ */
+function decreaseSkuStock(skuId, quantity) {
+  const dbContext = getDbContextFromLocalStorage();
+  const skuIndex = dbContext.skus.findIndex((sku) => sku.id === skuId);
+
+  if (skuIndex === -1) {
+    return {
+      successful: false,
+      message: "Không tìm thấy SKU",
+    };
+  }
+
+  const currentStock = dbContext.skus[skuIndex].stock || 0;
+
+  if (currentStock < quantity) {
+    return {
+      successful: false,
+      message: "Số lượng trong kho không đủ",
+      currentStock: currentStock,
+      requested: quantity,
+    };
+  }
+
+  const newStock = currentStock - quantity;
+
+  dbContext.skus[skuIndex].stock = newStock;
+  dbContext.skus[skuIndex].updatedAt = new Date().toISOString();
+
+  saveDbContextToLocalStorage(dbContext);
+
+  return {
+    successful: true,
+    message: "Giảm stock thành công",
+    newStock: newStock,
+    previousStock: currentStock,
+    quantityDecreased: quantity,
+  };
+}
+
 export {
   filterProductsForAdmin,
   getAllProductForAdmin,
@@ -542,4 +645,7 @@ export {
   getBestSellerWith3Categories,
   getSkuById,
   updatePriceProductById,
+  updateProductImportPrice,
+  decreaseSkuStock,
+  updateSkuStock,
 };

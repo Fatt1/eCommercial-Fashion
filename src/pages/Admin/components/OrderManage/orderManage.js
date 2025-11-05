@@ -54,11 +54,15 @@ function renderOrderManage() {
                 <button data-status="${
                   ORDER_STATUS.PENDING
                 }">Chờ xác nhận</button>
-                <button data-status="${ORDER_STATUS.SHIPPING}">Vận chuyển</button>
+                <button data-status="${
+                  ORDER_STATUS.SHIPPING
+                }">Vận chuyển</button>
                 <button data-status="${
                   ORDER_STATUS.DELIVERED
                 }">Chờ giao hàng</button>
-                <button data-status="${ORDER_STATUS.COMPLETED}">Hoàn thành</button>
+                <button data-status="${
+                  ORDER_STATUS.COMPLETED
+                }">Hoàn thành</button>
               </div>
               <div class="order-date-filter">
                 <span>Từ</span>
@@ -85,6 +89,10 @@ function renderOrderManage() {
 
 function OrderItem(orderItem) {
   const paymentMethod = getPaymentMethodById(orderItem.paymentMethodId);
+  const isOrderFinished =
+    orderItem.status === ORDER_STATUS.COMPLETED ||
+    orderItem.status === ORDER_STATUS.CANCELED;
+
   return `
   <tr>
     <td>${orderItem.id}</td>
@@ -98,9 +106,11 @@ function OrderItem(orderItem) {
       <p class="order-details-link" data-order-id="${
         orderItem.id
       }">Xem chi tiết</p>
-      <p class="update-status-link" data-order-id="${
-        orderItem.id
-      }">Cập nhật trạng thái</p>
+      <p class="update-status-link ${
+        isOrderFinished ? "disabled" : ""
+      }" data-order-id="${orderItem.id}" ${
+    isOrderFinished ? 'style="opacity: 0.5; cursor: not-allowed;"' : ""
+  }>Cập nhật trạng thái</p>
     </td>
   </tr>
   `;
@@ -241,6 +251,11 @@ function setUpOrderTableEventListeners() {
 
   document.querySelectorAll(".update-status-link").forEach((link) => {
     link.addEventListener("click", () => {
+      // Kiểm tra nếu link bị disabled thì không làm gì
+      if (link.classList.contains("disabled")) {
+        return;
+      }
+
       const orderId = link.getAttribute("data-order-id");
       const order = getOrderById(orderId);
       overlayContent.innerHTML = UpdateStatusOrderModal(order);
@@ -250,7 +265,6 @@ function setUpOrderTableEventListeners() {
     });
   });
 }
-
 function setUpOrderDetailModalEventListeners() {
   const closeBtn = document.querySelector(".close-btn");
   closeBtn.addEventListener("click", () => {

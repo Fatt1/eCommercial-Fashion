@@ -632,19 +632,21 @@ function updateProduct(status, productId) {
   console.log(selectedAttributeValues["brand"][0]);
   const brandId = getBrandByName(selectedAttributeValues["brand"][0]).id;
 
-  const updateProduct = new Product(
-    productId,
-    productName,
-    productDescription,
-    brandId,
-    base64Thumbnail,
-    1,
-    base64Images,
-    attributes,
-    variations,
-    categoryId,
-    status
-  );
+  const updateProduct = {
+    id: productId,
+    name: productName,
+    desc: productDescription,
+    brandId: brandId,
+    thumbnail: base64Thumbnail,
+    weight: 1,
+    images: base64Images,
+    attributes: attributes,
+    variations: variations,
+    categoryId: categoryId,
+    status: status,
+    skus: [],
+  };
+
   // 3. Đọc dữ liệu từ Bảng (Source of Truth)
   const tableRows = document.querySelectorAll(
     "#product-variation-table tbody tr"
@@ -664,7 +666,7 @@ function updateProduct(status, productId) {
     if (skuId && skuId !== "undefined" && skuId !== "") {
       const sku = getSkuById(skuId);
       // SKU cũ
-      updateProduct.addSku({
+      updateProduct.skus.push({
         id: skuId,
         productId: productId,
         stock: sku.stock,
@@ -674,7 +676,7 @@ function updateProduct(status, productId) {
     } else {
       // SKU mới
       const newSkuId = generateUniqueId();
-      updateProduct.addSku({
+      updateProduct.skus.push({
         id: newSkuId,
         productId: productId,
         stock: 0,
