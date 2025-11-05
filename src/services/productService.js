@@ -487,9 +487,11 @@ function getDetailOneSku(sku, productId) {
       if (variationName === "Màu sắc") {
         detailVariationOption = getColorByCode(variationOption.id);
         detailVariationOption.variation = "Màu sắc";
+        detailVariationOption.image = variationOption.image;
       } else if (variationName === "Kích thước") {
         detailVariationOption = getSizeById(variationOption.id);
         detailVariationOption.variation = "Kích thước";
+        detailVariationOption.image = variationOption.image;
       }
       return detailVariationOption;
     }

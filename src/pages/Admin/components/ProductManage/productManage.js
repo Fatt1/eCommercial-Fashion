@@ -125,7 +125,7 @@ function renderProductList(products, containDeleted = false) {
           <div class="cart-item product-result-item__product">
             <div class="product-status ${statusClass}"><span>${statusText}</span></div>
             <div class="product-main">
-              <img class="product-main__img" src="../assets/${
+              <img class="product-main__img" src="../assets/products/${
                 p.thumbnail
               }" alt="${p.name}" />
               <span>${p.name}</span>
@@ -203,7 +203,9 @@ function renderSkuList(skus) {
                 <div class="cart-item">
                   <div class="product-status"></div>
                   <div class="product-main product-main-sku">
-                    <img class="product-main__img product-main__img-sku" src="../assets/large-img-detail.png" />
+                    <img class="product-main__img product-main__img-sku" src="../assets/products/${
+                      detail.image
+                    }" />
                     <div class="name-sku">
                       <span>${p.name}</span> 
                       <div>${detail.selectedDetails[0].name}, ${
