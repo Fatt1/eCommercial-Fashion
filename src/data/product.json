@@ -1,3 +1,150 @@
 {
-  "products": []
+  "products": [
+  {
+    "id": "mhm5jfqm-716B6c",
+    "name": "AirSense Áo Khoác | Vải Wool-like",
+    "desc": "- Đặc biệt thoải mái nhờ chất vải nhẹ, co giãn, nhanh khô do Toray và UNIQLO chung tay phát triển.\n- Chất vải co giãn hai chiều.\n- Có công nghệ DRY.\n- Có thể giặt máy.\n- Kiểu dáng đẹp, phù hợp mọi hoàn cảnh.\n- Phom dáng ôm sát vừa vặn, thoải mái ở phần eo.\n- Áo khoác đa năng với kiểu dáng tự nhiên, ôm trọn từ vai đến tay áo.\n- Những hình ảnh sản phẩm có thể bao gồm những màu không có sẵn.\nMã sản phẩm 482223,475016,464003,461912,455074,448034\nXin lưu ý mã số nhận diện của sản phẩm có thể có sự khác biệt, kể cả khi đó là cùng một mặt hàng.",
+    "thumbnail": "vngoods_07_480967_3x4.avif",
+    "images": [
+      "vngoods_07_480967_3x4.avif",
+      "goods_448034_sub14_3x4.avif",
+      "goods_480411_sub14_3x4.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Slim fit"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#3357FF",
+            "image": "goods_480411_sub14_3x4.avif"
+          },
+          {
+            "id": "#2ECC71",
+            "image": "goods_448034_sub14_3x4.avif"
+          },
+          {
+            "id": "#FF5733",
+            "image": "vngoods_07_480967_3x4.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3q5i1-x3fB2w",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "mhm3mqjw-gsBBcA",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T15:27:50.638Z",
+    "updatedAt": "2025-11-05T15:27:50.638Z"
+  },
+  {
+    "id": "mhm67shb-kGsL5e",
+    "name": "Áo Khoác Thể Thao Siêu Co Giãn",
+    "desc": "- Được phát triển cùng các vận động viên hàng đầu của Thụy Điển. Thiết kế ba chiều giúp cử động dễ dàng.\n- Thiết kế đường viền tạo điểm nhấn phong cách.\n- UPF50+ / JIS L 1925 : 2019\nChi tiết về chức năng\n- Độ xuyên thấu: Không xuyên thấu\n- Dáng: Dáng suông\n- Túi: Có túi\n- Những hình ảnh sản phẩm có thể bao gồm những màu không có sẵn.\nMã sản phẩm 480411\nXin lưu ý mã số nhận diện của sản phẩm có thể có sự khác biệt, kể cả khi đó là cùng một mặt hàng.\n",
+    "thumbnail": "vngoods_05_480411_3x4.avif",
+    "images": [
+      "vngoods_05_480411_3x4.avif",
+      "goods_485325_sub14_3x4.avif",
+      "goods_485325_sub15_3x4.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Cotton"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Slim fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "goods_485325_sub14_3x4.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "goods_485325_sub15_3x4.avif"
+          },
+          {
+            "id": "#FF5733",
+            "image": "vngoods_05_480411_3x4.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3q5i1-x3fB2w",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "mhm3mqjw-gsBBcA",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T15:46:46.895Z",
+    "updatedAt": "2025-11-05T15:46:46.895Z"
+  }
+]
 }

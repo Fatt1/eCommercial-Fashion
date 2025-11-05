@@ -1,3 +1,184 @@
 {
-  "categories": []
+  "categories": [
+  {
+    "id": "mhm3mqjw-V9N6W6",
+    "name": "Thời Trang Nam",
+    "parentId": null,
+    "createdAt": "2025-11-05T14:34:25.388Z",
+    "image": "category-1.jpg",
+    "attributeIds": [
+      "A004",
+      "A014",
+      "A016",
+      "A019"
+    ]
+  },
+  {
+    "id": "mhm3n022-6Ywmio",
+    "name": "Thời Trang Nữ",
+    "parentId": null,
+    "createdAt": "2025-11-05T14:34:37.707Z",
+    "image": "image 10.png",
+    "attributeIds": [
+      "A004",
+      "A014",
+      "A016",
+      "A019"
+    ]
+  },
+  {
+    "id": "mhm3n8rr-EFUAVk",
+    "name": "Trẻ Em",
+    "parentId": null,
+    "createdAt": "2025-11-05T14:34:48.999Z",
+    "image": "image 11.png",
+    "attributeIds": [
+      "A004",
+      "A014",
+      "A016",
+      "A019"
+    ]
+  },
+  {
+    "id": "mhm3ni6i-4J2HJe",
+    "name": "Phụ Kiện",
+    "parentId": null,
+    "createdAt": "2025-11-05T14:35:01.194Z",
+    "image": "choker-vang-dong-phong-cach-sexy-thanh-lich-1.jpg",
+    "attributeIds": [
+      "A004",
+      "A014",
+      "A016",
+      "A019"
+    ]
+  },
+  {
+    "id": "mhm3q5i1-x3fB2w",
+    "name": "Áo khoác",
+    "parentId": "mhm3mqjw-V9N6W6",
+    "createdAt": "2025-11-05T14:37:04.729Z",
+    "image": "img_4.3_7b24a9cf-a6af-44f0-43b6-4e136a3aac09_compact.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3r3s8-YU81SR",
+    "name": "Áo vest và Blazer",
+    "parentId": "mhm3mqjw-V9N6W6",
+    "createdAt": "2025-11-05T14:37:49.160Z",
+    "image": "img_2.1_b84c1911-0756-4907-4191-fa1d5fcddd37_compact.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3ruyw-9VX1fm",
+    "name": "Áo hoodie",
+    "parentId": "mhm3mqjw-V9N6W6",
+    "createdAt": "2025-11-05T14:38:24.392Z",
+    "image": "img_3_c84129ac-8225-45d3-416b-fc7ade74fe14_compact.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3s7er-3Iop7i",
+    "name": "Áo len",
+    "parentId": "mhm3mqjw-V9N6W6",
+    "createdAt": "2025-11-05T14:38:40.515Z",
+    "image": "img_4.3_7b24a9cf-a6af-44f0-43b6-4e136a3aac09_compact.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3tfhx-64P0Zh",
+    "name": "Đầm",
+    "parentId": "mhm3n022-6Ywmio",
+    "createdAt": "2025-11-05T14:39:37.653Z",
+    "image": "950111__1__60e68dc3ef284b9ea4998c3ba401c328.png",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3tnt0-zdt8Tb",
+    "name": "Váy",
+    "parentId": "mhm3n022-6Ywmio",
+    "createdAt": "2025-11-05T14:39:48.420Z",
+    "image": "950111-2_f79031034b4c4d3bb47820740de49959_1024x1024.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3u1hd-IXHmjB",
+    "name": "Quần",
+    "parentId": "mhm3n022-6Ywmio",
+    "createdAt": "2025-11-05T14:40:06.145Z",
+    "image": "img_6_compact.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3udth-pvHMCt",
+    "name": "Chân váy",
+    "parentId": "mhm3n022-6Ywmio",
+    "createdAt": "2025-11-05T14:40:22.133Z",
+    "image": "91802000-2_940a543c6f5040d6a692c635d6ddbb68_1024x1024.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3w7eh-F9lEEG",
+    "name": "Trang phục bé trai",
+    "parentId": "mhm3n8rr-EFUAVk",
+    "createdAt": "2025-11-05T14:41:47.129Z",
+    "image": "92976000-1_32d587cf694e44aab3a6f78d74b0353c_1024x1024.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3wgqh-7GfJPO",
+    "name": "Trang phục bé gái",
+    "parentId": "mhm3n8rr-EFUAVk",
+    "createdAt": "2025-11-05T14:41:59.225Z",
+    "image": "92976000-1_32d587cf694e44aab3a6f78d74b0353c_1024x1024.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3xt9p-2Sfy6I",
+    "name": "Giày dép bé trai",
+    "parentId": "mhm3n8rr-EFUAVk",
+    "createdAt": "2025-11-05T14:43:02.125Z",
+    "image": "92976000-1_32d587cf694e44aab3a6f78d74b0353c_1024x1024.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm3y4jf-OslOM1",
+    "name": "Giày dép bé gái",
+    "parentId": "mhm3n8rr-EFUAVk",
+    "createdAt": "2025-11-05T14:43:16.731Z",
+    "image": "92976000-1_32d587cf694e44aab3a6f78d74b0353c_1024x1024.jpg",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm42q8p-3iyOP8",
+    "name": "Nhẫn",
+    "parentId": "mhm3ni6i-4J2HJe",
+    "createdAt": "2025-11-05T14:46:51.482Z",
+    "image": "4f3146g_ub1_1_00tmjk9ej69byotp.webp",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm42yoe-yLEgJX",
+    "name": "Bông tai",
+    "parentId": "mhm3ni6i-4J2HJe",
+    "createdAt": "2025-11-05T14:47:02.414Z",
+    "image": "4f3146g_ub1_1_00tmjk9ej69byotp.webp",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm438m4-vcKqJB",
+    "name": "Găng tay",
+    "parentId": "mhm3ni6i-4J2HJe",
+    "createdAt": "2025-11-05T14:47:15.292Z",
+    "image": "4f3146g_ub1_1_00tmjk9ej69byotp.webp",
+    "attributeIds": []
+  },
+  {
+    "id": "mhm43jpb-4rMm0q",
+    "name": "Phụ kiện tóc",
+    "parentId": "mhm3ni6i-4J2HJe",
+    "createdAt": "2025-11-05T14:47:29.663Z",
+    "image": "4f3146g_ub1_1_00tmjk9ej69byotp.webp",
+    "attributeIds": []
+  }
+]
 }

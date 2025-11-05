@@ -1,6 +1,8 @@
 import { AdminHeader } from "../AdminHeader/AdminHeader.js";
 import { AdminNav, setUpAdminNav } from "../AdminNav/AdminNav.js";
 import { getLoggedUser } from "../../../../services/userService.js";
+import { getDbContextFromLocalStorage, loadDataToLocalStorage } from "../../../../helper/initialData.js";
+import Category from "../../../../models/Category.js";
 export function loadAdminHome() {
   const user = getLoggedUser();
   // Kiểm tra quyền admin
@@ -14,6 +16,10 @@ export function loadAdminHome() {
 function setUpHome() {
   setUpAdminNav();
 }
+
+const db = await getDbContextFromLocalStorage();
+console.log(JSON.stringify(db.skus));
+
 function renderAdminHomeHtml() {
   document.getElementById("root").innerHTML = `
     <div class="admin">
