@@ -28,7 +28,7 @@
     {
       "id": "6",
       "name": "Zara Man",
-      "categoryId": "mhm3n8rr-EFUAVk"
+      "categoryId": "mhm3mqjw-V9N6W6"
     },
     {
       "id": "7",
@@ -48,7 +48,7 @@
     {
       "id": "10",
       "name": "Longines",
-      "categoryId": "cate-004"
+      "categoryId": "mhm3ni6i-4J2HJe"
     },
     {
       "id": "11",
@@ -58,7 +58,7 @@
     {
       "id": "12",
       "name": "The Body Shop",
-      "categoryId": "cate-006"
+      "categoryId": "mhm3ni6i-4J2HJe"
     },
     {
       "id": "13",
@@ -68,7 +68,7 @@
     {
       "id": "14",
       "name": "Uniqlo",
-      "categoryId": "mhm3n022-6Ywmio"
+      "categoryId": "mhm3mqjw-V9N6W6"
     },
     {
       "id": "15",
@@ -84,6 +84,261 @@
       "id": "17",
       "name": "Armani",
       "categoryId": "mhm3ni6i-4J2HJe"
+    },
+    {
+      "id": "18",
+      "name": "Louis Vuitton",
+      "categoryId": "mhm3mqjw-V9N6W6"
+    },
+    {
+      "id": "19",
+      "name": "Versace",
+      "categoryId": "mhm3mqjw-V9N6W6"
+    },
+    {
+      "id": "20",
+      "name": "Burberry",
+      "categoryId": "mhm3q5i1-x3fB2w"
+    },
+    {
+      "id": "21",
+      "name": "The North Face",
+      "categoryId": "mhm3q5i1-x3fB2w"
+    },
+    {
+      "id": "22",
+      "name": "Columbia",
+      "categoryId": "mhm3q5i1-x3fB2w"
+    },
+    {
+      "id": "23",
+      "name": "Hugo Boss",
+      "categoryId": "mhm3r3s8-YU81SR"
+    },
+    {
+      "id": "24",
+      "name": "Tom Ford",
+      "categoryId": "mhm3r3s8-YU81SR"
+    },
+    {
+      "id": "25",
+      "name": "Ralph Lauren",
+      "categoryId": "mhm3r3s8-YU81SR"
+    },
+    {
+      "id": "26",
+      "name": "Supreme",
+      "categoryId": "mhm3ruyw-9VX1fm"
+    },
+    {
+      "id": "27",
+      "name": "Champion",
+      "categoryId": "mhm3ruyw-9VX1fm"
+    },
+    {
+      "id": "28",
+      "name": "Off-White",
+      "categoryId": "mhm3ruyw-9VX1fm"
+    },
+    {
+      "id": "29",
+      "name": "Polo Ralph Lauren",
+      "categoryId": "mhm3s7er-3Iop7i"
+    },
+    {
+      "id": "30",
+      "name": "Tommy Hilfiger",
+      "categoryId": "mhm3s7er-3Iop7i"
+    },
+    {
+      "id": "31",
+      "name": "Lacoste",
+      "categoryId": "mhm3s7er-3Iop7i"
+    },
+    {
+      "id": "32",
+      "name": "Prada",
+      "categoryId": "mhm3n022-6Ywmio"
+    },
+    {
+      "id": "33",
+      "name": "Valentino",
+      "categoryId": "mhm3tfhx-64P0Zh"
+    },
+    {
+      "id": "34",
+      "name": "Michael Kors",
+      "categoryId": "mhm3tfhx-64P0Zh"
+    },
+    {
+      "id": "35",
+      "name": "Kate Spade",
+      "categoryId": "mhm3tfhx-64P0Zh"
+    },
+    {
+      "id": "36",
+      "name": "Marc Jacobs",
+      "categoryId": "mhm3tnt0-zdt8Tb"
+    },
+    {
+      "id": "37",
+      "name": "Miu Miu",
+      "categoryId": "mhm3tnt0-zdt8Tb"
+    },
+    {
+      "id": "38",
+      "name": "Givenchy",
+      "categoryId": "mhm3tnt0-zdt8Tb"
+    },
+    {
+      "id": "39",
+      "name": "Levi's",
+      "categoryId": "mhm3u1hd-IXHmjB"
+    },
+    {
+      "id": "40",
+      "name": "Diesel",
+      "categoryId": "mhm3u1hd-IXHmjB"
+    },
+    {
+      "id": "41",
+      "name": "Pepe Jeans",
+      "categoryId": "mhm3u1hd-IXHmjB"
+    },
+    {
+      "id": "42",
+      "name": "Massimo Dutti",
+      "categoryId": "mhm3udth-pvHMCt"
+    },
+    {
+      "id": "43",
+      "name": "Mango",
+      "categoryId": "mhm3udth-pvHMCt"
+    },
+    {
+      "id": "44",
+      "name": "COS",
+      "categoryId": "mhm3udth-pvHMCt"
+    },
+    {
+      "id": "45",
+      "name": "Gap Kids",
+      "categoryId": "mhm3w7eh-F9lEEG"
+    },
+    {
+      "id": "46",
+      "name": "Carter's",
+      "categoryId": "mhm3w7eh-F9lEEG"
+    },
+    {
+      "id": "47",
+      "name": "OshKosh",
+      "categoryId": "mhm3w7eh-F9lEEG"
+    },
+    {
+      "id": "48",
+      "name": "Gymboree",
+      "categoryId": "mhm3wgqh-7GfJPO"
+    },
+    {
+      "id": "49",
+      "name": "Crazy 8",
+      "categoryId": "mhm3wgqh-7GfJPO"
+    },
+    {
+      "id": "50",
+      "name": "The Children's Place",
+      "categoryId": "mhm3wgqh-7GfJPO"
+    },
+    {
+      "id": "51",
+      "name": "Stride Rite",
+      "categoryId": "mhm3xt9p-2Sfy6I"
+    },
+    {
+      "id": "52",
+      "name": "New Balance Kids",
+      "categoryId": "mhm3xt9p-2Sfy6I"
+    },
+    {
+      "id": "53",
+      "name": "Skechers Kids",
+      "categoryId": "mhm3xt9p-2Sfy6I"
+    },
+    {
+      "id": "54",
+      "name": "Crocs Kids",
+      "categoryId": "mhm3y4jf-OslOM1"
+    },
+    {
+      "id": "55",
+      "name": "Vans Kids",
+      "categoryId": "mhm3y4jf-OslOM1"
+    },
+    {
+      "id": "56",
+      "name": "Converse Kids",
+      "categoryId": "mhm3y4jf-OslOM1"
+    },
+    {
+      "id": "57",
+      "name": "Tiffany & Co",
+      "categoryId": "mhm42q8p-3iyOP8"
+    },
+    {
+      "id": "58",
+      "name": "Cartier",
+      "categoryId": "mhm42q8p-3iyOP8"
+    },
+    {
+      "id": "59",
+      "name": "Bulgari",
+      "categoryId": "mhm42q8p-3iyOP8"
+    },
+    {
+      "id": "60",
+      "name": "Swarovski",
+      "categoryId": "mhm42yoe-yLEgJX"
+    },
+    {
+      "id": "61",
+      "name": "Pandora",
+      "categoryId": "mhm42yoe-yLEgJX"
+    },
+    {
+      "id": "62",
+      "name": "David Yurman",
+      "categoryId": "mhm42yoe-yLEgJX"
+    },
+    {
+      "id": "63",
+      "name": "Hermès",
+      "categoryId": "mhm438m4-vcKqJB"
+    },
+    {
+      "id": "64",
+      "name": "Bottega Veneta",
+      "categoryId": "mhm438m4-vcKqJB"
+    },
+    {
+      "id": "65",
+      "name": "Salvatore Ferragamo",
+      "categoryId": "mhm438m4-vcKqJB"
+    },
+    {
+      "id": "66",
+      "name": "Alexandre de Paris",
+      "categoryId": "mhm43jpb-4rMm0q"
+    },
+    {
+      "id": "67",
+      "name": "Jennifer Behr",
+      "categoryId": "mhm43jpb-4rMm0q"
+    },
+    {
+      "id": "68",
+      "name": "Lelet NY",
+      "categoryId": "mhm43jpb-4rMm0q"
     }
   ]
 }
