@@ -93,6 +93,31 @@ function getAllUsers() {
   const dbContext = getDbContextFromLocalStorage();
   return dbContext.users;
 }
+
+// Cập nhật thông tin người dùng
+function updateUserInfo(userId, updatedData) {
+  const dbContext = getDbContextFromLocalStorage();
+  const user = dbContext.users.find((u) => u.id === userId);
+  
+  if (!user) {
+    return { successful: false, message: "Không tìm thấy người dùng" };
+  }
+
+  // Cập nhật các trường thông tin
+  if (updatedData.fullName !== undefined) user.fullName = updatedData.fullName;
+  if (updatedData.phoneNumber !== undefined) user.phoneNumber = updatedData.phoneNumber;
+  if (updatedData.gender !== undefined) user.gender = updatedData.gender;
+  if (updatedData.dateOfBirth !== undefined) user.dateOfBirth = updatedData.dateOfBirth;
+
+  // Lưu vào database
+  saveDbContextToLocalStorage(dbContext);
+  
+  // Cập nhật localStorage user_info
+  localStorage.setItem("user_info", JSON.stringify(user));
+  
+  return { successful: true, message: "Cập nhật thông tin thành công", data: user };
+}
+
 export {
   getUserById,
   checkAvailableAddressUser,
@@ -103,4 +128,5 @@ export {
   blockUser,
   unBlockUser,
   resetPasswordUser,
+  updateUserInfo,
 };

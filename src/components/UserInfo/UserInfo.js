@@ -1,4 +1,31 @@
+import { getLoggedUser } from "../../services/userService.js";
+
 export function renderUserInfo() {
+  // Lấy thông tin user hiện tại
+  const user = getLoggedUser();
+  
+  if (!user) {
+    return `<div>Vui lòng đăng nhập để xem thông tin</div>`;
+  }
+
+  // Ẩn một phần email
+  const maskEmail = (email) => {
+    const [localPart, domain] = email.split('@');
+    const visibleChars = 2;
+    const masked = localPart.slice(0, visibleChars) + '*'.repeat(localPart.length - visibleChars);
+    return `${masked}@${domain}`;
+  };
+
+  // Ẩn một phần số điện thoại
+  const maskPhone = (phone) => {
+    if (!phone || phone.length < 4) return '****';
+    return '*'.repeat(phone.length - 4) + phone.slice(-4);
+  };
+
+  const maskedEmail = maskEmail(user.email);
+  const displayPhone = user.phoneNumber ? maskPhone(user.phoneNumber) : 'Chưa cập nhật';
+  const displayFullName = user.fullName || '';
+  
   return `
     <style>
       .profile-container {
@@ -91,9 +118,11 @@ export function renderUserInfo() {
         color: #007bff;
         text-decoration: none;
         font-size: 14px;
+        cursor: not-allowed;
+        opacity: 0.6;
       }
-      .change-link:hover {
-        text-decoration: underline;
+      .gender-options {
+        display: flex;
       }
       .gender-options label {
         margin-right: 30px;
@@ -134,6 +163,10 @@ export function renderUserInfo() {
       .save-button:hover {
         background-color: #16d663;
       }
+      .save-button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
     </style>
 
     <div class="profile-container">
@@ -148,48 +181,41 @@ export function renderUserInfo() {
       <div class="profile-body">
         <form id="profile-form">
           <div class="form-row">
-            <label class="form-label" for="username">Tên đăng nhập</label>
+            <label class="form-label" for="username">Email đăng nhập</label>
             <div class="form-control">
-              <span id="username">proundamn</span>
+              <span id="username">${user.email}</span>
             </div>
           </div>
 
           <div class="form-row">
-            <label class="form-label" for="full-name">Tên</label>
+            <label class="form-label" for="full-name">Họ và tên</label>
             <div class="form-control">
-              <input type="text" id="full-name" value="Danh777" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <label class="form-label" for="email">Email</label>
-            <div class="form-control">
-              <span>Pr*******@gmail.com</span>
-              <a href="#" class="change-link">Thay Đổi</a>
+              <input type="text" id="full-name" value="${displayFullName}" placeholder="Nhập họ và tên của bạn" />
             </div>
           </div>
 
           <div class="form-row">
             <label class="form-label" for="phone">Số điện thoại</label>
             <div class="form-control">
-              <span>********04</span>
-              <a href="#" class="change-link">Thay Đổi</a>
+              <input type="text" id="phone" value="${user.phoneNumber || ''}" placeholder="Nhập số điện thoại" />
             </div>
           </div>
 
           <div class="form-row">
             <label class="form-label">Giới tính</label>
             <div class="form-control gender-options">
-              <label
-                ><input type="radio" name="gender" value="male" checked />
-                Nam</label
-              >
-              <label
-                ><input type="radio" name="gender" value="female" /> Nữ</label
-              >
-              <label
-                ><input type="radio" name="gender" value="other" /> Khác</label
-              >
+              <label>
+                <input type="radio" name="gender" value="male" ${user.gender === 'male' ? 'checked' : ''} />
+                Nam
+              </label>
+              <label>
+                <input type="radio" name="gender" value="female" ${user.gender === 'female' ? 'checked' : ''} />
+                Nữ
+              </label>
+              <label>
+                <input type="radio" name="gender" value="other" ${user.gender === 'other' || !user.gender ? 'checked' : ''} />
+                Khác
+              </label>
             </div>
           </div>
 
@@ -247,10 +273,11 @@ export function setupUserInfoForm() {
     return;
   }
 
-  daySelect.innerHTML = '<option value="">Ngày</option>';
-  monthSelect.innerHTML = '<option value="">Tháng</option>';
-  yearSelect.innerHTML = '<option value="">Năm</option>';
+  // Lấy thông tin user hiện tại
+  const user = getLoggedUser();
 
+  // Populate day select
+  daySelect.innerHTML = '<option value="">Ngày</option>';
   for (let i = 1; i <= 31; i++) {
     const option = document.createElement("option");
     option.value = i;
@@ -258,6 +285,8 @@ export function setupUserInfoForm() {
     daySelect.appendChild(option);
   }
 
+  // Populate month select
+  monthSelect.innerHTML = '<option value="">Tháng</option>';
   for (let i = 1; i <= 12; i++) {
     const option = document.createElement("option");
     option.value = i;
@@ -265,6 +294,8 @@ export function setupUserInfoForm() {
     monthSelect.appendChild(option);
   }
 
+  // Populate year select
+  yearSelect.innerHTML = '<option value="">Năm</option>';
   const currentYear = new Date().getFullYear();
   for (let i = currentYear; i >= 1920; i--) {
     const option = document.createElement("option");
@@ -273,30 +304,66 @@ export function setupUserInfoForm() {
     yearSelect.appendChild(option);
   }
 
-  profileForm.addEventListener("submit", (event) => {
+  // Set giá trị ngày sinh nếu có
+  if (user.dateOfBirth) {
+    if (user.dateOfBirth.day) daySelect.value = user.dateOfBirth.day;
+    if (user.dateOfBirth.month) monthSelect.value = user.dateOfBirth.month;
+    if (user.dateOfBirth.year) yearSelect.value = user.dateOfBirth.year;
+  }
+
+  // Xử lý submit form
+  profileForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const fullName = document.getElementById("full-name").value;
-    const selectedGender = document.querySelector(
-      'input[name="gender"]:checked'
-    ).value;
+    const fullName = document.getElementById("full-name").value.trim();
+    const phoneNumber = document.getElementById("phone").value.trim();
+    const selectedGender = document.querySelector('input[name="gender"]:checked').value;
     const day = daySelect.value;
     const month = monthSelect.value;
     const year = yearSelect.value;
 
-    const updatedProfile = {
+    // Validation
+    if (!fullName) {
+      alert("Vui lòng nhập họ và tên!");
+      return;
+    }
+
+    if (phoneNumber && !/^[0-9]{10,11}$/.test(phoneNumber)) {
+      alert("Số điện thoại không hợp lệ! Vui lòng nhập 10-11 chữ số.");
+      return;
+    }
+
+    // Chuẩn bị dữ liệu cập nhật
+    const updatedData = {
       fullName: fullName,
+      phoneNumber: phoneNumber,
       gender: selectedGender,
-      dateOfBirth: {
-        day: day,
-        month: month,
-        year: year,
-      },
+      dateOfBirth: null,
     };
 
-    console.log("Thông tin đã lưu:", updatedProfile);
-    alert("Đã lưu thông tin thành công!");
+    // Chỉ lưu ngày sinh nếu đã chọn đầy đủ
+    if (day && month && year) {
+      updatedData.dateOfBirth = {
+        day: parseInt(day),
+        month: parseInt(month),
+        year: parseInt(year),
+      };
+    }
 
-    closeModal();
+    // Import service để cập nhật
+    const { updateUserInfo } = await import("../../services/userService.js");
+    const result = updateUserInfo(user.id, updatedData);
+
+    if (result.successful) {
+      alert("✅ " + result.message);
+      
+      // Cập nhật lại header nếu cần
+      const { setupDropdownAfterLogin } = await import("../Header/Header.js");
+      setupDropdownAfterLogin(result.data.email, result.data.id);
+      
+      closeModal();
+    } else {
+      alert("❌ " + result.message);
+    }
   });
 }
