@@ -6,7 +6,11 @@ import {
 import { createPagination, generateUniqueId } from "../helper/helper.js";
 import { ORDER_BY } from "../constant/Constant.js";
 import { getColorByCode } from "./colorService.js";
-import { getCategoryById, getSubCategoryIds } from "./categoryService.js";
+import {
+  getAllCategoriesByLevel,
+  getCategoryById,
+  getSubCategoryIds,
+} from "./categoryService.js";
 import { getSizeById } from "./sizeService.js";
 import { getAttributeById } from "./attributeService.js";
 
@@ -500,7 +504,9 @@ function getDetailOneSku(sku, productId) {
   return sku;
 }
 function getBestSellerWith3Categories() {
-  const bestSellerCategoriesId = ["cate-001", "cate-002"];
+  const bestSellerCategoriesId = getAllCategoriesByLevel(0)
+    .splice(0, 3)
+    .map((cate) => cate.id);
   const result = [];
   bestSellerCategoriesId.forEach((id) => {
     const products = getProductsByCategoryId(id);
