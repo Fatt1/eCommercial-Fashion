@@ -17,9 +17,6 @@ function setUpHome() {
   setUpAdminNav();
 }
 
-const db = await getDbContextFromLocalStorage();
-console.log(JSON.stringify(db.skus));
-
 function renderAdminHomeHtml() {
   document.getElementById("root").innerHTML = `
     <div class="admin">

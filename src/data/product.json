@@ -1,87 +1,20 @@
 {
   "products": [
   {
-    "id": "mhm5jfqm-716B6c",
-    "name": "AirSense Áo Khoác | Vải Wool-like",
-    "desc": "- Đặc biệt thoải mái nhờ chất vải nhẹ, co giãn, nhanh khô do Toray và UNIQLO chung tay phát triển.\n- Chất vải co giãn hai chiều.\n- Có công nghệ DRY.\n- Có thể giặt máy.\n- Kiểu dáng đẹp, phù hợp mọi hoàn cảnh.\n- Phom dáng ôm sát vừa vặn, thoải mái ở phần eo.\n- Áo khoác đa năng với kiểu dáng tự nhiên, ôm trọn từ vai đến tay áo.\n- Những hình ảnh sản phẩm có thể bao gồm những màu không có sẵn.\nMã sản phẩm 482223,475016,464003,461912,455074,448034\nXin lưu ý mã số nhận diện của sản phẩm có thể có sự khác biệt, kể cả khi đó là cùng một mặt hàng.",
-    "thumbnail": "vngoods_07_480967_3x4.avif",
-    "images": [
-      "vngoods_07_480967_3x4.avif",
-      "goods_448034_sub14_3x4.avif",
-      "goods_480411_sub14_3x4.avif"
-    ],
-    "attributes": [
-      {
-        "attributeId": "A014",
-        "attributeValues": [
-          "Slim fit"
-        ]
-      }
-    ],
-    "variations": [
-      {
-        "name": "Màu sắc",
-        "variationOptions": [
-          {
-            "id": "#3357FF",
-            "image": "goods_480411_sub14_3x4.avif"
-          },
-          {
-            "id": "#2ECC71",
-            "image": "goods_448034_sub14_3x4.avif"
-          },
-          {
-            "id": "#FF5733",
-            "image": "vngoods_07_480967_3x4.avif"
-          }
-        ]
-      },
-      {
-        "name": "Kích thước",
-        "variationOptions": [
-          {
-            "id": "s",
-            "image": ""
-          },
-          {
-            "id": "m",
-            "image": ""
-          },
-          {
-            "id": "l",
-            "image": ""
-          }
-        ]
-      }
-    ],
-    "categoryId": "mhm3q5i1-x3fB2w",
-    "priceInfo": {
-      "currentlyPrice": 0,
-      "originalPrice": 0,
-      "importPrice": 0
-    },
-    "isDeleted": false,
-    "brandId": "mhm3mqjw-gsBBcA",
-    "weight": 1,
-    "status": "draft",
-    "createdAt": "2025-11-05T15:27:50.638Z",
-    "updatedAt": "2025-11-05T15:27:50.638Z"
-  },
-  {
-    "id": "mhm67shb-kGsL5e",
+    "id": "mhm7ymjp-qxu6Qs",
     "name": "Áo Khoác Thể Thao Siêu Co Giãn",
     "desc": "- Được phát triển cùng các vận động viên hàng đầu của Thụy Điển. Thiết kế ba chiều giúp cử động dễ dàng.\n- Thiết kế đường viền tạo điểm nhấn phong cách.\n- UPF50+ / JIS L 1925 : 2019\nChi tiết về chức năng\n- Độ xuyên thấu: Không xuyên thấu\n- Dáng: Dáng suông\n- Túi: Có túi\n- Những hình ảnh sản phẩm có thể bao gồm những màu không có sẵn.\nMã sản phẩm 480411\nXin lưu ý mã số nhận diện của sản phẩm có thể có sự khác biệt, kể cả khi đó là cùng một mặt hàng.\n",
-    "thumbnail": "vngoods_05_480411_3x4.avif",
+    "thumbnail": "goods_485325_sub14_3x4.avif",
     "images": [
-      "vngoods_05_480411_3x4.avif",
       "goods_485325_sub14_3x4.avif",
-      "goods_485325_sub15_3x4.avif"
+      "goods_485325_sub15_3x4.avif",
+      "vngoods_05_480411_3x4.avif"
     ],
     "attributes": [
       {
         "attributeId": "A004",
         "attributeValues": [
-          "Cotton"
+          "Polyester"
         ]
       },
       {
@@ -93,7 +26,7 @@
       {
         "attributeId": "A016",
         "attributeValues": [
-          "Mỏng"
+          "Trung bình"
         ]
       }
     ],
@@ -102,15 +35,15 @@
         "name": "Màu sắc",
         "variationOptions": [
           {
-            "id": "#33FF57",
+            "id": "#FF5733",
             "image": "goods_485325_sub14_3x4.avif"
           },
           {
-            "id": "#3357FF",
+            "id": "#33FF57",
             "image": "goods_485325_sub15_3x4.avif"
           },
           {
-            "id": "#FF5733",
+            "id": "#3357FF",
             "image": "vngoods_05_480411_3x4.avif"
           }
         ]
@@ -140,11 +73,2439 @@
       "importPrice": 0
     },
     "isDeleted": false,
-    "brandId": "mhm3mqjw-gsBBcA",
+    "brandId": "21",
     "weight": 1,
     "status": "draft",
-    "createdAt": "2025-11-05T15:46:46.895Z",
-    "updatedAt": "2025-11-05T15:46:46.895Z"
+    "createdAt": "2025-11-05T16:35:38.533Z",
+    "updatedAt": "2025-11-05T16:35:38.533Z"
+  },
+  {
+    "id": "mhm80dys-D4pekq",
+    "name": "AirSense Áo Khoác | Vải Wool-like",
+    "desc": "- Đặc biệt thoải mái nhờ chất vải nhẹ, co giãn, nhanh khô do Toray và UNIQLO chung tay phát triển.\n- Chất vải co giãn hai chiều.\n- Có công nghệ DRY.\n- Có thể giặt máy.\n- Kiểu dáng đẹp, phù hợp mọi hoàn cảnh.\n- Phom dáng ôm sát vừa vặn, thoải mái ở phần eo.\n- Áo khoác đa năng với kiểu dáng tự nhiên, ôm trọn từ vai đến tay áo.\n- Những hình ảnh sản phẩm có thể bao gồm những màu không có sẵn.\nMã sản phẩm 482223,475016,464003,461912,455074,448034\nXin lưu ý mã số nhận diện của sản phẩm có thể có sự khác biệt, kể cả khi đó là cùng một mặt hàng.",
+    "thumbnail": "vngoods_08_448034_3x4.avif",
+    "images": [
+      "vngoods_08_448034_3x4.avif",
+      "vngoods_08_480812_3x4.avif",
+      "vngoods_07_480967_3x4.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Da"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Slim fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#F1C40F",
+            "image": "vngoods_08_480812_3x4.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "vngoods_08_448034_3x4.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "vngoods_07_480967_3x4.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xxl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3q5i1-x3fB2w",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "21",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T16:37:00.724Z",
+    "updatedAt": "2025-11-05T16:37:00.724Z"
+  },
+  {
+    "id": "mhm82c9j-L8kSA0",
+    "name": "Loose Fit Hoodie",
+    "desc": "Thành phần\nGân/viền bo:Bông 95%, Vải thun Elastan 5%\nMặt ngoài:Bông 60%, Pôlyexte 40%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n11% Polyester tái chế từ sản phẩm dệt may\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nChất liệu:\nVải thun vảy cá",
+    "thumbnail": "8272a84db83592448ab37910e608e882fa502677.avif",
+    "images": [
+      "8272a84db83592448ab37910e608e882fa502677.avif",
+      "8ed0705c55574e61e2d81345c131c500458c7154.avif",
+      "e678a1f364cba25c0c2d2fc34afe60f74c995fc6.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Da"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Dày"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "8272a84db83592448ab37910e608e882fa502677.avif"
+          },
+          {
+            "id": "#FF5733",
+            "image": "8ed0705c55574e61e2d81345c131c500458c7154.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "e678a1f364cba25c0c2d2fc34afe60f74c995fc6.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xxl",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3r3s8-YU81SR",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "25",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T16:38:31.831Z",
+    "updatedAt": "2025-11-05T16:38:31.831Z"
+  },
+  {
+    "id": "mhm886tt-XRbSX8",
+    "name": "Loose Fit Printed hoodie",
+    "desc": "Thành phần\nBông 60%, Pôlyexte 40%\nGân/viền bo:Bông 57%, Pôlyexte 38%, Vải thun Elastan 5%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n10% Polyester tái chế từ sản phẩm dệt may\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nChất liệu:\nVải thun vảy cá\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.\nPolyester tái chế từ sản phẩm dệt may\nPolyester tái chế là polyester được làm từ vải phế liệu hết hạn sử dụng. Phế liệu được tái chế cơ học và xử lý thành sợi mới.\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\nVải thun Elastan\nElastan là một loại sợi tổng hợp đàn hồi làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).",
+    "thumbnail": "54729fdad52bc6669ecab897aee66a51c55acb75.avif",
+    "images": [
+      "54729fdad52bc6669ecab897aee66a51c55acb75.avif",
+      "1d9693d8e27849690c07b20101f3261eba04a909.avif",
+      "d4512e2f4702bb11fb49efe25e83f69751b0c043.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "54729fdad52bc6669ecab897aee66a51c55acb75.avif"
+          },
+          {
+            "id": "#8E44AD",
+            "image": "1d9693d8e27849690c07b20101f3261eba04a909.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "d4512e2f4702bb11fb49efe25e83f69751b0c043.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3r3s8-YU81SR",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "25",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T16:43:04.721Z",
+    "updatedAt": "2025-11-05T16:43:04.721Z"
+  },
+  {
+    "id": "mhm8clwh-MxUynQ",
+    "name": "Áo Blazer Kiểu Sơ Mi Vải Denim",
+    "desc": "          - Relaxed cut with a roomy fit around the shoulders, chest, and hem, perfect for styling alone or as an outer layer.\n- Straight hem.\n- Những hình ảnh sản phẩm có thể bao gồm những màu không có sẵn.\nMã sản phẩm 485325\nXin lưu ý mã số nhận diện của sản phẩm có thể có sự khác biệt, kể cả khi đó là cùng một mặt hàng.\n          ",
+    "thumbnail": "vngoods_64_485325_3x4.avif",
+    "images": [
+      "vngoods_64_485325_3x4.avif",
+      "vngoods_68_484882_3x4.avif",
+      "vngoods_469956_sub1_3x4.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "vngoods_64_485325_3x4.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "vngoods_469956_sub1_3x4.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "vngoods_68_484882_3x4.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3r3s8-YU81SR",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "25",
+    "weight": 1,
+    "status": "hidden",
+    "createdAt": "2025-11-05T16:46:30.881Z",
+    "updatedAt": "2025-11-05T16:46:30.881Z",
+    "skus": [
+      {
+        "id": "mhm8clwh-2Z9E3z",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          0
+        ],
+        "updatedAt": "2025-11-05T16:46:43.461Z"
+      },
+      {
+        "id": "mhm8clwh-2CJlLO",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          1
+        ],
+        "updatedAt": "2025-11-05T16:46:43.461Z"
+      },
+      {
+        "id": "mhm8clwh-DH8SZf",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          2
+        ],
+        "updatedAt": "2025-11-05T16:46:43.461Z"
+      },
+      {
+        "id": "mhm8clwh-aO2JDX",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          0
+        ],
+        "updatedAt": "2025-11-05T16:46:43.461Z"
+      },
+      {
+        "id": "mhm8clwh-GSnhHV",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          1
+        ],
+        "updatedAt": "2025-11-05T16:46:43.462Z"
+      },
+      {
+        "id": "mhm8clwh-HEN4GD",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          2
+        ],
+        "updatedAt": "2025-11-05T16:46:43.462Z"
+      },
+      {
+        "id": "mhm8clwh-vRVzCt",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          0
+        ],
+        "updatedAt": "2025-11-05T16:46:43.462Z"
+      },
+      {
+        "id": "mhm8clwh-7gGCNk",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          1
+        ],
+        "updatedAt": "2025-11-05T16:46:43.462Z"
+      },
+      {
+        "id": "mhm8clwh-gHEriV",
+        "productId": "mhm8clwh-MxUynQ",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          2
+        ],
+        "updatedAt": "2025-11-05T16:46:43.462Z"
+      }
+    ]
+  },
+  {
+    "id": "mhm8gqsc-pLznrp",
+    "name": "Áo khoác tuxedo len pha Slim Fit",
+    "desc": "Thành phần\nMặt ngoài:Pôlyexte 70%, Len 30%\nLớp lót thân áo:Pôlyexte 52%, Sợi vít-cô 48%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nLen\nLen là sợi tự nhiên lấy từ lông cừu.\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\nSợi vít-cô\nVải Viscose là loại sợi cellulose tái sinh thường lấy từ gỗ, nhưng nguyên liệu thô cũng có thể chứa các vật liệu cellulose khác.\n\n",
+    "thumbnail": "1.avif",
+    "images": [
+      "1.avif",
+      "2.avif",
+      "3.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Da"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#3357FF",
+            "image": "1.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "2.avif"
+          },
+          {
+            "id": "#FF5733",
+            "image": "3.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "xxl",
+            "image": ""
+          },
+          {
+            "id": "s",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3r3s8-YU81SR",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "25",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T16:49:43.836Z",
+    "updatedAt": "2025-11-05T16:49:43.836Z"
+  },
+  {
+    "id": "mhm8r2s7-KHjVEu",
+    "name": "Áo jumper cổ khoá kéo Regular Fit",
+    "desc": "Thành phần\nSợi vít-cô 65%, Poliamit 35%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n65% Viscose Livaeco™\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPoliamit\nPolyamide, còn gọi là nylon, là một loại sợi tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\nSợi vít-cô\nVải Viscose là loại sợi cellulose tái sinh thường lấy từ gỗ, nhưng nguyên liệu thô cũng có thể chứa các vật liệu cellulose khác.\nViscose Livaeco™\nLivaeco™ viscose là một loại xơ viscose có thương hiệu, được làm từ bột gỗ.\n\n",
+    "thumbnail": "4.avif",
+    "images": [
+      "4.avif",
+      "5.avif",
+      "6.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Cotton"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "4.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "5.avif"
+          },
+          {
+            "id": "#FF5733",
+            "image": "6.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3s7er-3Iop7i",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "31",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T16:57:45.943Z",
+    "updatedAt": "2025-11-05T16:57:45.943Z"
+  },
+  {
+    "id": "mhm8tv73-pvCsc7",
+    "name": "Regular Fit Fine-knit jumper",
+    "desc": "Thành phần\nSợi vít-cô 65%, Poliamit 35%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n65% Viscose Livaeco™\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPoliamit\nPolyamide, còn gọi là nylon, là một loại sợi tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\nSợi vít-cô\nVải Viscose là loại sợi cellulose tái sinh thường lấy từ gỗ, nhưng nguyên liệu thô cũng có thể chứa các vật liệu cellulose khác.\nViscose Livaeco™\nLivaeco™ viscose là một loại xơ viscose có thương hiệu, được làm từ bột gỗ.",
+    "thumbnail": "7.avif",
+    "images": [
+      "7.avif",
+      "8.avif",
+      "9.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "7.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "8.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "9.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3s7er-3Iop7i",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "31",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T16:59:56.079Z",
+    "updatedAt": "2025-11-05T16:59:56.079Z"
+  },
+  {
+    "id": "mhm8wuvx-G4OFCd",
+    "name": "Đầm jersey không tay",
+    "desc": "          Thành phần\nSợi vít-cô 71%, Poliamit 25%, Vải thun Elastan 4%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n71% Viscose Livaeco™\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nChất liệu:\nJersey\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPoliamit\nPolyamide, còn gọi là nylon, là một loại sợi tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\nSợi vít-cô\nVải Viscose là loại sợi cellulose tái sinh thường lấy từ gỗ, nhưng nguyên liệu thô cũng có thể chứa các vật liệu cellulose khác.\nViscose Livaeco™\nLivaeco™ viscose là một loại xơ viscose có thương hiệu, được làm từ bột gỗ.\nVải thun Elastan\nElastan là một loại sợi tổng hợp đàn hồi làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\n\n\n          ",
+    "thumbnail": "10.avif",
+    "images": [
+      "10.avif",
+      "11.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Da"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "11.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "11.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "10.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3tfhx-64P0Zh",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "33",
+    "weight": 1,
+    "status": "hidden",
+    "createdAt": "2025-11-05T17:02:15.645Z",
+    "updatedAt": "2025-11-05T17:02:15.645Z",
+    "skus": [
+      {
+        "id": "mhm8wuvx-72M6HM",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          0
+        ],
+        "updatedAt": "2025-11-05T17:08:11.308Z"
+      },
+      {
+        "id": "mhm8wuvx-dOI1cN",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          1
+        ],
+        "updatedAt": "2025-11-05T17:08:11.308Z"
+      },
+      {
+        "id": "mhm8wuvx-GJOndz",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          2
+        ],
+        "updatedAt": "2025-11-05T17:08:11.308Z"
+      },
+      {
+        "id": "mhm8wuvx-GvTuXY",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          0
+        ],
+        "updatedAt": "2025-11-05T17:08:11.308Z"
+      },
+      {
+        "id": "mhm8wuvx-x1eqbP",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          1
+        ],
+        "updatedAt": "2025-11-05T17:08:11.308Z"
+      },
+      {
+        "id": "mhm8wuvx-daBG09",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          2
+        ],
+        "updatedAt": "2025-11-05T17:08:11.309Z"
+      },
+      {
+        "id": "mhm8wuvx-R3w68m",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          0
+        ],
+        "updatedAt": "2025-11-05T17:08:11.309Z"
+      },
+      {
+        "id": "mhm8wuvx-Syf1ZL",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          1
+        ],
+        "updatedAt": "2025-11-05T17:08:11.309Z"
+      },
+      {
+        "id": "mhm8wuvx-apzaBW",
+        "productId": "mhm8wuvx-G4OFCd",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          2
+        ],
+        "updatedAt": "2025-11-05T17:08:11.309Z"
+      }
+    ]
+  },
+  {
+    "id": "mhm904v8-7lWcaJ",
+    "name": "Đầm độn vai",
+    "desc": "          Thành phần\nSợi vít-cô 100%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n55% Viscose LENZING™ ECOVERO™\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nChất liệu:\nSợi vít-cô\nGiải thích cho vật liệu được dùng trong sản phẩm này\nSợi vít-cô\nVải Viscose là loại sợi cellulose tái sinh thường lấy từ gỗ, nhưng nguyên liệu thô cũng có thể chứa các vật liệu cellulose khác.\nViscose LENZING™ ECOVERO™\nLENZING™ ECOVERO™ viscose là một loại xơ viscose có thương hiệu, được làm từ bột gỗ.\n\n\n          ",
+    "thumbnail": "ec35955d906f76973b99483b5d7121b863d0fcc4.avif",
+    "images": [
+      "ec35955d906f76973b99483b5d7121b863d0fcc4.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Da"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Slim fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Dày"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "ec35955d906f76973b99483b5d7121b863d0fcc4.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "ec35955d906f76973b99483b5d7121b863d0fcc4.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "ec35955d906f76973b99483b5d7121b863d0fcc4.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3tfhx-64P0Zh",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "35",
+    "weight": 1,
+    "status": "hidden",
+    "createdAt": "2025-11-05T17:04:48.549Z",
+    "updatedAt": "2025-11-05T17:04:48.549Z",
+    "skus": [
+      {
+        "id": "mhm904v9-NkNSSp",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          0
+        ],
+        "updatedAt": "2025-11-05T17:08:00.525Z"
+      },
+      {
+        "id": "mhm904v9-kcu3Rd",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          1
+        ],
+        "updatedAt": "2025-11-05T17:08:00.525Z"
+      },
+      {
+        "id": "mhm904v9-x53Y5m",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          0,
+          2
+        ],
+        "updatedAt": "2025-11-05T17:08:00.526Z"
+      },
+      {
+        "id": "mhm904v9-CrOfXB",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          0
+        ],
+        "updatedAt": "2025-11-05T17:08:00.526Z"
+      },
+      {
+        "id": "mhm904v9-iMdQ37",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          1
+        ],
+        "updatedAt": "2025-11-05T17:08:00.526Z"
+      },
+      {
+        "id": "mhm904v9-r9bT3B",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          1,
+          2
+        ],
+        "updatedAt": "2025-11-05T17:08:00.526Z"
+      },
+      {
+        "id": "mhm904v9-MqfM0l",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          0
+        ],
+        "updatedAt": "2025-11-05T17:08:00.526Z"
+      },
+      {
+        "id": "mhm904v9-5nJP05",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          1
+        ],
+        "updatedAt": "2025-11-05T17:08:00.526Z"
+      },
+      {
+        "id": "mhm904v9-ElPnX9",
+        "productId": "mhm904v8-7lWcaJ",
+        "stock": 0,
+        "tierIndexes": [
+          2,
+          2
+        ],
+        "updatedAt": "2025-11-05T17:08:00.527Z"
+      }
+    ]
+  },
+  {
+    "id": "mhm96qjv-mSgnSv",
+    "name": "Váy midi",
+    "desc": "Thành phần\nPôlyexte 90%, Vải thun Elastan 10%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\nVải thun Elastan\nElastan là một loại sợi tổng hợp đàn hồi làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\n\n",
+    "thumbnail": "vay1.avif",
+    "images": [
+      "vay1.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Polyester"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "vay1.avif"
+          },
+          {
+            "id": "#FF5733",
+            "image": "vay1.avif"
+          },
+          {
+            "id": "#8E44AD",
+            "image": "vay1.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3tnt0-zdt8Tb",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "38",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:09:56.587Z",
+    "updatedAt": "2025-11-05T17:09:56.587Z"
+  },
+  {
+    "id": "mhm9d9oj-SPuDde",
+    "name": "Váy satin tay hến",
+    "desc": "Thành phần\nMặt ngoài:Pôlyexte 100%\nChất liệu:\nSa-tanh\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).",
+    "thumbnail": "vay2.avif",
+    "images": [
+      "vay2.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "vay2.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "vay2.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "vay2.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3tnt0-zdt8Tb",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "37",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:15:01.315Z",
+    "updatedAt": "2025-11-05T17:15:01.315Z"
+  },
+  {
+    "id": "mhm9hsci-8Otmdh",
+    "name": "Quần nỉ",
+    "desc": "Thành phần\nBông 60%, Pôlyexte 40%\nChất liệu:\nJersey\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\n\n",
+    "thumbnail": "quan1.avif",
+    "images": [
+      "quan1.avif",
+      "02adef2ace484e054095252fe9e8f0217101fdde.avif",
+      "3791f17a77713098ad16b44ddee5a602fd271edf.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "02adef2ace484e054095252fe9e8f0217101fdde.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "3791f17a77713098ad16b44ddee5a602fd271edf.avif"
+          },
+          {
+            "id": "#FF5733",
+            "image": "quan1.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xxl",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3u1hd-IXHmjB",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "40",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:18:32.130Z",
+    "updatedAt": "2025-11-05T17:18:32.130Z"
+  },
+  {
+    "id": "mhm9kdhd-mH5KbD",
+    "name": "Straight High Jeans",
+    "desc": "Thành phần\nBông 80%, Pôlyexte 20%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n8% Cotton tái chế\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nChất liệu:\nDenim\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.\nCotton tái chế\nBông tái chế là bông được làm từ vải phế liệu trong quá trình sản xuất hoặc từ vải phế liệu hết hạn sử dụng. Phế liệu được tái chế cơ học và kéo thành sợi mới.\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).",
+    "thumbnail": "7455f4a211d63017729a1b5febe2b6cc402f4dda.avif",
+    "images": [
+      "7455f4a211d63017729a1b5febe2b6cc402f4dda.avif",
+      "6757c06769672ec78224e83e38d21f8cc868a784.avif",
+      "f66a2f69182513d9ac01d19c455dac10052aeca6.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#3357FF",
+            "image": "7455f4a211d63017729a1b5febe2b6cc402f4dda.avif"
+          },
+          {
+            "id": "#FF5733",
+            "image": "6757c06769672ec78224e83e38d21f8cc868a784.avif"
+          },
+          {
+            "id": "#8E44AD",
+            "image": "f66a2f69182513d9ac01d19c455dac10052aeca6.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3u1hd-IXHmjB",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "40",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:20:32.833Z",
+    "updatedAt": "2025-11-05T17:20:32.833Z"
+  },
+  {
+    "id": "mhm9oo45-cI71YB",
+    "name": "Áo sơ mi ",
+    "desc": "Thành phần\nPôlyexte 100%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).",
+    "thumbnail": "somi1.avif",
+    "images": [
+      "somi1.avif",
+      "somi2.avif",
+      "somi3.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Polyester"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "somi1.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "somi2.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "somi3.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xxl",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3udth-pvHMCt",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "43",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:23:53.237Z",
+    "updatedAt": "2025-11-05T17:23:53.237Z"
+  },
+  {
+    "id": "mhm9qu07-rWVmcJ",
+    "name": "Áo sơ mi dáng rộng",
+    "desc": "Thành phần\nPôlyexte 100%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\n\n",
+    "thumbnail": "somi4.avif",
+    "images": [
+      "somi4.avif",
+      "somi5.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Da"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#3357FF",
+            "image": "somi4.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "somi4.avif"
+          },
+          {
+            "id": "#8E44AD",
+            "image": "somi5.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3udth-pvHMCt",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "44",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:25:34.183Z",
+    "updatedAt": "2025-11-05T17:25:34.183Z"
+  },
+  {
+    "id": "mhm9wbzm-1GTT1L",
+    "name": "Váy cotton in hình",
+    "desc": "Thành phần\nBông 100%\nChất liệu:\nCotton, Jersey\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.",
+    "thumbnail": "4c9d00f3c97c2b127eb0fbb46f3e131e93fea440.avif",
+    "images": [
+      "4c9d00f3c97c2b127eb0fbb46f3e131e93fea440.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Polyester"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "4c9d00f3c97c2b127eb0fbb46f3e131e93fea440.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "4c9d00f3c97c2b127eb0fbb46f3e131e93fea440.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "s",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3w7eh-F9lEEG",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "46",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:29:50.771Z",
+    "updatedAt": "2025-11-05T17:29:50.771Z"
+  },
+  {
+    "id": "mhm9xu9m-MPC92W",
+    "name": "Váy với chân váy vải tuyn",
+    "desc": "Thành phần\nVải tuyn:Pôlyexte 100%\nMặt ngoài:Bông 95%, Vải thun Elastan 5%\nChất liệu:\nJersey, Vải tuyn\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\nVải thun Elastan\nElastan là một loại sợi tổng hợp đàn hồi làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\n\n",
+    "thumbnail": "850a6bba62abb7cc1b9f5d29837eb48c98008b93.avif",
+    "images": [
+      "850a6bba62abb7cc1b9f5d29837eb48c98008b93.avif",
+      "292e6f2dfaa6b7c61a3f212cc258e61f052e4e5e.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "850a6bba62abb7cc1b9f5d29837eb48c98008b93.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "292e6f2dfaa6b7c61a3f212cc258e61f052e4e5e.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3w7eh-F9lEEG",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "46",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:31:01.114Z",
+    "updatedAt": "2025-11-05T17:31:01.114Z"
+  },
+  {
+    "id": "mhma50yz-JF4hhK",
+    "name": "Váy cotton sọc nhăn",
+    "desc": "Thành phần\nBông 100%\nChất liệu:\nCotton, Sọc nhăn\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.\n\n",
+    "thumbnail": "treem1.avif",
+    "images": [
+      "treem1.avif",
+      "treem2.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Da"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "treem1.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "treem2.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xxl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3wgqh-7GfJPO",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "50",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:36:36.396Z",
+    "updatedAt": "2025-11-05T17:36:36.396Z"
+  },
+  {
+    "id": "mhma8i4j-Qq40BU",
+    "name": "Bộ 2 món vải nỉ viền diềm nhún",
+    "desc": "Thành phần\nDiềm đăng ten:Bông 100%\nMặt ngoài:Bông 80%, Pôlyexte 20%\nChất liệu:\nVải thun vảy cá\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\n\n",
+    "thumbnail": "treem3.avif",
+    "images": [
+      "treem3.avif",
+      "treem4.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "treem3.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "treem4.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3wgqh-7GfJPO",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "49",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:39:18.595Z",
+    "updatedAt": "2025-11-05T17:39:18.595Z"
+  },
+  {
+    "id": "mhmackrb-wGutCX",
+    "name": "Quần jogger rộng với mặt trái chải xù",
+    "desc": "Thành phần\nBông 60%, Pôlyexte 40%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch)",
+    "thumbnail": "treem5.avif",
+    "images": [
+      "treem5.avif",
+      "treem6.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "treem5.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "treem6.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3xt9p-2Sfy6I",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "52",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:42:28.632Z",
+    "updatedAt": "2025-11-05T17:42:28.632Z"
+  },
+  {
+    "id": "mhmaiwvw-XKkKF2",
+    "name": "Áo ngắn dệt kim gân nổi",
+    "desc": "Thành phần\nSợi vít-cô 70%, Poliamit 30%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n70% Viscose làm từ một phần bột CIRCULOSE®\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPoliamit\nPolyamide, còn gọi là nylon, là một loại sợi tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\nSợi vít-cô\nVải Viscose là loại sợi cellulose tái sinh thường lấy từ gỗ, nhưng nguyên liệu thô cũng có thể chứa các vật liệu cellulose khác.\nViscose làm từ một phần bột CIRCULOSE®\nViscose được làm bán phần từ bột giấy CIRCULOSE® là một dạng sợi cellulose tái sinh bán phần từ chất thải dệt may và bột gỗ. Circulose® được sản xuất bằng cách biến vải bông thải loại thành bột nhão để từ đó tái sinh chúng thành các loại sợi, chỉ và vải mới.\n\n",
+    "thumbnail": "treem7.avif",
+    "images": [
+      "treem7.avif",
+      "treem8.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "treem7.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "treem8.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm3xt9p-2Sfy6I",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "53",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:47:24.284Z",
+    "updatedAt": "2025-11-05T17:47:24.284Z"
+  },
+  {
+    "id": "mhmascr8-Qigrcf",
+    "name": "Túi đeo vai",
+    "desc": "Thành phần\nMặt ngoài:Pôlyexte 100%\nLớp lót:Pôlyexte 100%\nLớp phủ:Polyurethane 100%\nLớp phủ:Polyurethane 100%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPolyurethane\nPolyurethane (PU) là vật liệu tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\n\n",
+    "thumbnail": "tuixach1.avif",
+    "images": [
+      "tuixach1.avif",
+      "tuixach2.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "tuixach1.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "tuixach2.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "s",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm42q8p-3iyOP8",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "59",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:54:44.756Z",
+    "updatedAt": "2025-11-05T17:54:44.756Z"
+  },
+  {
+    "id": "mhmavjmh-FcLvGM",
+    "name": "Túi tote có chi tiết quai đeo",
+    "desc": "Thành phần\nLớp phủ:Polyurethane 100%\nLớp lót:Pôlyexte 100%\nChi tiết:Pôlyexte 100%\nMặt ngoài:Pôlyexte 100%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPolyurethane\nPolyurethane (PU) là vật liệu tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).\n\n",
+    "thumbnail": "tuixach3.avif",
+    "images": [
+      "tuixach3.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "tuixach3.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "tuixach3.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "xl",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm42q8p-3iyOP8",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "58",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T17:57:13.625Z",
+    "updatedAt": "2025-11-05T17:57:13.625Z"
+  },
+  {
+    "id": "mhmb3qzc-SUFxnf",
+    "name": "Mũ lưỡi trai thể thao chống nước",
+    "desc": "Thành phần\nPôlyexte 100%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPôlyexte\nPolyester là sợi tổng hợp được làm từ dầu thô (một nguồn tài nguyên hóa thạch).",
+    "thumbnail": "cap1.avif",
+    "images": [
+      "cap1.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Slim fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#3357FF",
+            "image": "cap1.avif"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "cap1.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm438m4-vcKqJB",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "65",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T18:03:36.408Z",
+    "updatedAt": "2025-11-05T18:03:36.408Z"
+  },
+  {
+    "id": "mhmb5psg-Z9kanp",
+    "name": "Mũ lưỡi trai cotton có hoạ tiết",
+    "desc": "Thành phần\nMặt ngoài:Bông 100%\nLớp lót:Bông 100%\nThông tin bổ sung về chất liệu\nTổng trọng lượng của sản phẩm này có chứa ít nhất:\n20% Cotton tái chế\n\nChúng tôi loại trừ trọng lượng của các thành phần phụ như, nhưng không hoàn toàn: đường chỉ, nút, khóa kéo, chi tiết trang trí và hình in.\n\nTổng trọng lượng của sản phẩm được tính bằng cách cộng trọng lượng của tất cả các lớp và thành phần chính lại với nhau. Trên cơ sở đó, chúng tôi tính toán xem mỗi vật liệu tạo ra bao nhiêu phần trăm trọng lượng đó. Đối với các sản phẩm theo set & bộ bao gồm nhiều món, tất cả các món sẽ được tính là một sản phẩm trong phép tính.\n\nChất liệu:\nVải dệt chéo\nGiải thích cho vật liệu được dùng trong sản phẩm này\nBông\nBông là loại sợi tự nhiên mềm và linh hoạt được thu hoạch từ cây bông.\nCotton tái chế\nBông tái chế là bông được làm từ vải phế liệu trong quá trình sản xuất hoặc từ vải phế liệu hết hạn sử dụng. Phế liệu được tái chế cơ học và kéo thành sợi mới.",
+    "thumbnail": "cap2.avif",
+    "images": [
+      "cap2.avif",
+      "cap3.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Da"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "cap2.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "cap3.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "s",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm438m4-vcKqJB",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "64",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T18:05:08.177Z",
+    "updatedAt": "2025-11-05T18:05:08.177Z"
+  },
+  {
+    "id": "mhmb7uaf-fADZNT",
+    "name": "Kính mát thể thao",
+    "desc": "Thành phần\nGọng kính:Polycacbonat 100%\nGiá đeo gọng kính:Polycacbonat 100%\nTròng kính:Polycacbonat 100%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPolycacbonat\nPolycarbonate (PC) là một loại polyme dùng để sản xuất chất dẻo. Polyme có nguồn gốc hóa thạch.\n\n",
+    "thumbnail": "kinh1.avif",
+    "images": [
+      "kinh1.avif",
+      "kinh2.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Polyester"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Dày"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#F1C40F",
+            "image": "kinh1.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "kinh2.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "l",
+            "image": ""
+          },
+          {
+            "id": "m",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm42yoe-yLEgJX",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "60",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T18:06:47.319Z",
+    "updatedAt": "2025-11-05T18:06:47.319Z"
+  },
+  {
+    "id": "mhmb9ahc-L0mnyD",
+    "name": "Kính mát",
+    "desc": "Thành phần\nGọng kính:Thép không gỉ 100%\nTròng kính:Poliamit 100%\nGiá đeo gọng kính:Thép không gỉ 100%\nChất liệu:\nThép không gỉ\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPoliamit\nPolyamide, còn gọi là nylon, là một loại sợi tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).\nThép không gỉ\nInox là hợp kim sắt có khả năng chống ăn mòn và rỉ sét.\n\n",
+    "thumbnail": "kinh3.avif",
+    "images": [
+      "kinh3.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Polyester"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Oversize"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#FF5733",
+            "image": "kinh3.avif"
+          },
+          {
+            "id": "#33FF57",
+            "image": "kinh3.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "s",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm42yoe-yLEgJX",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "61",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T18:07:54.961Z",
+    "updatedAt": "2025-11-05T18:07:54.961Z"
+  },
+  {
+    "id": "mhmbb217-vW9Mli",
+    "name": "Bộ 2 dây buộc tóc nylon",
+    "desc": "Thành phần\nPoliamit 100%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPoliamit\nPolyamide, còn gọi là nylon, là một loại sợi tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).",
+    "thumbnail": "sc1.avif",
+    "images": [
+      "sc1.avif"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Len"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Mỏng"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "sc1.avif"
+          },
+          {
+            "id": "#3357FF",
+            "image": "sc1.avif"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "s",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm43jpb-4rMm0q",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "67",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T18:09:17.324Z",
+    "updatedAt": "2025-11-05T18:09:17.324Z"
+  },
+  {
+    "id": "mhmbd1np-zP8814",
+    "name": "Bộ 3 dây buộc tóc nylon",
+    "desc": "Thành phần\nPoliamit 100%\nGiải thích cho vật liệu được dùng trong sản phẩm này\nPoliamit\nPolyamide, còn gọi là nylon, là một loại sợi tổng hợp được làm từ dầu mỏ (một nguồn tài nguyên hóa thạch).",
+    "thumbnail": "sc2.webp",
+    "images": [
+      "sc2.webp",
+      "sc3.webp"
+    ],
+    "attributes": [
+      {
+        "attributeId": "A004",
+        "attributeValues": [
+          "Polyester"
+        ]
+      },
+      {
+        "attributeId": "A014",
+        "attributeValues": [
+          "Regular fit"
+        ]
+      },
+      {
+        "attributeId": "A016",
+        "attributeValues": [
+          "Trung bình"
+        ]
+      }
+    ],
+    "variations": [
+      {
+        "name": "Màu sắc",
+        "variationOptions": [
+          {
+            "id": "#33FF57",
+            "image": "sc2.webp"
+          },
+          {
+            "id": "#F1C40F",
+            "image": "sc3.webp"
+          }
+        ]
+      },
+      {
+        "name": "Kích thước",
+        "variationOptions": [
+          {
+            "id": "m",
+            "image": ""
+          },
+          {
+            "id": "l",
+            "image": ""
+          }
+        ]
+      }
+    ],
+    "categoryId": "mhm43jpb-4rMm0q",
+    "priceInfo": {
+      "currentlyPrice": 0,
+      "originalPrice": 0,
+      "importPrice": 0
+    },
+    "isDeleted": false,
+    "brandId": "68",
+    "weight": 1,
+    "status": "draft",
+    "createdAt": "2025-11-05T18:10:50.150Z",
+    "updatedAt": "2025-11-05T18:10:50.150Z"
   }
 ]
 }
