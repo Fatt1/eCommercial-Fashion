@@ -591,9 +591,9 @@ function renderProductSelectorItem(product) {
         <input type="checkbox" class="product-master-check" data-product-id="${
           product.id
         }" />
-        <img src="../assets/${product.thumbnail || "sample-image.jpg"}" alt="${
-    product.name
-  }" />
+        <img src="../assets/products/${
+          product.thumbnail || "sample-image.jpg"
+        }" alt="${product.name}" />
         <div class="import-products-name">${product.name}</div>
       </div>
       <button class="black-yellow__button view-more__sku" data-product-id="${
