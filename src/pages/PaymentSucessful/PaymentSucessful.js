@@ -48,7 +48,7 @@ function updateOrder() {
   var order = getOrderById(tempOrder.id);
   // sau khi đặt hàng thành công thì sẽ cập nhật lại số lượng sản phẩm trong kho
   order.items.forEach((item) => {
-    var result = decreaseSkuStock(item.skuId, item.quantity);
+    var result = decreaseSkuStock(item.sku.skuId, item.quantity);
     if (!result.successful) {
       console.error(
         `Cập nhật số lượng sản phẩm thất bại cho SKU ID: ${item.skuId}`
