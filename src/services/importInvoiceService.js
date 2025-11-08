@@ -234,7 +234,7 @@ function updateImportInvoice(invoiceId, updatedData) {
       totalPrice += item.importPrice * item.quantity;
     });
 
-    updatedData.totalQuantity = totalQuantity;
+    updatedData.quantity = totalQuantity;
     updatedData.totalPrice = totalPrice;
   }
 
