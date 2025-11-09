@@ -338,7 +338,6 @@ function setUpProductAdmin() {
   document.querySelector(".add-product-btn").addEventListener("click", () => {
     loadAddOrUpdateProduct();
   });
-  handleUpdateDeleteProductListeners();
 }
 
 function handleUpdateDeleteProductListeners() {
