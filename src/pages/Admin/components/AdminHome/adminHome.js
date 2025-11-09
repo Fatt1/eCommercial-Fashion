@@ -19,6 +19,8 @@ export function loadAdminHome() {
 function setUpHome() {
   setUpAdminNav();
 }
+const db = await getDbContextFromLocalStorage();
+console.log(JSON.stringify(db.importInvoices));
 
 function renderAdminHomeHtml() {
   document.getElementById("root").innerHTML = `
