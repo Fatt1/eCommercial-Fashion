@@ -54,6 +54,7 @@ function logout(userId) {
   const user = dbContext.users.find((c) => c.id === userId);
   if (user) {
     localStorage.removeItem("user_info");
+    localStorage.removeItem("cart");
     return true;
   }
   return false;
