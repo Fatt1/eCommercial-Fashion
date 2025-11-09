@@ -10,67 +10,286 @@
 
 /* Filter Section */
 .inventory-manage__filter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: white;
-  padding: 20px 30px;
+  padding: 25px 30px;
   margin: 0 30px 20px 30px;
-  gap: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* Filter tabs - Xem theo */
 .filter-tabs {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.filter-tabs label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  min-width: fit-content;
 }
 
 .filter-select {
-  padding: 10px 20px;
-  border: 1px solid #ddd;
+  padding: 10px 16px;
+  border: 2px solid #e0e0e0;
   background-color: white;
   font-size: 14px;
   font-family: "Inter", sans-serif;
   cursor: pointer;
   outline: none;
-  min-width: 200px;
+  min-width: 240px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.filter-dates {
+.filter-select:hover {
+  border-color: #667eea;
+}
+
+.filter-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Filter date section - Lọc theo thời gian */
+.filter-date {
   display: flex;
+  gap: 12px;
   align-items: center;
-  gap: 15px;
+  flex-wrap: wrap;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  margin-bottom: 15px;
 }
 
-.filter-dates span {
+.filter-date label {
+  font-weight: 600;
   font-size: 14px;
   color: #333;
-  font-weight: 500;
+  min-width: fit-content;
 }
 
-.date-input {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
+.filter-date input[type="date"] {
+  padding: 10px 14px;
+  border: 2px solid #e0e0e0;
+  background-color: white;
   font-size: 14px;
   font-family: "Inter", sans-serif;
   outline: none;
-  min-width: 120px;
+  border-radius: 6px;
+  min-width: 170px;
+  transition: all 0.2s ease;
 }
 
-.filter-btn {
-  padding: 8px 20px;
-  background-color: #565dbd;
-  color: white;
+.filter-date input[type="date"]:hover {
+  border-color: #667eea;
+}
+
+.filter-date input[type="date"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.filter-date span {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.filter-date button {
+  padding: 10px 20px;
   border: none;
+  border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
   font-family: "Inter", sans-serif;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
-.filter-btn:hover {
-  background-color: #4a51a3;
+.filter-date button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+#apply-date-filter-btn {
+  background-color: #28a745;
+  color: white;
+  min-width: 100px;
+}
+
+#apply-date-filter-btn:hover {
+  background-color: #218838;
+}
+
+#reset-date-filter-btn {
+  background-color: #dc3545;
+  color: white;
+  min-width: 140px;
+}
+
+#reset-date-filter-btn:hover {
+  background-color: #c82333;
+}
+
+/* Filter range section - Lọc theo số lượng */
+.filter-range {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.filter-range label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  min-width: fit-content;
+}
+
+.filter-range input[type="number"] {
+  padding: 10px 14px;
+  border: 2px solid #e0e0e0;
+  background-color: white;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  width: 130px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.filter-range input[type="number"]:hover {
+  border-color: #667eea;
+}
+
+.filter-range input[type="number"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.filter-range span {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.filter-range button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-range button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+#apply-quantity-filter-btn {
+  background-color: #007bff;
+  color: white;
+  min-width: 100px;
+}
+
+#apply-quantity-filter-btn:hover {
+  background-color: #0056b3;
+}
+
+#reset-quantity-filter-btn {
+  background-color: #6c757d;
+  color: white;
+  min-width: 140px;
+}
+
+#reset-quantity-filter-btn:hover {
+  background-color: #545b62;
+}
+
+/* Warning threshold section - Cài đặt ngưỡng cảnh báo */
+.filter-warning-threshold {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px;
+  background-color: #fff3cd;
+  border-radius: 6px;
+  margin-top: 15px;
+  border: 2px solid #ffc107;
+}
+
+.filter-warning-threshold label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #856404;
+  min-width: fit-content;
+}
+
+.filter-warning-threshold input[type="number"] {
+  padding: 10px 14px;
+  border: 2px solid #ffc107;
+  background-color: white;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  width: 100px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  color: #856404;
+}
+
+.filter-warning-threshold input[type="number"]:hover {
+  border-color: #ff9800;
+}
+
+.filter-warning-threshold input[type="number"]:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+}
+
+.filter-warning-threshold span {
+  font-size: 13px;
+  color: #856404;
+  font-weight: 500;
+  font-style: italic;
+}
+
+#apply-threshold-btn {
+  background-color: #ffc107;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#apply-threshold-btn:hover {
+  background-color: #ff9800;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(255, 152, 0, 0.3);
 }
 
 /* Table Section */
