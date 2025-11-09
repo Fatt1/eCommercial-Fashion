@@ -300,6 +300,7 @@ export function setUpProductManagePlayable() {
 
     renderProductList(result.items, containDeleted);
     renderPagination(currentPage, totalPages);
+    handleUpdateDeleteProductListeners();
   }
 
   function handleSearch() {
@@ -337,6 +338,9 @@ function setUpProductAdmin() {
   document.querySelector(".add-product-btn").addEventListener("click", () => {
     loadAddOrUpdateProduct();
   });
+}
+
+function handleUpdateDeleteProductListeners() {
   document.querySelectorAll(".update-link").forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
