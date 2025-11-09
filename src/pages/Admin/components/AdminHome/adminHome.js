@@ -20,7 +20,7 @@ function setUpHome() {
   setUpAdminNav();
 }
 const db = await getDbContextFromLocalStorage();
-console.log(JSON.stringify(db.products));
+console.log(JSON.stringify(db.orders));
 
 function renderAdminHomeHtml() {
   document.getElementById("root").innerHTML = `

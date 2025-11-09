@@ -1,3 +1,379 @@
 {
-  "orders": []
+  "orders": [
+  {
+    "id": "20251109-120152-2110",
+    "customerId": "mhr53nf0-fIRG75",
+    "street": "69 Đ. Số 41, Phường 06, Quận 4, Thành phố Hồ Chí Minh 700000, Việt Nam",
+    "city": "Tỉnh Cao Bằng",
+    "ward": "Xã Cô Ba",
+    "district": "Huyện Bảo Lạc",
+    "items": [
+      {
+        "productId": "mhm8tv73-pvCsc7",
+        "name": "Regular Fit Fine-knit jumper",
+        "sku": {
+          "skuId": "mhm8tv74-0rmO4U",
+          "name": "Vàng, M"
+        },
+        "quantity": 1,
+        "originalPrice": 300000,
+        "price": 200000
+      },
+      {
+        "productId": "mhm8gqsc-pLznrp",
+        "name": "Áo khoác tuxedo len pha Slim Fit",
+        "sku": {
+          "skuId": "mhm8gqsc-fQKziB",
+          "name": "Vàng, S"
+        },
+        "quantity": 1,
+        "originalPrice": 450000,
+        "price": 360000
+      },
+      {
+        "productId": "mhm886tt-XRbSX8",
+        "name": "Loose Fit Printed hoodie",
+        "sku": {
+          "skuId": "mhm886tt-aMNnIR",
+          "name": "Vàng, L"
+        },
+        "quantity": 1,
+        "originalPrice": 525000,
+        "price": 350000
+      }
+    ],
+    "totalCheckout": 940000,
+    "totalPrice": 910000,
+    "totalApplyDiscount": 0,
+    "feeShipping": 30000,
+    "paymentMethodId": "2",
+    "createdAt": "2025-11-09T05:01:52.972Z",
+    "updatedAt": "2025-11-09T05:01:52.972Z",
+    "fullName": "Phan Việt Huy",
+    "phoneNumber": "09723113125",
+    "status": "PENDING"
+  },
+  {
+    "id": "20251109-121143-7813",
+    "customerId": "mhr98ura-cGkz4X",
+    "street": "132 Đ. Nguyễn Tất Thành, Phường 13, Quận 4, Thành phố Hồ Chí Minh 700000, Việt Nam",
+    "city": "Tỉnh Cao Bằng",
+    "ward": "Xã Đa Thông",
+    "district": "Huyện Hà Quảng",
+    "items": [
+      {
+        "productId": "mhm82c9j-L8kSA0",
+        "name": "Loose Fit Hoodie",
+        "sku": {
+          "skuId": "mhm82c9j-pMOLEw",
+          "name": "Vàng, XXL"
+        },
+        "quantity": 1,
+        "originalPrice": 600000,
+        "price": 480000
+      },
+      {
+        "productId": "mhm886tt-XRbSX8",
+        "name": "Loose Fit Printed hoodie",
+        "sku": {
+          "skuId": "mhm886tt-0NRso4",
+          "name": "Xanh lá cây, M"
+        },
+        "quantity": 2,
+        "originalPrice": 525000,
+        "price": 350000
+      },
+      {
+        "productId": "mhmb9ahc-L0mnyD",
+        "name": "Kính mát",
+        "sku": {
+          "skuId": "mhmb9ahd-EgglJ3",
+          "name": "Xanh lá cây, L"
+        },
+        "quantity": 1,
+        "originalPrice": 900000,
+        "price": 600000
+      },
+      {
+        "productId": "mhmb5psg-Z9kanp",
+        "name": "Mũ lưỡi trai cotton có hoạ tiết",
+        "sku": {
+          "skuId": "mhmb5psh-qdz223",
+          "name": "Xanh dương, S"
+        },
+        "quantity": 1,
+        "originalPrice": 525000,
+        "price": 350000
+      }
+    ],
+    "totalCheckout": 2160000,
+    "totalPrice": 2130000,
+    "totalApplyDiscount": 0,
+    "feeShipping": 30000,
+    "paymentMethodId": "2",
+    "createdAt": "2025-11-09T05:11:43.979Z",
+    "updatedAt": "2025-11-09T05:11:43.979Z",
+    "fullName": "gray",
+    "phoneNumber": "0388173813",
+    "status": "PENDING"
+  },
+  {
+    "id": "20251109-123314-1543",
+    "customerId": "mhr9bxw4-6HbvVy",
+    "street": "139 Bùi Văn Ba, Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh, Việt Nam",
+    "city": "Thành phố Hồ Chí Minh",
+    "ward": "Phường Tân Thuận Đông",
+    "district": "Quận 7",
+    "items": [
+      {
+        "productId": "mhm8r2s7-KHjVEu",
+        "name": "Áo jumper cổ khoá kéo Regular Fit",
+        "sku": {
+          "skuId": "mhm8r2s7-n7VwE9",
+          "name": "Xanh dương, M"
+        },
+        "quantity": 1,
+        "originalPrice": 675000,
+        "price": 450000
+      },
+      {
+        "productId": "mhmaiwvw-XKkKF2",
+        "name": "Áo ngắn dệt kim gân nổi",
+        "sku": {
+          "skuId": "mhmaiwvx-fSH19f",
+          "name": "Xanh lá cây, M"
+        },
+        "quantity": 1,
+        "originalPrice": 525000,
+        "price": 350000
+      },
+      {
+        "productId": "mhm9qu07-rWVmcJ",
+        "name": "Áo sơ mi dáng rộng",
+        "sku": {
+          "skuId": "mhm9qu08-5ABR88",
+          "name": "Xanh lá cây, XL"
+        },
+        "quantity": 1,
+        "originalPrice": 350000,
+        "price": 250000
+      }
+    ],
+    "totalCheckout": 1080000,
+    "totalPrice": 1050000,
+    "totalApplyDiscount": 0,
+    "feeShipping": 30000,
+    "paymentMethodId": "2",
+    "createdAt": "2025-11-09T05:33:14.457Z",
+    "updatedAt": "2025-11-09T05:33:14.457Z",
+    "fullName": "phát",
+    "phoneNumber": "0903123131",
+    "status": "PENDING"
+  },
+  {
+    "id": "20251109-123517-4516",
+    "customerId": "mhra30c5-Y8mlvE",
+    "street": "144-146 Đ. Số 37, Tân Quy, Quận 7, Thành phố Hồ Chí Minh, Việt Nam",
+    "city": "Thành phố Hồ Chí Minh",
+    "ward": "Phường Tân Quy",
+    "district": "Quận 7",
+    "items": [
+      {
+        "productId": "mhm8r2s7-KHjVEu",
+        "name": "Áo jumper cổ khoá kéo Regular Fit",
+        "sku": {
+          "skuId": "mhm8r2s7-n7VwE9",
+          "name": "Xanh dương, M"
+        },
+        "quantity": 1,
+        "originalPrice": 675000,
+        "price": 450000
+      },
+      {
+        "productId": "mhmaiwvw-XKkKF2",
+        "name": "Áo ngắn dệt kim gân nổi",
+        "sku": {
+          "skuId": "mhmaiwvx-fSH19f",
+          "name": "Xanh lá cây, M"
+        },
+        "quantity": 1,
+        "originalPrice": 525000,
+        "price": 350000
+      },
+      {
+        "productId": "mhm9qu07-rWVmcJ",
+        "name": "Áo sơ mi dáng rộng",
+        "sku": {
+          "skuId": "mhm9qu08-5ABR88",
+          "name": "Xanh lá cây, XL"
+        },
+        "quantity": 1,
+        "originalPrice": 350000,
+        "price": 250000
+      },
+      {
+        "productId": "mhmavjmh-FcLvGM",
+        "name": "Túi tote có chi tiết quai đeo",
+        "sku": {
+          "skuId": "mhmavjmh-Gcwh8I",
+          "name": "Xanh lá cây, XL"
+        },
+        "quantity": 1,
+        "originalPrice": 1800000,
+        "price": 1200000
+      },
+      {
+        "productId": "mhmascr8-Qigrcf",
+        "name": "Túi đeo vai",
+        "sku": {
+          "skuId": "mhmascr9-5dABCx",
+          "name": "Xanh lá cây, S"
+        },
+        "quantity": 2,
+        "originalPrice": 1920000,
+        "price": 1200000
+      }
+    ],
+    "totalCheckout": 4680000,
+    "totalPrice": 4650000,
+    "totalApplyDiscount": 0,
+    "feeShipping": 30000,
+    "paymentMethodId": "2",
+    "createdAt": "2025-11-09T05:35:17.067Z",
+    "updatedAt": "2025-11-09T05:35:17.067Z",
+    "fullName": "danh",
+    "phoneNumber": "00891324141",
+    "status": "PENDING"
+  },
+  {
+    "id": "20251109-124218-7976",
+    "customerId": "mhra5acf-Kbyjke",
+    "street": "461 Huỳnh Tấn Phát, Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh 700000, Việt Nam",
+    "city": "Thành phố Hồ Chí Minh",
+    "ward": "Phường Hiệp Thành",
+    "district": "Quận 12",
+    "items": [
+      {
+        "productId": "mhm8r2s7-KHjVEu",
+        "name": "Áo jumper cổ khoá kéo Regular Fit",
+        "sku": {
+          "skuId": "mhm8r2s7-n7VwE9",
+          "name": "Xanh dương, M"
+        },
+        "quantity": 1,
+        "originalPrice": 675000,
+        "price": 450000
+      },
+      {
+        "productId": "mhmaiwvw-XKkKF2",
+        "name": "Áo ngắn dệt kim gân nổi",
+        "sku": {
+          "skuId": "mhmaiwvx-fSH19f",
+          "name": "Xanh lá cây, M"
+        },
+        "quantity": 2,
+        "originalPrice": 525000,
+        "price": 350000
+      },
+      {
+        "productId": "mhm9qu07-rWVmcJ",
+        "name": "Áo sơ mi dáng rộng",
+        "sku": {
+          "skuId": "mhm9qu08-5ABR88",
+          "name": "Xanh lá cây, XL"
+        },
+        "quantity": 1,
+        "originalPrice": 350000,
+        "price": 250000
+      },
+      {
+        "productId": "mhmavjmh-FcLvGM",
+        "name": "Túi tote có chi tiết quai đeo",
+        "sku": {
+          "skuId": "mhmavjmh-Gcwh8I",
+          "name": "Xanh lá cây, XL"
+        },
+        "quantity": 1,
+        "originalPrice": 1800000,
+        "price": 1200000
+      },
+      {
+        "productId": "mhmascr8-Qigrcf",
+        "name": "Túi đeo vai",
+        "sku": {
+          "skuId": "mhmascr9-5dABCx",
+          "name": "Xanh lá cây, S"
+        },
+        "quantity": 2,
+        "originalPrice": 1920000,
+        "price": 1200000
+      },
+      {
+        "productId": "mhm9xu9m-MPC92W",
+        "name": "Váy với chân váy vải tuyn",
+        "sku": {
+          "skuId": "mhm9xu9m-6rVw2K",
+          "name": "Xanh lá cây, M"
+        },
+        "quantity": 2,
+        "originalPrice": 490000,
+        "price": 350000
+      },
+      {
+        "productId": "mhma8i4j-Qq40BU",
+        "name": "Bộ 2 món vải nỉ viền diềm nhún",
+        "sku": {
+          "skuId": "mhma8i4k-3XFsVC",
+          "name": "Xanh dương, XL"
+        },
+        "quantity": 1,
+        "originalPrice": 450000,
+        "price": 300000
+      },
+      {
+        "productId": "mhm9hsci-8Otmdh",
+        "name": "Quần nỉ",
+        "sku": {
+          "skuId": "mhm9hsci-7p9Z2F",
+          "name": "Cam, M"
+        },
+        "quantity": 1,
+        "originalPrice": 450000,
+        "price": 300000
+      },
+      {
+        "productId": "mhm9kdhd-mH5KbD",
+        "name": "Straight High Jeans",
+        "sku": {
+          "skuId": "mhm9kdhe-vrpoRE",
+          "name": "Tím, L"
+        },
+        "quantity": 1,
+        "originalPrice": 375000,
+        "price": 250000
+      },
+      {
+        "productId": "mhm9kdhd-mH5KbD",
+        "name": "Straight High Jeans",
+        "sku": {
+          "skuId": "mhm9kdhe-1rv13x",
+          "name": "Tím, M"
+        },
+        "quantity": 2,
+        "originalPrice": 375000,
+        "price": 250000
+      }
+    ],
+    "totalCheckout": 7080000,
+    "totalPrice": 7050000,
+    "totalApplyDiscount": 0,
+    "feeShipping": 30000,
+    "paymentMethodId": "2",
+    "createdAt": "2025-11-09T05:42:18.688Z",
+    "updatedAt": "2025-11-09T05:42:18.688Z",
+    "fullName": "thành",
+    "phoneNumber": "0123813355",
+    "status": "PENDING"
+  }
+]
 }
