@@ -181,7 +181,7 @@ export function validationProduct({ productName, productDescription }, errors) {
       message: "Vui lòng chọn danh mục sản phẩm",
     });
   }
-  if (!selectedAttributeValues["brand"]) {
+  if (!selectedAttributeValues["brand"][0]) {
     isValid = false;
     errors.push({ field: "brand", message: "Vui lòng chọn thương hiệu" });
   }

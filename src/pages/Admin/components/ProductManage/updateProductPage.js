@@ -41,7 +41,7 @@ import {
   getColorByCode,
 } from "../../../../services/colorService.js";
 import { getAllSizes, getSizeById } from "../../../../services/sizeService.js";
-import Product from "../../../../models/Product.js";
+
 import { validationProduct } from "./addProduct.js";
 import { generateUniqueId } from "../../../../helper/helper.js";
 import { loadProductAdmin } from "./productManage.js";
