@@ -1,39 +1,154 @@
 {
   "users": [
-    {
-      "id": "1",
-      "email": "admin@gmail.com",
-      "password": "admin123",
-      "addresses": [],
-      "role": "admin",
-      "status": "active"
-    },
-    {
-      "id": "2",
-      "email": "viethuy@gmail.com",
-      "password": "test123",
-      "addresses": [
-        {
-          "fullName": "Phan Việt Huy",
-          "street": "39 Nguyễn Hữu Cầu",
-          "district": "Quận 4",
-          "ward": "Phường 2",
-          "city": "Tp.Hồ Chí Minh",
-          "isDefault": true,
-          "phoneNumber": "123456789"
-        },
-        {
-          "fullName": "Nguyễn Việt Huy",
-          "street": "40 Nguyễn Hữu Cầu",
-          "district": "Quận 5",
-          "ward": "Phường 2",
-          "city": "Tp.Hồ Chí Minh",
-          "isDefault": false,
-          "phoneNumber": "123456789"
-        }
-      ],
-      "role": "user",
-      "status": "active"
-    }
-  ]
+  {
+    "id": "1",
+    "email": "admin@gmail.com",
+    "password": "admin123",
+    "addresses": [],
+    "role": "admin",
+    "status": "active"
+  },
+  {
+    "id": "2",
+    "email": "viethuy@gmail.com",
+    "password": "test123",
+    "addresses": [
+      {
+        "fullName": "Phan Việt Huy",
+        "street": "39 Nguyễn Hữu Cầu",
+        "district": "Quận 4",
+        "ward": "Phường 2",
+        "city": "Tp.Hồ Chí Minh",
+        "isDefault": true,
+        "phoneNumber": "123456789"
+      },
+      {
+        "fullName": "Nguyễn Việt Huy",
+        "street": "40 Nguyễn Hữu Cầu",
+        "district": "Quận 5",
+        "ward": "Phường 2",
+        "city": "Tp.Hồ Chí Minh",
+        "isDefault": false,
+        "phoneNumber": "123456789"
+      }
+    ],
+    "role": "user",
+    "status": "active"
+  },
+  {
+    "id": "mhr53nf0-fIRG75",
+    "email": "phanvhuy409@gmail.com",
+    "password": "viethuy0310",
+    "fullName": "",
+    "phoneNumber": "",
+    "gender": "",
+    "dateOfBirth": null,
+    "addresses": [
+      {
+        "id": "mhr8xnn5-48iGVV",
+        "street": "69 Đ. Số 41, Phường 06, Quận 4, Thành phố Hồ Chí Minh 700000, Việt Nam",
+        "district": "Huyện Bảo Lạc",
+        "ward": "Xã Cô Ba",
+        "city": "Tỉnh Cao Bằng",
+        "isDefault": true,
+        "fullName": "Phan Việt Huy",
+        "phoneNumber": "09723113125"
+      }
+    ],
+    "status": "active",
+    "createdAt": "2025-11-09T03:14:24.973Z"
+  },
+  {
+    "id": "mhr98ura-cGkz4X",
+    "email": "congtrin19@gmail.com",
+    "password": "viethuy0310ok",
+    "fullName": "",
+    "phoneNumber": "",
+    "gender": "",
+    "dateOfBirth": null,
+    "addresses": [
+      {
+        "id": "mhr9agx3-DiEdma",
+        "street": "132 Đ. Nguyễn Tất Thành, Phường 13, Quận 4, Thành phố Hồ Chí Minh 700000, Việt Nam",
+        "district": "Huyện Hà Quảng",
+        "ward": "Xã Đa Thông",
+        "city": "Tỉnh Cao Bằng",
+        "isDefault": true,
+        "fullName": "gray",
+        "phoneNumber": "0388173813"
+      }
+    ],
+    "status": "active",
+    "createdAt": "2025-11-09T05:10:26.230Z"
+  },
+  {
+    "id": "mhr9bxw4-6HbvVy",
+    "email": "hatanphat021@gmail.com",
+    "password": "phat0310",
+    "fullName": "",
+    "phoneNumber": "",
+    "gender": "",
+    "dateOfBirth": null,
+    "addresses": [
+      {
+        "id": "mhra24uc-Sb7L9h",
+        "street": "139 Bùi Văn Ba, Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh, Việt Nam",
+        "district": "Quận 7",
+        "ward": "Phường Tân Thuận Đông",
+        "city": "Thành phố Hồ Chí Minh",
+        "isDefault": true,
+        "fullName": "phát",
+        "phoneNumber": "0903123131"
+      }
+    ],
+    "status": "active",
+    "createdAt": "2025-11-09T05:12:50.260Z"
+  },
+  {
+    "id": "mhra30c5-Y8mlvE",
+    "email": "danh000@gmail.com",
+    "password": "danh000",
+    "fullName": "",
+    "phoneNumber": "",
+    "gender": "",
+    "dateOfBirth": null,
+    "addresses": [
+      {
+        "id": "mhra4rrb-hIvFZ5",
+        "street": "144-146 Đ. Số 37, Tân Quy, Quận 7, Thành phố Hồ Chí Minh, Việt Nam",
+        "district": "Quận 7",
+        "ward": "Phường Tân Quy",
+        "city": "Thành phố Hồ Chí Minh",
+        "isDefault": true,
+        "fullName": "danh",
+        "phoneNumber": "00891324141"
+      }
+    ],
+    "status": "active",
+    "createdAt": "2025-11-09T05:33:53.141Z"
+  },
+  {
+    "id": "mhra5acf-Kbyjke",
+    "email": "thanh001@gmail.com",
+    "password": "thanh001",
+    "fullName": "",
+    "phoneNumber": "",
+    "gender": "",
+    "dateOfBirth": null,
+    "addresses": [
+      {
+        "id": "mhradsxm-p2nxFU",
+        "street": "461 Huỳnh Tấn Phát, Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh 700000, Việt Nam",
+        "district": "Quận 12",
+        "ward": "Phường Hiệp Thành",
+        "city": "Thành phố Hồ Chí Minh",
+        "isDefault": true,
+        "fullName": "thành",
+        "phoneNumber": "0123813355"
+      }
+    ],
+    "status": "active",
+    "createdAt": "2025-11-09T05:35:39.423Z"
+  }
+]
 }

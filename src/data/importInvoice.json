@@ -55,9 +55,9 @@
         "quantity": 100
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T15:55:39.715Z",
-    "updatedAt": "2025-11-08T16:14:57.238Z",
+    "updatedAt": "2025-11-08T16:48:58.449Z",
     "totalQuantity": 700
   },
   {
@@ -163,9 +163,9 @@
         "quantity": 50
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T15:56:18.656Z",
-    "updatedAt": "2025-11-08T15:56:18.656Z"
+    "updatedAt": "2025-11-08T16:49:04.165Z"
   },
   {
     "id": "PN003",
@@ -238,9 +238,9 @@
         "quantity": 50
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T15:58:09.290Z",
-    "updatedAt": "2025-11-08T15:58:09.290Z"
+    "updatedAt": "2025-11-08T16:49:06.239Z"
   },
   {
     "id": "PN004",
@@ -393,9 +393,9 @@
         "quantity": 50
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:15:35.105Z",
-    "updatedAt": "2025-11-08T16:15:35.105Z"
+    "updatedAt": "2025-11-08T16:49:08.769Z"
   },
   {
     "id": "PN005",
@@ -580,9 +580,9 @@
         "quantity": 20
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:16:16.933Z",
-    "updatedAt": "2025-11-08T16:16:16.933Z"
+    "updatedAt": "2025-11-08T16:49:11.513Z"
   },
   {
     "id": "PN006",
@@ -767,9 +767,9 @@
         "quantity": 40
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:18:41.727Z",
-    "updatedAt": "2025-11-08T16:18:41.727Z"
+    "updatedAt": "2025-11-08T16:49:15.119Z"
   },
   {
     "id": "PN007",
@@ -922,9 +922,9 @@
         "quantity": 40
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:19:15.477Z",
-    "updatedAt": "2025-11-08T16:19:15.477Z"
+    "updatedAt": "2025-11-08T16:49:20.555Z"
   },
   {
     "id": "PN008",
@@ -1117,9 +1117,9 @@
         "quantity": 20
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:20:06.402Z",
-    "updatedAt": "2025-11-08T16:20:06.402Z"
+    "updatedAt": "2025-11-08T16:49:23.228Z"
   },
   {
     "id": "PN009",
@@ -1272,9 +1272,9 @@
         "quantity": 35
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:24:35.146Z",
-    "updatedAt": "2025-11-08T16:24:35.146Z"
+    "updatedAt": "2025-11-08T16:49:25.874Z"
   },
   {
     "id": "PN010",
@@ -1499,9 +1499,9 @@
         "quantity": 45
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:26:09.266Z",
-    "updatedAt": "2025-11-08T16:26:09.266Z"
+    "updatedAt": "2025-11-08T16:49:28.385Z"
   },
   {
     "id": "PN011",
@@ -1606,9 +1606,9 @@
         "quantity": 35
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:27:02.243Z",
-    "updatedAt": "2025-11-08T16:27:02.243Z"
+    "updatedAt": "2025-11-08T16:49:31.300Z"
   },
   {
     "id": "PN012",
@@ -1697,9 +1697,9 @@
         "quantity": 30
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:27:50.493Z",
-    "updatedAt": "2025-11-08T16:27:50.493Z"
+    "updatedAt": "2025-11-08T16:49:33.964Z"
   },
   {
     "id": "PN013",
@@ -1924,9 +1924,9 @@
         "quantity": 30
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:28:50.614Z",
-    "updatedAt": "2025-11-08T16:28:50.614Z"
+    "updatedAt": "2025-11-08T16:49:36.568Z"
   },
   {
     "id": "PN014",
@@ -2111,9 +2111,9 @@
         "quantity": 80
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:29:29.441Z",
-    "updatedAt": "2025-11-08T16:29:29.441Z"
+    "updatedAt": "2025-11-08T16:49:39.014Z"
   },
   {
     "id": "PN015",
@@ -2266,9 +2266,303 @@
         "quantity": 50
       }
     ],
-    "status": "PENDING",
+    "status": "COMPLETED",
     "createdAt": "2025-11-08T16:30:08.629Z",
-    "updatedAt": "2025-11-08T16:30:08.629Z"
+    "updatedAt": "2025-11-08T16:49:41.922Z"
+  },
+  {
+    "id": "PN016",
+    "importDate": "2025-11-09T04:42:50.530Z",
+    "totalPrice": 194200000,
+    "quantity": 600,
+    "items": [
+      {
+        "skuId": "mhmb3qzd-RJJSut",
+        "productId": "mhmb3qzc-SUFxnf",
+        "productName": "Mũ lưỡi trai thể thao chống nước",
+        "skuName": "Xanh dương, S",
+        "importPrice": 340000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhmb3qzd-uTfPhC",
+        "productId": "mhmb3qzc-SUFxnf",
+        "productName": "Mũ lưỡi trai thể thao chống nước",
+        "skuName": "Xanh dương, M",
+        "importPrice": 340000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhmb3qzd-aMmLkT",
+        "productId": "mhmb3qzc-SUFxnf",
+        "productName": "Mũ lưỡi trai thể thao chống nước",
+        "skuName": "Vàng, S",
+        "importPrice": 340000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhmb3qzd-9sXz0x",
+        "productId": "mhmb3qzc-SUFxnf",
+        "productName": "Mũ lưỡi trai thể thao chống nước",
+        "skuName": "Vàng, M",
+        "importPrice": 340000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhmaiwvx-q36FWI",
+        "productId": "mhmaiwvw-XKkKF2",
+        "productName": "Áo ngắn dệt kim gân nổi",
+        "skuName": "Cam, S",
+        "importPrice": 350000,
+        "quantity": 30
+      },
+      {
+        "skuId": "mhmaiwvx-r27hiY",
+        "productId": "mhmaiwvw-XKkKF2",
+        "productName": "Áo ngắn dệt kim gân nổi",
+        "skuName": "Cam, M",
+        "importPrice": 350000,
+        "quantity": 30
+      },
+      {
+        "skuId": "mhmaiwvx-6uzNqy",
+        "productId": "mhmaiwvw-XKkKF2",
+        "productName": "Áo ngắn dệt kim gân nổi",
+        "skuName": "Xanh lá cây, S",
+        "importPrice": 350000,
+        "quantity": 30
+      },
+      {
+        "skuId": "mhmaiwvx-fSH19f",
+        "productId": "mhmaiwvw-XKkKF2",
+        "productName": "Áo ngắn dệt kim gân nổi",
+        "skuName": "Xanh lá cây, M",
+        "importPrice": 350000,
+        "quantity": 30
+      },
+      {
+        "skuId": "mhm9wbzn-X2KyYr",
+        "productId": "mhm9wbzm-1GTT1L",
+        "productName": "Váy cotton in hình",
+        "skuName": "Cam, M",
+        "importPrice": 200000,
+        "quantity": 10
+      },
+      {
+        "skuId": "mhm9wbzn-QMDiZ1",
+        "productId": "mhm9wbzm-1GTT1L",
+        "productName": "Váy cotton in hình",
+        "skuName": "Cam, S",
+        "importPrice": 200000,
+        "quantity": 10
+      },
+      {
+        "skuId": "mhm9wbzn-cbip6g",
+        "productId": "mhm9wbzm-1GTT1L",
+        "productName": "Váy cotton in hình",
+        "skuName": "Xanh lá cây, M",
+        "importPrice": 200000,
+        "quantity": 10
+      },
+      {
+        "skuId": "mhm9wbzn-XDpDfF",
+        "productId": "mhm9wbzm-1GTT1L",
+        "productName": "Váy cotton in hình",
+        "skuName": "Xanh lá cây, S",
+        "importPrice": 200000,
+        "quantity": 10
+      },
+      {
+        "skuId": "mhm8wuvx-72M6HM",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Xanh lá cây, M",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8wuvx-dOI1cN",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Xanh lá cây, S",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8wuvx-GJOndz",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Xanh lá cây, L",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8wuvx-GvTuXY",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Xanh dương, M",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8wuvx-x1eqbP",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Xanh dương, S",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8wuvx-daBG09",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Xanh dương, L",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8wuvx-R3w68m",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Vàng, M",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8wuvx-Syf1ZL",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Vàng, S",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8wuvx-apzaBW",
+        "productId": "mhm8wuvx-G4OFCd",
+        "productName": "Đầm jersey không tay",
+        "skuName": "Vàng, L",
+        "importPrice": 450000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-gfPxbw",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Cam, L",
+        "importPrice": 200000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-6rsVgJ",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Cam, M",
+        "importPrice": 200000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-kEhn9z",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Cam, XL",
+        "importPrice": 200000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-r7xZzd",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Vàng, L",
+        "importPrice": 200000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-0rmO4U",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Vàng, M",
+        "importPrice": 200000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-2lM8UU",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Vàng, XL",
+        "importPrice": 200000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-t3amdA",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Xanh lá cây, L",
+        "importPrice": 200000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-R3VNHV",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Xanh lá cây, M",
+        "importPrice": 200000,
+        "quantity": 20
+      },
+      {
+        "skuId": "mhm8tv74-Avr0hu",
+        "productId": "mhm8tv73-pvCsc7",
+        "productName": "Regular Fit Fine-knit jumper",
+        "skuName": "Xanh lá cây, XL",
+        "importPrice": 200000,
+        "quantity": 20
+      }
+    ],
+    "status": "COMPLETED",
+    "createdAt": "2025-11-09T04:42:50.531Z",
+    "updatedAt": "2025-11-09T04:42:54.620Z"
+  },
+  {
+    "id": "PN017",
+    "importDate": "2025-11-09T04:44:47.222Z",
+    "totalPrice": 70000000,
+    "quantity": 200,
+    "items": [
+      {
+        "skuId": "mhmb5psh-hmz6tD",
+        "productId": "mhmb5psg-Z9kanp",
+        "productName": "Mũ lưỡi trai cotton có hoạ tiết",
+        "skuName": "Xanh lá cây, M",
+        "importPrice": 350000,
+        "quantity": 50
+      },
+      {
+        "skuId": "mhmb5psh-wcHYWk",
+        "productId": "mhmb5psg-Z9kanp",
+        "productName": "Mũ lưỡi trai cotton có hoạ tiết",
+        "skuName": "Xanh lá cây, S",
+        "importPrice": 350000,
+        "quantity": 50
+      },
+      {
+        "skuId": "mhmb5psh-Abt3j9",
+        "productId": "mhmb5psg-Z9kanp",
+        "productName": "Mũ lưỡi trai cotton có hoạ tiết",
+        "skuName": "Xanh dương, M",
+        "importPrice": 350000,
+        "quantity": 50
+      },
+      {
+        "skuId": "mhmb5psh-qdz223",
+        "productId": "mhmb5psg-Z9kanp",
+        "productName": "Mũ lưỡi trai cotton có hoạ tiết",
+        "skuName": "Xanh dương, S",
+        "importPrice": 350000,
+        "quantity": 50
+      }
+    ],
+    "status": "COMPLETED",
+    "createdAt": "2025-11-09T04:44:47.222Z",
+    "updatedAt": "2025-11-09T04:44:50.692Z"
   }
 ]
 }
