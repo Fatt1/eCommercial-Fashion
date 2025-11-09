@@ -134,7 +134,7 @@ function OrderItemDetailTable(items) {
         <div class="modal-header">
           <h2>Chi tiết đơn hàng</h2>
         </div>
-        <div class="modal-body">
+        <div class="modal-body order-detail-table">
           <table class="modal-table">
             <thead>
               <tr>
