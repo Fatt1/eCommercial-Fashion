@@ -1,4 +1,5 @@
 import { formatNumber } from "../../helper/formatNumber.js";
+import { getProductById } from "../../services/productService.js";
 export default function CheckoutItem(item, quantity, rawPrice) {
   let variationSize;
   let variationColor;
@@ -6,13 +7,13 @@ export default function CheckoutItem(item, quantity, rawPrice) {
     if (selected.variation === "Kích thước") variationSize = selected;
     else variationColor = selected;
   });
-
+  var product = getProductById(item.productId);
   return `
      <div class="checkout-item">
                 <div class="product-main">
                   <img
                     class="product-main__img"
-                    src="../assets/${item.image}"
+                    src="../assets/products/${product.thumbnail}"
                     alt=""
                   />
                   <span>${item.productName}</span>
