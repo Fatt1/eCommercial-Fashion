@@ -5,6 +5,7 @@ import { autoSlideId } from "../../components/Carousel/Carousel.js";
 import {
   getAllOrdersByUserId,
   getOrdersUserIdByStatus,
+  updateStatusOrder,
 } from "../../services/orderService.js";
 import { getLoggedUser } from "../../services/userService.js";
 import { ORDER_STATUS } from "../../constant/Constant.js";
@@ -178,10 +179,17 @@ function setUpOrderHistory() {
         "Bạn có chắc chắn muốn hủy đơn hàng này không?"
       );
       if (isConfirmed) {
-        updateStatusOrder(orderId, ORDER_STATUS.CANCELED);
-        // Tải lại trang để cập nhật trạng thái
-        loadOrderHistory();
-        alert("Đã hủy đơn hàng thành công!");
+        const result = updateStatusOrder(orderId, ORDER_STATUS.CANCELED);
+        
+        if (result && result.success) {
+          // Tải lại trang để cập nhật trạng thái
+          loadOrderHistory();
+          alert("Đã hủy đơn hàng thành công!");
+        } else {
+          alert(result && result.message
+            ? result.message
+            : "Không thể hủy đơn hàng ở trạng thái hiện tại.");
+        }
       }
     });
   });
