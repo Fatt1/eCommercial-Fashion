@@ -223,6 +223,7 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
   padding-bottom: 70px;
   margin-top: 40px;
@@ -243,6 +244,15 @@
 }
 .pagination-btn:active {
   color: black;
+}
+
+.pagination-ellipsis {
+  font-size: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  color: #666;
+  padding: 10px 5px;
+  user-select: none;
+  pointer-events: none;
 }
 
 .next-btn {

@@ -102,7 +102,7 @@ function getAllProducts({ pageSize = 5, pageNumber = 1 }) {
 function searchProducts(
   {
     categoryIds,
-    pageSize = 5,
+    pageSize = 6,
     pageNumber = 1,
     priceFrom,
     priceTo,
@@ -284,7 +284,7 @@ function applyFilter(
 function filterProducts(
   {
     categoryId,
-    pageSize = 5,
+    pageSize = 6,
     pageNumber = 1,
     searchKey,
     priceFrom,
