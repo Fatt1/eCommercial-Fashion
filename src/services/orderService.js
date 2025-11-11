@@ -50,8 +50,21 @@ function createOrder({
 function updateStatusOrder(orderId, status) {
   const dbContext = getDbContextFromLocalStorage();
   const order = dbContext.orders.find((o) => o.id === orderId);
+  if (!order) {
+    return { success: false, message: "Không tìm thấy đơn hàng." };
+  }
+
+  
+  if (status === ORDER_STATUS.CANCELED && order.status !== ORDER_STATUS.PENDING) {
+    return {
+      success: false,
+      message: "Chỉ có thể hủy đơn khi đang ở trạng thái 'Chờ xác nhận'.",
+    };
+  }
+
   order.status = status;
   saveDbContextToLocalStorage(dbContext);
+  return { success: true, order };
 }
 // Lọc đơn hàng theo các tiêu chí
 function filterOrdersByAdmin({

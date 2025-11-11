@@ -102,7 +102,7 @@ function renderProductDetailOverLay(productId) {
                   data-product-id="${productId}" data-index-color-sku="${variationColorIndex++}">
                     <img
                       class="variation-value__img"
-                      src="../assets/${option.image}"
+                      src="../assets/products/${option.image}"
                     />
                     
                     <span class="variation-value__value-name">${

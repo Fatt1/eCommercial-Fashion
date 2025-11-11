@@ -82,7 +82,10 @@ button {
 .icon {
   width: 20px;
 }
-
+.grn-detail-modal {
+  overflow-y: scroll;
+  height: 500px;
+}
 .admin__main {
   width: 82%;
   flex-grow: 1;

@@ -33,7 +33,7 @@ export function renderCartItemContainer() {
               />
               <img
                 class="product-main__img"
-                src="../assets/large-img-detail.png"
+                src="../assets/products/${matchingProduct.thumbnail}"
                 alt=""
               />
               <span>${matchingProduct.name}</span>
@@ -421,24 +421,26 @@ export function renderCartItemContainer() {
   function handleClickMenuSizeColor() {
     // Xử lý hover cho dropdown size và color
     const dropdownCarts = document.querySelectorAll(".dropdown-cart");
-    
+
     dropdownCarts.forEach((dropdown) => {
       let hideTimeout;
-      
+
       dropdown.addEventListener("mouseenter", () => {
         clearTimeout(hideTimeout);
         const menu = dropdown.querySelector(".dropdown-menu-cart");
         if (menu) {
           // Đóng tất cả menu khác
-          document.querySelectorAll(".dropdown-menu-cart.show").forEach((otherMenu) => {
-            if (otherMenu !== menu) {
-              otherMenu.classList.remove("show");
-            }
-          });
+          document
+            .querySelectorAll(".dropdown-menu-cart.show")
+            .forEach((otherMenu) => {
+              if (otherMenu !== menu) {
+                otherMenu.classList.remove("show");
+              }
+            });
           menu.classList.add("show");
         }
       });
-      
+
       dropdown.addEventListener("mouseleave", () => {
         const menu = dropdown.querySelector(".dropdown-menu-cart");
         if (menu) {
