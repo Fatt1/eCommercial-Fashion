@@ -14,7 +14,6 @@ import ReviewSection from "../Home/components/ReviewSection.js";
 import { getBestSellerWith3Categories } from "../../services/productService.js";
 
 import { handClickProductList } from "../../components/ProductList/ProductList.js";
-import { updateCartQuantity } from "../../services/cartService.js";
 
 function renderHome() {
   const result = getBestSellerWith3Categories();
