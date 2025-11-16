@@ -7,6 +7,7 @@ import {
 import { getPaymentMethodById } from "../../../../services/paymentMethodService.js";
 import { formatNumber } from "../../../../helper/formatNumber.js";
 import { ORDER_STATUS } from "../../../../constant/Constant.js";
+
 const overlay = document.querySelector(".overlay");
 const overlayContent = document.querySelector(".overlay-content");
 const orderStatusTranslation = {
@@ -16,7 +17,8 @@ const orderStatusTranslation = {
   COMPLETED: "Hoàn thành",
   CANCELED: "Đã hủy",
 };
-let filter = { pageNumber: 1, pageSize: 5 };
+let filter = { pageNumber: 1, pageSize: 10 };
+
 function renderOrderManage() {
   const result = filterOrdersByAdmin({ pageSize: filter.pageSize });
   const allOrders = result.items;
@@ -76,15 +78,25 @@ function renderOrderManage() {
             <div class="order-table-container">
               ${OrderTable(allOrders)}
             </div>
-        
+          
+          <!-- Pagination -->
+          <div class="product-manage-main-result__end">
+            <div class="noti-message">Tổng ${
+              result.totalItems
+            } đơn hàng | Mỗi trang tối đa ${filter.pageSize} đơn hàng</div>
+            <div class="pagination">
+              <!-- Pagination buttons will be generated here -->
+            </div>
+            <div class="page-index-track">Trang ${filter.pageNumber}/${
+    result.totalPages
+  }</div>
+          </div>
         </div>
       </div>
     </div>
   `;
 
-  document
-    .querySelector(".order-table-container")
-    .appendChild(renderPagination(result.totalPages, filter.pageNumber));
+  renderPagination(result.totalPages, filter.pageNumber);
 }
 
 function OrderItem(orderItem) {
@@ -115,6 +127,7 @@ function OrderItem(orderItem) {
   </tr>
   `;
 }
+
 function OrderItemDetail(orderItem) {
   return `
      <tr>
@@ -128,6 +141,7 @@ function OrderItemDetail(orderItem) {
     </tr>
   `;
 }
+
 function OrderItemDetailTable(items) {
   return `
       <div id="details-modal" class="modal">
@@ -156,6 +170,7 @@ function OrderItemDetailTable(items) {
       </div>
   `;
 }
+
 function OrderTable(orderItems) {
   return `
         <table id="order-list-table">
@@ -175,15 +190,13 @@ function OrderTable(orderItems) {
             ${orderItems.map((item) => OrderItem(item)).join("")}
           </tbody>
         </table>
-      
 `;
 }
 
 export function loadOrderPage() {
-  filter = { pageNumber: 1, pageSize: 5 };
+  filter = { pageNumber: 1, pageSize: 10 };
   renderOrderManage();
   setUpOrderTableEventListeners();
-
   handleClickFilterByStatus();
   handleClickFilterByDate();
   setUpAdminNav();
@@ -192,48 +205,104 @@ export function loadOrderPage() {
 
 function formatDate(date) {
   const d = new Date(date);
-
   const hours = String(d.getHours()).padStart(2, "0");
   const minutes = String(d.getMinutes()).padStart(2, "0");
   const seconds = String(d.getSeconds()).padStart(2, "0");
-
   const day = String(d.getDate()).padStart(2, "0");
-  // Lưu ý: getMonth() trả về từ 0-11 nên phải +1
   const month = String(d.getMonth() + 1).padStart(2, "0");
   const year = d.getFullYear();
-
-  // 3. Ghép các thành phần lại theo định dạng mong muốn
   return `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
 }
-function renderPagination(totalPages, pageNumber) {
-  let paginationDiv = document.createElement("div");
-  paginationDiv.classList.add("pagination");
-  // Logic để tạo các nút phân trang dựa trên filter.pageNumber và filter.pageSize
-  const fragment = document.createDocumentFragment();
+
+function renderPagination(totalPages, currentPage) {
+  const paginationContainer = document.querySelector(".pagination");
+  const pageIndexTrack = document.querySelector(".page-index-track");
+
+  if (!paginationContainer) return;
+
+  let html = "";
+
+  // Previous button
+  html += `
+    <a href="#" class="prev-btn pagination-btn ${
+      currentPage === 1 ? "disable-pagination-link" : ""
+    }" data-page="${currentPage - 1}">
+      <img src="../assets/prev-btn.svg" alt="Previous" />
+    </a>
+  `;
+
+  // Page numbers with smart ellipsis
   for (let i = 1; i <= totalPages; i++) {
-    const pageSpan = document.createElement("span");
-    pageSpan.classList.add("page-item");
-    if (i === pageNumber) {
-      pageSpan.classList.add("active");
+    if (i === currentPage) {
+      // Current page
+      html += `<a href="#" class="pagination-btn active" data-page="${i}">${i}</a>`;
+    } else if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentPage - 1 && i <= currentPage + 1)
+    ) {
+      // First page, last page, or pages adjacent to current
+      html += `<a href="#" class="pagination-btn" data-page="${i}">${i}</a>`;
+    } else if (i === currentPage - 2 || i === currentPage + 2) {
+      // Show ellipsis
+      html += `<span class="pagination-ellipsis">...</span>`;
     }
-    pageSpan.textContent = i;
-    pageSpan.addEventListener("click", () => {
-      const result = filterOrdersByAdmin({
-        ...filter,
-        pageNumber: i,
-      });
-      const allOrders = result.items;
-      document.querySelector(".order-table-container").innerHTML =
-        OrderTable(allOrders);
-      setUpOrderTableEventListeners();
-      document
-        .querySelector(".order-table-container")
-        .appendChild(renderPagination(result.totalPages, i));
-    });
-    fragment.appendChild(pageSpan);
   }
-  paginationDiv.appendChild(fragment);
-  return paginationDiv;
+
+  // Next button
+  html += `
+    <a href="#" class="pagination-btn next-btn ${
+      currentPage === totalPages ? "disable-pagination-link" : ""
+    }" data-page="${currentPage + 1}">
+      <img src="../assets/prev-btn.svg" alt="Next" style="transform: rotate(180deg);" />
+    </a>
+  `;
+
+  paginationContainer.innerHTML = html;
+
+  if (pageIndexTrack) {
+    pageIndexTrack.textContent = `Trang ${currentPage}/${totalPages}`;
+  }
+
+  // Setup pagination click events
+  setupPaginationEvents();
+}
+
+function setupPaginationEvents() {
+  const paginationBtns = document.querySelectorAll(
+    ".pagination-btn:not(.disable-pagination-link)"
+  );
+
+  paginationBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const page = parseInt(btn.dataset.page);
+      if (page && page > 0) {
+        filter.pageNumber = page;
+        const result = filterOrdersByAdmin(filter);
+        const allOrders = result.items;
+
+        // Update table
+        document.querySelector(".order-table-container").innerHTML =
+          OrderTable(allOrders);
+
+        // Update notification message
+        const notiMessage = document.querySelector(".noti-message");
+        if (notiMessage) {
+          notiMessage.textContent = `Tổng ${result.totalItems} đơn hàng | Mỗi trang tối đa ${filter.pageSize} đơn hàng`;
+        }
+
+        // Re-setup event listeners
+        setUpOrderTableEventListeners();
+
+        // Re-render pagination
+        renderPagination(result.totalPages, page);
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  });
 }
 
 function setUpOrderTableEventListeners() {
@@ -251,7 +320,6 @@ function setUpOrderTableEventListeners() {
 
   document.querySelectorAll(".update-status-link").forEach((link) => {
     link.addEventListener("click", () => {
-      // Kiểm tra nếu link bị disabled thì không làm gì
       if (link.classList.contains("disabled")) {
         return;
       }
@@ -265,19 +333,21 @@ function setUpOrderTableEventListeners() {
     });
   });
 }
+
 function setUpOrderDetailModalEventListeners() {
   const closeBtn = document.querySelector(".close-btn");
   closeBtn.addEventListener("click", () => {
     closeOverlay();
   });
 }
+
 function closeOverlay() {
   overlayContent.hidden = true;
   overlayContent.innerHTML = "";
   overlay.classList.remove("show");
 }
+
 function UpdateStatusOrderModal(order) {
-  console.log(order.status);
   return `
      <div id="update-modal" class="modal">
         <div class="modal-header">
@@ -352,14 +422,11 @@ function setUpUpdateOrderModalEventListeners() {
 
   const saveBtn = document.querySelector("#update-modal .save-btn");
   saveBtn.addEventListener("click", () => {
-    // Lưu trạng thái đơn hàng ở đây
     const select = document.querySelector("#order-status-select");
     const orderId = saveBtn.dataset.orderId;
     const newStatus = select.value;
-    // Cập nhật trạng thái đơn hàng trong cơ sở dữ liệu
     updateStatusOrder(orderId, newStatus);
     closeOverlay();
-    // Tải lại trang quản lý đơn hàng để hiển thị trạng thái mới
     loadOrderPage();
   });
 }
@@ -372,15 +439,23 @@ function handleClickFilterByStatus() {
         .querySelector(".order-status-btns button.active")
         .classList.remove("active");
       button.classList.add("active");
-      filter["status"] = status === "all" ? null : status;
+      filter.status = status === "all" ? null : status;
+      filter.pageNumber = 1; // Reset về trang 1
+
       const result = filterOrdersByAdmin(filter);
       const allOrders = result.items;
+
       document.querySelector(".order-table-container").innerHTML =
         OrderTable(allOrders);
+
+      // Update notification message
+      const notiMessage = document.querySelector(".noti-message");
+      if (notiMessage) {
+        notiMessage.textContent = `Tổng ${result.totalItems} đơn hàng | Mỗi trang tối đa ${filter.pageSize} đơn hàng`;
+      }
+
       setUpOrderTableEventListeners();
-      document
-        .querySelector(".order-table-container")
-        .appendChild(renderPagination(result.totalPages, filter.pageNumber));
+      renderPagination(result.totalPages, filter.pageNumber);
     });
   });
 }
@@ -392,29 +467,56 @@ function handleClickFilterByDate() {
       const dateInputs = document.querySelectorAll(".order-date-filter input");
       const startDate = dateInputs[0].value;
       const endDate = dateInputs[1].value;
-      filter["startDate"] = startDate ? startDate : null;
-      filter["endDate"] = endDate ? endDate : null;
+      filter.startDate = startDate ? startDate : null;
+      filter.endDate = endDate ? endDate : null;
+      filter.pageNumber = 1; // Reset về trang 1
+
       const result = filterOrdersByAdmin(filter);
       const allOrders = result.items;
+
       document.querySelector(".order-table-container").innerHTML =
         OrderTable(allOrders);
+
+      // Update notification message
+      const notiMessage = document.querySelector(".noti-message");
+      if (notiMessage) {
+        notiMessage.textContent = `Tổng ${result.totalItems} đơn hàng | Mỗi trang tối đa ${filter.pageSize} đơn hàng`;
+      }
+
       setUpOrderTableEventListeners();
-      document
-        .querySelector(".order-table-container")
-        .appendChild(renderPagination(result.totalPages, filter.pageNumber));
+      renderPagination(result.totalPages, filter.pageNumber);
     });
 }
+
 function handleClickSearchOrder() {
-  document.querySelector(".order-search-btn").addEventListener("click", () => {
-    const searchInput = document.querySelector(".order-search-bar").value;
-    filter["searchKey"] = searchInput ? searchInput : null;
+  const searchBtn = document.querySelector(".order-search-btn");
+  const searchInput = document.querySelector(".order-search-bar");
+
+  searchBtn.addEventListener("click", () => {
+    const searchValue = searchInput.value.trim();
+    filter.searchKey = searchValue ? searchValue : null;
+    filter.pageNumber = 1; // Reset về trang 1
+
     const result = filterOrdersByAdmin(filter);
     const allOrders = result.items;
+
     document.querySelector(".order-table-container").innerHTML =
       OrderTable(allOrders);
+
+    // Update notification message
+    const notiMessage = document.querySelector(".noti-message");
+    if (notiMessage) {
+      notiMessage.textContent = `Tổng ${result.totalItems} đơn hàng | Mỗi trang tối đa ${filter.pageSize} đơn hàng`;
+    }
+
     setUpOrderTableEventListeners();
-    document
-      .querySelector(".order-table-container")
-      .appendChild(renderPagination(result.totalPages, filter.pageNumber));
+    renderPagination(result.totalPages, filter.pageNumber);
+  });
+
+  // Enter key search
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      searchBtn.click();
+    }
   });
 }

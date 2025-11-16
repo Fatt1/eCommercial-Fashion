@@ -13,19 +13,19 @@ import {
   getAllParentCategory,
 } from "../../../../services/categoryService.js";
 import { filterProductsForPriceManage } from "../../../../services/priceService.js";
-const PAGE_SIZE = 6;
+
+const PAGE_SIZE = 10;
 let productList = [];
 let filter = {
   categoryId: null,
   priceType: "gia-ban",
   priceValue: 0,
+  pageNumber: 1,
+  pageSize: PAGE_SIZE,
 };
+
 function renderPriceManageHtml() {
-  const pageResult = filterProductsForPriceManage({
-    ...filter,
-    pageSize: PAGE_SIZE,
-    pageNumber: 1,
-  });
+  const pageResult = filterProductsForPriceManage(filter);
   console.log(pageResult);
   productList = pageResult.items;
   const categoriesLevel = getAllCategoriesByLevel();
@@ -77,9 +77,17 @@ function renderPriceManageHtml() {
             </thead>
             ${TableBody(productList)}
           </table>
-          <div class="pagination">
-           
-          </div>
+        </div>
+        
+        <!-- Pagination Section -->
+        <div class="product-manage-main-result__end">
+          <div class="noti-message">Tổng ${
+            pageResult.totalItems
+          } sản phẩm | Mỗi trang tối đa ${PAGE_SIZE} sản phẩm</div>
+          <div class="pagination"></div>
+          <div class="page-index-track">Trang ${filter.pageNumber}/${
+    pageResult.totalPages
+  }</div>
         </div>
       </div>
     </div>
@@ -108,47 +116,108 @@ function renderPriceManageHtml() {
 </div>
 `;
 
-  renderPagination(pageResult.totalPages, 1, PAGE_SIZE);
+  renderPagination(pageResult.totalPages, filter.pageNumber);
 }
 
-function renderPagination(totalPages, currentPage, pageSize) {
-  const paginationContainerDiv = document.createElement("div");
-  paginationContainerDiv.classList.add("pagination");
+function renderPagination(totalPages, currentPage) {
+  const paginationContainer = document.querySelector(".pagination");
+  const pageIndexTrack = document.querySelector(".page-index-track");
+
+  if (!paginationContainer) return;
+
+  let html = "";
+
+  // Previous button
+  html += `
+    <a href="#" class="prev-btn pagination-btn ${
+      currentPage === 1 ? "disable-pagination-link" : ""
+    }" data-page="${currentPage - 1}">
+      <img src="../assets/prev-btn.svg" alt="Previous" />
+    </a>
+  `;
+
+  // Page numbers with smart ellipsis
   for (let i = 1; i <= totalPages; i++) {
-    const pageItemDiv = document.createElement("div");
-    pageItemDiv.classList.add("page-item");
-    pageItemDiv.innerText = i;
     if (i === currentPage) {
-      pageItemDiv.classList.add("active");
+      // Current page
+      html += `<a href="#" class="pagination-btn active" data-page="${i}">${i}</a>`;
+    } else if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentPage - 1 && i <= currentPage + 1)
+    ) {
+      // First page, last page, or pages adjacent to current
+      html += `<a href="#" class="pagination-btn" data-page="${i}">${i}</a>`;
+    } else if (i === currentPage - 2 || i === currentPage + 2) {
+      // Show ellipsis
+      html += `<span class="pagination-ellipsis">...</span>`;
     }
-    pageItemDiv.addEventListener("click", () => {
-      const pageResult = filterProductsForPriceManage({
-        ...filter,
-        pageSize: pageSize,
-        pageNumber: i,
-      });
+  }
 
-      productList = pageResult.items;
-      document.querySelector("table").lastElementChild.remove();
-      document.querySelector("table").innerHTML += TableBody(productList);
+  // Next button
+  html += `
+    <a href="#" class="pagination-btn next-btn ${
+      currentPage === totalPages ? "disable-pagination-link" : ""
+    }" data-page="${currentPage + 1}">
+      <img src="../assets/prev-btn.svg" alt="Next" style="transform: rotate(180deg);" />
+    </a>
+  `;
 
-      // Reset select all checkbox
-      const selectAllCheckbox = document.querySelector(".select-all-checkbox");
-      if (selectAllCheckbox) {
-        selectAllCheckbox.checked = false;
-        selectAllCheckbox.indeterminate = false;
+  paginationContainer.innerHTML = html;
+
+  if (pageIndexTrack) {
+    pageIndexTrack.textContent = `Trang ${currentPage}/${totalPages}`;
+  }
+
+  // Setup pagination click events
+  setupPaginationEvents(totalPages);
+}
+
+function setupPaginationEvents(totalPages) {
+  const paginationBtns = document.querySelectorAll(
+    ".pagination-btn:not(.disable-pagination-link)"
+  );
+
+  paginationBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const page = parseInt(btn.dataset.page);
+      if (page && page > 0 && page <= totalPages) {
+        filter.pageNumber = page;
+        const pageResult = filterProductsForPriceManage(filter);
+        productList = pageResult.items;
+
+        // Update table body
+        document.querySelector("table tbody").remove();
+        document.querySelector("table").innerHTML += TableBody(productList);
+
+        // Reset select all checkbox
+        const selectAllCheckbox = document.querySelector(
+          ".select-all-checkbox"
+        );
+        if (selectAllCheckbox) {
+          selectAllCheckbox.checked = false;
+          selectAllCheckbox.indeterminate = false;
+        }
+
+        // Update notification message
+        const notiMessage = document.querySelector(".noti-message");
+        if (notiMessage) {
+          notiMessage.textContent = `Tổng ${pageResult.totalItems} sản phẩm | Mỗi trang tối đa ${PAGE_SIZE} sản phẩm`;
+        }
+
+        // Re-setup event listeners
+        setUpHandleClickTableRow();
+        handleSelectAllCheckbox();
+
+        // Re-render pagination
+        renderPagination(pageResult.totalPages, page);
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
-
-      renderPagination(pageResult.totalPages, i, pageSize);
-      setUpHandleClickTableRow();
-      handleSelectAllCheckbox();
     });
-    paginationContainerDiv.appendChild(pageItemDiv);
-  }
-  const existingPagination = document.querySelector(".pagination");
-  if (existingPagination) {
-    existingPagination.replaceWith(paginationContainerDiv);
-  }
+  });
 }
 
 function TableBody(productList) {
@@ -158,6 +227,7 @@ function TableBody(productList) {
               </tbody>
   `;
 }
+
 function TableRow(product) {
   return `
     <tr data-product-id="${product.id}" data-category-id="${
@@ -190,29 +260,42 @@ function TableRow(product) {
     </tr>
   `;
 }
+
 function calculateSalePercentage(originalPrice, currentlyPrice) {
   if (originalPrice === 0) return 0;
   return Math.floor(((originalPrice - currentlyPrice) / originalPrice) * 100);
 }
+
 function calculateProfitPercentage(importPrice, originalPrice) {
   if (importPrice === 0) return 0;
   if (originalPrice === 0) return 0;
   return Math.floor(((originalPrice - importPrice) / importPrice) * 100);
 }
+
 function setUpRenderPriceManage() {
   setUpAdminNav();
   setUpHandleClickTableRow();
   handleClickFilterApplyButton();
   handleSelectAllCheckbox();
   handleBulkUpdateButton();
+  handleResetFilterButton();
 }
+
 function setUpHandleClickTableRow() {
   preventInputTextForNumberInput();
   handleOnKeyPressPercentageInput();
   handleOnKeySaleInput();
   handleClickUpdatePriceButton();
 }
+
 export function loadPriceManagePage() {
+  filter = {
+    categoryId: null,
+    priceType: "gia-ban",
+    priceValue: 0,
+    pageNumber: 1,
+    pageSize: PAGE_SIZE,
+  };
   renderPriceManageHtml();
   setUpRenderPriceManage();
 }
@@ -226,16 +309,17 @@ function handleClickFilterApplyButton() {
     const priceType = priceTypeSelect.value;
     const priceValueInput = document.querySelector(".price-find-input");
     const priceValue = Number(priceValueInput.value) || 0;
+
     filter.categoryId = categoryId;
     filter.priceType = priceType;
     filter.priceValue = priceValue;
-    const pageResult = filterProductsForPriceManage({
-      ...filter,
-      pageSize: PAGE_SIZE,
-      pageNumber: 1,
-    });
-    document.querySelector("table").lastElementChild.remove();
-    document.querySelector("table").innerHTML += TableBody(pageResult.items);
+    filter.pageNumber = 1; // Reset về trang 1
+
+    const pageResult = filterProductsForPriceManage(filter);
+    productList = pageResult.items;
+
+    document.querySelector("table tbody").remove();
+    document.querySelector("table").innerHTML += TableBody(productList);
 
     // Reset select all checkbox
     const selectAllCheckbox = document.querySelector(".select-all-checkbox");
@@ -244,10 +328,60 @@ function handleClickFilterApplyButton() {
       selectAllCheckbox.indeterminate = false;
     }
 
-    renderPagination(pageResult.totalPages, 1, PAGE_SIZE);
+    // Update notification message
+    const notiMessage = document.querySelector(".noti-message");
+    if (notiMessage) {
+      notiMessage.textContent = `Tổng ${pageResult.totalItems} sản phẩm | Mỗi trang tối đa ${PAGE_SIZE} sản phẩm`;
+    }
+
+    renderPagination(pageResult.totalPages, filter.pageNumber);
     setUpHandleClickTableRow();
     handleSelectAllCheckbox();
   });
+}
+
+function handleResetFilterButton() {
+  document
+    .querySelector(".reset-price-filter-btn")
+    .addEventListener("click", () => {
+      // Reset filter values
+      filter = {
+        categoryId: null,
+        priceType: "gia-ban",
+        priceValue: 0,
+        pageNumber: 1,
+        pageSize: PAGE_SIZE,
+      };
+
+      // Reset UI
+      document.querySelector(".catergory-filter").value = "all";
+      document.querySelector(".price-filter").value = "gia-ban";
+      document.querySelector(".price-find-input").value = "";
+
+      // Reload data
+      const pageResult = filterProductsForPriceManage(filter);
+      productList = pageResult.items;
+
+      document.querySelector("table tbody").remove();
+      document.querySelector("table").innerHTML += TableBody(productList);
+
+      // Reset select all checkbox
+      const selectAllCheckbox = document.querySelector(".select-all-checkbox");
+      if (selectAllCheckbox) {
+        selectAllCheckbox.checked = false;
+        selectAllCheckbox.indeterminate = false;
+      }
+
+      // Update notification message
+      const notiMessage = document.querySelector(".noti-message");
+      if (notiMessage) {
+        notiMessage.textContent = `Tổng ${pageResult.totalItems} sản phẩm | Mỗi trang tối đa ${PAGE_SIZE} sản phẩm`;
+      }
+
+      renderPagination(pageResult.totalPages, filter.pageNumber);
+      setUpHandleClickTableRow();
+      handleSelectAllCheckbox();
+    });
 }
 
 function handleClickUpdatePriceButton() {
@@ -339,6 +473,7 @@ function calculateOriginalPriceFromProfitPercentage(
 ) {
   return importPrice + (profitPercentage / 100) * importPrice;
 }
+
 function calculateCurrentlyPriceFromSalePercentage(
   originalPrice,
   salePercentage
@@ -399,16 +534,10 @@ function handleBulkUpdateButton() {
       return;
     }
 
-    // Check if all selected products are from the same category hierarchy
-    // If a category filter is applied, all products should be in that filter
-    // If no filter (all), products should share the same root category
-
     if (filter.categoryId === null) {
-      // No filter applied - check if all products share the same root category
       const rootCategoryIds = selectedCheckboxes.map((checkbox) => {
         const productCategoryId = checkbox.closest("tr").dataset.categoryId;
         const { parentCategories } = getAllParentCategory(productCategoryId);
-        // Get root category (last in parent chain or current if no parents)
         return parentCategories.length > 0
           ? parentCategories[parentCategories.length - 1].id
           : productCategoryId;
@@ -424,12 +553,10 @@ function handleBulkUpdateButton() {
         return;
       }
     } else {
-      // Category filter is applied - check if all products belong to the filtered category or its children
       const isAllInFilteredCategory = selectedCheckboxes.every((checkbox) => {
         const productCategoryId = checkbox.closest("tr").dataset.categoryId;
         if (productCategoryId === filter.categoryId) return true;
 
-        // Check if product's category is a child of filtered category
         const { parentCategories } = getAllParentCategory(productCategoryId);
         return parentCategories.some(
           (parent) => parent.id === filter.categoryId
@@ -480,11 +607,9 @@ function handleBulkUpdateButton() {
         return;
       }
 
-      // Update profit percentage input
       const profitInput = tr.querySelector(".percentage-profit-input");
       profitInput.value = profitPercentage;
 
-      // Calculate and update original price
       const spanOriginalPrice = tr.querySelector(".original-price");
       const newOriginalPrice = calculateOriginalPriceFromProfitPercentage(
         importPriceValue,
@@ -492,7 +617,6 @@ function handleBulkUpdateButton() {
       );
       spanOriginalPrice.innerText = formatNumber(newOriginalPrice);
 
-      // Update currently price if there's a sale percentage
       const saleInput = tr.querySelector(".percentage-sale-input");
       const saleValue = Number(saleInput.value);
       if (saleValue > 0) {
@@ -503,12 +627,10 @@ function handleBulkUpdateButton() {
         );
         spanCurrentlyPrice.innerText = formatNumber(currentlyPrice);
       } else {
-        // If no sale percentage, currently price equals original price
         const spanCurrentlyPrice = tr.querySelector(".currently-price");
         spanCurrentlyPrice.innerText = formatNumber(newOriginalPrice);
       }
 
-      // Update the product in database
       const originalPrice = unFormatNumber(spanOriginalPrice.innerText);
       const currentlyPrice = unFormatNumber(
         tr.querySelector(".currently-price").innerText
@@ -529,7 +651,6 @@ function handleBulkUpdateButton() {
     );
     hideModal();
 
-    // Uncheck all checkboxes
     document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
       checkbox.checked = false;
     });
