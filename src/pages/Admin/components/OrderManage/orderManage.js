@@ -65,6 +65,7 @@ function renderOrderManage() {
                 <button data-status="${
                   ORDER_STATUS.COMPLETED
                 }">Hoàn thành</button>
+                 <button data-status="${ORDER_STATUS.CANCELED}">Đã hủy</button>
               </div>
               <div class="order-date-filter">
                 <span>Từ</span>
