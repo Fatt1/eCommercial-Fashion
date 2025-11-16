@@ -38,7 +38,6 @@ function setupHome() {
   setupCategorySection();
   handleClickHeader();
   handClickProductList();
-  updateCartQuantity("cart-quantity");
 }
 
 renderHome();

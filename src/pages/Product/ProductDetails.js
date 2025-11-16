@@ -22,8 +22,6 @@ import {
   checkMinusStockSku,
   getAllProducts,
   getProductById,
-  minusStockSku,
-  updateStockSku,
 } from "../../services/productService.js";
 
 import { preventInputTextForNumberInput } from "../../helper/helper.js";
@@ -337,28 +335,28 @@ function generateAttributeContent(product) {
   return content;
 }
 
-function showToast(message, type = 'success') {
+function showToast(message, type = "success") {
   // Tạo toast element
-  const toast = document.createElement('div');
+  const toast = document.createElement("div");
   toast.className = `toast toast-${type}`;
   toast.innerHTML = `
     <div class="toast-icon">
-      ${type === 'success' ? '✓' : '✕'}
+      ${type === "success" ? "✓" : "✕"}
     </div>
     <div class="toast-message">${message}</div>
   `;
-  
+
   // Thêm vào body
   document.body.appendChild(toast);
-  
+
   // Trigger animation
   setTimeout(() => {
-    toast.classList.add('toast-show');
+    toast.classList.add("toast-show");
   }, 10);
-  
+
   // Xóa sau 3 giây
   setTimeout(() => {
-    toast.classList.remove('toast-show');
+    toast.classList.remove("toast-show");
     setTimeout(() => {
       document.body.removeChild(toast);
     }, 300);
@@ -366,15 +364,8 @@ function showToast(message, type = 'success') {
 }
 
 function addMessage() {
-  showToast('✅ Đã thêm vào giỏ hàng thành công!', 'success');
+  showToast("✅ Đã thêm vào giỏ hàng thành công!", "success");
 }
-
-// function addedMessageAfterClickButton() {
-//   document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-//     console.log("clicked");
-//     addMessage();
-//   });
-// }
 
 let tierIndexes = [];
 
@@ -428,9 +419,6 @@ function handleClickVariationSize() {
       console.log(tierIndexes);
       console.log(getSkuByProductId(btn.dataset.productId, tierIndexes));
 
-      // document.querySelector(".available-quantity").innerHTML = `${
-      //   getSkuByProductId(btn.dataset.productId, tierIndexes).stock
-      // } sản phẩm có sẵn`;
       updateSkuStock(btn.dataset.productId, tierIndexes);
 
       checkEnableAddToCart();
@@ -447,13 +435,6 @@ function checkEnableAddToCart() {
   const colorSelected = document.querySelector(".color-choice.selected");
   const sizeSelected = document.querySelector(".size-choice.selected");
   const addToCartBtn = document.querySelector(".add-to-cart-btn");
-
-  // if (colorSelected && sizeSelected) {
-  //   addToCartBtn.classList.add("enabled");
-  // } else {
-  //   addToCartBtn.classList.remove("enabled");
-  //   addToCartBtn.classList;
-  // }
 }
 
 function handleClickVariation() {
@@ -484,7 +465,6 @@ function addToCartBtn() {
           alert("Không đủ stock");
           return;
         }
-        // updateSkuStock(sku.productId, sku.tierIndexes);
         console.log(sku);
         addToCart(sku.id, productId, quantity);
         updateCartQuantity("cart-quantity");
@@ -520,7 +500,6 @@ function handleBuyNowBtn() {
           alert("Không đủ stock");
           return;
         }
-        // updateSkuStock(sku.productId, sku.tierIndexes);
         console.log(sku);
         unTickAllCartItems();
         addToCart(sku.id, productId, quantity, true);
@@ -552,11 +531,6 @@ function plusMinusBtn() {
   });
 }
 
-// document.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-//   const productId =
-//     document.querySelector(".add-to-cart-btn").dataset.productId;
-//   console.log(productId);
-// });
 function handleClickSmallImage() {
   document
     .querySelectorAll(".small-images-section__small--button")

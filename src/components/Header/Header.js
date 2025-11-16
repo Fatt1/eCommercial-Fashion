@@ -103,7 +103,6 @@ function generateCategorySubMenu() {
 }
 
 export function handleClickHeader() {
-  updateCartQuantityStraight();
   // Xử lí sự kiện khi click vào các tab ở header
   document.querySelectorAll(".nav-item").forEach((liHeader) => {
     liHeader.addEventListener("click", (event) => {

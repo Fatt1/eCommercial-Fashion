@@ -468,7 +468,7 @@ function getSkusByProductId(productId) {
 // Lấy tất cả product theo categoryId và các category con của nó luôn
 function getProductsByCategoryId(categoryId) {
   const subCategoryIds = getSubCategoryIds(categoryId);
-  const allRelatedCategory = [subCategoryIds, categoryId];
+  const allRelatedCategory = [...subCategoryIds, categoryId];
   const dbContext = getDbContextFromLocalStorage();
   const categoryProducts = dbContext.products.filter((p) =>
     allRelatedCategory.includes(p.categoryId)
@@ -511,7 +511,7 @@ function getBestSellerWith3Categories() {
   bestSellerCategoriesId.forEach((id) => {
     const products = getProductsByCategoryId(id);
     const bestSeller = products
-      .slice(0, 6)
+      .slice(0, 8)
       .map((p) => {
         const salePercentage = getSalePercentage(
           p.priceInfo.originalPrice,
