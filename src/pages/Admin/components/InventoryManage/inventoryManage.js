@@ -996,12 +996,6 @@ function setupWarningThreshold() {
   }
 }
 
-// Setup refresh button - Reset tất cả filter
-function setupRefresh() {
-  // Note: refresh-filter-btn đã được dùng làm nút "Lọc" ở trên
-  // Có thể thêm nút reset riêng nếu cần
-}
-
 // Main load function
 export function loadInventoryManagePage() {
   renderInventoryManageHtml();
