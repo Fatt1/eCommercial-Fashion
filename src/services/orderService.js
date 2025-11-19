@@ -37,7 +37,7 @@ function createOrder({
     district,
     feeShipping,
     paymentMethodId,
-    ORDER_STATUS.WAITING_FOR_PAYMENT,
+    ORDER_STATUS.PENDING,
     fullName,
     phoneNumber
   );
