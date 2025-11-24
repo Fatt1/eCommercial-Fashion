@@ -17,11 +17,20 @@ import {
   getImportInvoiceById,
 } from "../../../../services/importInvoiceService.js";
 import { IMPORT_INVOICE_STATUS } from "../../../../constant/Constant.js";
+import { getLoggedUser } from "../../../../services/userService.js";
 
 let currentStagingItems = [];
 let selectedProductId = null;
 let editingInvoiceId = null;
 const rootElement = document.getElementById("root");
+
+const PAGE_SIZE = 10;
+let filter = {
+  pageNumber: 1,
+  pageSize: PAGE_SIZE,
+  searchKey: null,
+  status: null,
+};
 
 const invoiceStatusTranslation = {
   PENDING: "Chờ xác nhận",
@@ -30,6 +39,22 @@ const invoiceStatusTranslation = {
 };
 
 export function loadGoodsReceivedNoteList() {
+  const user = getLoggedUser();
+
+  // Kiểm tra quyền admin
+  if (!user || user.role !== "admin") {
+    // Import và gọi hàm từ admin.js hoặc file chung
+    window.location.href = "../../../../index.html"; // Redirect về trang chủ
+    return;
+  }
+
+  filter = {
+    pageNumber: 1,
+    pageSize: PAGE_SIZE,
+    searchKey: null,
+    status: null,
+  };
+
   rootElement.innerHTML = `
     <div class="admin">
       ${AdminNav()} 
@@ -42,7 +67,9 @@ export function loadGoodsReceivedNoteList() {
 }
 
 function renderGRNListPageContent() {
-  const grns = getAllImportInvoices();
+  const pageResult = filterImportInvoices();
+  const grns = pageResult.items;
+
   return `
     <div class="grn-list-container">
       <div class="product-manage__head">
@@ -52,10 +79,25 @@ function renderGRNListPageContent() {
         </div>
       </div>
       <div class="product-manage-main">
-        <div class="product-manage-main-search ">
+        <div class="product-manage-main-search">
           <input type="text" placeholder="Tìm kiếm mã phiếu..." id="grn-search-input" />
           <button class="product-manage-main-search__button blue__button" id="grn-search-btn">SEARCH</button>
         </div>
+        
+        <!-- Filter by Status -->
+        <div class="grn-status-filter" style="margin: 20px 0; display: flex; gap: 10px;">
+          <button class="status-filter-btn active" data-status="all">Tất cả</button>
+          <button class="status-filter-btn" data-status="${
+            IMPORT_INVOICE_STATUS.PENDING
+          }">Chờ xác nhận</button>
+          <button class="status-filter-btn" data-status="${
+            IMPORT_INVOICE_STATUS.COMPLETED
+          }">Đã hoàn thành</button>
+          <button class="status-filter-btn" data-status="${
+            IMPORT_INVOICE_STATUS.CANCELED
+          }">Đã hủy</button>
+        </div>
+        
         <div class="cart product-result">
           <div class="cart-info">
             <div class="grn-status">Trạng thái</div>
@@ -73,9 +115,137 @@ function renderGRNListPageContent() {
             }
           </div>
         </div>
+        
+        <!-- Pagination Section -->
+        <div class="product-manage-main-result__end">
+          <div class="noti-message">Tổng ${
+            pageResult.totalItems
+          } phiếu nhập | Mỗi trang tối đa ${PAGE_SIZE} phiếu</div>
+          <div class="pagination"></div>
+          <div class="page-index-track">Trang ${filter.pageNumber}/${
+    pageResult.totalPages
+  }</div>
+        </div>
       </div>
     </div>
   `;
+}
+
+function filterImportInvoices() {
+  let allGrns = getAllImportInvoices();
+
+  // Filter by search key
+  if (filter.searchKey) {
+    allGrns = allGrns.filter((grn) =>
+      grn.id.toLowerCase().includes(filter.searchKey.toLowerCase())
+    );
+  }
+
+  // Filter by status
+  if (filter.status) {
+    allGrns = allGrns.filter((grn) => grn.status === filter.status);
+  }
+
+  const totalItems = allGrns.length;
+  const totalPages = Math.ceil(totalItems / filter.pageSize);
+  const startIndex = (filter.pageNumber - 1) * filter.pageSize;
+  const endIndex = startIndex + filter.pageSize;
+  const items = allGrns.slice(startIndex, endIndex);
+
+  return {
+    items,
+    totalItems,
+    totalPages,
+    currentPage: filter.pageNumber,
+  };
+}
+
+function renderPagination(totalPages, currentPage) {
+  const paginationContainer = document.querySelector(".pagination");
+  const pageIndexTrack = document.querySelector(".page-index-track");
+
+  if (!paginationContainer) return;
+
+  let html = "";
+
+  // Previous button
+  html += `
+    <a href="#" class="prev-btn pagination-btn ${
+      currentPage === 1 ? "disable-pagination-link" : ""
+    }" data-page="${currentPage - 1}">
+      <img src="../assets/prev-btn.svg" alt="Previous" />
+    </a>
+  `;
+
+  // Page numbers with smart ellipsis
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === currentPage) {
+      html += `<a href="#" class="pagination-btn active" data-page="${i}">${i}</a>`;
+    } else if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentPage - 1 && i <= currentPage + 1)
+    ) {
+      html += `<a href="#" class="pagination-btn" data-page="${i}">${i}</a>`;
+    } else if (i === currentPage - 2 || i === currentPage + 2) {
+      html += `<span class="pagination-ellipsis">...</span>`;
+    }
+  }
+
+  // Next button
+  html += `
+    <a href="#" class="pagination-btn next-btn ${
+      currentPage === totalPages ? "disable-pagination-link" : ""
+    }" data-page="${currentPage + 1}">
+      <img src="../assets/prev-btn.svg" alt="Next" style="transform: rotate(180deg);" />
+    </a>
+  `;
+
+  paginationContainer.innerHTML = html;
+
+  if (pageIndexTrack) {
+    pageIndexTrack.textContent = `Trang ${currentPage}/${totalPages}`;
+  }
+
+  setupPaginationEvents(totalPages);
+}
+
+function setupPaginationEvents(totalPages) {
+  const paginationBtns = document.querySelectorAll(
+    ".pagination-btn:not(.disable-pagination-link)"
+  );
+
+  paginationBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const page = parseInt(btn.dataset.page);
+      if (page && page > 0 && page <= totalPages) {
+        filter.pageNumber = page;
+        updateGRNList();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  });
+}
+
+function updateGRNList() {
+  const pageResult = filterImportInvoices();
+  const grns = pageResult.items;
+
+  const listBody = document.getElementById("grn-list-body");
+  listBody.innerHTML =
+    grns.length === 0
+      ? `<p style="padding: 20px; text-align: center;">Không tìm thấy phiếu nhập nào.</p>`
+      : grns.map(renderGRNItem).join("");
+
+  // Update notification message
+  const notiMessage = document.querySelector(".noti-message");
+  if (notiMessage) {
+    notiMessage.textContent = `Tổng ${pageResult.totalItems} phiếu nhập | Mỗi trang tối đa ${PAGE_SIZE} phiếu`;
+  }
+
+  renderPagination(pageResult.totalPages, filter.pageNumber);
+  attachGRNActionListeners();
 }
 
 function renderGRNItem(grn) {
@@ -127,27 +297,37 @@ function setUpGRNListPage() {
 
   const searchInput = document.getElementById("grn-search-input");
   const searchBtn = document.getElementById("grn-search-btn");
-  const listBody = document.getElementById("grn-list-body");
 
   const handleSearchGRN = () => {
-    const keyword = searchInput.value.trim().toLowerCase();
-    const allGrns = getAllImportInvoices();
-    const filteredGrns = keyword
-      ? allGrns.filter((grn) => grn.id.toLowerCase().includes(keyword))
-      : allGrns;
-
-    listBody.innerHTML =
-      filteredGrns.length === 0
-        ? `<p style="padding: 20px; text-align: center;">Không tìm thấy phiếu nhập nào.</p>`
-        : filteredGrns.map(renderGRNItem).join("");
-
-    attachGRNActionListeners();
+    const keyword = searchInput.value.trim();
+    filter.searchKey = keyword || null;
+    filter.pageNumber = 1; // Reset về trang 1
+    updateGRNList();
   };
 
   searchBtn.addEventListener("click", handleSearchGRN);
   searchInput.addEventListener("keyup", (e) => {
     if (e.key === "Enter") handleSearchGRN();
   });
+
+  // Status filter buttons
+  document.querySelectorAll(".status-filter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document
+        .querySelector(".status-filter-btn.active")
+        ?.classList.remove("active");
+      btn.classList.add("active");
+
+      const status = btn.dataset.status;
+      filter.status = status === "all" ? null : status;
+      filter.pageNumber = 1; // Reset về trang 1
+      updateGRNList();
+    });
+  });
+
+  // Initial pagination render
+  const pageResult = filterImportInvoices();
+  renderPagination(pageResult.totalPages, filter.pageNumber);
 
   attachGRNActionListeners();
 }

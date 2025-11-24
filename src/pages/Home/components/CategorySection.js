@@ -52,7 +52,4 @@ export function setupCategorySection() {
       loadProductPage(categoryId);
     });
   });
-
-  // Khởi tạo trạng thái ban đầu
-  updateButtons();
 }
